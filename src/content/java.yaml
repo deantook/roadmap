@@ -6,7 +6,8 @@ nodes:
   - type: node
     id: java-basics
     title: 语言基础
-    description: 掌握语法、类型系统与面向对象核心概念。
+    description: |-
+      Java 语言基础是理解后续内容的前提。它包括语法、类型系统、面向对象核心概念以及包与类路径等基础知识。掌握这些内容后，才能理解后续内容。
     tags: [Java, 入门]
     status: planned
     link: https://docs.oracle.com/en/java/javase/21/docs/api/index.html

@@ -58,7 +58,11 @@
   --drawer-shadow: rgba(17, 17, 27, .58);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar { display: none; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
