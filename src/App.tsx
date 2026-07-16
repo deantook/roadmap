@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { contentResult, referencesRoadmap } from './data'
@@ -47,15 +47,22 @@ function getInitialTheme(): Theme {
 
 function ThemeButton() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme
     localStorage.setItem('roadmap-theme', theme)
   }, [theme])
 
+  const toggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light'
+    document.documentElement.dataset.theme = nextTheme
+    setTheme(nextTheme)
+  }
+
   return (
     <button
       className="icon-button"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      onClick={toggleTheme}
       aria-label={`切换为${theme === 'light' ? '深色' : '浅色'}主题`}
       title={`切换为${theme === 'light' ? '深色' : '浅色'}主题`}
     >
