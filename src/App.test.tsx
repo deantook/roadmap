@@ -14,9 +14,9 @@ describe('App', () => {
   it('renders root roadmaps on the home page', () => {
     render(<MemoryRouter><App /></MemoryRouter>)
     expect(screen.getByRole('heading', { name: '选择路线' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Web 开发路线图/ })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /前端开发路线图/ })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /后端开发路线图/ })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'Web 开发' }).closest('a')).toHaveAttribute('href', '/roadmaps/web-development')
+    expect(screen.getByRole('heading', { level: 3, name: '前端开发' }).closest('a')).toHaveAttribute('href', '/roadmaps/frontend')
+    expect(screen.getByRole('heading', { level: 3, name: '后端开发' }).closest('a')).toHaveAttribute('href', '/roadmaps/backend')
   })
 
   it('filters roadmaps by keyword and tag on the home page', () => {
@@ -24,18 +24,18 @@ describe('App', () => {
     const input = screen.getByRole('searchbox', { name: '搜索路线图' })
 
     fireEvent.change(input, { target: { value: 'Python' } })
-    expect(screen.getByRole('link', { name: /Python 语言路线图/ })).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: /Java 语言路线图/ })).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'Python' }).closest('a')).toHaveAttribute('href', '/roadmaps/python')
+    expect(screen.queryByRole('heading', { level: 3, name: 'Java' })).not.toBeInTheDocument()
 
     fireEvent.change(input, { target: { value: '' } })
     fireEvent.click(screen.getByRole('button', { name: '移动端' }))
-    expect(screen.getByRole('link', { name: /Flutter 开发路线图/ })).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: /后端开发路线图/ })).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'Flutter 开发' }).closest('a')).toHaveAttribute('href', '/roadmaps/flutter')
+    expect(screen.queryByRole('heading', { level: 3, name: '后端开发' })).not.toBeInTheDocument()
   })
 
   it('renders a vertical roadmap and nested routes', () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
-    expect(screen.getByRole('heading', { level: 1, name: 'Web 开发路线图' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1, name: 'Web 开发' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '互联网基础' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /进入前端路线图/ })).toBeInTheDocument()
   })
@@ -62,9 +62,9 @@ describe('App', () => {
   it('navigates into a referenced roadmap with breadcrumbs', async () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
     fireEvent.click(screen.getByRole('link', { name: /进入前端路线图/ }))
-    expect(await screen.findByRole('heading', { level: 1, name: '前端开发路线图' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: '前端开发' })).toBeInTheDocument()
     const breadcrumb = screen.getByRole('navigation', { name: '面包屑导航' })
-    expect(breadcrumb).toHaveTextContent('Web 开发路线图')
+    expect(breadcrumb).toHaveTextContent('Web 开发')
   })
 
   it('searches globally and navigates to a result', async () => {
@@ -72,7 +72,7 @@ describe('App', () => {
     const input = screen.getByRole('searchbox', { name: '搜索全部路线图节点' })
     fireEvent.change(input, { target: { value: '身份认证' } })
     fireEvent.click(await screen.findByRole('option', { name: /身份认证与授权/ }))
-    expect(await screen.findByRole('heading', { level: 1, name: '后端开发路线图' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: '后端开发' })).toBeInTheDocument()
     await waitFor(() => expect(Element.prototype.scrollIntoView).toHaveBeenCalled())
   })
 
