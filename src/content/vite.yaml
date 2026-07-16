@@ -1,0 +1,235 @@
+id: vite
+title: Vite
+description: 面向具备 JavaScript 与 npm 基础的学习者，从创建项目到配置、优化、测试和发布现代 Web 应用。
+tags: [Vite, 构建工具, 前端, 工程化]
+nodes:
+  - type: roadmap
+    roadmapId: javascript
+    title: 补齐 JavaScript 与包管理前置知识
+    description: 先掌握 ESM、npm scripts、依赖版本与浏览器模块，再深入理解 Vite 的工作方式。
+
+  - type: node
+    id: understand-vite-workflow
+    title: 建立 Vite 开发与构建心智模型
+    description: 理解开发服务器、原生 ESM、HMR 与生产构建在同一项目中的不同职责。
+    tags: [开发服务器, ESM, HMR]
+    status: planned
+    link: https://vite.dev/guide/
+    children:
+      - type: node
+        id: compare-dev-and-production
+        title: 区分开发服务与生产构建
+        description: 解释 dev、build 和 preview 命令各自解决的问题，并在本地验证构建产物。
+        tags: [npm scripts, 构建]
+        status: planned
+      - type: node
+        id: trace-module-updates
+        title: 观察模块图与热更新
+        description: 修改 JavaScript、CSS 和资源文件，观察 HMR 边界与完整刷新发生的条件。
+        tags: [模块图, HMR]
+        status: planned
+      - type: node
+        id: inspect-project-entry
+        title: 理解 index.html 与项目根目录
+        description: 将 index.html 视为源码入口，正确处理模块脚本、静态资源与根目录路径。
+        tags: [index.html, 入口]
+        status: planned
+
+  - type: node
+    id: create-and-run-projects
+    title: 创建并维护 Vite 项目
+    description: 使用官方模板建立前端项目，选择框架与 TypeScript，并保持命令和依赖可重复执行。
+    tags: [脚手架, TypeScript, npm]
+    status: planned
+    link: https://vite.dev/guide/
+    children:
+      - type: node
+        id: scaffold-framework-template
+        title: 使用模板创建项目
+        description: 用 create-vite 选择 Vanilla、Vue、React 等模板，理解生成目录与 package.json 脚本。
+        tags: [create-vite, 模板]
+        status: planned
+      - type: node
+        id: choose-package-manager-workflow
+        title: 固定包管理与依赖工作流
+        description: 提交 lockfile，区分 dependencies 与 devDependencies，并用明确脚本统一团队命令。
+        tags: [依赖管理, lockfile]
+        status: planned
+      - type: node
+        id: add-typescript-support
+        title: 为项目接入 TypeScript
+        description: 配置类型检查与路径解析，使编辑器、构建和测试对类型错误给出一致反馈。
+        tags: [TypeScript, 类型检查]
+        status: planned
+
+  - type: node
+    id: configure-vite-intentionally
+    title: 用配置适配项目约束
+    description: 从默认配置出发，只为明确需求设置路径别名、开发服务器、构建输出与条件化选项。
+    tags: [vite.config, 配置, 插件]
+    status: planned
+    link: https://vite.dev/config/
+    children:
+      - type: node
+        id: author-typed-vite-config
+        title: 编写具备类型提示的 Vite 配置
+        description: 使用 defineConfig 或 UserConfig 创建 vite.config，并让配置保持最小且可读。
+        tags: [defineConfig, 配置]
+        status: planned
+      - type: node
+        id: configure-resolve-and-dev-server
+        title: 配置路径解析与开发服务器
+        description: 为源码别名、端口、代理和允许访问范围设置明确规则，避免依赖本机偶然环境。
+        tags: [alias, proxy, server]
+        status: planned
+      - type: node
+        id: use-plugins-with-clear-purpose
+        title: 按需接入框架与转换插件
+        description: 先说明插件承担的编译或集成职责，再配置官方框架插件并验证其开发与构建行为。
+        tags: [插件, 框架]
+        status: planned
+        link: https://vite.dev/guide/using-plugins.html
+
+  - type: node
+    id: handle-source-assets-and-environments
+    title: 安全地处理源码、资源与环境变量
+    description: 让 CSS、静态资源和环境配置在开发与生产中保持可预测，同时避免把敏感数据带入客户端。
+    tags: [资源, 环境变量, 安全]
+    status: planned
+    link: https://vite.dev/guide/features
+    children:
+      - type: node
+        id: import-assets-and-css
+        title: 管理 CSS 与静态资源引用
+        description: 使用模块导入和 public 目录处理图片、字体与样式，并验证 base 路径下的资源地址。
+        tags: [CSS, 静态资源]
+        status: planned
+      - type: node
+        id: define-env-modes
+        title: 按模式定义环境变量
+        description: 使用 .env 文件与 mode 区分环境，并通过 import.meta.env 读取允许暴露给客户端的变量。
+        tags: [.env, mode]
+        status: planned
+        link: https://vite.dev/guide/env-and-mode
+      - type: node
+        id: protect-client-secrets
+        title: 阻止敏感信息进入客户端构建
+        description: 理解 VITE_ 前缀的公开含义，将令牌和私钥保留在服务端或部署平台的安全环境中。
+        tags: [安全, 密钥管理]
+        status: planned
+
+  - type: node
+    id: debug-and-test-vite-apps
+    title: 调试并测试 Vite 应用
+    description: 从终端和浏览器定位配置、解析与运行问题，并为关键功能建立快速可靠的测试反馈。
+    tags: [调试, Vitest, 测试]
+    status: planned
+    children:
+      - type: node
+        id: diagnose-resolution-and-hmr-issues
+        title: 定位解析与热更新问题
+        description: 通过终端日志、浏览器网络面板和最小复现排查导入失败、缓存和 HMR 异常。
+        tags: [调试, HMR]
+        status: planned
+        link: https://vite.dev/guide/troubleshooting
+      - type: node
+        id: add-vitest-feedback-loop
+        title: 建立 Vitest 测试反馈循环
+        description: 配置 Vitest 复用必要的 Vite 设置，为工具函数和关键 UI 行为编写可重复执行的测试。
+        tags: [Vitest, 单元测试]
+        status: planned
+        link: https://vitest.dev/guide/
+      - type: node
+        id: automate-quality-checks
+        title: 自动化类型、测试与构建检查
+        description: 将类型检查、测试和生产构建加入 CI 或提交前流程，阻止不可发布的改动进入主分支。
+        tags: [CI, 质量保障]
+        status: planned
+
+  - type: node
+    id: optimize-build-output
+    title: 优化可验证的生产构建
+    description: 分析构建产物与加载成本，按真实瓶颈调整目标浏览器、代码分割和依赖处理。
+    tags: [生产构建, 性能, 代码分割]
+    status: planned
+    link: https://vite.dev/guide/build
+    children:
+      - type: node
+        id: inspect-build-artifacts
+        title: 检查构建产物与兼容性目标
+        description: 审阅 dist 内容、资源大小和 target 设置，确保输出与目标浏览器范围相符。
+        tags: [dist, target]
+        status: planned
+      - type: node
+        id: split-large-code-paths
+        title: 按用户路径拆分大体积代码
+        description: 使用动态 import 将非首屏功能延后加载，并在真实网络条件下验证体验改善。
+        tags: [动态导入, 代码分割]
+        status: planned
+      - type: node
+        id: understand-dependency-optimization
+        title: 理解依赖预构建与缓存
+        description: 知道 Vite 为何优化依赖、何时需要调整 include 或 exclude，并避免盲目清理缓存。
+        tags: [依赖优化, 缓存]
+        status: planned
+        link: https://vite.dev/guide/dep-pre-bundling
+
+  - type: node
+    id: ship-static-site
+    title: 完成一次静态站点发布
+    description: 为一个真实前端项目配置正确的 base、环境变量和发布流程，并在目标地址验证关键页面。
+    tags: [部署, 项目, 综合实践]
+    status: planned
+    link: https://vite.dev/guide/static-deploy
+    children:
+      - type: node
+        id: prepare-deployment-config
+        title: 准备与托管环境匹配的配置
+        description: 根据根域名、子路径或 CDN 选择 base 与构建命令，并记录部署所需的公开变量。
+        tags: [base, 部署配置]
+        status: planned
+      - type: node
+        id: deploy-and-verify-site
+        title: 部署并验收生产站点
+        description: 发布 dist 目录后检查深链接、资源路径、错误页和关键交互，修复与本地环境的差异。
+        tags: [发布, 验收]
+        status: planned
+      - type: node
+        id: document-project-tooling
+        title: 记录项目工具链决策
+        description: 在 README 中写明开发、测试、构建和发布命令，以及非默认配置背后的理由。
+        tags: [文档, 可维护性]
+        status: planned
+
+  - type: node
+    id: choose-advanced-vite-path
+    title: 按项目边界选择 Vite 专题
+    description: 在日常 Web 应用工作流稳定后，再根据项目形态探索库模式、SSR、后端集成或插件开发。
+    tags: [进阶, 选修]
+    status: optional
+    children:
+      - type: node
+        id: package-a-library
+        title: 使用库模式发布前端包
+        description: 为可复用组件或工具配置库入口、外部依赖和类型产物，并在消费项目中验证安装结果。
+        tags: [库模式, npm]
+        status: optional
+        link: https://vite.dev/guide/build#library-mode
+      - type: node
+        id: explore-ssr-and-backend-integration
+        title: 探索 SSR 与后端集成
+        description: 理解客户端与服务端构建的边界，按框架或后端架构选择集成方式。
+        tags: [SSR, 后端集成]
+        status: optional
+        link: https://vite.dev/guide/ssr
+      - type: node
+        id: author-vite-plugin
+        title: 编写 Vite 插件扩展构建流程
+        description: 仅在现有插件无法满足需求时学习钩子、转换与虚拟模块，并为插件行为添加测试。
+        tags: [Plugin API, 扩展]
+        status: optional
+        link: https://vite.dev/guide/api-plugin
+      - type: roadmap
+        roadmapId: frontend
+        title: 回到前端应用工程实践
+        description: 将 Vite 工作流应用到界面质量、可访问性和持续集成中。

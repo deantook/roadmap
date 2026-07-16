@@ -1,0 +1,253 @@
+id: nodejs
+title: Node.js
+description: 从 JavaScript 运行时基础到构建、测试、调试和交付可维护的 Node.js 小型后端服务。
+tags: [Node.js, JavaScript, 后端, API]
+nodes:
+  - type: node
+    id: runtime-and-project-tooling
+    title: 配置 Node.js 运行时与项目工具
+    description: 理解 Node.js 与浏览器运行时的差异，并用包管理器和脚本建立可重复的开发流程。
+    tags: [运行时, npm]
+    status: planned
+    link: https://nodejs.org/learn/getting-started/introduction-to-nodejs
+    children:
+      - type: roadmap
+        roadmapId: javascript
+        title: 补齐 JavaScript 语言基础
+        description: 先掌握异步、模块和错误处理，再进入 Node.js 服务端开发。
+      - type: node
+        id: node-installation-and-versions
+        title: 安装 Node.js 并声明项目版本
+        description: 选择受支持的 Node.js 版本，并在项目中明确运行时要求以减少环境差异。
+        tags: [安装, 版本]
+        status: planned
+        link: https://nodejs.org/en/download
+      - type: node
+        id: package-json-and-scripts
+        title: 使用 package.json 组织依赖与脚本
+        description: 定义依赖范围和 npm scripts，使启动、测试与构建命令可被团队和 CI 重复执行。
+        tags: [package.json, npm]
+        status: planned
+        link: https://docs.npmjs.com/cli/v11/configuring-npm/package-json
+      - type: node
+        id: esm-commonjs-boundaries
+        title: 管理 ESM、CommonJS 与包边界
+        description: 选择模块体系并理解 package.json 配置对 import、require 和发布产物的影响。
+        tags: [ESM, CommonJS]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/packages.html
+
+  - type: node
+    id: node-core-api
+    title: 使用核心 API 完成服务端任务
+    description: 异步处理文件、路径、环境变量、进程信号和二进制数据，避免将运行时细节散落在业务逻辑中。
+    tags: [核心 API, 异步]
+    status: planned
+    children:
+      - type: node
+        id: filesystem-path-and-url
+        title: 安全处理文件、路径与 URL
+        description: 使用 fs/promises、path 和 URL API 操作受控文件，避免依赖工作目录或拼接不可信路径。
+        tags: [fs, path]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/fs.html
+      - type: node
+        id: configuration-from-environment
+        title: 验证环境变量与运行配置
+        description: 在启动阶段读取和校验配置，使缺失或非法配置尽早失败且易于诊断。
+        tags: [环境变量, 配置]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/environment_variables.html
+      - type: node
+        id: buffer-and-encoding
+        title: 正确处理 Buffer、编码与二进制输入
+        description: 区分字符串和字节数据，并为不可信二进制输入设置编码和大小边界。
+        tags: [Buffer, 编码]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/buffer.html
+
+  - type: node
+    id: async-performance
+    title: 在事件循环模型中保持服务响应
+    description: 区分非阻塞 I/O、事件循环和工作线程池的职责，避免同步或 CPU 密集操作拖慢全部请求。
+    tags: [事件循环, 性能]
+    status: planned
+    link: https://nodejs.org/learn/asynchronous-work/dont-block-the-event-loop
+    children:
+      - type: node
+        id: promises-timeouts-cancellation
+        title: 管理 Promise 错误、超时与取消
+        description: 正确传播异步错误，并使用超时和 AbortSignal 控制无效或长期阻塞的工作。
+        tags: [Promise, AbortSignal]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/globals.html#class-abortcontroller
+      - type: node
+        id: streams-with-backpressure
+        title: 使用 Streams 处理大数据与背压
+        description: 用 readable、writable 和 pipeline 流式处理文件或 HTTP 数据，避免一次性读入内存。
+        tags: [Streams, 背压]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/stream.html
+      - type: node
+        id: cpu-work-isolation
+        title: 隔离 CPU 密集型任务
+        description: 将高计算量工作交给 worker_threads、独立进程或外部队列，并比较通信和资源成本。
+        tags: [worker_threads, 并发]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/worker_threads.html
+
+  - type: node
+    id: http-api-service
+    title: 构建符合 HTTP 语义的 API 服务
+    description: 理解请求生命周期、状态码和资源清理，再用一种框架构建清晰、可验证的 Web API。
+    tags: [HTTP, API]
+    status: planned
+    children:
+      - type: node
+        id: native-http-lifecycle
+        title: 用原生 HTTP 模块理解服务生命周期
+        description: 创建服务、解析请求、输出响应并处理超时和关闭信号，理解框架封装的底层行为。
+        tags: [http, 服务端]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/http.html
+      - type: node
+        id: choose-and-use-web-framework
+        title: 选择一种 Web 框架交付服务
+        description: 比较 Express、Fastify 等框架后选择一种，掌握路由、中间件、校验和错误处理的组织方式。
+        tags: [Express, Fastify]
+        status: planned
+      - type: node
+        id: validate-input-and-errors
+        title: 校验输入并统一 API 错误模型
+        description: 在边界层验证参数、请求体和认证信息，返回稳定且不会泄漏内部细节的错误响应。
+        tags: [校验, 错误处理]
+        status: planned
+
+  - type: node
+    id: dependencies-and-resilience
+    title: 可靠连接数据和外部服务
+    description: 将连接、超时、重试和错误归类封装在基础设施层，避免单个依赖故障耗尽服务资源。
+    tags: [数据库, 韧性]
+    status: planned
+    children:
+      - type: node
+        id: database-connection-lifecycle
+        title: 管理数据库连接与关闭顺序
+        description: 使用连接池，并在启动和优雅关闭阶段明确建立、健康检查和释放连接。
+        tags: [连接池, 数据库]
+        status: planned
+      - type: node
+        id: resilient-outbound-http
+        title: 为出站 HTTP 请求设置韧性边界
+        description: 使用 fetch 或客户端库设置超时、取消、有限重试和错误映射，防止依赖缓慢时请求堆积。
+        tags: [fetch, 超时, 重试]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/globals.html#fetch
+      - type: roadmap
+        roadmapId: redis
+        title: 接入 Redis 缓存与异步能力
+        description: 为缓存、限流或 Streams 场景补充 Redis 数据模型和运维能力。
+
+  - type: node
+    id: test-security-and-lifecycle
+    title: 测试、加固并正确关闭服务
+    description: 用自动化测试守住行为，在不可信输入和依赖故障下保持可预测，并在发布停止时安全释放资源。
+    tags: [测试, 安全, 可靠性]
+    status: planned
+    children:
+      - type: node
+        id: node-test-runner
+        title: 使用 Node.js 内置测试运行器保护逻辑
+        description: 用 node:test 和 assert 覆盖业务逻辑，并以集成测试验证 HTTP 边界与关键依赖。
+        tags: [node:test, 集成测试]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/test.html
+      - type: node
+        id: request-limits-and-secrets
+        title: 限制请求资源并管理密钥
+        description: 控制请求体和解析成本，不将密钥写入源码或日志，并定期审查依赖更新与漏洞。
+        tags: [输入安全, 密钥]
+        status: planned
+        link: https://docs.npmjs.com/auditing-package-dependencies-for-security-vulnerabilities
+      - type: node
+        id: graceful-shutdown
+        title: 实现优雅关闭与请求排空
+        description: 捕获终止信号，停止接收新请求，等待在途工作在超时内完成并关闭服务器与依赖连接。
+        tags: [SIGTERM, 优雅关闭]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/process.html#signal-events
+
+  - type: node
+    id: observability-and-debugging
+    title: 观测并调试 Node.js 运行问题
+    description: 用日志、指标和运行时诊断区分应用错误、依赖缓慢、内存增长与事件循环阻塞。
+    tags: [可观测性, 调试]
+    status: planned
+    children:
+      - type: node
+        id: structured-logging-and-context
+        title: 输出结构化日志并关联请求上下文
+        description: 为日志保留等级、事件、请求关联标识和安全的错误信息，便于检索和故障还原。
+        tags: [日志, 请求上下文]
+        status: planned
+      - type: node
+        id: inspector-and-profiling
+        title: 使用 Inspector 和性能分析定位瓶颈
+        description: 在受控环境中连接 Inspector，采集 CPU 或堆快照并从证据定位慢路径或内存泄漏。
+        tags: [Inspector, 性能分析]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/inspector.html
+      - type: node
+        id: health-and-runtime-metrics
+        title: 监测服务健康和运行时资源
+        description: 记录延迟、错误率、事件循环延迟和堆内存信号，并为关键异常准备告警和排查步骤。
+        tags: [指标, 健康检查]
+        status: planned
+        link: https://nodejs.org/docs/latest/api/perf_hooks.html
+
+  - type: node
+    id: node-service-capstone
+    title: 交付一个可维护的 Node.js 服务
+    description: 将 API、配置、测试、可观测性和部署说明组合为可从零运行、验证和排错的小型生产式项目。
+    tags: [综合实践, 交付]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: docker
+        title: 容器化 Node.js 服务
+        description: 使用 Docker 构建、运行和交付一致的 Node.js 服务环境。
+      - type: node
+        id: capstone-service-acceptance
+        title: 验证发布、失败与恢复流程
+        description: 在干净环境执行安装、测试、启动和健康检查，并演练无效请求、依赖超时和优雅关闭。
+        tags: [验收, 故障演练]
+        status: planned
+
+  - type: node
+    id: advanced-node-topics
+    title: 按系统需求深化 Node.js 专题
+    description: 完成通用服务交付后，再按项目需求选择 TypeScript、实时通信或原生扩展方向。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: typescript-for-node
+        title: 在 Node.js 项目中引入 TypeScript
+        description: 用 TypeScript 明确服务边界和数据类型，并配置构建或运行时方案保持开发与发布一致。
+        tags: [TypeScript]
+        status: optional
+        link: https://www.typescriptlang.org/docs/handbook/intro.html
+      - type: node
+        id: realtime-websockets
+        title: 构建实时通信服务
+        description: 在确有低延迟双向通信需求时，学习 WebSocket 生命周期、心跳、鉴权和水平扩展边界。
+        tags: [WebSocket, 实时通信]
+        status: optional
+        link: https://nodejs.org/docs/latest/api/http.html#event-upgrade
+      - type: node
+        id: native-addons-and-subprocesses
+        title: 评估原生扩展与子进程集成风险
+        description: 仅在现有 JavaScript API 无法满足性能或系统集成需求时，学习 Node-API、子进程隔离和输入安全。
+        tags: [Node-API, 子进程]
+        status: optional
+        link: https://nodejs.org/docs/latest/api/n-api.html

@@ -1,5 +1,5 @@
 id: maven
-title: Maven 路线图
+title: Maven
 description: 从编写 POM 与理解生命周期到管理多模块依赖、测试与可重复发布。
 tags: [构建工具, Java, Maven, 工程化]
 nodes:

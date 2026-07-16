@@ -1,5 +1,5 @@
 id: spring-boot
-title: Spring Boot 路线图
+title: Spring Boot
 description: 从创建首个可运行服务到具备测试、安全与生产部署能力的 REST 后端项目。
 tags: [后端, Java, Spring Boot, API]
 nodes:

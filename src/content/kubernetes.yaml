@@ -1,5 +1,5 @@
 id: kubernetes
-title: Kubernetes 路线图
+title: Kubernetes
 description: 从容器化应用部署到在集群中以声明式方式运行、更新、排错和保护小型服务。
 tags: [Kubernetes, 容器编排, DevOps, 云原生]
 nodes:

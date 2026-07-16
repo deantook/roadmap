@@ -1,5 +1,5 @@
 id: dart
-title: Dart 语言路线图
+title: Dart 语言
 description: 从语法与空安全到泛型、异步、Isolates 与 Flutter / 服务端入门。
 tags: [语言, Dart, 移动端]
 nodes:

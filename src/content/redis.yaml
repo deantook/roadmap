@@ -1,5 +1,5 @@
 id: redis
-title: Redis 路线图
+title: Redis
 description: 从常用数据结构与缓存设计到可靠运行 Redis，为小型后端服务构建高性能的数据访问能力。
 tags: [Redis, 缓存, 数据库, 后端]
 nodes:

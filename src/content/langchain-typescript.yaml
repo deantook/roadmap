@@ -1,5 +1,5 @@
 id: langchain-typescript
-title: LangChain TypeScript 路线图
+title: LangChain TypeScript
 description: 从 TypeScript 与模型调用基础出发，使用 LangChain 构建可测试、可观测的检索增强与工具调用 AI 应用。
 tags: [AI 应用, LangChain, TypeScript, LLM]
 nodes:

@@ -1,5 +1,5 @@
 id: gradle
-title: Gradle 路线图
+title: Gradle
 description: 从初始化项目与编写构建脚本到管理依赖、多模块与可重复发布的 Gradle 工程实践。
 tags: [构建工具, Java, Gradle, 工程化]
 nodes:

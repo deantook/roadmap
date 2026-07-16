@@ -1,5 +1,5 @@
 id: golang
-title: Go 语言路线图
+title: Golang
 description: 从语法与接口到并发、模块、标准库与 Web 服务入门。
 tags: [语言, Go, 后端]
 nodes:

@@ -1,0 +1,262 @@
+id: vue
+title: Vue
+description: 面向已有 JavaScript 基础的学习者，从 Vue 3 组件到可测试、可部署的单页 Web 应用。
+tags: [Vue, 前端, JavaScript, TypeScript]
+nodes:
+  - type: roadmap
+    roadmapId: javascript
+    title: 补齐 JavaScript 前置知识
+    description: 先掌握函数、模块、异步、数组与浏览器 API，再开始 Vue 开发。
+
+  - type: node
+    id: set-up-vue-project
+    title: 创建 Vue 3 开发项目
+    description: 使用官方脚手架创建基于 Vite 的项目，理解目录、开发服务器和生产构建的职责。
+    tags: [Vue 3, Vite, 工具链]
+    status: planned
+    link: https://vuejs.org/guide/quick-start.html
+    children:
+      - type: node
+        id: run-and-build-vue-app
+        title: 运行并构建本地应用
+        description: 使用 npm 脚本启动开发服务器、检查构建结果并阅读浏览器报错。
+        tags: [npm, 构建]
+        status: planned
+      - type: node
+        id: inspect-vue-components
+        title: 使用 Vue Devtools 检查组件
+        description: 在开发者工具中查看组件树、props、响应式状态与事件，辅助定位更新问题。
+        tags: [调试]
+        status: planned
+        link: https://devtools.vuejs.org/guide/installation.html
+
+  - type: node
+    id: build-ui-with-sfc
+    title: 用单文件组件构建界面
+    description: 使用 .vue 文件将模板、逻辑和样式组织为可维护的组件，并掌握模板声明式渲染。
+    tags: [SFC, 模板, 组件]
+    status: planned
+    link: https://vuejs.org/guide/introduction.html
+    children:
+      - type: node
+        id: template-syntax-and-bindings
+        title: 使用模板语法绑定数据
+        description: 运用插值、v-bind、class/style 绑定、条件和列表渲染表达 UI 状态。
+        tags: [模板语法, v-bind, v-for]
+        status: planned
+        link: https://vuejs.org/guide/essentials/template-syntax.html
+      - type: node
+        id: handle-events-and-forms
+        title: 响应事件并管理表单输入
+        description: 使用 v-on 和 v-model 处理用户操作，验证表单数据、焦点与错误提示。
+        tags: [事件, v-model, 表单]
+        status: planned
+        link: https://vuejs.org/guide/essentials/forms.html
+      - type: node
+        id: apply-component-scoped-styles
+        title: 为组件编写可控样式
+        description: 理解 scoped CSS 的边界，结合语义化 HTML 与响应式布局实现清晰的视觉层次。
+        tags: [CSS, scoped]
+        status: planned
+
+  - type: node
+    id: master-vue-reactivity
+    title: 掌握 Vue 响应式状态
+    description: 用 ref、reactive、computed 与 watch 建模状态、派生值和必要的副作用。
+    tags: [响应式, Composition API, ref]
+    status: planned
+    link: https://vuejs.org/guide/essentials/reactivity-fundamentals.html
+    children:
+      - type: node
+        id: choose-ref-and-reactive
+        title: 选择 ref 与 reactive
+        description: 区分基本值和对象状态的访问与解包规则，避免因解构丢失响应性。
+        tags: [ref, reactive]
+        status: planned
+      - type: node
+        id: derive-state-with-computed
+        title: 使用 computed 表达派生状态
+        description: 把可由现有状态计算出的数据保持为只读派生值，而不是重复存储。
+        tags: [computed, 状态设计]
+        status: planned
+        link: https://vuejs.org/guide/essentials/computed.html
+      - type: node
+        id: watch-external-effects
+        title: 谨慎使用 watch 同步外部副作用
+        description: 仅在需要响应状态变化执行异步请求、存储或第三方 API 时使用 watcher，并处理清理和竞态。
+        tags: [watch, 副作用]
+        status: planned
+        link: https://vuejs.org/guide/essentials/watchers.html
+      - type: node
+        id: build-reactive-widget
+        title: 完成一个响应式交互练习
+        description: 实现可筛选、可编辑且带校验的列表或表单，验证状态与视图始终一致。
+        tags: [实践]
+        status: planned
+
+  - type: node
+    id: design-component-interfaces
+    title: 设计可组合的组件接口
+    description: 通过 props、emits、v-model、slots 和生命周期钩子管理组件边界与协作方式。
+    tags: [Props, Emits, Slots]
+    status: planned
+    link: https://vuejs.org/guide/essentials/component-basics.html
+    children:
+      - type: node
+        id: define-props-and-emits
+        title: 用 props 与 emits 建立单向数据流
+        description: 为组件声明输入和输出，避免子组件直接修改父级状态，并使事件语义明确。
+        tags: [props, emits]
+        status: planned
+        link: https://vuejs.org/guide/components/props.html
+      - type: node
+        id: compose-layouts-with-slots
+        title: 使用 slots 组合可复用布局
+        description: 为通用容器设计默认、具名和作用域插槽，保留内容组织的灵活性。
+        tags: [slots, 组件组合]
+        status: planned
+        link: https://vuejs.org/guide/components/slots.html
+      - type: node
+        id: use-lifecycle-and-template-refs
+        title: 在生命周期中协调 DOM 与第三方库
+        description: 使用生命周期钩子和模板 ref 处理必须直接操作 DOM 的场景，并在卸载时清理资源。
+        tags: [生命周期, 模板 ref]
+        status: planned
+
+  - type: node
+    id: reuse-and-organize-logic
+    title: 提取并组织可复用逻辑
+    description: 使用 composable、provide/inject 和 TypeScript 将跨组件的状态逻辑与接口保持清晰。
+    tags: [Composables, TypeScript, provide/inject]
+    status: planned
+    link: https://vuejs.org/guide/reusability/composables.html
+    children:
+      - type: node
+        id: extract-composables
+        title: 提取 composable
+        description: 将数据获取、浏览器 API 或表单逻辑封装为以 use 开头的 composable，并定义稳定返回值。
+        tags: [composable, 复用]
+        status: planned
+      - type: node
+        id: share-deep-dependencies
+        title: 通过 provide/inject 传递深层依赖
+        description: 将主题、服务或上下文依赖注入深层组件，避免用它替代所有状态管理。
+        tags: [provide, inject]
+        status: planned
+      - type: node
+        id: type-component-contracts
+        title: 为组件契约加入 TypeScript
+        description: 为 props、emits、模板 ref 和 composable 返回值定义类型，尽早发现接口不匹配。
+        tags: [TypeScript]
+        status: planned
+        link: https://vuejs.org/guide/typescript/composition-api.html
+
+  - type: node
+    id: build-multi-page-spa
+    title: 构建可扩展的单页应用
+    description: 使用 Vue Router 管理页面流程，并在真正需要跨页面共享数据时引入 Pinia。
+    tags: [Vue Router, Pinia, SPA]
+    status: planned
+    children:
+      - type: node
+        id: define-client-side-routes
+        title: 定义客户端路由与导航
+        description: 配置路由表、动态参数、嵌套路由和未匹配页面，并用导航守卫保护必要流程。
+        tags: [路由, Vue Router]
+        status: planned
+        link: https://router.vuejs.org/guide/
+      - type: node
+        id: manage-global-state-with-pinia
+        title: 使用 Pinia 管理共享状态
+        description: 为真正全局的领域状态创建 store，保持 state、getters 和 actions 的职责分离。
+        tags: [Pinia, 状态管理]
+        status: planned
+        link: https://pinia.vuejs.org/getting-started.html
+      - type: node
+        id: handle-remote-data-states
+        title: 管理远程数据的加载与失败状态
+        description: 为请求设计加载、空数据、错误与重试界面，取消过期请求并避免重复提交。
+        tags: [数据请求, 错误处理]
+        status: planned
+
+  - type: node
+    id: assure-production-quality
+    title: 交付高质量 Vue 应用
+    description: 从用户行为验证功能，同时将可访问性、性能和安全边界纳入日常开发。
+    tags: [测试, 可访问性, 性能]
+    status: planned
+    link: https://vuejs.org/guide/scaling-up/testing.html
+    children:
+      - type: node
+        id: test-components-and-user-flows
+        title: 测试组件与关键用户流程
+        description: 用 Vitest 和 Vue Test Utils 验证组件行为，再为关键流程补充端到端测试。
+        tags: [Vitest, Vue Test Utils, E2E]
+        status: planned
+      - type: node
+        id: check-accessibility-and-keyboard-flow
+        title: 检查可访问性与键盘流程
+        description: 优先采用原生语义元素，检查可见焦点、表单标签、错误反馈与键盘导航。
+        tags: [a11y, 键盘]
+        status: planned
+        link: https://vuejs.org/guide/best-practices/accessibility.html
+      - type: node
+        id: measure-and-improve-performance
+        title: 测量后优化性能
+        description: 用浏览器性能工具识别真实瓶颈，再按需进行代码分割、列表虚拟化或组件优化。
+        tags: [性能, 代码分割]
+        status: planned
+        link: https://vuejs.org/guide/best-practices/performance.html
+
+  - type: node
+    id: ship-vue-project
+    title: 完成并发布一个小型 Vue 应用
+    description: 将前置能力组合成可部署作品，包含多页面流程、远程数据、测试和可访问性验收。
+    tags: [项目, 部署, 综合实践]
+    status: planned
+    children:
+      - type: node
+        id: plan-feature-oriented-app
+        title: 按功能规划应用结构
+        description: 选择任务、内容管理或预约等场景，写明核心用户流程、数据模型与验收标准。
+        tags: [需求拆分]
+        status: planned
+      - type: node
+        id: verify-production-readiness
+        title: 验证生产就绪程度
+        description: 完成关键测试、键盘检查和构建验证，处理环境变量并检查错误页面与空状态。
+        tags: [验收, 构建]
+        status: planned
+      - type: node
+        id: deploy-vue-app
+        title: 部署应用并复盘
+        description: 将构建产物部署到静态托管或项目指定平台，记录性能、可访问性和后续改进项。
+        tags: [部署, 复盘]
+        status: planned
+        link: https://vuejs.org/guide/best-practices/production-deployment.html
+
+  - type: node
+    id: choose-vue-specialization
+    title: 按项目需求选择深化方向
+    description: 在 Vue 核心能力稳定后，按维护场景或渲染需求选择 Options API、Nuxt 或服务端渲染。
+    tags: [进阶, 选修]
+    status: optional
+    children:
+      - type: node
+        id: learn-options-api
+        title: 维护或集成 Options API 应用
+        description: 理解 data、methods、computed 和组件实例模型，以便阅读既有项目或渐进式集成 Vue。
+        tags: [Options API]
+        status: optional
+        link: https://vuejs.org/guide/introduction.html#api-styles
+      - type: node
+        id: explore-nuxt
+        title: 探索 Nuxt 全栈与服务端渲染
+        description: 学习 Nuxt 的约定式路由、数据获取、渲染和部署模型，评估其是否适合项目。
+        tags: [Nuxt, SSR, 全栈]
+        status: optional
+        link: https://nuxt.com/docs/4.x/getting-started/introduction
+      - type: roadmap
+        roadmapId: frontend
+        title: 衔接前端工程实践
+        description: 继续完善 CSS、TypeScript、性能与持续集成等跨框架能力。

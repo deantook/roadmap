@@ -1,5 +1,5 @@
 id: langchain-python
-title: LangChain Python 路线图
+title: LangChain Python
 description: 基于 Python 与 LangChain 构建可测试、可观测的工具调用和检索增强 AI 应用，并完成一个可部署的小型 Agent 项目。
 tags: [Python, LangChain, AI, Agent]
 nodes:

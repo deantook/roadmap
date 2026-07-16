@@ -1,5 +1,5 @@
 id: docker
-title: Docker 路线图
+title: Docker
 description: 从容器基础到为小型服务构建、编排、排错并交付可复现的 Docker 环境。
 tags: [Docker, 容器, DevOps, 部署]
 nodes:

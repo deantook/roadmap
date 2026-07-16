@@ -235,3 +235,8 @@ nodes:
         description: 理解事件驱动 I/O，用内置模块搭建简单 HTTP 服务。
         status: planned
         link: https://nodejs.org/docs/latest/api/
+        children:
+          - type: roadmap
+            roadmapId: nodejs
+            title: 进入 Node.js 路线图
+            description: 将 JavaScript 能力用于构建、测试、调试和交付 Node.js 后端服务。

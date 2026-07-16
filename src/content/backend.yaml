@@ -1,5 +1,5 @@
 id: backend
-title: 后端开发路线图
+title: 后端开发
 description: 从服务端编程到稳定的生产系统。
 tags: [后端, API, 数据库]
 nodes:
@@ -18,6 +18,10 @@ nodes:
         roadmapId: golang
         title: 进入 Go 路线图
         description: 系统学习 Go 语言、并发、模块、标准库与 Web 入门。
+      - type: roadmap
+        roadmapId: nodejs
+        title: 进入 Node.js 路线图
+        description: 用 JavaScript/TypeScript 构建、测试、观测并交付 Node.js 后端服务。
       - type: node
         id: language-basics
         title: 语言基础与标准库
