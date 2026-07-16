@@ -323,7 +323,7 @@ function NodeDrawer({ node, status, onStatusChange, onClose }: {
               onClick={() => onStatusChange(nextNodeStatus(node, status))}
               aria-label={`${node.title} 当前状态：${statusLabels[status]}，点击切换`}
             >
-              <i aria-hidden="true" />{statusLabels[status]}<span aria-hidden="true"> · 点击切换</span>
+              <i aria-hidden="true" />{statusLabels[status]}
             </button>
           </div>
           <h2 id="drawer-title">{node.title}</h2>
@@ -368,7 +368,7 @@ function TreeItem({ child, index, catalog, basePath, roadmapId, depth, targetNod
 }) {
   const hasChildren = child.type === 'node' && child.children.length > 0
   const shouldRevealTarget = hasChildren && Boolean(targetNodeId && containsNode(child.children, targetNodeId))
-  const [expanded, setExpanded] = useState(shouldRevealTarget)
+  const [expanded, setExpanded] = useState(hasChildren)
 
   useEffect(() => {
     if (shouldRevealTarget) setExpanded(true)

@@ -1,0 +1,254 @@
+id: gradle
+title: Gradle 路线图
+description: 从初始化项目与编写构建脚本到管理依赖、多模块与可重复发布的 Gradle 工程实践。
+tags: [构建工具, Java, Gradle, 工程化]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 确认 Java 与命令行基础
+    description: 能在终端运行 Java 程序，并理解源码目录与 JAR 包的基本概念。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 补齐 Java 语言基础
+        description: 至少完成语法、包结构与异常处理，避免在构建配置阶段回补语言细节。
+
+  - type: node
+    id: bootstrap-first-project
+    title: 创建并运行首个 Gradle 项目
+    description: 用 gradle init 生成 Java 应用骨架，并通过 wrapper 完成 build 与 run。
+    tags: [入门]
+    status: planned
+    link: https://docs.gradle.org/current/userguide/part1_gradle_init.html
+    children:
+      - type: node
+        id: standard-layout
+        title: 熟悉约定式目录结构
+        description: 识别 src/main/java、src/test/java 与 build 输出目录的分工。
+        status: planned
+      - type: node
+        id: wrapper-usage
+        title: 使用 Gradle Wrapper 固定版本
+        description: 通过 gradlew 保证团队使用一致的 Gradle 版本，并将 wrapper 纳入版本控制。
+        status: planned
+        link: https://docs.gradle.org/current/userguide/gradle_wrapper.html
+      - type: node
+        id: common-cli-commands
+        title: 使用常用 Gradle 命令
+        description: 熟练运行 tasks、build、test、clean 与 --info 等日常选项。
+        status: planned
+
+  - type: node
+    id: build-scripts
+    title: 编写 settings 与 build 脚本
+    description: 用 Kotlin DSL 声明项目结构、插件与依赖，理解 settings 与 build 文件的分工。
+    tags: [Kotlin DSL, 脚本]
+    status: planned
+    link: https://docs.gradle.org/current/userguide/kotlin_dsl.html
+    children:
+      - type: node
+        id: settings-file
+        title: 配置 settings.gradle.kts
+        description: 设置 rootProject 名称、include 子项目，并启用类型安全的 project 访问器。
+        status: planned
+      - type: node
+        id: plugins-block
+        title: 用 plugins {} 声明插件
+        description: 在 build.gradle.kts 中应用 java、application 等插件，并指定版本。
+        status: planned
+        link: https://docs.gradle.org/current/userguide/part9_plugins_basics.html
+      - type: node
+        id: groovy-dsl
+        title: Groovy DSL（可选）
+        description: 维护既有 .gradle 脚本时，理解 Groovy 与 Kotlin DSL 的等价写法即可。
+        status: optional
+        link: https://docs.gradle.org/current/userguide/migrating_from_groovy_to_kotlin_dsl.html
+
+  - type: node
+    id: tasks-workflow
+    title: 理解任务与构建流程
+    description: 把 compile、test、jar 等任务串成有向图，并知道如何查看与调试执行顺序。
+    tags: [任务]
+    status: planned
+    link: https://docs.gradle.org/current/userguide/part7_tasks_basics.html
+    children:
+      - type: node
+        id: task-dependencies
+        title: 配置任务依赖关系
+        description: 用 dependsOn 与 finalizedBy 表达先后约束，避免手工串联命令。
+        status: planned
+      - type: node
+        id: incremental-builds
+        title: 利用增量构建与 UP-TO-DATE
+        description: 理解输入/输出声明，让 Gradle 跳过未变化步骤以缩短反馈时间。
+        status: planned
+        link: https://docs.gradle.org/current/userguide/part8_incremental_builds.html
+      - type: node
+        id: custom-tasks
+        title: 注册项目专属任务
+        description: 编写简单自定义 task，封装重复操作或本地开发流程。
+        status: planned
+
+  - type: node
+    id: dependency-management
+    title: 管理项目依赖
+    description: 在 configurations 中声明依赖，并用版本目录集中维护版本号。
+    tags: [依赖]
+    status: planned
+    link: https://docs.gradle.org/current/userguide/part6_dependencies_basics.html
+    children:
+      - type: node
+        id: configuration-scopes
+        title: 区分 implementation 与 testImplementation
+        description: 按编译、运行与测试场景选择 configuration，避免测试依赖泄漏到产物。
+        status: planned
+      - type: node
+        id: version-catalog
+        title: 用 Version Catalog 统一版本
+        description: 在 gradle/libs.versions.toml 中维护库与插件版本，提升可读性与一致性。
+        status: planned
+        link: https://docs.gradle.org/current/userguide/platforms.html
+      - type: node
+        id: resolve-conflicts
+        title: 排查依赖冲突
+        description: 用 dependencies 报告与 dependencyInsight 定位版本冲突并做强制对齐。
+        status: planned
+
+  - type: node
+    id: java-plugin-toolchain
+    title: 配置 Java 编译与运行
+    description: 设置 JDK 版本、编码与 JAR 产物，保证字节码与运行环境一致。
+    tags: [Java 插件]
+    status: planned
+    children:
+      - type: node
+        id: java-toolchain
+        title: 使用 Java Toolchain
+        description: 声明所需 JDK 版本，让 Gradle 自动选择或下载匹配的编译/测试运行时。
+        status: planned
+        link: https://docs.gradle.org/current/userguide/toolchains.html
+      - type: node
+        id: application-plugin
+        title: 配置可运行应用入口
+        description: 用 application 插件指定 mainClass，并通过 run 任务本地验证。
+        status: planned
+
+  - type: node
+    id: testing-integration
+    title: 把测试纳入构建流程
+    description: 让单元测试在 test 任务中自动运行，并能在 CI 中稳定复现结果。
+    tags: [测试]
+    status: planned
+    children:
+      - type: node
+        id: junit-test-task
+        title: 配置 JUnit 5 测试任务
+        description: 添加测试依赖，设置 test 任务的过滤、并行与失败策略。
+        status: planned
+      - type: node
+        id: test-reporting
+        title: 阅读测试报告与日志
+        description: 从 build/reports/tests 定位失败用例，并在本地与 CI 输出一致信息。
+        status: planned
+      - type: node
+        id: integration-test-suite
+        title: 分离集成测试套件
+        description: 用 Test Suites 或独立 source set 区分慢速集成测试与快速单元测试。
+        status: optional
+        link: https://docs.gradle.org/current/userguide/jvm_test_suite_plugin.html
+
+  - type: node
+    id: multi-project
+    title: 组织多模块项目
+    description: 在 settings 中 include 多个子项目，并用根构建脚本统一插件与依赖版本。
+    tags: [多模块]
+    status: planned
+    link: https://docs.gradle.org/current/userguide/multi_project_builds.html
+    children:
+      - type: node
+        id: subproject-dependencies
+        title: 声明子项目间依赖
+        description: 用 project(":api") 等方式连接模块，并保持依赖方向单向清晰。
+        status: planned
+      - type: node
+        id: shared-conventions
+        title: 在根项目统一公共配置
+        description: 用 subprojects 或 plugins.withId 复用编译、测试与质量规则。
+        status: planned
+
+  - type: node
+    id: publishing-artifacts
+    title: 发布构件到仓库
+    description: 用 maven-publish 插件生成 POM 并将 JAR deploy 到本地或远程 Maven 仓库。
+    tags: [发布]
+    status: planned
+    link: https://docs.gradle.org/current/userguide/publishing_maven.html
+    children:
+      - type: node
+        id: maven-publish-config
+        title: 配置 publication 与 repository
+        description: 声明 group、artifact、version 与目标仓库 URL，并完成一次 publish 验证。
+        status: planned
+      - type: node
+        id: credentials-signing
+        title: 管理凭据与签名（按需）
+        description: 在 gradle.properties 或 CI 密钥中安全配置仓库认证，必要时启用签名。
+        status: optional
+
+  - type: node
+    id: capstone-library-project
+    title: 完成多模块库项目实践
+    description: 交付一个含 version catalog、子模块、测试与发布配置的完整 Gradle 工程。
+    tags: [实践]
+    status: planned
+    children:
+      - type: node
+        id: design-module-structure
+        title: 设计模块与依赖关系
+        description: 从业务边界推导 api/core/app 等模块，并绘制模块依赖图。
+        status: planned
+      - type: node
+        id: verify-build-pipeline
+        title: 验证完整构建与发布流程
+        description: 本地与 CI 均能 clean test build publishToMavenLocal，产物可被其他项目消费。
+        status: planned
+
+  - type: node
+    id: advanced-topics
+    title: 进阶专题（按需选修）
+    description: 在日常构建之外，按团队规范探索 buildSrc、构建缓存或 Maven 等方向。
+    status: optional
+    children:
+      - type: node
+        id: build-logic
+        title: 用 buildSrc 或 included build 复用构建逻辑
+        description: 将公共插件与约定提取为可测试的构建逻辑模块，减少脚本重复。
+        status: optional
+        link: https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html
+      - type: node
+        id: build-cache
+        title: 启用构建缓存加速 CI
+        description: 配置本地与远程 build cache，在团队间复用未变化任务的输出。
+        status: optional
+        link: https://docs.gradle.org/current/userguide/build_cache.html
+      - type: roadmap
+        roadmapId: maven
+        title: Maven（可选替代工具）
+        description: 若团队选用 Maven，理解 POM 与生命周期模型的对等构建能力即可。
+
+  - type: node
+    id: gradle-ecosystem
+    title: 衔接 Java 与框架项目
+    description: 构建能力到位后，回到语言与框架路线图继续业务开发。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 回到 Java 语言路线图
+        description: 在已有 Gradle 能力基础上，继续并发、现代特性与测试实践。
+      - type: roadmap
+        roadmapId: spring-boot
+        title: 进入 Spring Boot 路线图
+        description: 用 Gradle 管理 Spring Boot 依赖与 bootJar，快速落地 REST 服务。

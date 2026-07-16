@@ -1,0 +1,251 @@
+id: maven
+title: Maven 路线图
+description: 从编写 POM 与理解生命周期到管理多模块依赖、测试与可重复发布。
+tags: [构建工具, Java, Maven, 工程化]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 确认 Java 与命令行基础
+    description: 能在终端运行 Java 程序，并理解源码目录与 JAR 包的基本概念。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 补齐 Java 语言基础
+        description: 至少完成语法、包结构与异常处理，避免在构建配置阶段回补语言细节。
+
+  - type: node
+    id: bootstrap-first-project
+    title: 创建并运行首个 Maven 项目
+    description: 用 archetype 生成标准目录结构，并成功执行 compile 与 package。
+    tags: [入门]
+    status: planned
+    link: https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+    children:
+      - type: node
+        id: standard-layout
+        title: 熟悉约定式目录结构
+        description: 识别 src/main/java、src/test/java 与 target 输出目录的分工。
+        status: planned
+      - type: node
+        id: common-cli-commands
+        title: 使用常用 Maven 命令
+        description: 熟练运行 mvn clean、compile、test、package 与 -DskipTests 等日常选项。
+        status: planned
+      - type: node
+        id: wrapper-usage
+        title: 使用 Maven Wrapper 固定版本
+        description: 通过 mvnw 保证团队使用一致的 Maven 版本，减少环境差异。
+        status: planned
+        link: https://maven.apache.org/wrapper/
+
+  - type: node
+    id: pom-fundamentals
+    title: 读懂并维护 POM
+    description: 用坐标、继承与属性表达项目身份，并理解 Super POM 的默认约定。
+    tags: [POM]
+    status: planned
+    link: https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+    children:
+      - type: node
+        id: coordinates-packaging
+        title: 配置坐标与打包类型
+        description: 正确设置 groupId、artifactId、version 与 packaging（jar/war/pom）。
+        status: planned
+      - type: node
+        id: parent-inheritance
+        title: 使用 parent 继承公共配置
+        description: 通过 parent POM 复用插件、属性与依赖管理，减少重复配置。
+        status: planned
+      - type: node
+        id: properties-interpolation
+        title: 用属性集中管理版本与参数
+        description: 在 properties 中维护 JDK 版本、依赖版本等可复用变量。
+        status: planned
+
+  - type: node
+    id: dependency-management
+    title: 管理项目依赖
+    description: 声明依赖、控制作用域，并处理传递依赖与版本冲突。
+    tags: [依赖]
+    status: planned
+    link: https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
+    children:
+      - type: node
+        id: scopes-transitive
+        title: 理解作用域与传递依赖
+        description: 区分 compile、test、provided 等 scope，并读懂依赖树中的间接引入。
+        status: planned
+      - type: node
+        id: dependency-management-section
+        title: 使用 dependencyManagement 统一版本
+        description: 在父 POM 或 BOM 中锁定版本，子模块只声明坐标不写 version。
+        status: planned
+      - type: node
+        id: resolve-conflicts
+        title: 排查并解决依赖冲突
+        description: 用 dependency:tree 定位冲突来源，并通过 exclusion 或对齐版本修复。
+        status: planned
+
+  - type: node
+    id: lifecycle-plugins
+    title: 运用构建生命周期与插件
+    description: 把 compile、test、package 等阶段与插件 goal 对应起来，按需定制构建行为。
+    tags: [生命周期, 插件]
+    status: planned
+    link: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+    children:
+      - type: node
+        id: phases-goals
+        title: 区分 phase 与 plugin goal
+        description: 理解 default/clean/site 生命周期，以及 goal 如何绑定到阶段。
+        status: planned
+      - type: node
+        id: compiler-plugin
+        title: 配置编译器插件
+        description: 用 maven-compiler-plugin 设置 source/target 与 release，保证字节码兼容。
+        status: planned
+      - type: node
+        id: jar-packaging
+        title: 产出可分发 JAR
+        description: 理解 jar 打包产物，并按需配置 manifest 与可执行入口。
+        status: planned
+
+  - type: node
+    id: testing-integration
+    title: 把测试纳入构建流程
+    description: 让单元测试与集成测试在正确阶段自动运行，并能在 CI 中稳定复现。
+    tags: [测试]
+    status: planned
+    link: https://maven.apache.org/surefire/maven-surefire-plugin/
+    children:
+      - type: node
+        id: surefire-unit-tests
+        title: 用 Surefire 运行单元测试
+        description: 配置测试目录、命名约定与失败策略，使 mvn test 可靠执行。
+        status: planned
+      - type: node
+        id: failsafe-integration-tests
+        title: 用 Failsafe 运行集成测试
+        description: 将 *IT 测试绑定到 integration-test 阶段，与单元测试分离。
+        status: planned
+        link: https://maven.apache.org/surefire/maven-failsafe-plugin/
+      - type: node
+        id: test-coverage-quality
+        title: 接入覆盖率或质量门禁
+        description: 按需配置 JaCoCo 等插件，为关键模块设置最低覆盖率阈值。
+        status: optional
+
+  - type: node
+    id: multi-module
+    title: 组织多模块项目
+    description: 用聚合 POM 管理多个子模块，并在一次构建中按依赖顺序编译打包。
+    tags: [多模块]
+    status: planned
+    link: https://maven.apache.org/guides/mini/guide-multiple-modules.html
+    children:
+      - type: node
+        id: reactor-build
+        title: 理解 Reactor 构建顺序
+        description: 根据模块间依赖关系自动排序构建，并学会只构建指定模块。
+        status: planned
+      - type: node
+        id: module-boundaries
+        title: 划分模块边界
+        description: 将 API、实现与启动模块分离，避免循环依赖与职责混杂。
+        status: planned
+
+  - type: node
+    id: profiles-environments
+    title: 按环境切换构建配置
+    description: 用 Profile 区分 dev、test、prod 等场景，控制依赖、属性与插件行为。
+    tags: [Profile]
+    status: planned
+    link: https://maven.apache.org/guides/introduction/introduction-to-profiles.html
+    children:
+      - type: node
+        id: profile-activation
+        title: 配置 Profile 激活条件
+        description: 通过 -P、属性或 JDK 版本触发对应配置，避免手工改 POM。
+        status: planned
+      - type: node
+        id: resource-filtering
+        title: 过滤资源文件中的占位符
+        description: 在打包前替换 application 配置中的环境变量，实现同构多环境发布。
+        status: planned
+
+  - type: node
+    id: repositories-publishing
+    title: 管理仓库与发布构件
+    description: 理解本地与远程仓库机制，并能把构件 install 或 deploy 到团队仓库。
+    tags: [仓库, 发布]
+    status: planned
+    link: https://maven.apache.org/guides/introduction/introduction-to-repositories.html
+    children:
+      - type: node
+        id: local-remote-repos
+        title: 区分本地仓库与远程仓库
+        description: 知道依赖解析顺序，并能在 settings.xml 中配置镜像与认证。
+        status: planned
+      - type: node
+        id: install-deploy
+        title: 执行 install 与 deploy
+        description: 将构件安装到本地供联调，或发布到 Nexus 等远程仓库供团队消费。
+        status: planned
+
+  - type: node
+    id: capstone-library-project
+    title: 完成多模块库项目实践
+    description: 交付一个含父 POM、核心模块、测试与发布配置的完整 Maven 工程。
+    tags: [实践]
+    status: planned
+    children:
+      - type: node
+        id: design-module-structure
+        title: 设计模块与依赖关系
+        description: 从业务边界推导 api/core/app 等模块，并绘制模块依赖图。
+        status: planned
+      - type: node
+        id: verify-build-pipeline
+        title: 验证完整构建与发布流程
+        description: 本地与 CI 均能 clean test package，并成功 install 或 deploy 产物。
+        status: planned
+
+  - type: node
+    id: advanced-topics
+    title: 进阶专题（按需选修）
+    description: 在日常构建之外，按团队规范探索打包 shade、Enforcer 等方向。
+    status: optional
+    children:
+      - type: node
+        id: shade-assembly
+        title: 打包 Fat JAR 或分发包
+        description: 用 shade 或 assembly 插件合并依赖或生成分发包，便于部署。
+        status: optional
+        link: https://maven.apache.org/plugins/maven-shade-plugin/
+      - type: node
+        id: enforcer-rules
+        title: 用 Enforcer 约束构建规范
+        description: 强制 JDK 版本、依赖 banned 规则等，防止配置漂移。
+        status: optional
+        link: https://maven.apache.org/enforcer/maven-enforcer-plugin/
+      - type: roadmap
+        roadmapId: gradle
+        title: Gradle（可选替代工具）
+        description: 若团队选用 Gradle，理解任务图与 Kotlin DSL 的对等构建能力即可。
+
+  - type: node
+    id: maven-ecosystem
+    title: 衔接 Java 与框架项目
+    description: 构建能力到位后，回到语言与框架路线图继续业务开发。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 回到 Java 语言路线图
+        description: 在已有 Maven 能力基础上，继续并发、现代特性与测试实践。
+      - type: roadmap
+        roadmapId: spring-boot
+        title: 进入 Spring Boot 路线图
+        description: 用 Maven 管理 Spring Boot 依赖与打包，快速落地 REST 服务。

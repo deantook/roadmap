@@ -97,12 +97,14 @@ nodes:
     description: 用构建工具管理依赖、测试与可重复交付。
     status: planned
     children:
-      - type: node
-        id: maven-or-gradle
-        title: Maven 或 Gradle
-        description: 选定一种工具，掌握依赖、插件与多模块项目。
-        status: planned
-        link: https://maven.apache.org/guides/getting-started/
+      - type: roadmap
+        roadmapId: maven
+        title: 进入 Maven 路线图
+        description: 掌握 POM、依赖、生命周期与多模块项目的日常构建能力。
+      - type: roadmap
+        roadmapId: gradle
+        title: 进入 Gradle 路线图
+        description: 掌握 Kotlin DSL、任务图、依赖与多模块项目的日常构建能力。
       - type: node
         id: testing-junit
         title: 单元测试（JUnit）
@@ -155,9 +157,7 @@ nodes:
     description: 语言扎实后，用主流框架把 Java 落到 Web 服务，再回到后端路线图继续。
     status: planned
     children:
-      - type: node
-        id: spring-boot-intro
-        title: Spring Boot 入门
-        description: 快速搭建 REST 服务，理解依赖注入与自动配置。
-        status: planned
-        link: https://spring.io/projects/spring-boot
+      - type: roadmap
+        roadmapId: spring-boot
+        title: 进入 Spring Boot 路线图
+        description: 从框架核心到 REST、数据、安全与可部署服务的完整路径。

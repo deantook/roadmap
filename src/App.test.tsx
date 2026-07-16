@@ -37,20 +37,19 @@ describe('App', () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
     expect(screen.getByRole('heading', { level: 1, name: 'Web 开发路线图' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '互联网基础' })).toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: '展开 选择深入方向 的子节点' }))
     expect(screen.getByRole('link', { name: /进入前端路线图/ })).toBeInTheDocument()
   })
 
-  it('collapses nodes with children by default and lets users expand them', () => {
+  it('expands nodes with children by default and lets users collapse them', () => {
     render(<MemoryRouter initialEntries={['/roadmaps/frontend']}><App /></MemoryRouter>)
-    const toggle = screen.getByRole('button', { name: '展开 现代 CSS 的子节点' })
+    const toggle = screen.getByRole('button', { name: '折叠 现代 CSS 的子节点' })
 
-    expect(toggle).toHaveAttribute('aria-expanded', 'false')
-    expect(screen.queryByRole('heading', { name: 'Flexbox 与 Grid' })).not.toBeInTheDocument()
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('heading', { name: 'Flexbox 与 Grid' })).toBeInTheDocument()
 
     fireEvent.click(toggle)
-    expect(screen.getByRole('button', { name: '折叠 现代 CSS 的子节点' })).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByRole('heading', { name: 'Flexbox 与 Grid' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '展开 现代 CSS 的子节点' })).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByRole('heading', { name: 'Flexbox 与 Grid' })).not.toBeInTheDocument()
   })
 
   it('reveals a nested node when navigating directly to its hash', async () => {
@@ -62,7 +61,6 @@ describe('App', () => {
 
   it('navigates into a referenced roadmap with breadcrumbs', async () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
-    fireEvent.click(screen.getByRole('button', { name: '展开 选择深入方向 的子节点' }))
     fireEvent.click(screen.getByRole('link', { name: /进入前端路线图/ }))
     expect(await screen.findByRole('heading', { level: 1, name: '前端开发路线图' })).toBeInTheDocument()
     const breadcrumb = screen.getByRole('navigation', { name: '面包屑导航' })

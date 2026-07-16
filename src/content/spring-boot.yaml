@@ -1,0 +1,287 @@
+id: spring-boot
+title: Spring Boot 路线图
+description: 从创建首个可运行服务到具备测试、安全与生产部署能力的 REST 后端项目。
+tags: [后端, Java, Spring Boot, API]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 确认 Java 与构建基础
+    description: 具备 Java 语法、Maven 或 Gradle 构建与 HTTP 基本概念后再进入框架学习。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 补齐 Java 语言基础
+        description: 覆盖语法、集合、异常与并发，避免在框架阶段回补语言细节。
+      - type: roadmap
+        roadmapId: maven
+        title: 掌握 Maven 构建基础
+        description: 理解 POM、依赖与 package 命令，便于运行与打包 Spring Boot 项目。
+      - type: roadmap
+        roadmapId: gradle
+        title: 掌握 Gradle 构建基础
+        description: 理解 build 脚本、依赖与 bootJar 任务，便于运行与打包 Spring Boot 项目。
+
+  - type: node
+    id: bootstrap-first-app
+    title: 创建并运行首个 Spring Boot 应用
+    description: 用 Spring Initializr 生成项目，理解启动类、Starter 与可执行 JAR 的运行方式。
+    tags: [入门]
+    status: planned
+    link: https://docs.spring.io/spring-boot/tutorial/first-application/index.html
+    children:
+      - type: node
+        id: project-layout
+        title: 理解项目结构与依赖管理
+        description: 识别主启动类、自动配置入口、测试目录与构建脚本的分工。
+        status: planned
+      - type: node
+        id: starters-autoconfig
+        title: 掌握 Starter 与自动配置直觉
+        description: 知道如何通过依赖引入能力，并理解“约定优于配置”的边界。
+        status: planned
+      - type: node
+        id: run-locally
+        title: 在本地启动与打包运行
+        description: 使用 IDE、Maven/Gradle Wrapper 与 java -jar 三种方式验证应用可运行。
+        status: planned
+
+  - type: node
+    id: spring-core-di
+    title: 运用 Spring 核心与依赖注入
+    description: 用 IoC 容器组织 Bean，通过构造器注入写出可测试的分层代码。
+    tags: [Spring, 依赖注入]
+    status: planned
+    link: https://docs.spring.io/spring-framework/reference/core/beans.html
+    children:
+      - type: node
+        id: component-stereotypes
+        title: 划分组件职责
+        description: 用 @Component、@Service、@Repository 表达分层，并理解扫描范围。
+        status: planned
+      - type: node
+        id: constructor-injection
+        title: 使用构造器注入协作对象
+        description: 优先构造器注入，避免字段注入导致的测试与循环依赖问题。
+        status: planned
+      - type: node
+        id: configuration-beans
+        title: 编写 @Configuration 与 @Bean
+        description: 在配置类中声明第三方或跨层 Bean，并控制作用域与条件装配。
+        status: planned
+
+  - type: node
+    id: external-config
+    title: 管理外部化配置
+    description: 用配置文件、Profile 与环境变量区分环境，并安全处理敏感信息。
+    tags: [配置]
+    status: planned
+    link: https://docs.spring.io/spring-boot/reference/features/external-config.html
+    children:
+      - type: node
+        id: properties-yaml
+        title: 组织 application 配置
+        description: 使用 properties 或 YAML 管理端口、数据源等运行时参数。
+        status: planned
+      - type: node
+        id: configuration-properties
+        title: 绑定类型安全的配置类
+        description: 用 @ConfigurationProperties 将配置映射为可校验的 Java 对象。
+        status: planned
+      - type: node
+        id: profiles-environments
+        title: 按 Profile 切换环境
+        description: 为 dev/test/prod 提供独立配置，并理解激活与覆盖顺序。
+        status: planned
+
+  - type: node
+    id: rest-api
+    title: 构建 REST API
+    description: 设计资源接口，完成请求映射、输入校验与统一错误响应。
+    tags: [REST, HTTP]
+    status: planned
+    link: https://spring.io/guides/gs/rest-service/
+    children:
+      - type: node
+        id: controllers-dto
+        title: 编写控制器与 DTO
+        description: 用 @RestController 暴露端点，分离传输对象与领域模型。
+        status: planned
+      - type: node
+        id: validation
+        title: 校验请求输入
+        description: 用 Bean Validation 注解与 @Valid 拦截非法参数并返回可读错误。
+        status: planned
+      - type: node
+        id: exception-handling
+        title: 统一异常与错误响应
+        description: 用 @ControllerAdvice 映射业务异常与校验失败为稳定 HTTP 状态与结构。
+        status: planned
+
+  - type: node
+    id: data-persistence
+    title: 接入关系型数据持久化
+    description: 用 Spring Data JPA 完成实体映射、仓储查询与事务边界控制。
+    tags: [数据库, JPA]
+    status: planned
+    link: https://spring.io/guides/gs/accessing-data-jpa/
+    children:
+      - type: node
+        id: entity-mapping
+        title: 建模实体与关联关系
+        description: 定义 Entity、主键策略与一对多/多对多映射，并理解懒加载影响。
+        status: planned
+      - type: node
+        id: repositories-queries
+        title: 使用 Repository 与查询方法
+        description: 继承 JpaRepository，编写方法名查询、@Query 与分页排序。
+        status: planned
+      - type: node
+        id: transactions
+        title: 使用事务维护一致性
+        description: 在 Service 层用 @Transactional 控制读写边界与回滚规则。
+        status: planned
+      - type: node
+        id: schema-migrations
+        title: 用迁移脚本管理 Schema
+        description: 用 Flyway 或 Liquibase 版本化表结构变更，避免手工改库。
+        status: planned
+
+  - type: node
+    id: security
+    title: 用 Spring Security 保护接口
+    description: 配置过滤器链与认证授权规则，区分公开端点与受保护资源。
+    tags: [安全]
+    status: planned
+    link: https://spring.io/guides/gs/securing-web/
+    children:
+      - type: node
+        id: security-filter-chain
+        title: 理解 SecurityFilterChain
+        description: 配置哪些路径公开、哪些需认证，并认识过滤器链的执行顺序。
+        status: planned
+      - type: node
+        id: auth-mechanisms
+        title: 实现登录或令牌认证
+        description: 完成基于会话或 JWT 的认证流程，并在请求中携带身份信息。
+        status: planned
+      - type: node
+        id: authorization-rules
+        title: 配置方法级与 URL 级授权
+        description: 用角色或权限表达式限制敏感操作，遵循最小权限原则。
+        status: planned
+
+  - type: node
+    id: testing
+    title: 编写自动化测试
+    description: 用单元、切片与集成测试验证业务逻辑与 HTTP 契约。
+    tags: [测试]
+    status: planned
+    link: https://spring.io/guides/gs/testing-web/
+    children:
+      - type: node
+        id: unit-tests
+        title: 隔离测试 Service 与领域逻辑
+        description: 用 Mockito 等工具替换依赖，专注验证业务规则。
+        status: planned
+      - type: node
+        id: web-layer-tests
+        title: 用 MockMvc 测试 Web 层
+        description: 通过 @WebMvcTest 验证路由、状态码与 JSON 响应结构。
+        status: planned
+      - type: node
+        id: integration-tests
+        title: 运行端到端集成测试
+        description: 用 @SpringBootTest 启动完整上下文，覆盖数据库等真实依赖。
+        status: planned
+      - type: node
+        id: testcontainers
+        title: 用 Testcontainers 提供真实依赖
+        description: 在测试中启动数据库等容器，提高集成测试与生产环境的一致性。
+        status: optional
+        link: https://java.testcontainers.org/
+
+  - type: node
+    id: capstone-rest-service
+    title: 完成综合 REST 服务实践
+    description: 交付一个含 CRUD、校验、迁移、认证与测试的可运行小型后端项目。
+    tags: [实践]
+    status: planned
+    children:
+      - type: node
+        id: domain-api-design
+        title: 设计领域模型与 API 契约
+        description: 从业务场景推导实体、端点与错误模型，并记录 OpenAPI 说明。
+        status: planned
+      - type: node
+        id: implement-and-verify
+        title: 实现并通过验收清单
+        description: 完成分层实现、数据库迁移、基础安全与关键路径自动化测试。
+        status: planned
+
+  - type: node
+    id: production-ready
+    title: 具备生产就绪能力
+    description: 通过健康检查、日志、指标与打包部署，让服务可观测、可发布。
+    tags: [运维]
+    status: planned
+    link: https://docs.spring.io/spring-boot/reference/actuator/index.html
+    children:
+      - type: node
+        id: actuator-health
+        title: 暴露健康与就绪探针
+        description: 启用 Actuator 端点，供编排平台判断实例是否可接收流量。
+        status: planned
+      - type: node
+        id: structured-logging
+        title: 输出结构化日志
+        description: 配置日志级别与关联 ID，便于检索请求链路与定位故障。
+        status: planned
+      - type: node
+        id: packaging-deploy
+        title: 打包并容器化部署
+        description: 构建可执行 JAR，编写 Dockerfile 并在目标环境完成一次发布验证。
+        status: planned
+
+  - type: node
+    id: advanced-topics
+    title: 进阶专题（按需选修）
+    description: 在主线 REST 服务之外，按项目需求探索响应式、消息、缓存或微服务方向。
+    status: optional
+    children:
+      - type: node
+        id: reactive-webflux
+        title: 响应式 Web（WebFlux）
+        description: 在高并发 I/O 密集场景下，用 Reactor 与 WebFlux 构建非阻塞 API。
+        status: optional
+        link: https://docs.spring.io/spring-framework/reference/web/webflux.html
+      - type: node
+        id: caching-redis
+        title: 集成 Redis 缓存
+        description: 用 Spring Cache 抽象缓存读多写少数据，并设计失效策略。
+        status: optional
+        link: https://docs.spring.io/spring-data/redis/reference/
+      - type: node
+        id: messaging-kafka
+        title: 接入消息队列（Kafka）
+        description: 用 Spring for Apache Kafka 发布与消费事件，解耦异步流程。
+        status: optional
+        link: https://docs.spring.io/spring-kafka/reference/
+      - type: node
+        id: spring-cloud
+        title: 微服务与 Spring Cloud
+        description: 了解服务发现、配置中心与网关等分布式组件的适用边界。
+        status: optional
+        link: https://spring.io/projects/spring-cloud
+
+  - type: node
+    id: spring-boot-ecosystem
+    title: 衔接更广的后端能力
+    description: 框架能力到位后，回到后端路线图补齐 API 设计、缓存消息与运维体系。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: backend
+        title: 进入后端开发路线图
+        description: 继续 API 契约、数据库工程、部署流水线与可观测性等跨框架主题。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "编写路线图"
+  short_description: "为本项目研究、设计并维护高质量 YAML 学习路线图"
+  default_prompt: "使用 $write-roadmap 为一个技术主题编写完整且可验证的路线图。"

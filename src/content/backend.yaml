@@ -13,7 +13,7 @@ nodes:
       - type: roadmap
         roadmapId: java
         title: 进入 Java 路线图
-        description: 系统学习 Java 语言、并发、构建与 Spring Boot 入门。
+        description: 系统学习 Java 语言、并发、构建与 Spring Boot 框架。
       - type: roadmap
         roadmapId: golang
         title: 进入 Go 路线图
