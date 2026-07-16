@@ -268,9 +268,9 @@ export default function EditorApp() {
 
   return <div className="editor-shell">
     <header className="topbar">
-      <div className="studio-brand"><span><Icon name="route" size={20} /></span><div><strong>Roadmap</strong><small>STUDIO</small></div></div>
+      <div className="studio-brand"><div><strong>Roadmap</strong><small>STUDIO</small></div></div>
       <div className="topbar-context"><span className={`save-state ${dirty ? 'dirty' : ''}`} />{document ? <><strong>{document.title}</strong><span>/</span><code>{activeFile?.filename}</code></> : '未选择路线图'}</div>
-      <div className="topbar-actions"><Button icon="code" onClick={() => setShowYaml(true)} disabled={!document}>YAML</Button><Button icon="save" tone="primary" onClick={() => void save()} disabled={!dirty || saving}>{saving ? '保存中…' : '保存'}<kbd>⌘S</kbd></Button></div>
+      <div className="topbar-actions"><Button icon="code" className="button-icon-only" onClick={() => setShowYaml(true)} disabled={!document} aria-label="YAML" /><Button icon="save" tone="primary" onClick={() => void save()} disabled={!dirty || saving}>{saving ? '保存中…' : '保存'}<kbd>⌘S</kbd></Button></div>
     </header>
 
     <aside className="catalog-panel">
@@ -280,7 +280,6 @@ export default function EditorApp() {
         {visibleFiles.map((file) => {
           const isDirty = snapshot(file.document) !== file.savedSnapshot
           return <button type="button" key={file.filename} className={file.filename === activeFilename ? 'active' : ''} onClick={() => { setActiveFilename(file.filename); setSelectedKey(null) }}>
-            <span className="route-avatar">{file.document.title.trim().charAt(0).toUpperCase() || '?'}</span>
             <span><strong>{file.document.title || '未命名路线'}</strong><small>{countNodes(file.document.nodes)} 个节点</small></span>
             {isDirty && <i title="有未保存的更改" />}
           </button>
@@ -309,7 +308,7 @@ export default function EditorApp() {
 
     <aside className="inspector-panel">
       {document && !selected && <>
-        <div className="inspector-heading"><div><span className="inspector-icon route"><Icon name="route" /></span><div><small>当前选择</small><strong>路线图设置</strong></div></div></div>
+        <div className="inspector-heading"><div><span className="inspector-icon route"><Icon name="route" size={15} /></span><div><small>当前选择</small><strong>路线图设置</strong></div></div></div>
         <div className="inspector-form">
           <Field label="路线标题"><input value={document.title} onChange={(event) => updateDocument((current) => ({ ...current, title: event.target.value }))} /></Field>
           <Field label="路线 ID" hint="保存时同时作为 YAML 文件名"><input value={document.id} onChange={(event) => updateDocument((current) => ({ ...current, id: event.target.value.toLowerCase().replace(/\s+/g, '-') }))} spellCheck={false} /></Field>
@@ -320,7 +319,7 @@ export default function EditorApp() {
       </>}
 
       {document && selected?.type === 'node' && <>
-        <div className="inspector-heading"><div><span className="inspector-icon node"><Icon name="node" /></span><div><small>知识节点</small><strong>{selected.title || '未命名节点'}</strong></div></div><button type="button" onClick={() => setSelectedKey(null)} aria-label="关闭"><Icon name="close" /></button></div>
+        <div className="inspector-heading"><div><span className="inspector-icon node"><Icon name="node" size={15} /></span><div><small>知识节点</small><strong>{selected.title || '未命名节点'}</strong></div></div><div className="inspector-heading-actions"><button type="button" onClick={duplicateSelected} aria-label="复制"><Icon name="copy" size={14} /></button><button type="button" className="danger" onClick={deleteSelected} aria-label="删除"><Icon name="trash" size={14} /></button><button type="button" onClick={() => setSelectedKey(null)} aria-label="关闭"><Icon name="close" size={14} /></button></div></div>
         <div className="inspector-form">
           <Field label="节点标题"><input value={selected.title} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => ({ ...child, title: event.target.value })) }))} /></Field>
           <Field label="节点 ID"><input value={selected.id} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => ({ ...child, id: event.target.value.toLowerCase().replace(/\s+/g, '-') })) }))} spellCheck={false} /></Field>
@@ -330,21 +329,19 @@ export default function EditorApp() {
           <Field label="标签"><TagEditor value={selected.tags} onChange={(tags) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => child.type === 'node' ? { ...child, tags } : child) }))} /></Field>
           <Button icon="plus" onClick={() => addNode(selected._key)}>添加子节点</Button>
         </div>
-        <div className="inspector-bottom"><button type="button" onClick={duplicateSelected}><Icon name="copy" size={16} />复制</button><button type="button" className="danger" onClick={deleteSelected}><Icon name="trash" size={16} />删除</button></div>
       </>}
 
       {document && selected?.type === 'roadmap' && <>
-        <div className="inspector-heading"><div><span className="inspector-icon reference"><Icon name="reference" /></span><div><small>路线引用</small><strong>{selected.title || selected.roadmapId || '未设置引用'}</strong></div></div><button type="button" onClick={() => setSelectedKey(null)} aria-label="关闭"><Icon name="close" /></button></div>
+        <div className="inspector-heading"><div><span className="inspector-icon reference"><Icon name="reference" size={15} /></span><div><small>路线引用</small><strong>{selected.title || selected.roadmapId || '未设置引用'}</strong></div></div><div className="inspector-heading-actions"><button type="button" onClick={duplicateSelected} aria-label="复制"><Icon name="copy" size={14} /></button><button type="button" className="danger" onClick={deleteSelected} aria-label="删除"><Icon name="trash" size={14} /></button><button type="button" onClick={() => setSelectedKey(null)} aria-label="关闭"><Icon name="close" size={14} /></button></div></div>
         <div className="inspector-form">
           <Field label="引用路线"><select value={selected.roadmapId} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => child.type === 'roadmap' ? { ...child, roadmapId: event.target.value } : child) }))}><option value="">选择路线图</option>{files.filter((file) => file.filename !== activeFilename).map((file) => <option value={file.document.id} key={file.filename}>{file.document.title}</option>)}</select></Field>
           <Field label="自定义标题" hint="留空则使用目标路线标题"><input value={selected.title ?? ''} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => child.type === 'roadmap' ? { ...child, title: event.target.value || undefined } : child) }))} /></Field>
           <Field label="自定义说明"><textarea rows={6} value={selected.description ?? ''} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => ({ ...child, description: event.target.value || undefined })) }))} /></Field>
         </div>
-        <div className="inspector-bottom"><button type="button" onClick={duplicateSelected}><Icon name="copy" size={16} />复制</button><button type="button" className="danger" onClick={deleteSelected}><Icon name="trash" size={16} />删除</button></div>
       </>}
     </aside>
 
     {showYaml && document && <div className="modal-layer" role="dialog" aria-modal="true" aria-label="YAML 预览"><button className="modal-backdrop" onClick={() => setShowYaml(false)} /><section className="yaml-modal"><header><div><span><Icon name="code" /></span><div><strong>YAML 预览</strong><small>{activeFile?.filename}</small></div></div><button onClick={() => setShowYaml(false)} aria-label="关闭"><Icon name="close" /></button></header><pre><code>{toYaml(document)}</code></pre><footer><span>预览会自动排除编辑器内部字段</span><Button icon="save" tone="primary" onClick={() => { void save(); setShowYaml(false) }}>保存文件</Button></footer></section></div>}
-    {notice && <div className={`toast ${notice.tone}`} role="status">{notice.tone === 'success' ? '✓' : '!'}<span>{notice.text}</span></div>}
+    {notice && <div className={`toast ${notice.tone}`} role="status"><span className="toast-icon" aria-hidden="true">{notice.tone === 'success' ? '✓' : '!'}</span><span className="toast-message">{notice.text}</span></div>}
   </div>
 }

@@ -1,6 +1,6 @@
 id: android
 title: Android 开发路线图
-description: 从 Kotlin、Android Studio 与 Jetpack Compose 出发，逐步构建、测试并通过 Google Play 发布一款可维护的原生 Android 应用。
+description: 从 Kotlin、Android Studio 与 Jetpack Compose 出发，逐步构建、测试并通过 Google Play 发布一款可维护的原生 Android 应用
 tags:
   - 移动端
   - Android
@@ -10,7 +10,7 @@ nodes:
   - type: node
     id: prepare-android-workflow
     title: 建立 Android 开发工作流
-    description: 配置 Android Studio、SDK 和运行设备，理解项目结构与构建变体，并能创建和运行首个应用。!!!
+    description: 配置 Android Studio、SDK 和运行设备，理解项目结构与构建变体，并能创建和运行首个应用。
     tags:
       - Android Studio
       - 入门
