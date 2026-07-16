@@ -1,209 +1,501 @@
 id: backend
 title: 后端开发
-description: 从服务端编程到稳定的生产系统。
-tags: [后端, API, 数据库]
+description: 面向具备基本编程起点的学习者，从 Internet、服务端语言、API 与数据库出发，成长为能设计、测试、保护、观测并交付生产服务的后端开发者。
+tags: [后端, API, 数据库, 服务端]
 nodes:
+  - type: node
+    id: backend-foundations
+    title: 建立后端开发基础
+    description: 解释客户端请求如何到达服务端，并能在命令行和版本控制环境中检查、运行与协作开发一个服务。
+    tags: [Internet, HTTP, Git, Linux]
+    status: planned
+    link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work
+    children:
+      - type: node
+        id: internet-dns-hosting
+        title: 追踪域名到服务进程的访问路径
+        description: 说明客户端、IP、DNS、端口、主机、反向代理与应用进程在一次请求中的职责。
+        tags: [DNS, 端口, 托管]
+        status: planned
+      - type: node
+        id: http-request-response
+        title: 阅读 HTTP 请求与响应
+        description: 使用方法、URL、状态码、标头和消息体解释接口行为，并理解连接复用与 HTTPS 的作用。
+        tags: [HTTP, HTTPS]
+        status: planned
+        link: https://httpwg.org/specs/rfc9110.html
+      - type: node
+        id: terminal-process-network
+        title: 使用命令行检查进程与网络
+        description: 在类 Unix 环境中操作文件、环境变量、进程、端口和日志，并根据退出码定位基础故障。
+        tags: [Linux, Shell, 网络]
+        status: planned
+        link: https://www.gnu.org/software/bash/manual/bash.html
+      - type: node
+        id: backend-git-workflow
+        title: 使用 Git 管理可审查的变更
+        description: 创建聚焦提交与分支，阅读差异、解决常见冲突，并通过代码评审合并服务端改动。
+        tags: [Git, Code Review]
+        status: planned
+        link: https://git-scm.com/book/zh/v2
+
   - type: node
     id: server-language
     title: 服务端语言
-    description: 选择一种语言并掌握其运行时与生态。
-    tags: [编程语言]
+    description: 选择一种语言深入掌握语法、运行时、依赖、并发和 Web 生态，不把多语言入门当作主线目标。
+    tags: [编程语言, 运行时]
     status: in-progress
     children:
       - type: roadmap
         roadmapId: java
-        title: 进入 Java 路线图
+        title: 选择 Java 路线
         description: 系统学习 Java 语言、并发、构建与 Spring Boot 框架。
       - type: roadmap
         roadmapId: golang
-        title: 进入 Go 路线图
+        title: 选择 Go 路线
         description: 系统学习 Go 语言、并发、模块、标准库与 Web 入门。
       - type: roadmap
         roadmapId: rust
-        title: 进入 Rust 路线图
+        title: 选择 Rust 路线
         description: 系统学习 Rust 的所有权、类型系统、并发、Cargo 工程与网络应用实践。
       - type: roadmap
         roadmapId: ruby
-        title: 进入 Ruby 路线图
+        title: 选择 Ruby 路线
         description: 系统学习 Ruby 的对象模型、惯用表达、依赖管理、测试与应用交付实践。
       - type: roadmap
         roadmapId: nodejs
-        title: 进入 Node.js 路线图
-        description: 用 JavaScript/TypeScript 构建、测试、观测并交付 Node.js 后端服务。
+        title: 选择 Node.js 路线
+        description: 用 JavaScript 或 TypeScript 构建、测试、观测并交付 Node.js 后端服务。
+      - type: roadmap
+        roadmapId: python
+        title: 选择 Python 路线
+        description: 系统学习 Python 语法、数据模型、异步、标准库与 Web 服务入门。
       - type: node
         id: language-basics
         title: 语言基础与标准库
-        description: 扎实掌握语法、类型、错误处理与常用标准库。
+        description: 扎实掌握所选语言的类型、错误处理、文件与网络 I/O、日期时间和序列化能力。
+        tags: [语言基础, 标准库]
         status: in-progress
       - type: node
         id: packaging-modules
         title: 包管理与模块
-        description: 理解依赖管理、模块边界与可复用项目结构。
+        description: 固定运行时和依赖版本，组织清晰模块边界，并使安装、测试与启动命令可重复执行。
+        tags: [依赖管理, 模块化]
         status: planned
       - type: node
         id: concurrency
         title: 异步与并发
-        description: 学会用异步 I/O、线程或协程处理并发请求。
+        description: 理解所选运行时的线程、事件循环或协程模型，安全处理取消、超时、共享状态与资源上限。
+        tags: [并发, 异步 I/O]
         status: planned
       - type: node
         id: web-framework
         title: Web 框架入门
-        description: 用一种主流框架快速搭建可维护的 HTTP 服务。
+        description: 使用一种成熟框架实现路由、中间件、依赖注入、输入校验和统一错误处理。
+        tags: [Web 框架, 中间件]
         status: planned
 
   - type: node
     id: api-design
     title: API 设计
-    description: 设计清晰的资源、错误响应与版本策略。
-    tags: [API, HTTP]
+    description: 以稳定契约表达业务能力，正确处理 HTTP 语义、输入、错误、身份、兼容性和接口演进。
+    tags: [API, HTTP, 契约]
     status: planned
+    link: https://spec.openapis.org/oas/latest.html
     children:
       - type: node
         id: rest
         title: REST 与 HTTP 语义
-        description: 正确使用方法、状态码、幂等性与资源命名。
+        description: 根据资源和操作选择方法与状态码，正确处理幂等性、内容协商、缓存和条件请求。
+        tags: [REST, HTTP]
         status: planned
         link: https://developer.mozilla.org/zh-CN/docs/Web/HTTP
       - type: node
         id: validation-errors
         title: 请求校验与错误模型
-        description: 统一校验输入，并返回可机读、可调试的错误结构。
+        description: 在信任边界校验路径、查询和请求体，并返回一致、可机读且不泄露内部细节的错误。
+        tags: [校验, 错误处理]
         status: planned
       - type: node
         id: auth
         title: 身份认证与授权
-        description: 实现登录会话、令牌与基于角色/权限的访问控制。
+        description: 区分身份与权限，安全实现会话或令牌认证，并在每个受保护操作执行服务端授权校验。
+        tags: [认证, 授权, OAuth]
         status: planned
+        link: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
       - type: node
         id: api-versioning-docs
         title: 版本与 API 文档
-        description: 制定版本策略，并用 OpenAPI 等工具维护契约。
+        description: 用 OpenAPI 维护可验证契约，制定兼容演进、弃用和变更通知策略。
+        tags: [OpenAPI, 版本管理]
         status: planned
         link: https://swagger.io/specification/
+      - type: node
+        id: pagination-filtering-idempotency
+        title: 设计可扩展的集合与写入接口
+        description: 为分页、过滤、排序、批处理和幂等写入定义明确规则，避免数据增长后破坏客户端。
+        tags: [分页, 幂等性]
+        status: planned
+      - type: node
+        id: alternative-api-styles
+        title: 按协作边界选择其他 API 风格
+        description: 在确有类型化 RPC、灵活查询或遗留集成需求时比较 gRPC、GraphQL 与 SOAP，而非默认叠加协议。
+        tags: [gRPC, GraphQL, SOAP]
+        status: optional
+        link: https://grpc.io/docs/what-is-grpc/introduction/
 
   - type: node
     id: databases
     title: 数据库
-    description: 理解建模、索引、事务与迁移。
+    description: 从业务约束设计数据模型，使用事务维护正确性，并通过执行计划、迁移和故障演练保障数据生命周期。
+    tags: [数据库, SQL, 事务]
     status: planned
     children:
       - type: node
         id: relational-sql
         title: 关系建模与 SQL
-        description: 设计表结构、约束与关联，熟练编写查询。
+        description: 识别实体、关系、键和约束，规范化核心数据，并编写正确、可读且可验证的查询。
+        tags: [关系模型, SQL]
         status: planned
-        link: https://www.postgresql.org/docs/current/
+        link: https://www.postgresql.org/docs/current/tutorial.html
         children:
           - type: roadmap
             roadmapId: sql
-            title: 进入 SQL 路线图
-            description: 系统学习跨关系数据库的查询、数据修改、建模和查询质量实践。
+            title: 系统学习 SQL
+            description: 深入跨关系数据库的查询、数据修改、建模和查询质量实践。
           - type: roadmap
             roadmapId: postgresql
-            title: 进入 PostgreSQL 路线图
-            description: 系统学习 PostgreSQL 的建模、事务、性能、安全与恢复实践。
+            title: 深入 PostgreSQL
+            description: 学习 PostgreSQL 的建模、事务、性能、安全与恢复实践。
       - type: node
         id: indexes-query
         title: 索引与查询优化
-        description: 用索引、执行计划分析定位慢查询。
+        description: 使用执行计划识别扫描、连接、排序和 N+1 问题，再依据真实查询设计并验证索引。
+        tags: [索引, 执行计划, N+1]
         status: planned
+        link: https://www.postgresql.org/docs/current/using-explain.html
       - type: node
         id: transactions
         title: 事务与一致性
-        description: 理解 ACID、隔离级别与常见并发异常。
+        description: 根据业务不变量划分事务边界，理解 ACID、隔离级别、锁、死锁和常见并发异常。
+        tags: [ACID, 隔离级别, 锁]
         status: planned
       - type: node
         id: migrations
         title: 迁移与种子数据
-        description: 用可重复的迁移管理 schema 演进与初始数据。
+        description: 用可回滚或可前滚的迁移演进 schema，在部署前验证数据转换、兼容窗口和失败恢复。
+        tags: [Schema Migration, 数据演进]
+        status: planned
+      - type: node
+        id: orm-boundaries
+        title: 明确 ORM 与原生查询的边界
+        description: 使用 ORM 提升常规数据访问效率，同时识别隐式查询、加载策略、事务和性能陷阱。
+        tags: [ORM, 数据访问]
+        status: planned
+      - type: node
+        id: database-failure-recovery
+        title: 验证备份与故障恢复
+        description: 定义可接受的数据丢失和恢复时间，执行备份恢复演练，并验证应用在连接中断时的行为。
+        tags: [备份, 恢复, 故障]
         status: planned
       - type: node
         id: nosql
         title: NoSQL 何时用
-        description: 了解文档/键值等模型的取舍，避免盲目引入。
+        description: 根据访问模式、一致性、查询、容量和运维约束比较键值、文档、列式、图与时序模型。
+        tags: [NoSQL, 数据建模]
+        status: optional
+      - type: node
+        id: database-scaling
+        title: 探索复制、分区与分片
+        description: 在单库优化和测量之后，再评估读副本、分区与分片对一致性、查询和运维的影响。
+        tags: [复制, 分区, 分片]
         status: optional
 
   - type: node
     id: cache-messaging
     title: 缓存与消息
-    description: 用缓存降低延迟，用消息解耦耗时与高峰流量。
+    description: 使用缓存降低可测量的延迟，用消息解耦耗时任务，并明确一致性、重试和失败处理策略。
+    tags: [缓存, 消息队列, 异步]
     status: planned
     children:
       - type: node
         id: caching
         title: 缓存策略
-        description: 掌握缓存键设计、TTL、穿透/击穿/雪崩与失效策略。
+        description: 从访问模式设计缓存键、TTL 和失效流程，处理穿透、击穿、雪崩与陈旧数据风险。
+        tags: [Redis, TTL, 一致性]
         status: planned
-        link: https://redis.io/docs/latest/
+        link: https://redis.io/docs/latest/develop/use/client-side-caching/
         children:
           - type: roadmap
             roadmapId: redis
-            title: 进入 Redis 路线图
+            title: 深入 Redis
             description: 系统学习 Redis 的数据结构、缓存设计、运维与高可用实践。
       - type: node
         id: message-queues
         title: 消息队列与异步任务
-        description: 用队列处理异步作业、重试与削峰填谷。
+        description: 设计生产者、消费者、确认、重试、死信和幂等处理，避免把消息投递等同于业务完成。
+        tags: [Kafka, RabbitMQ, 重试]
+        status: planned
+        link: https://www.rabbitmq.com/tutorials
+      - type: node
+        id: background-job-operations
+        title: 可靠运行后台作业
+        description: 为任务设置超时、并发上限、重试预算和可观测状态，并提供人工补偿或重新执行路径。
+        tags: [后台任务, 调度]
+        status: planned
+      - type: node
+        id: realtime-communication
+        title: 按需求选择实时通信方式
+        description: 比较轮询、长轮询、Server-Sent Events 与 WebSocket 的方向性、连接成本和恢复机制。
+        tags: [WebSocket, SSE, 实时]
+        status: optional
+        link: https://developer.mozilla.org/zh-CN/docs/Web/API/WebSockets_API
+
+  - type: node
+    id: backend-security-resilience
+    title: 保护服务并设计故障弹性
+    description: 将输入、身份、秘密和依赖视为风险边界，并让服务在过载或部分依赖失败时可控退化。
+    tags: [安全, 弹性, OWASP]
+    status: planned
+    link: https://owasp.org/API-Security/
+    children:
+      - type: node
+        id: transport-and-server-hardening
+        title: 保护传输与服务运行环境
+        description: 正确终止 TLS，限制网络和文件权限，及时更新依赖，并关闭非必要端口与调试入口。
+        tags: [TLS, 最小权限, 依赖安全]
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/Security/Transport_Layer_Security
+      - type: node
+        id: password-secret-storage
+        title: 安全处理密码与秘密
+        description: 使用专用密码哈希算法保存密码，通过秘密管理设施注入凭据，并支持轮换和撤销。
+        tags: [密码哈希, Secret Management]
+        status: planned
+        link: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+      - type: node
+        id: api-abuse-controls
+        title: 限制接口滥用与资源耗尽
+        description: 设置请求大小、速率、配额、并发和超时上限，为高成本操作建立授权与审计。
+        tags: [限流, 配额, DoS]
+        status: planned
+      - type: node
+        id: dependency-failure-controls
+        title: 控制下游依赖故障
+        description: 使用超时、有限重试、退避、熔断、隔离和背压阻止故障级联，并避免无界排队。
+        tags: [超时, 熔断, 背压]
+        status: planned
+      - type: node
+        id: graceful-degradation
+        title: 设计优雅降级与恢复
+        description: 区分关键和非关键能力，在依赖不可用时提供降级结果，并验证服务重启和流量恢复过程。
+        tags: [降级, 恢复, 可靠性]
         status: planned
 
   - type: node
     id: testing-quality
     title: 测试与质量
-    description: 用自动化测试守住接口行为与回归风险。
+    description: 以业务风险划分测试层级，让快速反馈、真实依赖验证和接口契约共同保护服务行为。
+    tags: [测试, 质量保障]
     status: planned
     children:
       - type: node
         id: unit-integration
         title: 单元与集成测试
-        description: 覆盖核心业务逻辑，并用真实依赖做集成验证。
+        description: 用单元测试覆盖纯业务规则，并通过真实数据库、队列或文件系统验证基础设施边界。
+        tags: [单元测试, 集成测试]
         status: planned
       - type: node
         id: api-contract-tests
         title: 契约与 API 测试
-        description: 验证请求/响应契约，防止前后端接口漂移。
+        description: 验证请求、响应、认证和错误契约，并在消费者与提供者之间尽早发现不兼容变更。
+        tags: [契约测试, API 测试]
         status: planned
+      - type: node
+        id: end-to-end-critical-paths
+        title: 验证少量关键业务流程
+        description: 在接近生产的环境中测试跨模块主流程、权限与失败路径，保持场景聚焦且结果可诊断。
+        tags: [功能测试, E2E]
+        status: planned
+      - type: node
+        id: static-analysis-quality-gates
+        title: 自动执行静态检查与质量门槛
+        description: 将格式、Lint、类型、安全扫描、测试和构建纳入持续集成，并阻止失败变更进入主分支。
+        tags: [静态分析, CI]
+        status: planned
+      - type: node
+        id: load-and-failure-testing
+        title: 在发布前验证容量与故障行为
+        description: 依据预期负载测量延迟、吞吐与资源使用，并注入超时或依赖失败检查降级策略。
+        tags: [负载测试, 故障测试]
+        status: planned
+
+  - type: node
+    id: software-design-architecture
+    title: 演进软件设计与服务架构
+    description: 从清晰的单体和模块边界开始，依据变化、团队与扩展压力选择模式，而不是追逐架构标签。
+    tags: [软件设计, 架构, 可维护性]
+    status: planned
+    children:
+      - type: node
+        id: modular-monolith-first
+        title: 先构建边界清晰的模块化单体
+        description: 按业务能力组织模块，控制依赖方向和数据所有权，为测试、部署和未来拆分保留空间。
+        tags: [单体, 模块化]
+        status: planned
+      - type: node
+        id: design-principles-patterns
+        title: 用原则和模式解决重复设计问题
+        description: 应用内聚、低耦合、依赖倒置和组合，并在问题确实重复时选择合适的设计模式。
+        tags: [SOLID, 设计模式]
+        status: planned
+      - type: node
+        id: twelve-factor-service
+        title: 设计可部署的无状态服务
+        description: 分离配置与代码，让进程可替换、日志成为事件流，并显式管理构建、发布和运行阶段。
+        tags: [Twelve-Factor, 无状态]
+        status: planned
+        link: https://12factor.net/zh_cn/
+      - type: node
+        id: domain-driven-design
+        title: 对复杂领域应用领域建模
+        description: 在业务规则复杂时建立统一语言、边界上下文、实体和值对象，避免把 DDD 用于简单 CRUD。
+        tags: [DDD, 领域模型]
+        status: optional
+      - type: node
+        id: distributed-architecture-options
+        title: 评估微服务、Serverless 与 SOA
+        description: 比较独立部署、故障隔离、数据一致性、延迟、平台约束与运维成本，先验证拆分收益。
+        tags: [微服务, Serverless, SOA]
+        status: optional
+      - type: node
+        id: cqrs-event-sourcing
+        title: 探索 CQRS 与事件溯源
+        description: 仅在读写模型或审计历史有明确需求时评估事件建模、投影、最终一致性和迁移成本。
+        tags: [CQRS, Event Sourcing]
+        status: optional
 
   - type: node
     id: deploy-ops
     title: 部署与运维
-    description: 把服务可靠地发布到可重复的运行环境。
+    description: 将服务及其配置、依赖和数据变更以可重复、可回滚且最小权限的方式交付到运行环境。
+    tags: [部署, 容器, CI/CD]
     status: planned
     children:
       - type: node
         id: containers
         title: 容器化
-        description: 用容器打包运行时依赖，保证环境一致。
+        description: 用最小、非 root 且可复现的镜像打包服务，正确处理信号、健康检查、资源限制和持久数据。
+        tags: [Docker, 容器]
         status: planned
         link: https://docs.docker.com/get-started/
+        children:
+          - type: roadmap
+            roadmapId: docker
+            title: 深入 Docker 交付实践
+            description: 学习镜像构建、Compose、网络、存储、安全、排错与发布。
+      - type: node
+        id: web-server-reverse-proxy
+        title: 配置 Web Server 与反向代理
+        description: 使用 Nginx、Caddy 或平台网关终止 TLS、转发请求并设置合理的连接、大小与超时限制。
+        tags: [Nginx, Caddy, 反向代理]
+        status: planned
+        link: https://nginx.org/en/docs/http/ngx_http_proxy_module.html
       - type: node
         id: cicd
         title: CI/CD
-        description: 自动化构建、测试与发布流水线。
+        description: 自动构建不可变产物，运行质量门槛，按环境推广同一产物，并提供审批、回滚和审计记录。
+        tags: [CI/CD, 自动化]
         status: planned
       - type: node
         id: config-env
         title: 环境与配置管理
-        description: 区分环境配置，安全管理密钥与功能开关。
+        description: 校验环境配置，通过安全渠道管理秘密和功能开关，并避免环境差异改变应用行为。
+        tags: [配置, Secret, Feature Flag]
         status: planned
+      - type: roadmap
+        roadmapId: devops
+        title: 深入自动化交付与基础设施实践
+        description: 补齐 Linux、网络、CI/CD、基础设施即代码、云平台和可靠性能力。
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 按规模选择 Kubernetes
+        description: 只有在容器编排和平台复杂度确有收益时，再学习集群部署、更新、排错与安全。
 
   - type: node
     id: observability
     title: 可观测性
-    description: 使用日志、指标与追踪定位生产问题。
+    description: 从用户目标定义服务信号，让日志、指标和追踪能够关联同一次请求并支持生产诊断。
+    tags: [日志, 指标, 追踪]
     status: optional
+    link: https://opentelemetry.io/docs/concepts/observability-primer/
     children:
       - type: node
         id: logging
         title: 结构化日志
-        description: 输出可检索的日志，并关联请求上下文。
+        description: 输出带时间、级别、事件和请求上下文的可检索日志，同时脱敏凭据与个人数据。
+        tags: [日志, Correlation ID]
         status: optional
       - type: node
         id: metrics
         title: 指标与告警
-        description: 采集延迟、错误率等关键指标并设置告警。
+        description: 采集流量、错误、延迟和饱和度，基于用户影响设置可执行告警并控制标签基数。
+        tags: [Metrics, Alerting, SLI]
         status: optional
       - type: node
         id: tracing
         title: 分布式追踪
-        description: 跨服务追踪请求路径，定位瓶颈与故障点。
+        description: 跨服务传播追踪上下文，用 span 定位依赖延迟、错误路径和性能瓶颈。
+        tags: [Tracing, OpenTelemetry]
         status: optional
+        link: https://opentelemetry.io/docs/concepts/signals/traces/
+      - type: node
+        id: health-readiness-diagnostics
+        title: 提供健康状态与生产诊断入口
+        description: 区分存活和就绪检查，为运维提供安全的版本、依赖与配置诊断信息。
+        tags: [Health Check, Readiness]
+        status: optional
+      - type: node
+        id: incident-debugging-loop
+        title: 建立从告警到复盘的故障闭环
+        description: 使用时间线和观测数据定位根因，安全缓解影响，并把复盘行动转化为测试、告警或设计改进。
+        tags: [Incident, 复盘]
+        status: optional
+
+  - type: node
+    id: ship-production-backend
+    title: 完成并运行一个生产化后端服务
+    description: 将语言、API、数据库、安全、测试、部署和观测能力组合为可验收、可恢复且有容量依据的真实项目。
+    tags: [综合项目, 生产实践, 作品集]
+    status: planned
+    children:
+      - type: node
+        id: define-service-contracts
+        title: 定义业务边界与服务契约
+        description: 选择订单、预约、内容或库存场景，写明核心不变量、API 契约、数据模型和非功能目标。
+        tags: [需求分析, 契约]
+        status: planned
+      - type: node
+        id: implement-secure-data-flows
+        title: 实现安全且一致的数据流程
+        description: 完成身份与权限、事务、迁移、输入校验、幂等写入和统一错误处理，并覆盖失败路径。
+        tags: [安全, 事务, 错误处理]
+        status: planned
+      - type: node
+        id: verify-service-behavior
+        title: 验证接口、依赖与容量
+        description: 建立单元、集成和契约测试，执行基础负载测试，并记录容量瓶颈与扩展假设。
+        tags: [测试, 性能, 验收]
+        status: planned
+      - type: node
+        id: deploy-and-observe-service
+        title: 部署并观察生产行为
+        description: 通过自动化流水线发布服务，配置日志、指标、追踪和告警，并验证回滚、备份恢复与依赖故障降级。
+        tags: [部署, 可观测性, 恢复]
+        status: planned
+      - type: node
+        id: document-operational-decisions
+        title: 记录架构与运行手册
+        description: 记录关键取舍、启动与迁移步骤、常见故障、告警响应和恢复操作，使他人可以接手维护。
+        tags: [ADR, Runbook, 文档]
+        status: planned

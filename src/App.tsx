@@ -238,7 +238,6 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
                 {['全部', ...tags].map((tag) => (
                   <button key={tag} type="button" className={activeTag === tag ? 'active' : ''} onClick={() => setActiveTag(tag)} aria-pressed={activeTag === tag}>
                     <span>{tag}</span>
-                    <span aria-hidden="true">{tag === '全部' ? catalog.roots.length : catalog.roots.filter((roadmap) => roadmap.tags.includes(tag)).length}</span>
                   </button>
                 ))}
               </div>

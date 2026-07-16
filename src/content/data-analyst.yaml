@@ -1,0 +1,368 @@
+id: data-analyst
+title: 数据分析师
+description: 复刻 roadmap.sh 的 Data Analyst 学习主线，从分析问题、Excel 与 SQL 起步，完成数据采集、清洗、统计分析、可视化和可复现项目，并将机器学习与大数据作为进阶方向。
+tags: [数据分析, Excel, SQL, 数据可视化, 统计学]
+nodes:
+  - type: node
+    id: understand-data-analytics
+    title: 建立数据分析工作的整体认知
+    description: 说明数据分析如何把业务问题、原始数据、分析方法和可执行结论连接成一条可审查的工作链路。
+    tags: [数据分析, 入门, 业务问题]
+    status: planned
+    link: https://roadmap.sh/data-analyst
+    children:
+      - type: node
+        id: distinguish-analytics-types
+        title: 区分四类数据分析问题
+        description: 用“发生了什么、为什么发生、可能发生什么、应该采取什么行动”区分描述性、诊断性、预测性与规范性分析。
+        tags: [描述性分析, 诊断性分析, 预测性分析]
+        status: planned
+      - type: node
+        id: map-analysis-lifecycle
+        title: 映射一次分析的完整生命周期
+        description: 将问题定义、数据采集、清洗、探索、统计分析、可视化和沟通结论映射到各自输入、输出与质量检查。
+        tags: [分析流程, 数据质量]
+        status: planned
+      - type: node
+        id: frame-business-question
+        title: 把业务诉求改写为可分析问题
+        description: 明确决策者、目标指标、分析单位、时间范围、对照基线和行动选项，使分析结论能够支持具体决策。
+        tags: [问题定义, 指标]
+        status: planned
+
+  - type: node
+    id: analyze-with-spreadsheets
+    title: 使用 Excel 完成分析与报表
+    description: 用常用函数、数据透视表和图表完成小中型数据集的清洗、汇总、核对与呈现。
+    tags: [Excel, 电子表格, 报表]
+    status: planned
+    link: https://support.microsoft.com/en-us/excel/overview-of-pivottables-and-pivotcharts
+    children:
+      - type: node
+        id: calculate-with-common-functions
+        title: 用常用函数表达分析逻辑
+        description: 使用 IF、日期、查找、文本、计数和聚合函数完成分类、匹配、清洗与指标计算，并用样例数据核对公式结果。
+        tags: [Excel 函数, IF, 查找]
+        status: planned
+      - type: node
+        id: clean-tabular-data-in-excel
+        title: 在表格中整理可分析数据
+        description: 统一字段类型和格式，处理空值、重复值与异常文本，并保持一行一个观测、一列一个变量的表格结构。
+        tags: [数据清洗, 表格]
+        status: planned
+      - type: node
+        id: summarize-with-pivot-tables
+        title: 用数据透视表汇总和核对指标
+        description: 按维度切分数据、选择正确聚合方式并检查总计与筛选范围，生成可以追溯到明细的交互式汇总。
+        tags: [PivotTable, 聚合]
+        status: planned
+        link: https://support.microsoft.com/en-us/excel/calculate-values-in-a-pivottable
+      - type: node
+        id: report-with-excel-charts
+        title: 用 Excel 图表呈现趋势与差异
+        description: 根据比较、趋势、构成或分布问题选择图表，提供清晰标题、单位、基线与数据来源并避免误导性坐标。
+        tags: [图表, 数据呈现]
+        status: planned
+
+  - type: node
+    id: query-data-with-sql
+    title: 使用 SQL 提取和汇总关系数据
+    description: 从数据库中筛选、连接、聚合并验证分析数据集，能够独立编写常见报表和窗口分析查询。
+    tags: [SQL, 数据库, 数据提取]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: sql
+        title: 沿 SQL 路线图系统学习查询
+        description: 深入 SELECT、JOIN、聚合、CTE、窗口函数与查询质量保障，并完成一个 SQL 分析项目。
+      - type: node
+        id: validate-sql-extracts
+        title: 验证 SQL 提取结果的粒度与口径
+        description: 在连接与聚合前后检查行数、唯一键、空值和总量，发现重复放大、漏行及时间边界错误。
+        tags: [SQL, 数据验证, 指标口径]
+        status: planned
+
+  - type: node
+    id: gain-programming-skills
+    title: 选择一种语言获得可复现分析能力
+    description: 使用 Python 或 R 把数据读取、转换、分析和绘图步骤写成可重复执行并可审查的代码。
+    tags: [Python, R, 可复现分析]
+    status: planned
+    children:
+      - type: node
+        id: analyze-data-with-python
+        title: 使用 Python 与 pandas 分析数据
+        description: 掌握分析所需的 Python 基础，并用 pandas 完成读取、筛选、连接、分组、重塑和缺失值处理。
+        tags: [Python, pandas]
+        status: planned
+        link: https://pandas.pydata.org/docs/user_guide/
+        children:
+          - type: roadmap
+            roadmapId: python
+            title: 补齐 Python 语言基础
+            description: 根据需要学习语法、数据结构、函数、文件 I/O、环境和测试，不必先完成偏后端的全部内容。
+      - type: node
+        id: analyze-data-with-r
+        title: 使用 R 与 tidyverse 分析数据
+        description: 使用向量、数据框和函数表达分析步骤，并用 dplyr 处理数据、ggplot2 构建图形。
+        tags: [R, dplyr, ggplot2]
+        status: optional
+        link: https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+      - type: node
+        id: organize-analysis-notebooks
+        title: 把分析过程组织成可复现文档
+        description: 在 Notebook 或脚本中分离输入、转换、验证和输出，固定依赖并确保从原始数据开始可以顺序重跑。
+        tags: [Notebook, 可复现性, 环境管理]
+        status: planned
+
+  - type: node
+    id: collect-store-and-clean-data
+    title: 采集、存储并清洗真实数据
+    description: 从数据库、文件、API 或网页取得数据，保留来源与原始副本，再建立可重复、可验证的清洗流程。
+    tags: [数据采集, 数据清洗, 数据质量]
+    status: planned
+    link: https://pandas.pydata.org/docs/user_guide/io.html
+    children:
+      - type: node
+        id: collect-from-files-and-databases
+        title: 从文件与数据库读取数据
+        description: 正确读取 CSV 等表格文件和关系数据库结果，显式指定编码、分隔符、字段类型、时区与查询范围。
+        tags: [CSV, 数据库, 数据导入]
+        status: planned
+      - type: node
+        id: collect-from-apis
+        title: 从 API 可靠采集数据
+        description: 阅读接口契约并处理认证、分页、限流、超时与错误响应，保存请求参数和采集时间以便追溯。
+        tags: [API, JSON, 数据采集]
+        status: planned
+      - type: node
+        id: scrape-web-data-responsibly
+        title: 在允许范围内采集网页数据
+        description: 核对站点条款、robots 规则、版权和隐私要求，使用稳定选择器与克制请求频率抓取公开且获准使用的数据。
+        tags: [Web Scraping, 合规, HTML]
+        status: optional
+      - type: node
+        id: handle-missing-and-duplicate-data
+        title: 处理缺失值与重复记录
+        description: 识别缺失和重复产生的机制，选择删除、填补、标记或合并策略，并记录这些操作对样本和指标的影响。
+        tags: [缺失值, 去重]
+        status: planned
+        link: https://pandas.pydata.org/docs/user_guide/missing_data.html
+      - type: node
+        id: detect-outliers-and-transform-data
+        title: 检查异常值并转换数据结构
+        description: 结合业务规则、分布和来源判断异常值，完成类型转换、标准化、分箱、宽长表重塑与多表合并。
+        tags: [异常值, 数据转换, 重塑]
+        status: planned
+      - type: node
+        id: validate-clean-data
+        title: 为清洗结果建立质量检查
+        description: 对主键唯一性、必填字段、取值范围、引用关系、行数和关键总量设置断言，并隔离失败记录供复查。
+        tags: [数据质量, 验证, 测试]
+        status: planned
+
+  - type: node
+    id: perform-descriptive-analysis
+    title: 用描述统计探索数据
+    description: 从集中趋势、离散程度和分布形态描述数据，在计算指标的同时检查样本、单位和异常值对结论的影响。
+    tags: [描述统计, EDA, 分布]
+    status: planned
+    link: https://www.itl.nist.gov/div898/handbook/eda/eda.htm
+    children:
+      - type: node
+        id: summarize-central-tendency
+        title: 选择合适的集中趋势指标
+        description: 计算并比较均值、中位数和众数，根据偏态、离群点和变量类型解释为何某一指标更适合当前问题。
+        tags: [均值, 中位数, 众数]
+        status: planned
+      - type: node
+        id: measure-dispersion
+        title: 衡量数据的离散程度
+        description: 使用极差、四分位距、方差和标准差描述波动，并把离散程度放回业务单位与样本范围中解释。
+        tags: [极差, 方差, 标准差]
+        status: planned
+      - type: node
+        id: inspect-distribution-shape
+        title: 检查分布、偏度与峰度
+        description: 结合直方图、箱线图、分位数、偏度和峰度识别偏态、长尾、多峰与异常观测，不用单个统计量替代图形检查。
+        tags: [分布, 偏度, 峰度]
+        status: planned
+      - type: node
+        id: segment-and-compare-groups
+        title: 分群比较关键指标
+        description: 按时间、地区、渠道或用户类型切分数据，保持分母和观察窗口一致，并区分总体变化与群体结构变化。
+        tags: [分群, 对比分析]
+        status: planned
+
+  - type: node
+    id: visualize-and-report-insights
+    title: 用可视化传达分析结论
+    description: 从分析问题出发选择图形、工具和交互方式，交付读者能正确理解且可追溯的数据故事或仪表板。
+    tags: [数据可视化, 仪表板, 数据叙事]
+    status: planned
+    link: https://help.tableau.com/current/pro/desktop/en-us/building_overview.htm
+    children:
+      - type: node
+        id: choose-chart-by-question
+        title: 按分析问题选择图表
+        description: 为比较、趋势、关系、分布、构成和流程分别评估条形图、折线图、散点图、直方图、热力图、堆叠图和漏斗图。
+        tags: [图表选择, 可视编码]
+        status: planned
+      - type: node
+        id: create-programmatic-charts
+        title: 用代码生成可复现图表
+        description: 选择 Matplotlib、Seaborn 或 ggplot2 构建图形，把数据处理、编码选择、标注与导出写入可重复执行的分析流程。
+        tags: [Matplotlib, Seaborn, ggplot2]
+        status: planned
+        link: https://matplotlib.org/stable/tutorials/index.html
+      - type: node
+        id: build-bi-dashboard
+        title: 使用一种 BI 工具构建仪表板
+        description: 在 Power BI 或 Tableau 中连接并建模数据，设计筛选、钻取和跨图联动，并验证刷新后指标仍与来源一致。
+        tags: [Power BI, Tableau, BI]
+        status: planned
+        link: https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft/
+      - type: node
+        id: design-honest-accessible-visuals
+        title: 设计诚实且易读的视觉表达
+        description: 使用准确坐标、恰当比例、直接标注和色盲友好配色，提供替代文本或数据表并删除不服务于问题的装饰。
+        tags: [可访问性, 视觉设计, 诚信]
+        status: planned
+      - type: node
+        id: present-actionable-insights
+        title: 面向决策者讲清证据与行动
+        description: 用背景、发现、影响、限制和建议组织汇报，区分数据事实、分析解释与行动判断并准备回答追问。
+        tags: [沟通, 数据叙事, 决策]
+        status: planned
+
+  - type: node
+    id: apply-statistical-analysis
+    title: 用统计方法分析关系并支持决策
+    description: 在明确样本、假设和不确定性的前提下分析变量关系、检验假设并建立可解释的回归模型。
+    tags: [统计推断, 假设检验, 回归]
+    status: planned
+    link: https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm
+    children:
+      - type: node
+        id: reason-about-sampling-uncertainty
+        title: 解释抽样、偏差与不确定性
+        description: 区分总体与样本，识别选择偏差、测量误差和混杂因素，并使用区间而非单点数字表达估计的不确定性。
+        tags: [抽样, 偏差, 置信区间]
+        status: planned
+      - type: node
+        id: analyze-correlation
+        title: 审慎分析变量间相关关系
+        description: 结合散点图和适当相关系数检查方向、强度、非线性、异常值与分群效应，并明确相关不能单独证明因果。
+        tags: [相关分析, 散点图]
+        status: planned
+      - type: node
+        id: run-hypothesis-tests
+        title: 设计并解释假设检验
+        description: 预先写出原假设、备择假设、显著性水平和检验前提，报告效应量与区间并控制多重比较和反复偷看。
+        tags: [假设检验, p 值, 效应量]
+        status: planned
+      - type: node
+        id: build-interpretable-regression
+        title: 建立并诊断可解释回归模型
+        description: 根据结果变量选择线性或逻辑回归，检查残差、共线性、过拟合和数据泄漏，并在业务语境中解释系数与预测误差。
+        tags: [线性回归, 逻辑回归, 模型诊断]
+        status: planned
+
+  - type: node
+    id: explore-advanced-data-topics
+    title: 按工作需要探索进阶数据主题
+    description: 在分析主线和统计基础稳定后，再根据数据规模与岗位目标选择机器学习、大数据或深度学习方向。
+    tags: [机器学习, 大数据, 进阶]
+    status: optional
+    children:
+      - type: node
+        id: learn-machine-learning-types
+        title: 区分监督、无监督与强化学习
+        description: 根据是否有标签、任务反馈和决策序列区分三类学习问题，并判断常规数据分析是否真的需要机器学习。
+        tags: [监督学习, 无监督学习, 强化学习]
+        status: optional
+        link: https://scikit-learn.org/stable/user_guide.html
+      - type: node
+        id: apply-popular-ml-algorithms
+        title: 实践常见机器学习算法
+        description: 使用决策树、朴素贝叶斯、KNN、逻辑回归与 K-Means 完成有基线的分类、回归或聚类练习。
+        tags: [决策树, KNN, K-Means]
+        status: optional
+      - type: node
+        id: evaluate-ml-models
+        title: 用正确的切分与指标评估模型
+        description: 建立训练、验证和测试边界，选择匹配业务代价的指标，并检查交叉验证、类别不平衡、泄漏与泛化误差。
+        tags: [模型评估, 交叉验证, 数据泄漏]
+        status: optional
+      - type: node
+        id: process-data-at-scale
+        title: 理解并行与分布式数据处理
+        description: 学习分区、数据移动、容错和延迟等大数据概念，并用 Spark DataFrame 完成一个超出单机内存直觉的处理练习。
+        tags: [Spark, Hadoop, MapReduce, 并行计算]
+        status: optional
+        link: https://spark.apache.org/docs/latest/api/python/getting_started/quickstart_df.html
+      - type: node
+        id: explore-deep-learning
+        title: 按专业方向试用深度学习
+        description: 理解神经网络训练的基本过程，并仅在图像、文本或序列等任务确有需要时试用 PyTorch 或 TensorFlow。
+        tags: [深度学习, 神经网络, PyTorch, TensorFlow]
+        status: optional
+
+  - type: node
+    id: deliver-data-analysis-portfolio
+    title: 交付可复现的数据分析作品集
+    description: 围绕真实问题完成从数据来源到建议的端到端项目，以代码、仪表板和说明文档证明分析过程与结论可信。
+    tags: [综合实践, 作品集, GitHub]
+    status: planned
+    link: https://docs.github.com/en/get-started/start-your-journey/hello-world
+    children:
+      - type: node
+        id: complete-sales-trend-project
+        title: 完成销售趋势预测或解释项目
+        description: 定义业务问题与预测基线，清洗多期销售数据，分析趋势和驱动因素，并说明误差、限制与可采取的行动。
+        tags: [销售分析, 时间趋势, 项目]
+        status: planned
+      - type: node
+        id: complete-customer-segmentation-project
+        title: 完成客户分群项目
+        description: 从可行动的分群目标出发构造特征、比较规则分群与聚类结果，并为每个群体提出可验证的业务策略。
+        tags: [客户分群, 聚类, 项目]
+        status: optional
+      - type: node
+        id: publish-reproducible-analysis
+        title: 发布可复现的项目仓库
+        description: 提交数据来源说明、环境依赖、清洗与分析代码、质量检查、图表或仪表板、结论、限制和从头运行步骤。
+        tags: [GitHub, README, 可复现性]
+        status: planned
+      - type: node
+        id: review-project-with-stakeholders
+        title: 用利益相关者反馈检验项目价值
+        description: 向目标读者演示项目，记录他们对口径、证据和行动建议的质疑，并据此修订分析和表达。
+        tags: [反馈, 沟通, 复盘]
+        status: planned
+
+  - type: node
+    id: continue-learning-and-networking
+    title: 通过实践与社区持续成长
+    description: 用竞赛、课程、认证、同行反馈和领域阅读补齐能力，但以真实项目证据而非证书数量衡量进步。
+    tags: [持续学习, 社区, 职业发展]
+    status: optional
+    children:
+      - type: node
+        id: participate-in-data-competitions
+        title: 有目标地参与数据竞赛
+        description: 选择与能力缺口匹配的 Kaggle 等竞赛，建立简单基线、阅读优秀方案并复盘验证方式和特征工程差距。
+        tags: [Kaggle, 竞赛, 实践]
+        status: optional
+      - type: node
+        id: choose-courses-and-certifications
+        title: 按能力缺口选择课程或认证
+        description: 比较课程大纲、实践比例、评估方式和更新记录，只选择能补齐明确技能或满足岗位要求的学习项目。
+        tags: [课程, 认证]
+        status: optional
+      - type: node
+        id: build-professional-network
+        title: 建立可互相反馈的专业网络
+        description: 参与社区讨论、分享分析过程、寻求导师或同行评审，并通过领域活动持续了解业务问题与工具变化。
+        tags: [社区, 导师, 同行评审]
+        status: optional

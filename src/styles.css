@@ -141,12 +141,10 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
 .home-search > span { position: absolute; left: 16px; top: 9px; z-index: 1; color: var(--muted); font-size: 23px; transform: rotate(-18deg); }
 .home-search input { width: 100%; height: 46px; padding: 0 16px 0 45px; border: 1px solid var(--line); border-radius: 2px; outline: 0; color: var(--ink); background: var(--surface-strong); }
 .home-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 13%, transparent); }
-.tag-filters { display: grid; gap: 5px; }
-.tag-filters button { min-height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 8px 11px; border: 1px solid transparent; border-radius: 3px; color: var(--muted); background: transparent; cursor: pointer; font-size: 12px; font-weight: 600; text-align: left; }
-.tag-filters button > span:last-child { min-width: 23px; padding: 2px 6px; border-radius: 12px; color: var(--muted); background: color-mix(in srgb, var(--muted) 10%, transparent); font-size: 10px; text-align: center; }
+.tag-filters { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag-filters button { min-height: 32px; display: inline-flex; align-items: center; width: auto; padding: 6px 11px; border: 1px solid var(--line); border-radius: 18px; color: var(--muted); background: var(--surface); cursor: pointer; font-size: 12px; font-weight: 600; text-align: left; }
 .tag-filters button:hover { color: var(--ink); border-color: var(--line); background: var(--surface-strong); }
 .tag-filters button.active { color: var(--on-accent); border-color: var(--accent); background: var(--accent); box-shadow: 0 5px 14px color-mix(in srgb, var(--accent) 22%, transparent); }
-.tag-filters button.active > span:last-child { color: var(--on-accent); background: color-mix(in srgb, var(--on-accent) 18%, transparent); }
 .roadmap-results { min-width: 0; }
 .roadmap-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .roadmap-card { min-height: 204px; position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; padding: 18px; overflow: hidden; background: var(--card-surface); border: 1px solid var(--line); text-decoration: none; transition: transform .22s ease; }
@@ -277,7 +275,7 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
   .roadmap-browser { grid-template-columns: 1fr; gap: 18px; }
   .sidebar-inner { position: static; padding: 15px; }
   .filter-label { margin-top: 18px; }
-  .tag-filters { display: flex; flex-wrap: nowrap; margin: 0 -15px -2px; padding: 0 15px 3px; overflow-x: auto; scrollbar-width: none; }
+  .tag-filters { flex-wrap: nowrap; margin: 0 -15px -2px; padding: 0 15px 3px; overflow-x: auto; scrollbar-width: none; }
   .tag-filters::-webkit-scrollbar { display: none; }
   .tag-filters button { flex: 0 0 auto; width: auto; min-height: 36px; border-color: var(--line); border-radius: 20px; }
   .roadmap-grid { grid-template-columns: 1fr; }
