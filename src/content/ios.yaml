@@ -1,0 +1,425 @@
+id: ios
+title: iOS 开发路线图
+description: 从 Swift、Xcode 与 SwiftUI 基础出发，逐步构建、测试并通过 App Store Connect 发布一款可维护的原生 iOS 应用。
+tags: [移动端, iOS, Swift, SwiftUI]
+nodes:
+  - type: node
+    id: prepare-ios-workflow
+    title: 建立 iOS 开发工作流
+    description: 在 macOS 上配置 Xcode，理解项目结构、签名身份与模拟器，并能创建和运行首个 iOS 应用。
+    tags: [Xcode, 入门]
+    status: planned
+    link: https://developer.apple.com/tutorials/app-dev-training
+    children:
+      - type: node
+        id: navigate-xcode-project
+        title: 使用 Xcode 管理项目
+        description: 能定位源码、资源、Target、Scheme 与构建设置，并通过导航器和快捷操作完成日常开发。
+        tags: [Xcode]
+        status: planned
+      - type: node
+        id: run-simulator-device
+        title: 在模拟器与真机上运行应用
+        description: 配置运行目标、开发签名和设备连接，并说明模拟器与真实硬件验证范围的差异。
+        tags: [模拟器, 调试]
+        status: planned
+      - type: node
+        id: use-git-from-start
+        title: 用 Git 保存可回退的开发历史
+        description: 忽略派生文件和本地凭据，以小步提交记录功能、配置与资源变更。
+        tags: [Git, 工程化]
+        status: planned
+
+  - type: node
+    id: build-swift-foundation
+    title: 建立 Swift 编程基础
+    description: 使用 Swift 的类型系统、控制流、函数和集合表达可靠的应用逻辑，并能阅读常见编译诊断。
+    tags: [Swift, 语言基础]
+    status: planned
+    link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/
+    children:
+      - type: node
+        id: model-values-and-control-flow
+        title: 用类型与控制流建模数据
+        description: 正确使用常量、变量、值类型、集合、Optional、模式匹配与错误处理表达业务状态。
+        tags: [类型系统]
+        status: planned
+      - type: node
+        id: compose-functions-closures
+        title: 用函数和闭包组合行为
+        description: 设计清晰的参数与返回值，并在集合变换、回调和捕获语义中正确使用闭包。
+        tags: [函数, 闭包]
+        status: planned
+      - type: node
+        id: design-types-protocols
+        title: 用结构体、类和协议设计类型
+        description: 根据值语义、引用语义和共享行为选择 struct、class、enum、protocol 与 extension。
+        tags: [面向协议编程]
+        status: planned
+      - type: node
+        id: manage-memory-arc
+        title: 识别并消除引用循环
+        description: 理解 ARC、对象生命周期以及 weak 和 unowned 的适用条件，并用内存图定位泄漏。
+        tags: [ARC, 内存]
+        status: planned
+      - type: node
+        id: practice-swift-model
+        title: 完成一个纯 Swift 领域模型练习
+        description: 为待办、记账或内容收藏场景实现可测试的模型、校验、排序和错误路径，不依赖界面框架。
+        tags: [实践]
+        status: planned
+
+  - type: node
+    id: apply-swift-concurrency
+    title: 使用 Swift Concurrency 编排异步任务
+    description: 用 async/await、Task 和 actor 构建可取消、无数据竞争且不阻塞主线程的异步流程。
+    tags: [Swift Concurrency, 异步]
+    status: planned
+    link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+    children:
+      - type: node
+        id: structure-async-work
+        title: 用 async/await 组织异步工作
+        description: 区分顺序与并发执行，传播异步错误，并避免用阻塞等待占用线程。
+        tags: [async-await]
+        status: planned
+      - type: node
+        id: control-task-lifecycle
+        title: 管理任务生命周期与取消
+        description: 使用结构化任务、任务组和协作式取消，使后台工作跟随界面或业务作用域结束。
+        tags: [Task, 取消]
+        status: planned
+      - type: node
+        id: isolate-shared-state
+        title: 用 actor 隔离共享状态
+        description: 识别跨并发域访问，正确使用 actor、MainActor 和 Sendable 约束保护可变数据。
+        tags: [actor, Sendable]
+        status: planned
+
+  - type: node
+    id: compose-swiftui-interface
+    title: 用 SwiftUI 构建自适应界面
+    description: 从小型 View 组合页面，建立单一数据源，并完成导航、输入、动画和多尺寸适配。
+    tags: [SwiftUI, UI]
+    status: planned
+    link: https://developer.apple.com/documentation/swiftui
+    children:
+      - type: node
+        id: compose-views-layout
+        title: 组合视图、控件与布局
+        description: 使用修饰器、Stack、Grid、List 和滚动容器构建可复用界面，并理解布局提议与尺寸响应。
+        tags: [布局, 组件]
+        status: planned
+      - type: node
+        id: manage-state-data-flow
+        title: 建立单向状态与数据流
+        description: 按所有权和生命周期选择 State、Binding、Observable 与环境注入，避免重复状态和隐式耦合。
+        tags: [状态管理]
+        status: planned
+      - type: node
+        id: implement-navigation-presentation
+        title: 实现可恢复的导航与呈现
+        description: 用 NavigationStack、Tab、Sheet 和可编码路由表达页面层级、模态流程与深链接入口。
+        tags: [导航, 深链接]
+        status: planned
+        link: https://developer.apple.com/documentation/swiftui/navigationstack
+      - type: node
+        id: build-forms-input
+        title: 构建可校验的表单交互
+        description: 管理文本输入、焦点、键盘、提交和错误提示，使编辑流程具有明确反馈且不会丢失数据。
+        tags: [表单, 交互]
+        status: planned
+      - type: node
+        id: add-purposeful-motion
+        title: 用动画解释状态变化
+        description: 为插入、删除、转场和手势添加克制的动画，并尊重减少动态效果设置。
+        tags: [动画]
+        status: planned
+
+  - type: node
+    id: create-platform-experience
+    title: 打造符合平台习惯的使用体验
+    description: 依据 Human Interface Guidelines 处理系统外观、尺寸变化、生命周期、无障碍与本地化。
+    tags: [设计, 无障碍, iOS]
+    status: planned
+    link: https://developer.apple.com/design/human-interface-guidelines/
+    children:
+      - type: node
+        id: adapt-system-environment
+        title: 适配设备尺寸与系统环境
+        description: 支持横竖屏、Dynamic Type、深色模式、安全区域和 iPad 多任务，不依赖固定屏幕尺寸。
+        tags: [自适应, iPad]
+        status: planned
+      - type: node
+        id: support-accessible-interaction
+        title: 让关键流程可被辅助技术操作
+        description: 为语义、焦点、点击目标、对比度和非颜色提示提供支持，并使用 VoiceOver 与无障碍检查器验证。
+        tags: [VoiceOver, 可访问性]
+        status: planned
+        link: https://developer.apple.com/documentation/accessibility/performing-accessibility-testing-for-your-app
+      - type: node
+        id: localize-content-formats
+        title: 本地化文本与区域格式
+        description: 使用本地化资源、复数规则和 Locale 感知格式处理文本、日期、数字与从右到左布局。
+        tags: [本地化, 国际化]
+        status: planned
+      - type: node
+        id: handle-app-lifecycle
+        title: 正确响应应用生命周期
+        description: 根据 Scene 阶段保存状态、暂停工作和恢复界面，并处理内存压力与后台执行边界。
+        tags: [生命周期]
+        status: planned
+      - type: node
+        id: bridge-uikit-when-needed
+        title: 按需与 UIKit 互操作
+        description: 在 SwiftUI 缺少所需能力或维护既有代码时，包装 UIKit 视图和控制器并同步生命周期与状态。
+        tags: [UIKit, 互操作]
+        status: optional
+        link: https://developer.apple.com/documentation/uikit
+
+  - type: node
+    id: connect-data-services
+    title: 连接网络、持久化与安全存储
+    description: 将远程和本地数据转成明确的加载状态，在离线、失败和敏感信息场景中保持可靠与安全。
+    tags: [网络, 数据, 安全]
+    status: planned
+    children:
+      - type: node
+        id: fetch-validate-network-data
+        title: 用 URLSession 获取并验证数据
+        description: 构造请求、检查 HTTP 响应、解码 Codable 模型，并为超时、取消和服务端错误提供明确处理。
+        tags: [URLSession, Codable]
+        status: planned
+        link: https://developer.apple.com/documentation/foundation/urlsession
+      - type: node
+        id: model-loading-failure-states
+        title: 显式建模加载、空结果与失败状态
+        description: 让界面针对进行中、无数据、可重试错误和缓存内容分别给出稳定且可测试的反馈。
+        tags: [错误处理, UX]
+        status: planned
+      - type: node
+        id: persist-models-swiftdata
+        title: 用 SwiftData 持久化领域模型
+        description: 设计模型关系、查询和写入边界，并处理迁移、删除、预览数据与持久化失败。
+        tags: [SwiftData, 持久化]
+        status: planned
+        link: https://developer.apple.com/documentation/swiftdata
+      - type: node
+        id: cache-for-offline-use
+        title: 设计缓存与离线降级
+        description: 定义数据新鲜度、更新冲突和存储上限，使网络不可用时核心读取流程仍可工作。
+        tags: [缓存, 离线]
+        status: planned
+      - type: node
+        id: protect-secrets-keychain
+        title: 用系统能力保护敏感数据
+        description: 将令牌等秘密保存在 Keychain，使用安全传输，并避免把凭据写入源码、日志或普通文件。
+        tags: [Keychain, 隐私]
+        status: planned
+        link: https://developer.apple.com/documentation/security/keychain-services
+
+  - type: node
+    id: structure-maintainable-codebase
+    title: 组织可维护的应用代码
+    description: 按功能与依赖边界拆分界面、领域逻辑和数据访问，使变化可定位、组件可替换、核心行为可测试。
+    tags: [架构, 工程化]
+    status: planned
+    children:
+      - type: node
+        id: separate-feature-responsibilities
+        title: 按功能划分职责边界
+        description: 将 View、状态转换、用例和数据访问分开，避免把业务规则或副作用堆入视图层。
+        tags: [模块化, 分层]
+        status: planned
+      - type: node
+        id: inject-external-dependencies
+        title: 显式注入外部依赖
+        description: 通过协议、初始化参数或环境提供网络、存储和时钟等依赖，以便替换实现和编写确定性测试。
+        tags: [依赖注入, 可测试性]
+        status: planned
+      - type: node
+        id: manage-packages-responsibly
+        title: 审慎管理 Swift Package 依赖
+        description: 用 Swift Package Manager 固定兼容范围，评估维护、安全和包体积成本，并避免为简单能力引入依赖。
+        tags: [SwiftPM, 依赖管理]
+        status: planned
+        link: https://www.swift.org/documentation/package-manager/
+      - type: node
+        id: configure-build-environments
+        title: 分离构建环境与配置
+        description: 使用 Build Configuration、Scheme 和配置文件区分开发与生产端点、功能开关和签名设置。
+        tags: [构建配置]
+        status: planned
+
+  - type: node
+    id: verify-debug-optimize
+    title: 用测试、调试与测量守住质量
+    description: 建立从快速逻辑测试到关键用户流程验证的反馈链，并用工具证据修复崩溃、卡顿和资源问题。
+    tags: [测试, 调试, 性能]
+    status: planned
+    link: https://developer.apple.com/documentation/xcode/testing
+    children:
+      - type: node
+        id: test-domain-behavior
+        title: 用 Swift Testing 验证领域行为
+        description: 对状态转换、边界输入、错误分支和异步逻辑编写快速、隔离且可重复的单元与集成测试。
+        tags: [Swift Testing, 单元测试]
+        status: planned
+      - type: node
+        id: test-critical-ui-flows
+        title: 用 XCTest 自动化关键用户流程
+        description: 以无障碍标识驱动少量稳定的 UI 测试，覆盖启动、编辑、失败恢复和最重要的端到端任务。
+        tags: [XCTest, UI 测试]
+        status: planned
+      - type: node
+        id: debug-with-xcode-tools
+        title: 用 Xcode 工具定位运行时问题
+        description: 结合断点、LLDB、日志、View Debugger、Thread Sanitizer 和内存图复现并缩小问题范围。
+        tags: [LLDB, 调试]
+        status: planned
+      - type: node
+        id: profile-real-device
+        title: 在真机上测量性能与资源消耗
+        description: 用 Instruments 分析启动、卡顿、CPU、内存、网络和能耗，先建立基线再验证单一优化的效果。
+        tags: [Instruments, 性能]
+        status: planned
+        link: https://developer.apple.com/documentation/xcode/improving-your-app-s-performance
+      - type: node
+        id: automate-ci-checks
+        title: 在持续集成中执行质量检查
+        description: 对每次变更自动构建并运行核心测试，保存失败诊断和可追踪产物，阻止已知回归进入发布分支。
+        tags: [CI, 自动化]
+        status: planned
+
+  - type: node
+    id: integrate-system-capabilities
+    title: 按需集成系统能力并保护隐私
+    description: 根据真实产品价值选择通知、位置、相机等框架，只在使用时请求最小权限并清楚说明数据用途。
+    tags: [系统框架, 隐私]
+    status: planned
+    link: https://developer.apple.com/design/human-interface-guidelines/privacy
+    children:
+      - type: node
+        id: request-minimum-permissions
+        title: 在恰当时机请求最小权限
+        description: 先解释功能价值，再请求相机、照片、位置、麦克风或通知权限，并为拒绝和受限状态提供路径。
+        tags: [权限, 隐私]
+        status: planned
+      - type: node
+        id: declare-data-practices
+        title: 维护隐私清单与数据披露
+        description: 盘点应用及第三方 SDK 的数据访问，保持 PrivacyInfo、用途说明和 App Store 隐私信息与实际行为一致。
+        tags: [Privacy Manifest, 合规]
+        status: planned
+        link: https://developer.apple.com/documentation/bundleresources/privacy-manifest-files
+      - type: node
+        id: add-notifications-background-work
+        title: 按产品需要接入通知与后台任务
+        description: 在明确用户价值、系统调度限制和能耗预算后实现通知、刷新或后台处理，并验证降级行为。
+        tags: [通知, 后台任务]
+        status: optional
+      - type: node
+        id: add-hardware-frameworks
+        title: 按产品需要接入设备与系统框架
+        description: 为相机、照片、地图、健康或蓝牙能力选择官方框架，并在真机验证权限、生命周期和失败状态。
+        tags: [硬件, 系统 API]
+        status: optional
+
+  - type: node
+    id: deliver-capstone-app
+    title: 交付一款可验证的综合应用
+    description: 将界面、数据、并发、质量与隐私能力组合成可供真实用户试用的完整产品切片。
+    tags: [综合实践, 作品集]
+    status: planned
+    children:
+      - type: node
+        id: define-capstone-scope
+        title: 定义一个可在数周内完成的产品范围
+        description: 选择内容收藏、习惯追踪或轻量协作等场景，写清目标用户、三条核心流程和可验收的非功能要求。
+        tags: [需求, 规划]
+        status: planned
+      - type: node
+        id: build-vertical-slices
+        title: 按垂直切片迭代核心流程
+        description: 逐条打通界面、状态、网络或持久化和错误恢复，每个切片都保持可运行、可演示和可测试。
+        tags: [迭代开发]
+        status: planned
+      - type: node
+        id: validate-capstone-quality
+        title: 在真机上完成发布候选验收
+        description: 覆盖离线、权限拒绝、深色模式、大字体、VoiceOver、低性能设备和升级数据等场景并修复阻断问题。
+        tags: [验收, 真机测试]
+        status: planned
+      - type: node
+        id: document-decisions-usage
+        title: 记录使用方式与关键工程决策
+        description: 提供可复现的构建步骤、功能演示、架构边界和已知限制，使他人能够运行、评审并继续维护项目。
+        tags: [文档, 作品集]
+        status: planned
+
+  - type: node
+    id: release-operate-app
+    title: 发布并持续运营 iOS 应用
+    description: 管理签名、版本、Beta 测试与商店材料，完成审核提交并依据线上诊断安全迭代。
+    tags: [发布, App Store Connect]
+    status: planned
+    link: https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/
+    children:
+      - type: node
+        id: archive-sign-build
+        title: 归档并签名发布构建
+        description: 配置 Bundle ID、能力、证书和描述文件，递增版本与构建号，并验证 Archive 中的签名和产物。
+        tags: [代码签名, Archive]
+        status: planned
+      - type: node
+        id: run-testflight-beta
+        title: 用 TestFlight 完成分阶段 Beta 验证
+        description: 邀请内部和外部测试者，提供测试说明，收集崩溃与反馈，并从候选构建中确认发布版本。
+        tags: [TestFlight, Beta]
+        status: planned
+        link: https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/
+      - type: node
+        id: prepare-store-submission
+        title: 准备完整且一致的商店提交
+        description: 核对截图、描述、年龄分级、隐私披露、审核说明和支持信息，并按 App Review Guidelines 自检功能。
+        tags: [App Review, 元数据]
+        status: planned
+        link: https://developer.apple.com/app-store/review/guidelines/
+      - type: node
+        id: monitor-production-quality
+        title: 监控线上质量并安全迭代
+        description: 在 Xcode Organizer 和 App Store Connect 中跟踪崩溃、卡顿、采用率与反馈，按影响排序修复并准备可回退更新。
+        tags: [监控, 迭代]
+        status: planned
+
+  - type: node
+    id: choose-ios-specialization
+    title: 根据产品方向选择进阶能力
+    description: 在完整交付主线稳定后，再选择与目标岗位或产品形态匹配的系统框架深入实践。
+    tags: [进阶, 选修]
+    status: optional
+    children:
+      - type: node
+        id: deepen-uikit-legacy
+        title: 深入 UIKit 与既有项目维护
+        description: 掌握视图控制器生命周期、Auto Layout、集合视图、响应链以及 SwiftUI 渐进式接入策略。
+        tags: [UIKit, 既有项目]
+        status: optional
+      - type: node
+        id: build-multiplatform-experience
+        title: 扩展到 Apple 多平台体验
+        description: 复用领域模型并针对 iPadOS、watchOS、macOS 或 visionOS 的交互和窗口模型重新设计界面。
+        tags: [多平台]
+        status: optional
+      - type: node
+        id: explore-graphics-media-games
+        title: 探索图形、媒体或游戏开发
+        description: 根据目标选择 Metal、Core Animation、AVFoundation、SpriteKit 或 RealityKit，并以性能预算驱动实现。
+        tags: [图形, 媒体, 游戏]
+        status: optional
+      - type: node
+        id: explore-cloud-commerce
+        title: 探索云同步与数字商业能力
+        description: 按业务需要研究 CloudKit、StoreKit、订阅状态和服务端通知，并验证跨设备一致性与异常恢复。
+        tags: [CloudKit, StoreKit]
+        status: optional

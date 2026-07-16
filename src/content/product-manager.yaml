@@ -1,0 +1,412 @@
+id: product-manager
+title: 产品经理
+description: 从识别用户与市场问题出发，学习制定产品战略、规划与验证方案、协同交付、度量结果并推动产品持续增长，最终完成一次可复盘的产品闭环。
+tags: [产品管理, 用户研究, 产品战略, 数据分析]
+nodes:
+  - type: node
+    id: understand-product-management
+    title: 建立产品管理的职责边界
+    description: 说明产品经理如何连接用户价值、商业目标与技术可行性，并区分产品管理和项目管理的决策责任。
+    tags: [基础, 职责, 产品生命周期]
+    status: planned
+    link: https://www.atlassian.com/agile/product-management
+    children:
+      - type: node
+        id: distinguish-product-and-project
+        title: 区分产品管理与项目管理
+        description: 用目标、时间范围、成功标准和责任范围比较两类角色，明确产品经理对问题、方向和结果负责而非只跟踪交付。
+        status: planned
+      - type: node
+        id: map-pm-responsibilities
+        title: 映射产品经理的核心职责与技能
+        description: 将发现、战略、规划、交付、度量和沟通对应到日常产物、关键协作者与所需能力。
+        status: planned
+      - type: node
+        id: reason-about-product-lifecycle
+        title: 按产品生命周期调整决策重点
+        description: 分析产品在引入、增长、成熟和衰退阶段的目标、风险、资源配置和退出选择。
+        status: planned
+
+  - type: node
+    id: generate-and-frame-opportunities
+    title: 从创意中识别值得解决的问题
+    description: 通过发散、筛选和验证把模糊想法转化为有证据、可检验且不预设方案的问题机会。
+    tags: [创意, 机会识别, 问题定义]
+    status: planned
+    link: https://www.designcouncil.org.uk/our-resources/framework-for-innovation/
+    children:
+      - type: node
+        id: facilitate-idea-generation
+        title: 组织结构化创意发散
+        description: 选择头脑风暴、Brainwriting、思维导图或 SCAMPER 生成多样方案，并避免过早评价压缩探索空间。
+        status: planned
+      - type: node
+        id: run-iterative-idea-funnel
+        title: 运行发现、筛选、验证与执行漏斗
+        description: 为创意建立逐级证据门槛，以小成本实验淘汰弱假设并记录继续、调整或停止的理由。
+        status: planned
+      - type: node
+        id: apply-innovation-frameworks
+        title: 用创新框架寻找非显然机会
+        description: 选用 Blue Ocean Strategy 或 TRIZ 检查竞争边界、矛盾与替代方案，同时把框架结论视为待验证假设。
+        status: optional
+      - type: node
+        id: write-problem-frame
+        title: 写出可检验的问题框架
+        description: 明确目标用户、场景、现有行为、痛点、影响、已知证据和未知假设，不把功能设想伪装成用户问题。
+        status: planned
+
+  - type: node
+    id: research-market-and-users
+    title: 用市场与用户研究验证需求
+    description: 组合二手资料、竞争分析和一手研究，形成可追溯的市场判断、用户画像与机会证据。
+    tags: [市场研究, 用户研究, 竞品分析]
+    status: planned
+    link: https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs
+    children:
+      - type: node
+        id: analyze-market-needs
+        title: 分析市场需求与竞争格局
+        description: 估算市场范围与细分，比较替代方案、竞争者能力和新兴趋势，标注数据来源、时效和不确定性。
+        status: planned
+      - type: node
+        id: define-evidence-based-personas
+        title: 创建有证据支撑的用户画像
+        description: 按行为、目标、约束和使用情境聚类用户，避免用人口属性或团队想象制造刻板画像。
+        status: planned
+      - type: node
+        id: conduct-user-interviews
+        title: 访谈并观察真实用户
+        description: 围绕过去行为设计开放问题，结合情境观察与追问收集事实，并在获得知情同意后妥善处理研究资料。
+        status: planned
+        link: https://www.gov.uk/service-manual/user-research/plan-round-of-user-research
+      - type: node
+        id: run-surveys-and-ethnography
+        title: 按研究问题选择调查与民族志方法
+        description: 在需要规模化量化时使用无诱导问卷，在需要理解情境和行为时使用田野观察，并说明样本偏差与结论边界。
+        status: planned
+      - type: node
+        id: synthesize-research-findings
+        title: 综合研究证据形成机会判断
+        description: 对访谈、观察、问卷、分析数据和市场资料进行主题归纳，区分事实、解释和假设并指出证据冲突。
+        status: planned
+        link: https://www.gov.uk/service-manual/user-research/analyse-a-research-session
+
+  - type: node
+    id: define-product-strategy
+    title: 定义并沟通产品战略
+    description: 将市场机会转化为清晰的愿景、定位、价值主张、目标和竞争选择，使团队能据此取舍。
+    tags: [产品战略, 定位, 价值主张]
+    status: planned
+    link: https://www.atlassian.com/agile/product-management/product-strategy
+    children:
+      - type: node
+        id: position-target-market
+        title: 选择目标细分并完成产品定位
+        description: 定义目标客户、核心需求、品类、替代方案和独特卖点，形成能被客户与团队理解的定位陈述。
+        status: planned
+      - type: node
+        id: craft-vision-and-mission
+        title: 表达产品愿景、使命与叙事
+        description: 说明希望改变的未来、产品存在的理由和通往未来的逻辑，并用案例与参考材料检验叙事是否可信。
+        status: planned
+      - type: node
+        id: define-value-proposition
+        title: 设计并验证价值主张
+        description: 使用 Value Proposition Canvas 连接用户任务、痛点、收益与产品能力，区分客户价值和功能数量。
+        status: planned
+      - type: node
+        id: set-product-goals
+        title: 设定有基线和时限的产品目标
+        description: 为目标定义目标值、当前基线、趋势、时间范围和领先或滞后指标，使进展能够被持续判断。
+        status: planned
+      - type: node
+        id: choose-competitive-advantage
+        title: 形成竞争优势与伙伴策略
+        description: 使用 Five Forces 等方法分析竞争压力，选择能力壁垒与战略伙伴，并明确自建、合作和放弃的边界。
+        status: planned
+
+  - type: node
+    id: plan-product-outcomes
+    title: 把战略转化为可演进的产品计划
+    description: 用结果导向路线图、清晰需求和透明优先级连接长期方向与近期团队决策。
+    tags: [产品路线图, PRD, 优先级]
+    status: planned
+    link: https://www.atlassian.com/agile/product-management/roadmaps
+    children:
+      - type: node
+        id: create-outcome-roadmap
+        title: 创建结果导向的产品路线图
+        description: 按愿景、目标和待解决问题组织 Now-Next-Later 或主题路线图，避免把未经验证的功能与日期当成承诺。
+        status: planned
+      - type: node
+        id: prioritize-product-opportunities
+        title: 依据价值、证据、成本和风险排序
+        description: 选择适合情境的 RICE、WSJF、Kano 或 MoSCoW 等方法，展示输入假设并用判断修正机械评分。
+        status: planned
+      - type: node
+        id: write-prd-with-decisions
+        title: 编写以决策为中心的 PRD
+        description: 记录背景、问题、目标、非目标、用户、范围、约束、成功指标、风险和未决问题，让文档支持协作而非替代沟通。
+        status: planned
+      - type: node
+        id: express-user-and-job-stories
+        title: 用 User Story 与 Job Story 表达需求
+        description: 将已验证的用户需求拆成带场景、价值和验收标准的可讨论条目，并保持到原始证据的追溯关系。
+        status: planned
+      - type: node
+        id: communicate-and-update-roadmap
+        title: 持续沟通并更新路线图
+        description: 针对领导层、业务和交付团队调整粒度，定期根据新证据更新方向并清楚说明变化原因。
+        status: planned
+
+  - type: node
+    id: design-and-validate-solutions
+    title: 协同设计并验证解决方案
+    description: 在投入完整开发前，通过体验设计、原型和用户测试验证方案的可用性、价值与关键假设。
+    tags: [UX, 原型, 用户测试]
+    status: planned
+    link: https://www.gov.uk/service-manual/design
+    children:
+      - type: node
+        id: apply-ux-and-service-design
+        title: 应用 UX、交互与服务设计原则
+        description: 从端到端用户旅程识别触点、后台流程和可访问性需求，并与设计师共同维护一致的体验逻辑。
+        status: planned
+      - type: node
+        id: prototype-critical-flows
+        title: 用适当保真度原型呈现关键流程
+        description: 从线框到可交互原型逐步增加细节，只制作回答当前研究问题所需的最小设计材料。
+        status: planned
+      - type: node
+        id: run-usability-tests
+        title: 开展现场与远程可用性测试
+        description: 让目标用户完成代表性任务，观察成功率、错误与困惑并基于行为证据迭代设计。
+        status: planned
+        link: https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing
+      - type: node
+        id: design-controlled-experiments
+        title: 设计可解释的 A/B 实验
+        description: 预先定义假设、主要指标、护栏指标、样本与停止规则，避免多重检验、偷看数据和只报告正向结果。
+        status: planned
+
+  - type: node
+    id: manage-backlog-and-delivery
+    title: 与工程团队协同完成迭代交付
+    description: 将已验证的机会拆入可管理的 Backlog，通过敏捷节奏、MVP 和发布策略持续交付并学习。
+    tags: [敏捷, Backlog, MVP, 发布]
+    status: planned
+    link: https://scrumguides.org/scrum-guide.html
+    children:
+      - type: node
+        id: map-and-refine-backlog
+        title: 用 Story Mapping 梳理并维护 Backlog
+        description: 按用户活动与端到端流程组织故事，在 Grooming 中补齐价值、验收标准、依赖和规模并及时清理失效项。
+        status: planned
+      - type: node
+        id: collaborate-in-agile-cadence
+        title: 在 Scrum 或 Kanban 节奏中协作
+        description: 理解 Sprint Planning、Daily Standup、Review 和 Retrospective 的决策目的，并避免产品经理替代团队分配技术任务。
+        status: planned
+      - type: node
+        id: define-minimum-viable-product
+        title: 定义能验证关键假设的 MVP
+        description: 选择最小但端到端可用的方案与目标人群，明确学习目标、成功阈值和验证后的扩展或停止条件。
+        status: planned
+      - type: node
+        id: choose-release-strategy
+        title: 按风险选择渐进发布策略
+        description: 组合 Feature Toggle、分阶段上线或 Dark Launch 控制暴露范围，并准备监控、支持和回滚方案。
+        status: planned
+      - type: node
+        id: execute-go-to-market
+        title: 协同执行 Go-to-Market 计划
+        description: 对齐目标市场、定价、渠道、营销信息、销售与客服准备、发布日期和上市成功指标。
+        status: planned
+
+  - type: node
+    id: measure-product-outcomes
+    title: 用指标与反馈驱动产品决策
+    description: 建立从产品目标到事件数据和反馈回路的度量体系，用趋势、分群与实验判断真实结果。
+    tags: [产品指标, 数据分析, 反馈回路]
+    status: planned
+    link: https://support.google.com/analytics/answer/9355644
+    children:
+      - type: node
+        id: define-metric-tree
+        title: 构建目标、North Star 与护栏指标树
+        description: 将用户价值和商业结果连接到可行动的领先指标，说明指标口径、分母、窗口期、数据来源和可能的副作用。
+        status: planned
+      - type: node
+        id: interpret-core-product-metrics
+        title: 正确解释核心产品指标
+        description: 能计算并解释 DAU、MAU、转化、留存、流失、LTV 和 CAC，避免脱离用户群体与时间范围比较数字。
+        status: planned
+      - type: node
+        id: analyze-cohorts-and-funnels
+        title: 用漏斗和 Cohort 定位行为变化
+        description: 按获客时间、渠道、用户类型或版本分组分析转化与留存，区分总体变化和人群结构变化。
+        status: planned
+      - type: node
+        id: combine-data-and-feedback
+        title: 组合定量数据与定性反馈
+        description: 用行为数据发现发生了什么，用访谈、客服和销售反馈解释原因，再把结论转成下一轮研究或实验。
+        status: planned
+      - type: node
+        id: evaluate-predictive-analysis
+        title: 审慎使用预测分析
+        description: 在数据质量、基线和决策动作明确时评估预测模型，同时监测偏差、漂移、误报成本和不可解释的相关性。
+        status: optional
+
+  - type: node
+    id: align-stakeholders
+    title: 通过沟通推动干系人对齐
+    description: 识别不同干系人的目标、影响力与信息需求，用证据、倾听和冲突处理建立可持续的支持。
+    tags: [沟通, 干系人管理, 影响力]
+    status: planned
+    link: https://www.atlassian.com/work-management/project-collaboration/stakeholder-mapping
+    children:
+      - type: node
+        id: map-stakeholders
+        title: 识别并映射关键干系人
+        description: 按影响力、利益、专业知识和受产品影响程度制定参与策略，同时覆盖远程团队与一线角色。
+        status: planned
+      - type: node
+        id: tailor-product-communication
+        title: 针对受众调整产品沟通
+        description: 分别用用户证据、商业影响、产品指标和技术约束向不同受众解释决策、风险与需要的行动。
+        status: planned
+      - type: node
+        id: listen-and-handle-conflict
+        title: 主动倾听并处理困难对话
+        description: 复述对方目标与担忧，区分立场和利益，以共同结果、事实和可逆实验化解冲突。
+        status: planned
+      - type: node
+        id: earn-alignment-and-buy-in
+        title: 用透明取舍赢得支持
+        description: 展示选择与不选择事项的影响、证据和机会成本，记录异议与决策负责人而不追求表面一致。
+        status: planned
+
+  - type: node
+    id: select-product-tools
+    title: 按工作流选择产品管理工具
+    description: 从信息源、协作流程和治理要求出发选择工具，避免让平台边界割裂研究、决策、交付和度量。
+    tags: [工具, 协作, 分析]
+    status: optional
+    children:
+      - type: node
+        id: choose-roadmapping-tools
+        title: 选择路线图与知识管理工具
+        description: 比较 Productboard、Aha!、Notion 等工具的证据关联、优先级、视图、权限和维护成本。
+        status: optional
+      - type: node
+        id: choose-delivery-tools
+        title: 选择交付与项目协作工具
+        description: 根据团队流程评估 Jira、Linear 或 Trello，确保需求、依赖、状态和路线图目标保持追溯。
+        status: optional
+      - type: node
+        id: choose-analytics-tools
+        title: 选择产品分析与 BI 工具
+        description: 比较 Amplitude、Heap、Looker 等工具的事件模型、身份解析、治理、实验支持、查询能力和总成本。
+        status: optional
+      - type: node
+        id: choose-communication-tools
+        title: 规范即时与异步沟通渠道
+        description: 为 Slack、Teams 或 Discord 定义适用场景，并把重要决策沉淀到可检索、可长期维护的系统中。
+        status: optional
+
+  - type: node
+    id: manage-product-risk
+    title: 系统识别、评估并控制产品风险
+    description: 把市场、价值、可用性、可行性、运营、合规和声誉风险纳入产品决策并持续监测。
+    tags: [风险管理, 风险评估, 应急计划]
+    status: planned
+    link: https://www.iso.org/iso-31000-risk-management.html
+    children:
+      - type: node
+        id: identify-and-register-risks
+        title: 建立可维护的风险登记册
+        description: 通过假设审查、预演失败和跨职能工作坊识别风险，记录原因、影响、负责人、触发信号和当前控制措施。
+        status: planned
+      - type: node
+        id: assess-product-risks
+        title: 结合定性与定量方法评估风险
+        description: 用概率、影响和可探测性排序风险，并在数据足够时估算暴露范围、期望损失与情景区间。
+        status: planned
+      - type: node
+        id: mitigate-and-plan-contingencies
+        title: 制定缓解与应急方案
+        description: 为高优先级风险选择避免、降低、转移或接受策略，明确预防动作、应急触发条件、响应步骤和决策权限。
+        status: planned
+      - type: node
+        id: monitor-and-audit-risks
+        title: 持续监控并审计风险
+        description: 将领先指标、事故、用户反馈和外部变化接入评审节奏，验证控制措施是否有效并及时关闭或升级风险。
+        status: planned
+
+  - type: node
+    id: scale-product-leadership
+    title: 深化规模化产品与领导力能力
+    description: 在掌握单产品闭环后，再探索增长、国际化、平台、组合管理、AI 和团队领导等复杂议题。
+    tags: [规模化, AI, 领导力]
+    status: optional
+    children:
+      - type: node
+        id: scale-growth-and-markets
+        title: 设计可持续增长与国际化策略
+        description: 分析增长循环、渠道边际效应、本地化、法规和市场差异，避免只用短期获客掩盖留存问题。
+        status: optional
+      - type: node
+        id: apply-platform-thinking
+        title: 用平台思维设计多边价值网络
+        description: 识别生产者、消费者与互补者，设计核心交互、治理、激励和网络效应并控制冷启动与滥用风险。
+        status: optional
+      - type: node
+        id: manage-product-portfolio
+        title: 管理产品组合与资源配置
+        description: 跨产品比较战略匹配、增长阶段、风险和回报，处理共享能力、相互蚕食与停止投资决策。
+        status: optional
+      - type: node
+        id: use-ai-in-product-management
+        title: 负责任地使用 AI 辅助产品管理
+        description: 在研究综合、分析和方案探索中评估 AI 的收益，保留来源核验、隐私保护、人工判断和偏差监测。
+        status: optional
+        link: https://www.nist.gov/itl/ai-risk-management-framework
+      - type: node
+        id: lead-without-authority
+        title: 在无直接职权时发挥领导力
+        description: 通过方向清晰度、可信决策、情绪智力和团队赋能影响协作者，并建立能独立判断的产品团队。
+        status: optional
+
+  - type: node
+    id: capstone-product-cycle
+    title: 完成一次可复盘的产品闭环
+    description: 为真实或可接触用户的问题完成从发现到发布决策的完整案例，并用证据证明每次关键取舍。
+    tags: [综合实践, 作品集, 复盘]
+    status: planned
+    children:
+      - type: node
+        id: choose-capstone-problem
+        title: 选择可研究的真实问题
+        description: 确保能接触目标用户或可靠替代证据，写出问题框架、研究伦理、时间预算和明确的非目标。
+        status: planned
+      - type: node
+        id: produce-capstone-strategy
+        title: 交付研究、战略与路线图
+        description: 完成市场与用户研究综合、定位、价值主张、目标指标、优先级依据和结果导向路线图，并接受干系人评审。
+        status: planned
+      - type: node
+        id: validate-capstone-solution
+        title: 原型并验证关键方案
+        description: 制作覆盖关键旅程的原型，开展至少一轮目标用户测试，根据证据迭代并记录被否定的假设。
+        status: planned
+      - type: node
+        id: plan-capstone-delivery
+        title: 制定 MVP、发布与风险计划
+        description: 定义 MVP 范围、Backlog、验收标准、发布策略、Go-to-Market 准备、风险登记册与回滚条件。
+        status: planned
+      - type: node
+        id: evaluate-and-retrospect-capstone
+        title: 评估结果并完成决策复盘
+        description: 用指标与定性反馈判断继续、调整或停止，说明证据质量、结果偏差、伦理影响和下一轮学习重点。
+        status: planned

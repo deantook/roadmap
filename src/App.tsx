@@ -220,41 +220,57 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
           </div>
           <span>{visibleRoadmaps.length} / {catalog.roots.length} 条路线</span>
         </div>
-        <div className="discovery-panel">
-          <label className="home-search">
-            <span aria-hidden="true">⌕</span>
-            <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索路线、语言或主题" aria-label="搜索路线图" />
-          </label>
-          <div className="tag-filters" aria-label="按标签筛选">
-            {['全部', ...tags].map((tag) => (
-              <button key={tag} type="button" className={activeTag === tag ? 'active' : ''} onClick={() => setActiveTag(tag)} aria-pressed={activeTag === tag}>{tag}</button>
-            ))}
+        <div className="roadmap-browser">
+          <aside className="discovery-sidebar" aria-label="路线筛选">
+            <div className="sidebar-inner">
+              <div className="sidebar-heading">
+                <span>筛选路线</span>
+                {(query || activeTag !== '全部') && (
+                  <button type="button" onClick={() => { setQuery(''); setActiveTag('全部') }}>重置</button>
+                )}
+              </div>
+              <label className="home-search">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索路线、语言或主题" aria-label="搜索路线图" />
+              </label>
+              <div className="filter-label">主题标签</div>
+              <div className="tag-filters" aria-label="按标签筛选">
+                {['全部', ...tags].map((tag) => (
+                  <button key={tag} type="button" className={activeTag === tag ? 'active' : ''} onClick={() => setActiveTag(tag)} aria-pressed={activeTag === tag}>
+                    <span>{tag}</span>
+                    <span aria-hidden="true">{tag === '全部' ? catalog.roots.length : catalog.roots.filter((roadmap) => roadmap.tags.includes(tag)).length}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+          <div className="roadmap-results">
+            {visibleRoadmaps.length > 0 ? (
+              <div className="roadmap-grid">
+                {visibleRoadmaps.map((roadmap) => (
+                  <Link className="roadmap-card" to={`/roadmaps/${roadmap.id}`} key={roadmap.id}>
+                    <div className="card-meta">
+                      <span>{String(countNodes(roadmap.nodes)).padStart(2, '0')} 节点</span>
+                      <span className="card-arrow" aria-hidden="true">↗</span>
+                    </div>
+                    <div>
+                      <h3>{roadmap.title}</h3>
+                      {roadmap.description && <p>{roadmap.description}</p>}
+                    </div>
+                    {roadmap.tags.length > 0 && <div className="tag-list" aria-label="标签">{roadmap.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="filter-empty">
+                <span aria-hidden="true">⌕</span>
+                <h3>没有匹配的路线</h3>
+                <p>试试其他关键词，或清除当前标签筛选。</p>
+                <button type="button" onClick={() => { setQuery(''); setActiveTag('全部') }}>清除筛选</button>
+              </div>
+            )}
           </div>
         </div>
-        {visibleRoadmaps.length > 0 ? (
-          <div className="roadmap-grid">
-            {visibleRoadmaps.map((roadmap) => (
-              <Link className="roadmap-card" to={`/roadmaps/${roadmap.id}`} key={roadmap.id}>
-                <div className="card-meta">
-                  <span>{String(countNodes(roadmap.nodes)).padStart(2, '0')} 节点</span>
-                  <span className="card-arrow" aria-hidden="true">↗</span>
-                </div>
-                <div>
-                  <h3>{roadmap.title}</h3>
-                  {roadmap.description && <p>{roadmap.description}</p>}
-                </div>
-                {roadmap.tags.length > 0 && <div className="tag-list" aria-label="标签">{roadmap.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="filter-empty">
-            <span aria-hidden="true">⌕</span>
-            <h3>没有匹配的路线</h3>
-            <p>试试其他关键词，或清除当前标签筛选。</p>
-            <button type="button" onClick={() => { setQuery(''); setActiveTag('全部') }}>清除筛选</button>
-          </div>
-        )}
       </section>
     </div>
   )

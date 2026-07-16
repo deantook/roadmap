@@ -1,0 +1,357 @@
+id: ux-design
+title: UX 设计
+description: 从理解人的决策与产品问题出发，学习研究、概念设计、原型、行为设计和效果度量，最终交付一套经过真实用户验证且兼顾可访问性与伦理的体验方案。
+tags: [UX, 用户研究, 交互设计, 原型]
+nodes:
+  - type: node
+    id: understand-human-decision-making
+    title: 理解人的决策与行为
+    description: 用认知、动机、能力和情境解释用户为什么行动或放弃，为设计假设建立可检验的行为依据。
+    tags: [行为科学, 决策, 心理学]
+    status: planned
+    link: https://behaviormodel.org/
+    children:
+      - type: node
+        id: distinguish-behavior-disciplines
+        title: 区分行为设计领域的常用概念
+        description: 比较 Nudge Theory、Persuasive Technology、Behavior Design、Behavioral Science 与 Behavioral Economics 的研究对象、证据边界和适用场景。
+        status: planned
+      - type: node
+        id: apply-fogg-behavior-model
+        title: 用 Fogg Behavior Model 诊断行为障碍
+        description: 从动机、能力和提示三个条件分析目标行为没有发生的原因，并优先降低行动难度而非只增加提醒。
+        status: planned
+      - type: node
+        id: compare-behavior-frameworks
+        title: 比较常见行为框架的解释力
+        description: 使用 CREATE Action Funnel、Dual Process Theory、Fogg Behavior Grid、Hook Model 与 Cue-Routine-Reward 分析同一案例，指出各自能解释和不能证明的内容。
+        status: optional
+      - type: node
+        id: classify-behavior-change
+        title: 按新行为与既有行为分类干预
+        description: 判断目标是促成一次新行为、提高重复频率、停止旧行为还是替换习惯，并据此选择观察指标和干预位置。
+        status: planned
+      - type: node
+        id: set-ethical-behavior-boundaries
+        title: 为行为影响设定伦理边界
+        description: 检查知情、可撤销、比例性、公平性和用户长期利益，避免用默认项、稀缺感或社会压力制造暗黑模式。
+        status: planned
+
+  - type: node
+    id: understand-product-and-users
+    title: 明确产品、用户与目标行为
+    description: 把模糊需求拆成目标结果、目标人群、关键行为和业务约束，并用研究证据校正团队假设。
+    tags: [产品理解, 用户研究, 竞品分析]
+    status: planned
+    link: https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs
+    children:
+      - type: node
+        id: clarify-outcome-actor-action
+        title: 澄清目标结果、行动者与行动
+        description: 分别写清希望改变的结果、需要采取行动的人以及可观察的目标行动，避免把界面功能当成用户目标。
+        status: planned
+      - type: node
+        id: research-target-users
+        title: 研究并界定目标用户
+        description: 通过访谈、观察和现有数据识别用户的目标、行为、能力、障碍和使用情境，同时记录样本偏差与未知项。
+        status: planned
+        link: https://www.gov.uk/service-manual/user-research/plan-round-of-user-research
+      - type: node
+        id: create-evidence-based-personas
+        title: 创建有证据支撑的用户画像
+        description: 按行为模式、目标和约束聚类用户，把画像关联到原始研究证据，并避免依赖人口属性制造刻板印象。
+        status: planned
+      - type: node
+        id: model-business-context
+        title: 用画布表达业务模式与假设
+        description: 根据产品阶段选择 Business Model Canvas、Lean Canvas 或 Business Model Inspirator，标出价值、渠道、成本和收入中的待验证假设。
+        status: planned
+        link: https://www.strategyzer.com/library/the-business-model-canvas
+      - type: node
+        id: analyze-competitive-context
+        title: 分析竞品与替代方案
+        description: 结合直接竞品、替代行为、Five Forces 和 SWOT 判断机会与约束，不把功能数量比较当作用户价值结论。
+        status: planned
+
+  - type: node
+    id: create-conceptual-design
+    title: 把研究转化为概念设计
+    description: 将用户证据组织成故事、流程和体验结构，在进入高保真界面前验证方案是否完整、简洁且可理解。
+    tags: [概念设计, 用户故事, 用户流程]
+    status: planned
+    link: https://www.designcouncil.org.uk/our-resources/framework-for-innovation/
+    children:
+      - type: node
+        id: build-evidence-backed-backlog
+        title: 用用户故事建立可追溯的 Backlog
+        description: 把研究发现转成带场景、价值和验收标准的 User Stories，并保留到用户需求与业务目标的追溯关系。
+        status: planned
+      - type: node
+        id: simplify-core-task
+        title: 让核心任务短而易懂
+        description: 删除非必要步骤和信息，使用符合用户心智模型的语言与分组，使首次使用者能说明下一步和完成条件。
+        status: planned
+      - type: node
+        id: design-progress-and-completion
+        title: 清楚呈现进度、奖励与完成状态
+        description: 让用户知道已完成什么、还需什么以及结果是否成功，并确保奖励支持目标而不诱导无意义重复。
+        status: planned
+      - type: node
+        id: map-customer-experience
+        title: 绘制端到端客户体验地图
+        description: 连接阶段、触点、用户行动、情绪、痛点与后台能力，找出界面之外影响体验的交接和服务缺口。
+        status: planned
+      - type: node
+        id: diagram-user-and-business-flows
+        title: 用流程图表达关键路径与异常路径
+        description: 先用简单 Flowchart 说明用户路径，只有跨团队流程确需标准语义时再选用 EPC 或 BPMN。
+        status: planned
+
+  - type: node
+    id: prototype-and-wireframe
+    title: 用线框与原型验证方案
+    description: 选择与研究问题匹配的保真度，把结构、交互和内容变成可操作的原型，而非过早追求视觉完成度。
+    tags: [线框, 原型, Figma]
+    status: planned
+    link: https://www.gov.uk/service-manual/design/making-prototypes
+    children:
+      - type: node
+        id: sketch-low-fidelity-flows
+        title: 快速制作低保真线框
+        description: 用纸面或数字线框探索布局、导航、信息层级和关键状态，在低成本阶段比较多种方案。
+        status: planned
+      - type: node
+        id: apply-layout-principles
+        title: 应用清晰一致的布局规则
+        description: 使用网格、间距、对齐、层级、对比和接近性组织内容，并在不同视口和内容长度下检查稳定性。
+        status: planned
+      - type: node
+        id: build-interactive-prototype
+        title: 制作覆盖关键任务的交互原型
+        description: 为正常、空、加载、错误、取消和恢复状态建立必要交互，让目标用户能够独立完成代表性任务。
+        status: planned
+      - type: node
+        id: use-figma-for-prototyping
+        title: 使用 Figma 组织设计与原型
+        description: 掌握组件、Auto Layout、变量、原型连接、版本与评审协作，保持页面结构和命名可供团队维护。
+        status: planned
+        link: https://help.figma.com/hc/en-us/categories/360002051613-Design
+      - type: node
+        id: evaluate-alternative-design-tools
+        title: 按团队约束评估其他设计工具
+        description: 仅在兼容性、既有资产或协作流程需要时评估 Sketch、Balsamiq 等工具，并把已停止维护的 Adobe XD 视为存量环境选项。
+        status: optional
+
+  - type: node
+    id: guide-attention-and-action
+    title: 用 UX 模式引导注意与行动
+    description: 根据注意持续时间和交互机会选择提示、反馈与信息层级，使用户看见关键行动但仍保有自主选择。
+    tags: [UX 模式, 注意力, 行动设计]
+    status: planned
+    children:
+      - type: node
+        id: support-fleeting-attention
+        title: 在注意短暂时提供明确入口
+        description: 组合 Call to Action、状态报告、How-to Tips 与规划提示，让用户能迅速判断价值、当前状态和下一步。
+        status: planned
+      - type: node
+        id: support-repeated-engagement
+        title: 在多次交互中渐进提供支持
+        description: 按需使用决策支持、教程、提醒、计划器、目标追踪与社会分享，避免让通知和游戏化取代产品价值。
+        status: planned
+      - type: node
+        id: remove-attention-distractions
+        title: 清除干扰并突出行动位置
+        description: 降低无关视觉竞争，清楚说明用户需要做什么、在哪里操作以及完成后会发生什么。
+        status: planned
+      - type: node
+        id: create-positive-intuitive-reaction
+        title: 建立可信的第一印象
+        description: 通过专业视觉、真实语气、可核验的社会证明和恰当的专业权威建立信任，不伪造评价或制造从众压力。
+        status: planned
+      - type: node
+        id: support-conscious-evaluation
+        title: 帮助用户完成有意识的权衡
+        description: 控制认知负担和选项数量，谨慎使用关联启动、损失厌恶、同伴比较与竞争，并提供比较依据和退出路径。
+        status: planned
+      - type: node
+        id: avoid-coercive-urgency
+        title: 区分真实紧迫性与操纵
+        description: 只有在约束真实且可解释时使用截止时间、承诺提醒或稀缺奖励，禁止虚假倒计时、隐藏成本和强迫支付。
+        status: planned
+
+  - type: node
+    id: design-behavior-change-support
+    title: 设计可持续的行为改变支持
+    description: 根据目标是促进有意识行动还是改变习惯，选择降低阻力、调整线索或支持替代行为的干预方式。
+    tags: [行为改变, 习惯, 支持策略]
+    status: planned
+    children:
+      - type: node
+        id: educate-and-encourage-action
+        title: 教育并鼓励有意识行动
+        description: 解释行动的目的、后果和选择，帮助用户在关键时刻停下来思考，而非只依赖自动化提示。
+        status: planned
+      - type: node
+        id: diagnose-existing-habit-loop
+        title: 诊断既有行为的线索与惯例
+        description: 观察触发线索、日常惯例与实际回报，区分用户想避免线索、替换惯例还是改变环境。
+        status: planned
+      - type: node
+        id: help-avoid-or-handle-cues
+        title: 帮助用户避开或重新处理线索
+        description: 通过环境调整、正念提示或短暂停顿降低自动反应，同时保留用户主动控制和关闭支持的能力。
+        status: planned
+      - type: node
+        id: replace-old-routines
+        title: 用可行的新行为替代旧惯例
+        description: 设计与原线索兼容、成本更低且回报明确的替代行为，并逐步让新行为挤出旧习惯。
+        status: planned
+      - type: node
+        id: make-desired-action-easy
+        title: 降低行动与信息负担
+        description: 使用实施意图、合理默认值、渐进披露和必要的同伴参照减少阻力，同时允许检查、修改和撤销。
+        status: planned
+      - type: node
+        id: automate-repetition-responsibly
+        title: 负责任地自动化重复行为
+        description: 只在目标明确、风险可控且用户可暂停时自动执行重复步骤，并提供状态、异常和恢复反馈。
+        status: planned
+
+  - type: node
+    id: design-accessible-inclusive-trustworthy
+    title: 设计可访问、包容且可信的体验
+    description: 把无障碍、内容清晰度、隐私和错误恢复融入设计约束，让更多用户能理解、操作并控制产品。
+    tags: [无障碍, 包容性, 隐私]
+    status: planned
+    link: https://www.w3.org/WAI/standards-guidelines/wcag/
+    children:
+      - type: node
+        id: apply-wcag-principles
+        title: 按 WCAG 原则检查关键流程
+        description: 从可感知、可操作、可理解和稳健四个维度检查内容与交互，并记录不能满足准则时的替代方案。
+        status: planned
+      - type: node
+        id: design-keyboard-and-assistive-flow
+        title: 验证键盘与辅助技术流程
+        description: 确保焦点顺序、可见焦点、名称角色状态、错误提示和动态更新能支持键盘及屏幕阅读器用户。
+        status: planned
+      - type: node
+        id: write-clear-inclusive-content
+        title: 编写清晰且包容的界面内容
+        description: 使用具体、简短、一致的语言表达行动与结果，避免依赖文化暗示、专业黑话或带偏见的默认假设。
+        status: planned
+      - type: node
+        id: design-consent-and-privacy
+        title: 设计知情同意与隐私控制
+        description: 在收集数据前说明目的、范围、保留和共享方式，提供粒度合理的选择、撤回与数据管理入口。
+        status: planned
+      - type: node
+        id: support-errors-and-recovery
+        title: 让错误可预防、可解释、可恢复
+        description: 对高风险操作提供确认或撤销，用接近问题的具体信息解释修复方式，并保留用户已经完成的有效输入。
+        status: planned
+
+  - type: node
+    id: test-and-measure-impact
+    title: 测试并度量体验影响
+    description: 组合可用性研究、行为指标和受控实验，判断方案是否帮助目标用户完成任务并产生预期结果。
+    tags: [可用性测试, A/B 测试, 度量]
+    status: planned
+    link: https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing
+    children:
+      - type: node
+        id: run-task-based-usability-tests
+        title: 开展基于任务的可用性测试
+        description: 招募目标用户完成代表性任务，观察成功率、时间、错误、求助和主观信心，并避免在过程中教用户操作。
+        status: planned
+      - type: node
+        id: define-experience-metrics
+        title: 定义与目标行为一致的体验指标
+        description: 为关键任务设定基线、目标值、测量窗口和护栏指标，把转化、留存或满意度与用户结果而非界面点击连接起来。
+        status: planned
+      - type: node
+        id: run-incremental-ab-tests
+        title: 用增量 A/B 测试验证单一假设
+        description: 预先定义假设、主要指标、样本、分流和停止规则，每次控制关键变量并同时观察潜在伤害。
+        status: planned
+      - type: node
+        id: evaluate-multivariate-testing
+        title: 在样本充足时评估多变量测试
+        description: 只有流量、效应大小和分析能力足以解释交互效应时才使用 Multivariate Testing，否则优先顺序实验。
+        status: optional
+      - type: node
+        id: synthesize-and-prioritize-lessons
+        title: 综合证据并排序改进项
+        description: 合并观察、访谈、日志与实验结果，区分发现、解释和建议，再按用户影响、证据强度、成本与风险排序。
+        status: planned
+      - type: node
+        id: integrate-and-retest-changes
+        title: 整合改动并重新验证
+        description: 把优先问题转成可追溯的设计变更，复测关键任务并记录哪些假设被支持、否定或仍不确定。
+        status: planned
+
+  - type: node
+    id: collaborate-and-handoff
+    title: 与产品和工程协同落地设计
+    description: 用设计系统、规范、状态说明和验收协作减少原型到产品的语义损失，并持续检查真实实现。
+    tags: [设计系统, 交付, 协作]
+    status: planned
+    children:
+      - type: node
+        id: contribute-to-design-system
+        title: 在设计系统中沉淀可复用决策
+        description: 把经过验证的组件、Token、内容规则和可访问性要求沉淀为带使用边界的模式，而非只维护视觉资产库。
+        status: planned
+      - type: node
+        id: document-states-and-behaviors
+        title: 说明组件状态与交互行为
+        description: 为默认、悬停、焦点、禁用、加载、空、错误和响应式变化提供行为说明及真实内容样例。
+        status: planned
+      - type: node
+        id: align-design-and-code
+        title: 与工程共同评审可行性
+        description: 在实现前确认平台约束、数据状态、性能、埋点和无障碍语义，在实现中用可运行版本校正设计。
+        status: planned
+      - type: node
+        id: run-design-qa
+        title: 对真实实现开展 Design QA
+        description: 在目标设备、视口、输入方式和网络条件下核对关键流程，把差异按用户影响排序并跟踪关闭。
+        status: planned
+      - type: roadmap
+        roadmapId: frontend
+        title: 选学前端实现基础
+        description: 当岗位需要设计师理解浏览器、HTML、CSS 与交互实现约束时，通过前端路线图建立协作语言。
+
+  - type: node
+    id: complete-ux-capstone
+    title: 完成一项可复盘的 UX 综合项目
+    description: 针对可接触真实用户的问题完成从研究到上线评估的完整设计闭环，并用证据说明每次关键取舍。
+    tags: [综合实践, 作品集, 案例研究]
+    status: planned
+    children:
+      - type: node
+        id: frame-capstone-problem
+        title: 选择并界定真实问题
+        description: 明确目标用户、目标结果、研究权限、时间范围、伦理风险和非目标，确保问题能在项目周期内被验证。
+        status: planned
+      - type: node
+        id: research-capstone-context
+        title: 研究用户与产品情境
+        description: 收集一手用户证据、现有行为数据、业务模式和竞品信息，形成带来源和不确定性的机会判断。
+        status: planned
+      - type: node
+        id: design-capstone-solution
+        title: 从概念流程迭代到交互原型
+        description: 比较多个概念，完成关键流程、异常状态、内容和可访问性设计，并记录被放弃方案的原因。
+        status: planned
+      - type: node
+        id: validate-capstone-solution
+        title: 用真实用户与指标验证方案
+        description: 开展至少一轮任务测试，根据发现迭代并重新验证；条件允许时再用受控实验评估行为结果。
+        status: planned
+      - type: node
+        id: publish-capstone-case-study
+        title: 发布可审查的案例研究
+        description: 展示问题、角色、过程、证据、取舍、结果、限制和后续计划，保护参与者隐私并区分个人贡献与团队成果。
+        status: planned

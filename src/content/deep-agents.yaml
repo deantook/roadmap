@@ -1,0 +1,279 @@
+id: deep-agents
+title: Deep Agents
+description: 基于 Python、LangChain 与 LangGraph 构建能规划、管理长上下文、委派子任务并安全执行工具的长时 Agent，并完成可评估的综合项目。
+tags: [Python, Deep Agents, LangChain, Agent]
+nodes:
+  - type: node
+    id: choose-deep-agents
+    title: 判断任务是否适合 Deep Agents
+    description: 区分框架、运行时与 Agent harness，并只为需要规划、上下文管理或任务委派的复杂流程选择 Deep Agents。
+    tags: [基础, 架构]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/overview
+    children:
+      - type: roadmap
+        roadmapId: langchain-python
+        title: 补齐 LangChain Python 基础
+        description: 先掌握模型、消息、工具调用、Agent 循环、状态与评估，再学习更具约束的长时 Agent harness。
+      - type: node
+        id: distinguish-framework-runtime-harness
+        title: 区分框架、运行时与 harness
+        description: 说明 LangChain、LangGraph 与 Deep Agents 的职责边界，并能为简单 Agent、确定性工作流和长时任务选择合适抽象。
+        status: planned
+        link: https://docs.langchain.com/oss/python/concepts/products
+      - type: node
+        id: define-long-horizon-task
+        title: 定义长时任务与成功标准
+        description: 选择一个必须分解步骤、处理大量材料或生成持久产物的任务，并明确输入、输出、预算与终止条件。
+        status: planned
+
+  - type: node
+    id: build-first-deep-agent
+    title: 创建并运行首个 Deep Agent
+    description: 安装 deepagents，配置支持工具调用的模型，并用 create_deep_agent 运行一个可观察的多步骤任务。
+    tags: [入门, API]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/quickstart
+    children:
+      - type: node
+        id: configure-model-and-secrets
+        title: 配置模型、依赖与密钥
+        description: 在隔离环境中安装依赖，以 provider:model 或模型实例配置模型，并通过环境变量或密钥服务提供凭据。
+        status: planned
+      - type: node
+        id: create-agent-with-clear-prompt
+        title: 用明确指令创建 Agent
+        description: 为 Agent 定义角色、任务边界、工具使用原则与交付格式，并检查系统指令不会承诺不存在的能力。
+        status: planned
+        link: https://docs.langchain.com/oss/python/deepagents/customization
+      - type: node
+        id: inspect-first-run
+        title: 检查首次运行轨迹
+        description: 读取最终消息、待办计划、文件操作、工具结果与子任务委派，确认 Agent 的行动与任务目标一致。
+        status: planned
+
+  - type: node
+    id: design-tools-and-execution
+    title: 设计可靠的工具与执行环境
+    description: 将外部能力封装为契约清晰、错误可恢复且权限最小的工具，并理解内置规划和文件工具的职责。
+    tags: [工具, 执行]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/tools
+    children:
+      - type: node
+        id: define-custom-tool-contracts
+        title: 定义自定义工具契约
+        description: 用类型、文档字符串和结构化返回值约束输入输出，并为超时、空结果、速率限制和权限失败提供可行动的错误。
+        status: planned
+      - type: node
+        id: guide-planning-and-verification
+        title: 引导规划、执行与验证
+        description: 让 Agent 用待办列表拆解复杂任务、持续更新状态，并在交付前通过工具或产物检查验证结果。
+        status: planned
+      - type: node
+        id: connect-mcp-tools
+        title: 通过 MCP 接入外部能力
+        description: 在明确服务器信任边界与工具权限后，通过标准协议连接数据库、API 或其他资源。
+        status: optional
+        link: https://docs.langchain.com/oss/python/langchain/mcp
+
+  - type: node
+    id: manage-files-and-context
+    title: 用文件系统管理产物与长上下文
+    description: 选择适合生命周期的虚拟文件后端，把大型工具结果和中间产物卸载到文件，并控制上下文增长。
+    tags: [文件系统, 上下文]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/backends
+    children:
+      - type: node
+        id: choose-backend-by-lifecycle
+        title: 按数据生命周期选择后端
+        description: 根据线程内临时数据、本地项目文件和跨线程持久数据的需求，选择 StateBackend、FilesystemBackend、StoreBackend 或组合路由。
+        status: planned
+      - type: node
+        id: separate-working-and-project-files
+        title: 隔离内部工作区与项目文件
+        description: 为上下文卸载、记忆和用户文件设置独立路径与路由，避免中间数据覆盖真实项目资产。
+        status: planned
+      - type: node
+        id: engineer-agent-context
+        title: 设计上下文装载与压缩策略
+        description: 组合摘要、工具结果卸载和按需文件读取，让长流程保留关键决策而不持续堆积完整历史。
+        status: planned
+        link: https://docs.langchain.com/oss/python/deepagents/context-engineering
+      - type: node
+        id: test-backend-boundaries
+        title: 测试后端与路径边界
+        description: 验证跨线程可见性、文件覆盖、并发写入、路径错误和存储失败，确保数据不会进入错误的作用域。
+        status: planned
+
+  - type: node
+    id: delegate-with-subagents
+    title: 用子 Agent 隔离并委派任务
+    description: 只为会污染主上下文或需要专门指令与工具的子任务引入委派，并让主 Agent 保持协调职责。
+    tags: [子 Agent, 委派]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/subagents
+    children:
+      - type: node
+        id: identify-delegation-boundaries
+        title: 识别合适的委派边界
+        description: 根据上下文体积、领域专长和可独立验收性划分子任务，避免为简单步骤承担额外协调成本。
+        status: planned
+      - type: node
+        id: configure-specialized-subagents
+        title: 配置专门化子 Agent
+        description: 为每个子 Agent 编写可判别的名称与描述，限制模型、工具、指令和输出格式，并明确继承规则。
+        status: planned
+      - type: node
+        id: validate-delegation-results
+        title: 校验委派结果与失败恢复
+        description: 要求子 Agent 返回来源、产物或结构化结果，并处理超时、空结果、重复委派和不一致结论。
+        status: planned
+      - type: node
+        id: use-async-subagents
+        title: 编排异步子 Agent
+        description: 仅为长时间、可并行且需要中途控制的工作流引入异步委派，并设计取消、超时和结果汇合策略。
+        status: optional
+        link: https://docs.langchain.com/oss/python/deepagents/async-subagents
+
+  - type: node
+    id: add-memory-and-skills
+    title: 用记忆与 Skills 提供按需知识
+    description: 区分线程状态、长期记忆和可复用流程，使 Agent 在正确作用域内读取持久信息并按需加载能力。
+    tags: [记忆, Skills]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/memory
+    children:
+      - type: node
+        id: scope-persistent-memory
+        title: 划分长期记忆作用域
+        description: 将 Agent 级、用户级与组织级记忆映射到独立命名空间，并为敏感数据设置最小化、保留和删除策略。
+        status: planned
+      - type: node
+        id: build-reusable-skill
+        title: 编写可复用 Skill
+        description: 用准确的名称和触发描述编写 SKILL.md，并只在必要时引用脚本、参考资料与模板以实现渐进式披露。
+        status: planned
+        link: https://docs.langchain.com/oss/python/deepagents/skills
+      - type: node
+        id: govern-memory-updates
+        title: 约束记忆与 Skill 更新
+        description: 区分开发者定义的只读知识与 Agent 可学习内容，对写入设置路径权限、来源记录、冲突处理和审批规则。
+        status: planned
+
+  - type: node
+    id: secure-agent-actions
+    title: 限制并审批 Agent 行动
+    description: 以最小权限、隔离执行和人工审批约束文件修改、命令执行及其他有副作用的工具调用。
+    tags: [安全, 权限, HITL]
+    status: planned
+    link: https://docs.langchain.com/oss/python/deepagents/permissions
+    children:
+      - type: node
+        id: declare-filesystem-permissions
+        title: 声明文件系统权限
+        description: 按路径和操作定义默认拒绝的读写规则，并验证子 Agent 的继承或覆盖不会扩大授权范围。
+        status: planned
+      - type: node
+        id: execute-code-in-sandbox
+        title: 在沙箱中执行不可信代码
+        description: 为需要 shell 的任务选择隔离后端，限制网络、凭据、资源和运行时间，并避免直接暴露宿主环境。
+        status: planned
+        link: https://docs.langchain.com/oss/python/deepagents/sandboxes
+      - type: node
+        id: require-human-approval
+        title: 为敏感操作加入人工审批
+        description: 配置 interrupt_on 和 checkpointer，使高风险工具在执行前可被批准、修改或拒绝，并能安全恢复运行。
+        status: planned
+        link: https://docs.langchain.com/oss/python/deepagents/human-in-the-loop
+      - type: node
+        id: test-adversarial-inputs
+        title: 测试提示注入与越权路径
+        description: 用恶意文档、伪造工具指令、路径穿越和敏感数据诱导验证系统指令、工具校验与权限层能共同阻断风险。
+        status: planned
+
+  - type: node
+    id: observe-test-and-evaluate
+    title: 观察、测试并评估长时行为
+    description: 通过流式事件、追踪、确定性测试和任务级评估定位长流程中的失败，并以回归门槛约束变更。
+    tags: [测试, 评估, 可观测性]
+    status: planned
+    link: https://docs.langchain.com/langsmith/evaluation
+    children:
+      - type: node
+        id: stream-agent-progress
+        title: 流式呈现任务进度
+        description: 展示消息、工具调用、待办变化和子 Agent 状态，使用户能理解进展并及时发现停滞或错误方向。
+        status: planned
+        link: https://docs.langchain.com/oss/python/deepagents/streaming
+      - type: node
+        id: trace-long-running-tasks
+        title: 追踪完整长时任务
+        description: 关联主 Agent 与子 Agent 的模型调用、文件操作、延迟、token 和错误，定位质量或成本问题的来源。
+        status: planned
+        link: https://docs.langchain.com/langsmith/observability
+      - type: node
+        id: unit-test-tools-and-policies
+        title: 单测工具、后端与策略
+        description: 使用可控模型或桩件覆盖工具契约、路径路由、权限拒绝、审批恢复和异常分支，减少非确定性干扰。
+        status: planned
+      - type: node
+        id: evaluate-end-to-end-outcomes
+        title: 评估端到端任务结果
+        description: 建立包含正常、边界和对抗任务的数据集，衡量完成率、事实依据、工具选择、委派质量、延迟与成本。
+        status: planned
+
+  - type: node
+    id: capstone-research-agent
+    title: 交付可验证的深度研究 Agent
+    description: 构建能规划研究、并行收集资料、管理中间文件、保留来源并在敏感操作前请求审批的 Python 应用。
+    tags: [实践, 项目]
+    status: planned
+    children:
+      - type: node
+        id: define-capstone-contract
+        title: 定义项目契约与威胁模型
+        description: 选定边界清晰的研究领域，定义输入输出、允许的数据源与工具、存储作用域、预算、风险和验收任务。
+        status: planned
+      - type: node
+        id: implement-capstone-harness
+        title: 实现规划、委派与上下文管理
+        description: 组合自定义检索工具、专门化子 Agent、文件后端、摘要和 Skill，让完整任务能在限定资源内完成。
+        status: planned
+      - type: node
+        id: add-capstone-safety
+        title: 加入权限、沙箱与审批
+        description: 隔离代码执行与项目文件，为写入和高风险工具设置最小权限及人工确认，并记录所有拒绝与恢复路径。
+        status: planned
+      - type: node
+        id: pass-capstone-quality-gates
+        title: 通过项目质量门槛
+        description: 对代表性任务运行回归评估，检查引用可核验性、任务完成率、越权防护、延迟和成本，再编写运行与故障恢复说明。
+        status: planned
+
+  - type: node
+    id: production-and-interfaces
+    title: 扩展生产运行与交互界面
+    description: 在核心 Agent 通过质量门槛后，再按部署、编辑器集成或交互体验需求选择生产能力。
+    tags: [进阶, 部署]
+    status: optional
+    children:
+      - type: node
+        id: prepare-production-operation
+        title: 准备生产运行
+        description: 配置持久化、并发隔离、超时、重试、速率限制、版本回滚和持续评估，并验证中断任务可恢复。
+        status: optional
+        link: https://docs.langchain.com/oss/python/deepagents/going-to-production
+      - type: node
+        id: build-deep-agent-frontend
+        title: 构建可理解的 Agent 前端
+        description: 呈现主任务、子任务、流式输出、文件产物和审批界面，使用户能观察、干预并核验执行过程。
+        status: optional
+        link: https://docs.langchain.com/oss/python/deepagents/frontend/overview
+      - type: node
+        id: explore-cli-and-acp
+        title: 探索 CLI 与 ACP 集成
+        description: 在需要终端编码 Agent 或编辑器连接时评估 Deep Agents CLI 与 Agent Client Protocol，并沿用相同的权限边界。
+        status: optional
+        link: https://docs.langchain.com/oss/python/deepagents/acp

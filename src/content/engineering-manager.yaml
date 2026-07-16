@@ -1,0 +1,450 @@
+id: engineering-manager
+title: 工程经理
+description: 面向具备软件工程经验的技术人员，学习在技术方向、人员发展、交付执行、业务协同与组织变革之间建立可持续的工程管理闭环。
+tags: [工程管理, 技术领导力, 人员管理, 组织效能]
+nodes:
+  - type: node
+    id: transition-to-engineering-management
+    title: 建立工程经理的职责边界
+    description: 从个人技术产出转向通过团队交付结果，明确工程经理在人员、产品、流程与技术之间承担的决策责任。
+    tags: [角色转型, 职责, 管理基础]
+    status: planned
+    children:
+      - type: node
+        id: distinguish-em-tech-lead-and-ic
+        title: 区分 EM、Tech Lead 与 IC
+        description: 比较三类角色在人员管理、技术决策、交付责任和直接编码上的侧重点，并明确本组织中的实际授权边界。
+        status: planned
+      - type: node
+        id: balance-key-focus-areas
+        title: 平衡人员、产品、流程与技术
+        description: 识别团队当前最重要的约束，把注意力分配给能提升整体结果的领域而不是平均覆盖所有事务。
+        status: planned
+      - type: node
+        id: preserve-technical-judgment
+        title: 保持足以支持决策的技术判断力
+        description: 能阅读设计、代码、运行指标和事故材料，提出关键问题并识别风险，同时避免越过负责人替团队完成全部方案。
+        status: planned
+      - type: roadmap
+        roadmapId: backend
+        title: 补齐软件工程背景
+        description: 通过后端开发路线图复习 API、数据、测试、部署与生产系统基础，以便评审团队的工程决策。
+      - type: roadmap
+        roadmapId: devops
+        title: 补齐交付与运行基础
+        description: 通过 DevOps 路线图掌握持续交付、可观测性、可靠性和事故预防，为工程管理建立运行视角。
+
+  - type: node
+    id: lead-technical-strategy
+    title: 引导架构与技术战略
+    description: 把产品目标、系统现状与工程约束转化为可演进的技术方向，并让关键取舍可评审、可追踪。
+    tags: [技术战略, 架构, 技术债]
+    status: planned
+    link: https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html
+    children:
+      - type: node
+        id: guide-architecture-decisions
+        title: 引导而非垄断架构决策
+        description: 让最接近问题的工程师提出方案，通过质量属性、约束、权衡和可逆性评审决策，并明确最终负责人。
+        status: planned
+      - type: node
+        id: assess-systems-at-scale
+        title: 评估系统扩展与性能风险
+        description: 结合容量、依赖、故障模式、监控和成本判断扩展瓶颈，要求方案包含验证指标与失效时的退路。
+        status: planned
+      - type: node
+        id: manage-technical-debt
+        title: 以业务影响管理技术债
+        description: 建立技术债清单，按交付摩擦、事故风险、认知负担和机会成本排序，并把偿还工作纳入正常规划。
+        status: planned
+      - type: node
+        id: build-technical-roadmap
+        title: 创建与产品目标对齐的技术路线图
+        description: 用能力、风险降低和系统结果组织技术投资，说明依赖、里程碑与证据，避免把路线图写成孤立升级清单。
+        status: planned
+      - type: node
+        id: evaluate-build-vs-buy
+        title: 完成 Build vs Buy 评估
+        description: 比较战略差异化、总拥有成本、交付时间、锁定风险、安全合规、运维负担和退出方案后作出可审计决策。
+        status: planned
+      - type: node
+        id: record-architecture-decisions
+        title: 用轻量文档记录技术取舍
+        description: 使用 C4 视图、ADR 或同类方式记录上下文、选项、决定与后果，并在事实变化时追加新决策而非改写历史。
+        status: planned
+        link: https://c4model.com/
+
+  - type: node
+    id: establish-quality-and-delivery-system
+    title: 建立可靠的质量与交付体系
+    description: 让标准、评审、测试、安全和发布流程共同提供快速反馈，使团队能够低风险地持续交付。
+    tags: [质量, CI/CD, 安全, 发布]
+    status: planned
+    link: https://dora.dev/capabilities/continuous-delivery/
+    children:
+      - type: node
+        id: set-technical-standards
+        title: 共同制定可执行的技术标准
+        description: 围绕代码、接口、依赖、文档和运行要求定义少量必要标准，说明适用范围、例外流程和自动化检查方式。
+        status: planned
+      - type: node
+        id: improve-code-review
+        title: 建立高信号的 Code Review 实践
+        description: 用小批量变更、明确评审重点、及时反馈和自动检查提升缺陷发现与知识传播，避免把个人偏好当作门禁。
+        status: planned
+      - type: node
+        id: design-testing-strategy
+        title: 按风险设计测试策略
+        description: 组合静态检查、单元、集成、契约、端到端和生产验证，为关键失败模式提供足够覆盖并控制反馈时间。
+        status: planned
+      - type: node
+        id: integrate-secure-development
+        title: 把安全实践嵌入开发生命周期
+        description: 将安全要求、威胁分析、依赖治理、最小权限、漏洞响应和供应链保护整合到日常工程流程。
+        status: planned
+        link: https://csrc.nist.gov/projects/ssdf
+      - type: node
+        id: govern-cicd-and-releases
+        title: 治理 CI/CD 与发布工作流
+        description: 为构建、验证、审批、渐进发布、回滚和制品追溯定义统一路径，并用数据持续降低发布批次和失败成本。
+        status: planned
+
+  - type: node
+    id: build-and-develop-team
+    title: 招聘、组织并发展工程团队
+    description: 从能力需求出发设计团队与岗位，以一致证据完成招聘和绩效判断，并为每位成员提供成长路径。
+    tags: [招聘, 绩效, 职业发展, 团队设计]
+    status: planned
+    children:
+      - type: node
+        id: design-team-structure
+        title: 围绕价值流与认知负担设计团队
+        description: 明确团队使命、边界、所需能力和关键接口，减少长期共享所有权与不必要的跨团队协调。
+        status: planned
+      - type: node
+        id: run-structured-hiring
+        title: 使用结构化流程招聘工程师
+        description: 从岗位能力定义问题、评分锚点和工作样例，让所有候选人接受一致评估并检查选择过程中的偏差。
+        status: planned
+        link: https://www.gov.uk/government/publications/success-profiles
+      - type: node
+        id: evaluate-performance-fairly
+        title: 基于预先明确的标准评估绩效
+        description: 结合结果、行为、影响范围和情境证据给出一致评价，校准偏差并避免用可见忙碌或单次事件替代长期表现。
+        status: planned
+        link: https://www.acas.org.uk/performance-management
+      - type: node
+        id: coach-through-feedback
+        title: 用反馈、辅导与授权促进成长
+        description: 及时给出具体行为及影响，先确认期望和支持，再通过逐步授权让成员承担边界清晰且可验收的责任。
+        status: planned
+      - type: node
+        id: plan-career-development
+        title: 与成员共同制定职业发展计划
+        description: 连接个人动机、能力差距、岗位阶梯和团队机会，定义可观察的成长目标、实践任务与定期复盘节奏。
+        status: planned
+      - type: node
+        id: handle-performance-problems
+        title: 及时处理持续绩效问题
+        description: 澄清事实与期望，排查能力、资源、角色和环境因素，提供书面改进计划并遵守组织政策与当地法规。
+        status: planned
+
+  - type: node
+    id: lead-healthy-engineering-culture
+    title: 培育健康且包容的工程文化
+    description: 通过日常行为、仪式和决策机制建立信任、学习、技术卓越与归属感，而不是只发布价值观口号。
+    tags: [领导力, 团队文化, 包容性, 沟通]
+    status: planned
+    link: https://dora.dev/capabilities/generative-organizational-culture/
+    children:
+      - type: node
+        id: build-trust-and-influence
+        title: 用一致行动建立信任与影响力
+        description: 兑现承诺、公开不确定性、解释决策并承认错误，使团队敢于暴露风险和提出不同意见。
+        status: planned
+      - type: node
+        id: run-effective-one-on-ones
+        title: 运行以成员为中心的 1:1
+        description: 让成员主导议题，持续讨论状态、阻碍、反馈、关系与发展，并把需要跟进的承诺转成行动。
+        status: planned
+      - type: node
+        id: facilitate-team-meetings
+        title: 让团队会议服务于明确决策
+        description: 为同步、讨论、决策和复盘选择合适形式，提前提供材料并记录结论、负责人和后续期限。
+        status: planned
+      - type: node
+        id: resolve-conflict-constructively
+        title: 建设性处理冲突与困难对话
+        description: 区分事实、解释、利益和情绪，让当事人围绕共同目标提出选择，并对不尊重或有害行为设清晰边界。
+        status: planned
+      - type: node
+        id: create-inclusive-environment
+        title: 创建包容且可安全发声的环境
+        description: 检查招聘、分工、会议、反馈、认可和晋升中的结构性偏差，为不同工作方式与合理便利提供支持。
+        status: planned
+      - type: node
+        id: reinforce-learning-and-excellence
+        title: 用分享与认可强化学习文化
+        description: 通过 Tech Talk、Brown Bag、导师计划、实验和无责复盘传播知识，并奖励协作、改进与可靠性贡献。
+        status: planned
+
+  - type: node
+    id: plan-and-drive-execution
+    title: 规划资源并推动可预测交付
+    description: 把战略目标拆成可管理的范围、依赖和里程碑，在变化中透明调整计划并保护团队可持续性。
+    tags: [项目管理, 资源配置, 依赖, 敏捷]
+    status: planned
+    link: https://scrumguides.org/scrum-guide.html
+    children:
+      - type: node
+        id: plan-project-outcomes
+        title: 用结果、范围和约束建立计划
+        description: 明确成功标准、非目标、假设、工作分解和验收方式，再根据不确定性选择适合的计划粒度。
+        status: planned
+      - type: node
+        id: estimate-and-forecast-timelines
+        title: 基于历史数据估算与预测时间
+        description: 使用范围区间、吞吐量或周期时间提供概率预测，公开未知项并避免把早期估算包装成确定承诺。
+        status: planned
+      - type: node
+        id: manage-scope-milestones-and-dependencies
+        title: 管理范围、里程碑与依赖
+        description: 识别关键路径和外部依赖，为每个里程碑定义可验证结果，并在范围变化时同步影响与取舍。
+        status: planned
+      - type: node
+        id: allocate-capacity-sustainably
+        title: 按优先级与风险分配团队容量
+        description: 在产品功能、可靠性、技术债、支持与学习之间分配容量，考虑值班、假期和认知负担而非按名义人数排满计划。
+        status: planned
+      - type: node
+        id: manage-sprints-and-releases
+        title: 让 Sprint 与发布服务于产品结果
+        description: 与产品和工程共同制定 Sprint Goal、调整 Backlog、评审增量并协调发布准备，不把敏捷事件退化为状态汇报。
+        status: planned
+      - type: node
+        id: track-and-escalate-risks
+        title: 持续跟踪并升级交付风险
+        description: 维护风险、决策和阻碍记录，设定触发阈值与负责人，在仍有选择空间时向正确层级寻求支持。
+        status: planned
+
+  - type: node
+    id: measure-engineering-outcomes
+    title: 用平衡指标改进工程系统
+    description: 同时观察交付、质量、可靠性、团队健康和业务结果，用趋势发现约束而不是给个人排名。
+    tags: [KPI, DORA, 团队健康, 复盘]
+    status: planned
+    link: https://dora.dev/guides/dora-metrics/
+    children:
+      - type: node
+        id: define-engineering-kpis
+        title: 从目标推导工程 KPI
+        description: 为每个指标写清意图、口径、数据源、观察周期、护栏和可能被博弈的方式，避免用单一数字代表工程效能。
+        status: planned
+      - type: node
+        id: interpret-delivery-flow
+        title: 结合上下文解释交付流动指标
+        description: 使用变更前置时间、部署频率、恢复时间、变更失败率和返工率定位系统摩擦，不跨不同产品机械比较团队。
+        status: planned
+      - type: node
+        id: monitor-quality-and-reliability
+        title: 监测质量与可靠性结果
+        description: 关联缺陷逃逸、返工、SLO、事故、支持负担和技术债趋势，验证交付速度没有转移下游成本。
+        status: planned
+      - type: node
+        id: assess-team-health
+        title: 保护隐私地评估团队健康
+        description: 通过匿名调查、留任、值班负担、专注时间和定性对话发现趋势，只在聚合层面使用数据并及时回应问题。
+        status: planned
+      - type: node
+        id: run-project-postmortems
+        title: 用项目复盘改进工作系统
+        description: 比较预期与结果，分析促进因素和系统性阻碍，为改进行动指定负责人、期限与验证信号。
+        status: planned
+
+  - type: node
+    id: connect-engineering-to-business
+    title: 连接工程决策与业务战略
+    description: 理解产品、市场、财务和组织环境，用商业结果解释技术投资并在约束下优化资源组合。
+    tags: [商业思维, 产品战略, 财务, 组织意识]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: product-manager
+        title: 补齐产品战略与用户价值视角
+        description: 学习市场与用户研究、价值主张、产品路线图和指标，使技术决策能与产品结果形成闭环。
+      - type: node
+        id: develop-technical-business-case
+        title: 为技术投资建立商业案例
+        description: 明确现状成本、目标结果、方案选项、风险、现金与非现金收益、实施成本和不采取行动的后果。
+        status: planned
+      - type: node
+        id: analyze-roi-with-uncertainty
+        title: 在不确定性下分析 ROI
+        description: 使用区间、情景和敏感性分析比较投入与预期回报，说明无法量化的合规、韧性和战略选择价值。
+        status: planned
+      - type: node
+        id: plan-budget-and-resources
+        title: 制定预算与资源预测
+        description: 预测人员、云资源、工具、供应商与培训成本，区分固定和可变成本并定期用实际数据修正假设。
+        status: planned
+      - type: node
+        id: optimize-cost-without-harming-value
+        title: 在不损害价值的前提下优化成本
+        description: 先关联成本与业务能力、可靠性和团队负担，再消除闲置、浪费与低价值复杂度，避免只转移成本或风险。
+        status: planned
+      - type: node
+        id: navigate-organizational-context
+        title: 理解组织结构、文化与决策网络
+        description: 区分正式权责和非正式影响关系，通过跨部门合作与透明沟通推动结果而不参与信息操控或派系竞争。
+        status: planned
+
+  - type: node
+    id: lead-incidents-and-crises
+    title: 领导事故响应与危机管理
+    description: 在生产、安全或业务连续性事件中建立清晰指挥、恢复服务、保护团队并把经验转化为系统改进。
+    tags: [事故响应, 危机管理, 灾难恢复]
+    status: planned
+    link: https://sre.google/sre-book/managing-incidents/
+    children:
+      - type: node
+        id: prepare-emergency-protocols
+        title: 预先定义应急协议与触发条件
+        description: 建立事件等级、升级路径、角色、通信渠道、访问权限和关键 Runbook，并通过演练检验可用性。
+        status: planned
+      - type: node
+        id: command-active-incidents
+        title: 在 War Room 中建立清晰指挥
+        description: 分离指挥、技术操作、沟通和计划职责，维护实时事件记录并在轮班时完成明确交接。
+        status: planned
+      - type: node
+        id: communicate-incident-status
+        title: 按固定节奏沟通事故状态
+        description: 向团队、领导、客户与支持渠道说明影响、已知事实、当前行动和下次更新时间，不猜测根因或承诺虚假 ETA。
+        status: planned
+      - type: node
+        id: restore-service-safely
+        title: 优先安全恢复服务
+        description: 先限制影响并恢复关键能力，保存诊断证据，控制生产变更权限并在恢复后持续验证服务状态。
+        status: planned
+      - type: node
+        id: conduct-blameless-postmortem
+        title: 开展无责事故复盘
+        description: 记录影响、时间线、促成因素、响应效果和系统性改进，为行动项指定负责人并跟踪到验证完成。
+        status: planned
+        link: https://sre.google/sre-book/postmortem-culture/
+      - type: node
+        id: maintain-continuity-and-recovery
+        title: 演练应急、灾难恢复与业务连续性
+        description: 为关键服务定义恢复目标、替代流程和依赖预案，定期验证备份、切换、人员可用性与安全事件响应。
+        status: planned
+
+  - type: node
+    id: manage-executives-customers-and-partners
+    title: 管理高层、客户与外部伙伴关系
+    description: 把技术事实转化为受众可行动的信息，整合客户反馈并治理供应商、技术伙伴和外部集成。
+    tags: [高层沟通, 客户关系, 伙伴管理]
+    status: planned
+    link: https://www.atlassian.com/team-playbook/plays/stakeholder-communications-plan
+    children:
+      - type: node
+        id: write-executive-communications
+        title: 编写面向高层的决策材料
+        description: 用简明摘要、业务影响、选项、风险和明确请求组织状态报告、战略提案、预算申请与董事会材料。
+        status: planned
+      - type: node
+        id: align-vision-across-functions
+        title: 推动跨职能愿景对齐
+        description: 让产品、设计、工程、销售、支持和安全共同理解目标与取舍，记录关键异议、决定和后续责任。
+        status: planned
+      - type: node
+        id: integrate-customer-feedback
+        title: 将客户反馈接入工程决策
+        description: 综合支持记录、成功团队反馈、研究和产品数据，区分个别请求与可重复问题并回传处理结果。
+        status: planned
+      - type: node
+        id: support-technical-customer-issues
+        title: 协调技术客户支持与功能优先级
+        description: 为高影响问题建立升级、诊断和沟通路径，并与产品共同依据影响、战略匹配和机会成本排序需求。
+        status: planned
+      - type: node
+        id: govern-vendors-and-partners
+        title: 治理供应商与技术伙伴
+        description: 在选择和续约时评估能力、成本、SLA、安全、合规、数据、锁定与退出计划，并定期检查实际表现。
+        status: planned
+      - type: node
+        id: manage-integrations-and-api-strategy
+        title: 管理外部集成与 API 策略
+        description: 定义伙伴接入、版本兼容、身份权限、限流、支持和弃用政策，使合作扩展不会破坏平台稳定性。
+        status: planned
+
+  - type: node
+    id: manage-knowledge-and-change
+    title: 沉淀知识并领导组织变革
+    description: 让架构、流程、决定与经验可被复用，并用影响评估、参与式计划和迁移验证安全完成技术与团队变化。
+    tags: [知识管理, 变更管理, 遗留系统]
+    status: planned
+    link: https://www.hse.gov.uk/stress/standards/change.htm
+    children:
+      - type: node
+        id: build-living-knowledge-system
+        title: 建立可维护的工程知识系统
+        description: 为架构、流程、决策、Runbook、最佳实践和经验教训定义所有者、位置、评审周期与归档规则。
+        status: planned
+      - type: node
+        id: design-knowledge-sharing
+        title: 用多种机制完成知识转移
+        description: 组合导师计划、结对、知识库、Brown Bag、Tech Talk 和轮岗，验证关键工作不依赖单一人员。
+        status: planned
+      - type: node
+        id: plan-technical-change
+        title: 规划技术采用、工具迁移与流程变化
+        description: 说明变化原因、目标能力、影响人群、兼容窗口、培训、迁移步骤、回退条件和采用度量。
+        status: planned
+      - type: node
+        id: retire-legacy-systems
+        title: 安全退役遗留系统
+        description: 盘点依赖、数据、流量、合规和隐性使用者，分阶段迁移并验证替代能力后再撤销访问与运行资源。
+        status: planned
+      - type: node
+        id: lead-organizational-change
+        title: 领导可解释的组织变革
+        description: 对重组、团队合并、角色转换和责任变化开展影响评估，尽早沟通不变项与未知项并提供参与和反馈渠道。
+        status: planned
+      - type: node
+        id: respond-to-change-resistance
+        title: 把阻力转化为可处理的信号
+        description: 区分信息缺口、能力缺口、利益冲突与真实风险，针对原因提供证据、培训、支持或方案调整。
+        status: planned
+
+  - type: node
+    id: capstone-engineering-management-cycle
+    title: 完成一次工程管理改进闭环
+    description: 选择真实团队或可信案例，诊断一个跨技术、人员与交付的问题，实施小规模改进并用证据复盘结果。
+    tags: [综合实践, 管理案例, 复盘]
+    status: planned
+    children:
+      - type: node
+        id: diagnose-capstone-system
+        title: 诊断团队与工程系统
+        description: 访谈关键角色并检查交付流、质量、事故、架构、负担和团队健康数据，形成事实、假设与待验证问题清单。
+        status: planned
+      - type: node
+        id: propose-capstone-improvement
+        title: 提出带商业案例的改进方案
+        description: 连接产品目标与工程约束，比较选项、成本、风险和预期结果，并定义范围、负责人、指标与停止条件。
+        status: planned
+      - type: node
+        id: align-capstone-stakeholders
+        title: 对齐团队和关键干系人
+        description: 分别向工程师、产品伙伴和领导层说明方案影响，吸收异议并记录最终决定、承诺与沟通节奏。
+        status: planned
+      - type: node
+        id: run-capstone-pilot
+        title: 运行可逆的小规模试点
+        description: 在一个团队或服务中实施改进，保护正常交付与人员安全，收集领先、结果和护栏指标并及时调整。
+        status: planned
+      - type: node
+        id: evaluate-capstone-outcomes
+        title: 评估结果并沉淀可复用经验
+        description: 比较基线与结果，分析因果限制、意外影响和团队反馈，决定扩展、修改或停止并更新相关文档与流程。
+        status: planned

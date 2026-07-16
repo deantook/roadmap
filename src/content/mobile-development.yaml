@@ -1,0 +1,401 @@
+id: mobile-development
+title: 移动端开发路线图
+description: 从移动产品与平台共性出发，选择一条原生或跨平台技术路线，最终交付、发布并持续改进一款可靠的移动应用。
+tags: [移动端, Android, iOS, 跨平台]
+nodes:
+  - type: node
+    id: understand-mobile-runtime
+    title: 建立移动端运行环境认知
+    description: 理解移动应用在生命周期、沙箱、资源预算、设备差异和商店分发方面与桌面或 Web 应用的关键区别。
+    tags: [基础, 平台]
+    status: planned
+    children:
+      - type: node
+        id: distinguish-platform-models
+        title: 区分 Android 与 Apple 平台模型
+        description: 比较应用组件、界面框架、后台限制、权限系统和发布渠道，避免把一个平台的假设机械套用到另一个平台。
+        tags: [Android, iOS]
+        status: planned
+      - type: node
+        id: handle-lifecycle-interruption
+        title: 面向生命周期与中断设计功能
+        description: 在前后台切换、进程回收、来电或系统资源压力下保存必要状态、取消工作并恢复关键流程。
+        tags: [生命周期, 状态恢复]
+        status: planned
+      - type: node
+        id: work-with-device-resources
+        title: 在设备资源预算内运行
+        description: 将电量、内存、存储、网络流量和温度视为有限资源，不在主线程执行阻塞或不可控的长任务。
+        tags: [资源, 性能]
+        status: planned
+      - type: node
+        id: compare-emulator-real-device
+        title: 明确模拟器与真机的验证边界
+        description: 用模拟器快速覆盖配置组合，并在真实设备上验证硬件、权限、能耗、性能和厂商或系统版本差异。
+        tags: [模拟器, 真机]
+        status: planned
+
+  - type: node
+    id: design-mobile-product
+    title: 设计有明确价值的移动产品
+    description: 从目标用户和高频场景出发，用适合触控、小屏与碎片时间的流程交付可验证价值。
+    tags: [产品, UX]
+    status: planned
+    children:
+      - type: node
+        id: define-mobile-core-value
+        title: 定义移动场景中的核心价值
+        description: 写清用户、使用情境、核心任务和成功指标，删除不支持主任务的功能并控制首次发布范围。
+        tags: [需求, MVP]
+        status: planned
+        link: https://developer.android.com/quality/core-value
+      - type: node
+        id: map-short-resumable-flows
+        title: 设计短而可恢复的任务流程
+        description: 将关键任务拆成少量明确步骤，在登录、编辑、支付或上传被打断时避免数据丢失和重复提交。
+        tags: [用户流程, 状态]
+        status: planned
+      - type: node
+        id: respect-platform-conventions
+        title: 尊重各平台的交互惯例
+        description: 复用系统组件、导航、返回行为、手势和反馈模式，仅在确有产品价值时引入跨平台差异。
+        tags: [HIG, Material Design]
+        status: planned
+        link: https://developer.apple.com/design/human-interface-guidelines/
+      - type: node
+        id: plan-analytics-privacy
+        title: 在采集前规划指标与隐私边界
+        description: 只收集能支持明确决策的最少事件和属性，定义保存期限、用户控制、披露方式与删除路径。
+        tags: [分析, 隐私]
+        status: planned
+
+  - type: node
+    id: build-inclusive-adaptive-ui
+    title: 构建自适应且包容的界面
+    description: 让界面适应窗口、文字、方向、外观和输入方式变化，并确保辅助技术用户能够完成核心任务。
+    tags: [自适应, 无障碍, UI]
+    status: planned
+    children:
+      - type: node
+        id: design-for-window-space
+        title: 根据可用窗口空间调整布局
+        description: 用约束和断点组织单栏或多栏内容，不依赖固定像素、设备型号或被锁定的屏幕方向。
+        tags: [响应式布局, 大屏]
+        status: planned
+      - type: node
+        id: support-text-theme-settings
+        title: 响应文字与系统外观设置
+        description: 支持动态字体、深浅色模式、对比度和减少动态效果，确保文本放大后仍能阅读和操作。
+        tags: [动态字体, 主题]
+        status: planned
+      - type: node
+        id: expose-accessible-semantics
+        title: 为辅助技术提供清晰语义
+        description: 设置名称、角色、状态、顺序和错误反馈，并用 TalkBack、VoiceOver 与键盘逐条走查关键流程。
+        tags: [TalkBack, VoiceOver]
+        status: planned
+        link: https://www.w3.org/TR/wcag2mobile-22/
+      - type: node
+        id: support-touch-input-variation
+        title: 兼容触控与多种输入方式
+        description: 提供足够点击目标和可见焦点，不把复杂手势作为唯一入口，并按设备需要支持键盘、鼠标或触控笔。
+        tags: [触控, 输入]
+        status: planned
+      - type: node
+        id: localize-content-layout
+        title: 本地化内容与区域格式
+        description: 使用可翻译资源、复数规则和 Locale 感知格式处理文本、日期与数字，并验证文本扩展和从右到左布局。
+        tags: [国际化, 本地化]
+        status: planned
+
+  - type: node
+    id: choose-mobile-stack
+    title: 选择一条实现路线深入学习
+    description: 根据目标平台、团队技能、原生能力、性能预算和长期维护成本选择一条主线，不要求同时学习所有框架。
+    tags: [技术选型, 学习分支]
+    status: planned
+    children:
+      - type: node
+        id: choose-native-android
+        title: 选择原生 Android
+        description: 适合需要深度 Android 集成、充分利用 Jetpack 生态或以 Android 岗位为目标的学习者。
+        tags: [Android, Kotlin, Compose]
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: android
+            title: 进入原生 Android 路线图
+            description: 系统学习 Kotlin、Coroutines、Jetpack Compose、数据层、质量保障和 Google Play 发布。
+      - type: node
+        id: choose-native-ios
+        title: 选择原生 iOS
+        description: 适合需要深度 Apple 平台集成、追求原生体验或以 iOS 岗位为目标的学习者。
+        tags: [iOS, Swift, SwiftUI]
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: ios
+            title: 进入原生 iOS 路线图
+            description: 系统学习 Swift、Swift Concurrency、SwiftUI、数据层、质量保障和 App Store 发布。
+      - type: node
+        id: choose-flutter
+        title: 选择 Flutter
+        description: 适合希望以 Dart 和统一渲染框架共享多平台界面与业务代码，同时接受必要原生集成的团队。
+        tags: [Flutter, Dart, 跨平台]
+        status: optional
+        link: https://docs.flutter.dev/platform-integration
+        children:
+          - type: roadmap
+            roadmapId: flutter
+            title: 进入 Flutter 路线图
+            description: 系统学习 Widget、布局、状态、网络、测试、平台集成和多端发布。
+      - type: node
+        id: choose-react-native
+        title: 选择 React Native
+        description: 适合已有 React 与 TypeScript 经验、希望共享产品逻辑，并愿意处理原生构建和模块边界的团队。
+        tags: [React Native, React, 跨平台]
+        status: optional
+        link: https://reactnative.dev/docs/getting-started.html
+        children:
+          - type: roadmap
+            roadmapId: react
+            title: 先补齐 React 组件与状态基础
+            description: 掌握 React 的组件、Hooks、状态与测试后，再迁移到原生组件和移动平台工具链。
+
+  - type: node
+    id: organize-mobile-architecture
+    title: 组织可维护的状态与架构
+    description: 将界面、业务规则和外部系统按变化原因分离，建立可追踪的数据流和可替换的依赖边界。
+    tags: [架构, 状态管理]
+    status: planned
+    children:
+      - type: node
+        id: establish-single-source-truth
+        title: 为每类状态建立单一真相来源
+        description: 区分临时界面状态、会话状态和持久化数据，避免在多个页面或缓存中维护互相冲突的副本。
+        tags: [数据流, 状态]
+        status: planned
+      - type: node
+        id: model-ui-states-events
+        title: 显式建模界面状态与事件
+        description: 将加载、内容、空结果和错误表示为互斥状态，让用户事件沿明确入口触发业务变化和副作用。
+        tags: [UDF, 错误处理]
+        status: planned
+      - type: node
+        id: separate-platform-dependencies
+        title: 隔离平台与外部依赖
+        description: 通过接口或适配层封装网络、存储、系统服务和时间，使核心逻辑能在无设备环境下测试。
+        tags: [依赖注入, 可测试性]
+        status: planned
+      - type: node
+        id: modularize-by-change-boundaries
+        title: 按功能和变化边界组织代码
+        description: 先保持简单目录结构，只有在团队协作、构建性能或复用收益明确时再拆分模块或包。
+        tags: [模块化, 工程化]
+        status: planned
+
+  - type: node
+    id: connect-reliable-data
+    title: 构建可靠的网络与本地数据体验
+    description: 在不稳定连接和进程随时退出的条件下保持数据一致、操作可恢复且用户反馈明确。
+    tags: [网络, 持久化, 离线]
+    status: planned
+    children:
+      - type: node
+        id: validate-network-contracts
+        title: 验证网络请求与数据契约
+        description: 处理超时、取消、HTTP 错误、分页和序列化失败，不把不可信服务端数据直接传入界面或本地模型。
+        tags: [HTTP, API]
+        status: planned
+      - type: node
+        id: persist-device-data
+        title: 按数据形态选择本地存储
+        description: 区分偏好、结构化数据、文件、缓存和秘密，为事务、迁移、容量与备份策略写下明确约束。
+        tags: [数据库, 安全存储]
+        status: planned
+      - type: node
+        id: design-offline-degradation
+        title: 为弱网与离线设计降级路径
+        description: 优先展示可用本地数据，定义新鲜度、重试、排队写入和冲突解决，让核心读取流程不依赖即时联网。
+        tags: [Offline First, 同步]
+        status: planned
+        link: https://developer.android.com/topic/architecture/data-layer/offline-first
+      - type: node
+        id: make-writes-idempotent
+        title: 让跨网络写入可安全重试
+        description: 使用幂等标识、状态机和服务端确认避免重复订单、消息或上传，并明确失败后的补偿和用户操作。
+        tags: [幂等, 一致性]
+        status: planned
+
+  - type: node
+    id: integrate-mobile-platform
+    title: 安全集成设备与系统能力
+    description: 根据产品价值接入通知、相机、位置等能力，在最小权限、平台限制和用户可控的边界内工作。
+    tags: [系统 API, 权限, 安全]
+    status: planned
+    link: https://mas.owasp.org/MASVS/
+    children:
+      - type: node
+        id: request-contextual-permissions
+        title: 在使用时请求最小权限
+        description: 优先选择无需敏感权限的系统入口，先解释功能价值，并为拒绝、撤销和受限状态提供完整降级路径。
+        tags: [权限, 隐私]
+        status: planned
+      - type: node
+        id: secure-data-credentials
+        title: 保护凭据与个人数据
+        description: 使用系统安全存储和 TLS，不把秘密写入源码、日志或普通文件，并收紧跨应用组件与深链接输入。
+        tags: [安全存储, TLS]
+        status: planned
+      - type: node
+        id: schedule-background-work
+        title: 遵守后台执行与能耗限制
+        description: 区分即时、可延迟和长时间任务，使用平台调度能力设置约束、重试与幂等，避免依赖永久后台运行。
+        tags: [后台任务, 能耗]
+        status: planned
+      - type: node
+        id: integrate-notifications-links
+        title: 按需接入通知与深链接
+        description: 设计通知分组、权限和点击目标，并验证冷启动、登录前后、重复链接及无效参数的安全处理。
+        tags: [Push, Deep Link]
+        status: optional
+      - type: node
+        id: integrate-hardware-capabilities
+        title: 按需接入设备硬件能力
+        description: 为相机、媒体、位置、健康或蓝牙选择系统 API，并在代表性真机验证权限、生命周期和失败状态。
+        tags: [硬件, 真机测试]
+        status: optional
+
+  - type: node
+    id: verify-mobile-quality
+    title: 用测试、调试与测量守住质量
+    description: 从快速业务测试到真实设备验收建立反馈链，并用证据定位崩溃、无响应、卡顿和资源消耗。
+    tags: [测试, 调试, 性能]
+    status: planned
+    children:
+      - type: node
+        id: build-mobile-test-pyramid
+        title: 建立移动端测试金字塔
+        description: 用大量隔离测试覆盖业务和状态转换，以较少集成与 UI 测试验证存储、网络和最关键用户流程。
+        tags: [单元测试, UI 测试]
+        status: planned
+      - type: node
+        id: test-failure-lifecycle-cases
+        title: 覆盖失败、生命周期与权限边界
+        description: 自动或手工验证断网、超时、拒绝权限、旋转、进程重建、低存储和升级数据等高风险场景。
+        tags: [边界测试, 稳定性]
+        status: planned
+      - type: node
+        id: inspect-debug-diagnostics
+        title: 使用平台诊断工具缩小问题范围
+        description: 结合结构化日志、断点、界面检查器、网络检查器、内存图和崩溃堆栈复现并验证根因。
+        tags: [诊断, 崩溃]
+        status: planned
+      - type: node
+        id: profile-release-builds
+        title: 在真机发布构建上测量性能
+        description: 测量启动、帧、CPU、内存、网络与能耗，建立基线后只改变一个因素并验证真实收益。
+        tags: [性能分析, Release]
+        status: planned
+      - type: node
+        id: automate-continuous-checks
+        title: 自动执行持续质量检查
+        description: 在每次变更中运行格式、静态检查、构建和核心测试，保存诊断与可追踪产物并阻止已知回归。
+        tags: [CI, 自动化]
+        status: planned
+
+  - type: node
+    id: deliver-mobile-capstone
+    title: 交付一款可验证的移动应用
+    description: 使用选定技术栈把产品、界面、数据、系统能力和质量保障组合成可供真实用户试用的完整应用。
+    tags: [综合实践, 作品集]
+    status: planned
+    children:
+      - type: node
+        id: define-capstone-scope
+        title: 定义可在数周内完成的产品范围
+        description: 选择内容收藏、习惯追踪或轻量协作场景，写清目标用户、三条核心流程和可验收的非功能要求。
+        tags: [需求, 规划]
+        status: planned
+      - type: node
+        id: build-vertical-mobile-slices
+        title: 按垂直切片迭代核心流程
+        description: 逐条打通界面、状态、网络或持久化和错误恢复，每个切片保持可运行、可演示与可测试。
+        tags: [迭代开发]
+        status: planned
+      - type: node
+        id: validate-release-candidate
+        title: 在设备矩阵上验收发布候选
+        description: 覆盖弱网、权限拒绝、深色模式、大字体、屏幕阅读器、低性能设备和升级场景并修复阻断问题。
+        tags: [验收, 兼容性]
+        status: planned
+      - type: node
+        id: document-capstone-decisions
+        title: 记录使用方式与关键工程决策
+        description: 提供可复现构建步骤、功能演示、架构边界和已知限制，使他人能够运行、评审并继续维护项目。
+        tags: [文档, 作品集]
+        status: planned
+
+  - type: node
+    id: release-operate-mobile-app
+    title: 发布并持续运营移动应用
+    description: 管理签名、版本、Beta 测试、商店材料和分阶段发布，并依据线上质量与用户反馈安全迭代。
+    tags: [发布, 运营]
+    status: planned
+    children:
+      - type: node
+        id: protect-signing-identities
+        title: 保护签名身份与发布配置
+        description: 隔离开发和生产环境，备份并限制签名密钥或证书访问，确保版本号、能力和服务端配置匹配产物。
+        tags: [代码签名, 配置]
+        status: planned
+      - type: node
+        id: run-beta-feedback-loop
+        title: 用 Beta 渠道建立反馈闭环
+        description: 从内部测试逐步扩大受众，提供测试重点，收集崩溃、性能和定性反馈并确认发布候选。
+        tags: [TestFlight, 测试轨道]
+        status: planned
+      - type: node
+        id: prepare-store-compliance
+        title: 准备一致的商店与隐私信息
+        description: 核对截图、描述、内容分级、数据披露、权限用途、审核说明和支持入口，使承诺与实际行为一致。
+        tags: [App Store, Google Play]
+        status: planned
+      - type: node
+        id: stage-monitor-rollout
+        title: 分阶段发布并监控线上质量
+        description: 逐步扩大覆盖并跟踪崩溃、无响应、卡顿、评分和采用率，在指标恶化时暂停、修复或回退更新。
+        tags: [灰度发布, 可观测性]
+        status: planned
+
+  - type: node
+    id: choose-mobile-specialization
+    title: 根据产品与岗位选择深化方向
+    description: 在独立交付一款应用后，再扩展第二平台、原生互操作或垂直领域能力，避免同时追逐多个生态。
+    tags: [进阶, 选修]
+    status: optional
+    children:
+      - type: node
+        id: learn-second-platform
+        title: 补充第二个原生平台
+        description: 以同一产品需求比较 Android 与 iOS 的生命周期、导航、权限、后台任务和发布差异，而非只翻译语法。
+        tags: [Android, iOS]
+        status: optional
+      - type: node
+        id: deepen-native-interop
+        title: 深入跨平台与原生互操作
+        description: 为跨平台框架缺失的能力实现原生模块或插件，并建立接口、线程、错误和版本兼容边界。
+        tags: [原生模块, 插件]
+        status: optional
+      - type: node
+        id: specialize-commerce-identity
+        title: 深入支付、订阅与身份能力
+        description: 根据业务需要研究应用内购买、订阅状态、通行密钥和账户恢复，并处理服务端校验与异常补偿。
+        tags: [支付, 身份]
+        status: optional
+      - type: node
+        id: specialize-media-realtime
+        title: 深入媒体、实时通信或地图能力
+        description: 围绕音视频、相机、实时消息或位置服务建立权限、后台、网络、质量和设备兼容性专项实践。
+        tags: [媒体, 实时, 地图]
+        status: optional
