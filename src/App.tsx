@@ -91,7 +91,7 @@ function Search({ catalog }: { catalog: RoadmapCatalog }) {
   const entries = useMemo(() => buildSearchEntries(catalog), [catalog])
   const normalized = query.trim().toLocaleLowerCase('zh-CN')
   const results = normalized
-    ? entries.filter(({ node }) => `${node.title} ${node.description ?? ''}`.toLocaleLowerCase('zh-CN').includes(normalized)).slice(0, 8)
+    ? entries.filter(({ node, roadmap }) => `${node.title} ${node.description ?? ''} ${node.tags.join(' ')} ${roadmap.tags.join(' ')}`.toLocaleLowerCase('zh-CN').includes(normalized)).slice(0, 8)
     : []
 
   useEffect(() => {
@@ -124,7 +124,10 @@ function Search({ catalog }: { catalog: RoadmapCatalog }) {
         <div className="search-results" role="listbox" aria-label="搜索结果">
           {results.length ? results.map((entry) => (
             <button key={`${entry.roadmap.id}-${entry.node.id}`} role="option" onClick={() => select(entry)}>
-              <strong>{entry.node.title}</strong>
+              <span className="search-result-copy">
+                <strong>{entry.node.title}</strong>
+                {entry.node.tags.length > 0 && <small>{entry.node.tags.slice(0, 2).join(' · ')}</small>}
+              </span>
               <span>{entry.roadmap.title}</span>
             </button>
           )) : <p>没有找到匹配节点</p>}
@@ -153,13 +156,34 @@ function Shell({ catalog, children }: { catalog: RoadmapCatalog; children: React
   )
 }
 
+function countNodes(children: RoadmapChild[]): number {
+  return children.reduce((total, child) => total + (child.type === 'node' ? 1 + countNodes(child.children) : 0), 0)
+}
+
 function Home({ catalog }: { catalog: RoadmapCatalog }) {
+  const [query, setQuery] = useState('')
+  const [activeTag, setActiveTag] = useState('全部')
+  const tags = useMemo(() => [...new Set(catalog.roots.flatMap((roadmap) => roadmap.tags))].sort((a, b) => a.localeCompare(b, 'zh-CN')), [catalog])
+  const normalizedQuery = query.trim().toLocaleLowerCase('zh-CN')
+  const visibleRoadmaps = catalog.roots.filter((roadmap) => {
+    const matchesTag = activeTag === '全部' || roadmap.tags.includes(activeTag)
+    const searchable = `${roadmap.title} ${roadmap.description ?? ''} ${roadmap.tags.join(' ')}`.toLocaleLowerCase('zh-CN')
+    return matchesTag && (!normalizedQuery || searchable.includes(normalizedQuery))
+  })
+
   return (
     <div className="home page-enter">
       <section className="hero">
-        <p className="eyebrow">YOUR NEXT STEP, MADE CLEAR</p>
-        <h1>把复杂的旅程，<br /><em>拆成清晰的下一步。</em></h1>
-        <p>选择一条路线图，沿着节点逐步探索。每一条路径都来自简单、可维护的 YAML 文件。</p>
+        <div className="hero-copy">
+          <p className="eyebrow">YOUR NEXT STEP, MADE CLEAR</p>
+          <h1>找到方向，<br /><em>开始下一步。</em></h1>
+          <p>从语言基础到完整工程，选择一条适合你的学习路线，按清晰节点持续前进。</p>
+        </div>
+        <div className="hero-stats" aria-label="路线图数据概览">
+          <div><strong>{catalog.roots.length}</strong><span>条学习路线</span></div>
+          <div><strong>{catalog.roots.reduce((sum, roadmap) => sum + countNodes(roadmap.nodes), 0)}</strong><span>个知识节点</span></div>
+          <div><strong>{tags.length}</strong><span>个主题标签</span></div>
+        </div>
       </section>
       <section aria-labelledby="roadmaps-title">
         <div className="section-heading">
@@ -167,20 +191,43 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
             <p className="section-number">01</p>
             <h2 id="roadmaps-title">选择路线</h2>
           </div>
-          <span>{catalog.roots.length} 条主路线</span>
+          <span>{visibleRoadmaps.length} / {catalog.roots.length} 条路线</span>
         </div>
-        <div className="roadmap-grid">
-          {catalog.roots.map((roadmap, index) => (
-            <Link className="roadmap-card" to={`/roadmaps/${roadmap.id}`} key={roadmap.id}>
-              <span className="card-index">0{index + 1}</span>
-              <div>
-                <h3>{roadmap.title}</h3>
-                {roadmap.description && <p>{roadmap.description}</p>}
-              </div>
-              <span className="card-arrow" aria-hidden="true">↗</span>
-            </Link>
-          ))}
+        <div className="discovery-panel">
+          <label className="home-search">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索路线、语言或主题" aria-label="搜索路线图" />
+          </label>
+          <div className="tag-filters" aria-label="按标签筛选">
+            {['全部', ...tags].map((tag) => (
+              <button key={tag} type="button" className={activeTag === tag ? 'active' : ''} onClick={() => setActiveTag(tag)} aria-pressed={activeTag === tag}>{tag}</button>
+            ))}
+          </div>
         </div>
+        {visibleRoadmaps.length > 0 ? (
+          <div className="roadmap-grid">
+            {visibleRoadmaps.map((roadmap) => (
+              <Link className="roadmap-card" to={`/roadmaps/${roadmap.id}`} key={roadmap.id}>
+                <div className="card-meta">
+                  <span>{String(countNodes(roadmap.nodes)).padStart(2, '0')} 节点</span>
+                  <span className="card-arrow" aria-hidden="true">↗</span>
+                </div>
+                <div>
+                  <h3>{roadmap.title}</h3>
+                  {roadmap.description && <p>{roadmap.description}</p>}
+                </div>
+                {roadmap.tags.length > 0 && <div className="tag-list" aria-label="标签">{roadmap.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="filter-empty">
+            <span aria-hidden="true">⌕</span>
+            <h3>没有匹配的路线</h3>
+            <p>试试其他关键词，或清除当前标签筛选。</p>
+            <button type="button" onClick={() => { setQuery(''); setActiveTag('全部') }}>清除筛选</button>
+          </div>
+        )}
       </section>
     </div>
   )
@@ -229,7 +276,10 @@ function NodeCard({ node, onOpen }: {
         onClick={onOpen}
         aria-label={`查看 ${node.title} 详情`}
       />
-      <h3>{node.title}</h3>
+      <div className="node-copy">
+        <h3>{node.title}</h3>
+        {node.tags.length > 0 && <div className="node-tags">{node.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}</div>}
+      </div>
     </article>
   )
 }
@@ -277,6 +327,7 @@ function NodeDrawer({ node, status, onStatusChange, onClose }: {
             </button>
           </div>
           <h2 id="drawer-title">{node.title}</h2>
+          {node.tags.length > 0 && <div className="drawer-tags">{node.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
           {node.description && <p className="drawer-description">{node.description}</p>}
 
           {node.children.length > 0 && (

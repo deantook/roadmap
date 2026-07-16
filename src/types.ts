@@ -7,6 +7,7 @@ export interface RoadmapNode {
   id: string
   title: string
   description?: string
+  tags: string[]
   status: NodeStatus
   link?: string
   children: RoadmapChild[]
@@ -25,6 +26,7 @@ export interface Roadmap {
   id: string
   title: string
   description?: string
+  tags: string[]
   nodes: RoadmapChild[]
   source: string
 }

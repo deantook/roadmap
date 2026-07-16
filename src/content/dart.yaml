@@ -1,11 +1,13 @@
 id: dart
 title: Dart 语言路线图
 description: 从语法与空安全到泛型、异步、Isolates 与 Flutter / 服务端入门。
+tags: [语言, Dart, 移动端]
 nodes:
   - type: node
     id: dart-basics
     title: 语言基础
     description: 掌握语法、静态类型、控制流与 Dart 的表达式风格。
+    tags: [Dart, 入门]
     status: planned
     link: https://dart.dev/language
     children:
@@ -31,6 +33,7 @@ nodes:
     id: functions-collections
     title: 函数与集合
     description: 用函数与内置集合处理数据，理解 Dart 的集合字面量与遍历。
+    tags: [函数, 集合]
     status: planned
     children:
       - type: node
@@ -201,10 +204,13 @@ nodes:
     description: 语言扎实后，按方向进入 Flutter 跨端开发或服务端应用。
     status: planned
     children:
-      - type: roadmap
-        roadmapId: flutter
-        title: 进入 Flutter 路线图
-        description: 系统学习 Widget、布局、状态管理、测试与多端发布。
+      - type: node
+        id: flutter-next
+        title: Flutter 学习入口
+        description: 语言基础扎实后，继续学习 Widget、布局、状态管理与多端发布。
+        tags: [Flutter, 移动端]
+        status: optional
+        link: https://docs.flutter.dev/get-started/learn-more
       - type: node
         id: shelf-intro
         title: Shelf 服务端入门

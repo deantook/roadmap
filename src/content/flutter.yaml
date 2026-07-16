@@ -1,11 +1,13 @@
 id: flutter
 title: Flutter 开发路线图
 description: 从 Widget 与布局到状态管理、网络、测试与多端发布。
+tags: [移动端, Flutter, Dart]
 nodes:
   - type: node
     id: dart-foundation
     title: Dart 语言基础
     description: 扎实掌握 Dart 语法、空安全与异步，再进入 Flutter 界面开发。
+    tags: [Dart, 入门]
     status: planned
     children:
       - type: roadmap
@@ -17,6 +19,7 @@ nodes:
     id: flutter-fundamentals
     title: Flutter 基础
     description: 理解 Widget 树、构建流程与跨平台渲染的基本模型。
+    tags: [Flutter, Widget]
     status: planned
     link: https://docs.flutter.dev/get-started/learn-more
     children:
@@ -41,6 +44,7 @@ nodes:
     id: layout
     title: 布局与约束
     description: 用 Flex、Stack 等组合界面，并理解 Flutter 的约束传递规则。
+    tags: [布局, UI]
     status: planned
     link: https://docs.flutter.dev/ui/layout
     children:

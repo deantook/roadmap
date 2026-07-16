@@ -1,11 +1,13 @@
 id: javascript
 title: JavaScript 语言路线图
 description: 从语法与闭包到异步、模块、浏览器 API 与 Node.js 入门。
+tags: [语言, JavaScript, Web]
 nodes:
   - type: node
     id: js-basics
     title: 语言基础
     description: 掌握语法、值类型、控制流与 JavaScript 特有的类型转换规则。
+    tags: [JavaScript, 入门]
     status: planned
     link: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
     children:
@@ -30,6 +32,7 @@ nodes:
     id: functions-scope
     title: 函数与作用域
     description: 理解函数是一等公民，掌握闭包、this 与词法作用域。
+    tags: [函数, 进阶]
     status: planned
     children:
       - type: node

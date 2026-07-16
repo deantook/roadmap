@@ -1,11 +1,13 @@
 id: python
 title: Python 语言路线图
 description: 从语法与数据结构到面向对象、异步、标准库与 Web 服务入门。
+tags: [语言, Python, 后端]
 nodes:
   - type: node
     id: python-basics
     title: 语言基础
     description: 掌握语法、动态类型、控制流与 Python 的缩进与真值规则。
+    tags: [Python, 入门]
     status: planned
     link: https://docs.python.org/3/tutorial/
     children:
@@ -29,6 +31,7 @@ nodes:
     id: data-structures
     title: 数据结构
     description: 熟练使用内置容器，并掌握推导式与常用操作模式。
+    tags: [数据结构]
     status: planned
     children:
       - type: node

@@ -21,6 +21,7 @@ const nodeSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1).optional(),
+  tags: z.array(z.string().trim().min(1)).default([]),
   status: z.enum(statuses).default('planned'),
   link: httpUrl.optional(),
   children: z.array(childSchema).default([]),
@@ -30,6 +31,7 @@ const roadmapSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1).optional(),
+  tags: z.array(z.string().trim().min(1)).default([]),
   nodes: z.array(childSchema).default([]),
 })
 

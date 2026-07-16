@@ -1,11 +1,13 @@
 id: web-development
 title: Web 开发路线图
 description: 从网页基础出发，逐步掌握现代前后端开发能力。
+tags: [全栈, Web, 入门]
 nodes:
   - type: node
     id: internet-basics
     title: 互联网基础
     description: 理解浏览器、服务器、DNS 与 HTTP 如何协同工作。
+    tags: [Web, 网络]
     status: completed
     link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work
     children:
@@ -23,6 +25,7 @@ nodes:
     id: choose-direction
     title: 选择深入方向
     description: 基础打稳后，进入前端或后端专项路线。
+    tags: [职业方向]
     status: in-progress
     children:
       - type: roadmap
@@ -37,4 +40,5 @@ nodes:
     id: ship-project
     title: 发布完整项目
     description: 将前后端能力组合起来，部署一个真实应用。
+    tags: [实战, 部署]
     status: planned

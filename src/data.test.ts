@@ -30,8 +30,20 @@ describe('parseRoadmaps', () => {
     if (!result.ok) return
     expect(new Set(result.catalog.roots.map(({ id }) => id))).toEqual(new Set(['main', 'child']))
     const main = result.catalog.roadmaps.get('main')!
-    expect(main.nodes[0]).toMatchObject({ type: 'node', status: 'planned' })
+    expect(main.nodes[0]).toMatchObject({ type: 'node', status: 'planned', tags: [] })
+    expect(main.tags).toEqual([])
     expect(referencesRoadmap(main, 'child')).toBe(true)
+  })
+
+  it('parses roadmap and node tags', () => {
+    const result = parseRoadmaps({
+      'tags.yaml': 'id: tags\ntitle: 标签路线\ntags: [前端, Web]\nnodes:\n  - { type: node, id: css, title: CSS, tags: [样式] }',
+    })
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    const roadmap = result.catalog.roadmaps.get('tags')!
+    expect(roadmap.tags).toEqual(['前端', 'Web'])
+    expect(roadmap.nodes[0]).toMatchObject({ tags: ['样式'] })
   })
 
   it('reports malformed YAML with its filename', () => {

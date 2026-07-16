@@ -1,11 +1,13 @@
 id: java
 title: Java 语言路线图
 description: 从语法与面向对象到并发、构建与现代 Java 特性。
+tags: [语言, Java, 后端]
 nodes:
   - type: node
     id: java-basics
     title: 语言基础
     description: 掌握语法、类型系统与面向对象核心概念。
+    tags: [Java, 入门]
     status: planned
     link: https://docs.oracle.com/en/java/javase/21/docs/api/index.html
     children:
@@ -29,6 +31,7 @@ nodes:
     id: collections-generics
     title: 集合与泛型
     description: 用集合框架与泛型写出类型安全、可维护的代码。
+    tags: [集合, 泛型]
     status: planned
     children:
       - type: node

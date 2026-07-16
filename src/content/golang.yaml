@@ -1,11 +1,13 @@
 id: golang
 title: Go 语言路线图
 description: 从语法与接口到并发、模块、标准库与 Web 服务入门。
+tags: [语言, Go, 后端]
 nodes:
   - type: node
     id: go-basics
     title: 语言基础
     description: 掌握语法、类型、结构体与接口这一 Go 的核心抽象。
+    tags: [Go, 入门]
     status: planned
     link: https://go.dev/doc/
     children:
@@ -30,6 +32,7 @@ nodes:
     id: errors-packages
     title: 错误处理与包
     description: 用显式错误与清晰包边界写出可维护代码。
+    tags: [工程化]
     status: planned
     children:
       - type: node

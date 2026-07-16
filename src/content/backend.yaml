@@ -1,11 +1,13 @@
 id: backend
 title: 后端开发路线图
 description: 从服务端编程到稳定的生产系统。
+tags: [后端, API, 数据库]
 nodes:
   - type: node
     id: server-language
     title: 服务端语言
     description: 选择一种语言并掌握其运行时与生态。
+    tags: [编程语言]
     status: in-progress
     children:
       - type: roadmap
@@ -41,6 +43,7 @@ nodes:
     id: api-design
     title: API 设计
     description: 设计清晰的资源、错误响应与版本策略。
+    tags: [API, HTTP]
     status: planned
     children:
       - type: node
