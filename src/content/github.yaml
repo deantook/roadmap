@@ -1,0 +1,472 @@
+id: github
+title: GitHub
+description: 在掌握 Git 基础后，使用 GitHub 管理仓库、规划工作、评审变更、自动化验证与发布，并建立安全且可持续的团队或开源协作流程。
+tags: [GitHub, 协作, CI/CD, 开源]
+nodes:
+  - type: node
+    id: establish-account-and-git-access
+    title: 建立安全可用的 GitHub 工作环境
+    description: 配置可识别的账户、恢复能力和命令行访问，并理解 Git 与 GitHub 在协作链路中的不同职责。
+    tags: [账户, 认证, Git]
+    status: planned
+    link: https://docs.github.com/en/get-started/start-your-journey
+    children:
+      - type: node
+        id: secure-account-with-2fa
+        title: 启用双重认证并保存恢复方式
+        description: 配置至少一种可靠的第二因素，安全保存恢复代码，并验证主设备不可用时仍能恢复账户。
+        tags: [2FA, 账户安全]
+        status: planned
+        link: https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication
+      - type: node
+        id: configure-github-authentication
+        title: 为命令行配置受控认证
+        description: 根据环境选择 SSH、Git Credential Manager 或细粒度令牌，验证连接并为凭据设置最小权限与过期策略。
+        tags: [SSH, Token, 凭据]
+        status: planned
+        link: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github
+      - type: node
+        id: manage-profile-and-notifications
+        title: 配置身份展示与通知边界
+        description: 设置提交邮箱和公开资料，按参与、关注与安全事件调整通知，避免遗漏请求或被无关更新淹没。
+        tags: [Profile, Notifications]
+        status: planned
+        link: https://docs.github.com/en/subscriptions-and-notifications/get-started/configuring-notifications
+      - type: roadmap
+        roadmapId: git
+        title: 补齐本地版本控制与历史操作
+        description: 先掌握提交、分支、远程同步、历史整理和安全恢复，再进入 GitHub 平台协作。
+
+  - type: node
+    id: create-governed-repositories
+    title: 创建可理解且权限清晰的仓库
+    description: 从正确的可见性、所有权和默认设置开始，让协作者能快速判断项目用途、运行方式和参与边界。
+    tags: [Repository, 权限, 文档]
+    status: planned
+    link: https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories
+    children:
+      - type: node
+        id: choose-owner-and-visibility
+        title: 选择仓库所有者与可见性
+        description: 根据协作对象、数据敏感度和长期治理选择个人或组织所有权以及公开、私有或可用的内部可见性。
+        tags: [所有权, Visibility]
+        status: planned
+        link: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility
+      - type: node
+        id: document-project-entrypoints
+        title: 编写清晰的项目入口文档
+        description: 用 README 说明目标、安装、使用和验证方式，并添加匹配项目用途的许可证与必要支持说明。
+        tags: [README, License, 文档]
+        status: planned
+        link: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
+      - type: node
+        id: assign-least-privilege-access
+        title: 按职责授予最小仓库权限
+        description: 区分读取、分流、写入、维护和管理职责，通过组织团队集中授权，并定期移除不再需要的访问。
+        tags: [Roles, Teams, 最小权限]
+        status: planned
+        link: https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization
+      - type: node
+        id: configure-default-repository-settings
+        title: 统一默认分支与合并设置
+        description: 选择默认分支，启用团队实际采用的合并方式和自动删除分支策略，避免提供互相冲突的操作入口。
+        tags: [默认分支, Merge]
+        status: planned
+        link: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings
+
+  - type: node
+    id: plan-and-track-work
+    title: 用 Issues、Discussions 与 Projects 管理工作
+    description: 为任务、决策和社区交流选择合适载体，并保持需求、实现和完成状态之间可追踪。
+    tags: [Issues, Projects, Discussions]
+    status: planned
+    link: https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/planning-and-tracking-work-for-your-team-or-project
+    children:
+      - type: node
+        id: write-actionable-issues
+        title: 创建可执行且可验收的 Issue
+        description: 写明问题背景、范围、完成条件和复现证据，通过负责人、标签、里程碑与关联关系表达责任和上下文。
+        tags: [Issue, 验收标准]
+        status: planned
+        link: https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues
+      - type: node
+        id: standardize-intake-with-forms
+        title: 用模板与表单规范需求入口
+        description: 为缺陷、功能和安全报告收集真正影响分流的信息，同时保留不适用时的明确替代渠道。
+        tags: [Issue Forms, 模板]
+        status: planned
+        link: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository
+      - type: node
+        id: model-related-and-blocked-work
+        title: 拆分并关联有依赖的工作
+        description: 用子 Issue、依赖和跨引用表达组成与阻塞关系，避免只靠标签或评论隐藏关键顺序。
+        tags: [Sub-issues, Dependencies]
+        status: planned
+      - type: node
+        id: build-purposeful-project-views
+        title: 构建服务于决策的 Project 视图
+        description: 用少量状态和字段建立表格、看板或路线图视图，并通过过滤、分组和自动化减少重复维护。
+        tags: [Projects, 自动化]
+        status: planned
+        link: https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects
+      - type: node
+        id: separate-discussion-from-delivery
+        title: 区分讨论、支持与交付任务
+        description: 将开放式问答和提案放入 Discussions，将有负责人和验收条件的工作保留为 Issues，并在形成决定后相互链接。
+        tags: [Discussions, 决策记录]
+        status: planned
+        link: https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions
+
+  - type: node
+    id: propose-changes-with-pull-requests
+    title: 用 Pull Request 提交可评审的变更
+    description: 从已定义的问题出发，在分支或 Fork 中准备聚焦改动，并通过 PR 清楚说明价值、风险与验证证据。
+    tags: [Pull Request, Branch, Fork]
+    status: planned
+    link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
+    children:
+      - type: node
+        id: choose-shared-or-fork-model
+        title: 选择共享仓库或 Fork 协作模型
+        description: 根据贡献者信任边界和写权限选择任务分支或 Fork，并正确维护 upstream 与个人远程仓库关系。
+        tags: [Fork, Upstream]
+        status: planned
+        link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models
+      - type: node
+        id: open-reviewable-pull-request
+        title: 创建易于评审的 Pull Request
+        description: 选择正确的基分支与比较分支，链接 Issue，解释方案和非目标，并提供测试、截图或迁移等验证证据。
+        tags: [PR, Diff, 验证]
+        status: planned
+        link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+      - type: node
+        id: use-draft-and-review-states
+        title: 用 Draft 与评审状态表达成熟度
+        description: 在需要早期反馈时使用 Draft，满足自查条件后再请求合适评审者，并让状态与实际可合并程度一致。
+        tags: [Draft PR, Review]
+        status: planned
+        link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request
+      - type: node
+        id: respond-to-review-feedback
+        title: 逐项处理评审反馈
+        description: 澄清建议背后的要求，以新提交更新变更，标明已验证结果，并只在双方确认后解决对话线程。
+        tags: [Feedback, Conversation]
+        status: planned
+        link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/incorporating-feedback-in-your-pull-request
+      - type: node
+        id: keep-pull-request-current
+        title: 安全同步基分支并处理冲突
+        description: 在需要时更新 PR 分支，理解同步方式对历史和检查结果的影响，并在冲突解决后重新执行验证。
+        tags: [Sync, 冲突]
+        status: planned
+
+  - type: node
+    id: review-and-merge-changes
+    title: 评审并受控地合并变更
+    description: 从正确性、可维护性、安全和运行风险检查完整差异，以明确规则阻止未满足条件的修改进入关键分支。
+    tags: [Code Review, Rulesets, 合并]
+    status: planned
+    link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests
+    children:
+      - type: node
+        id: review-context-commits-and-diff
+        title: 从上下文到完整差异开展评审
+        description: 先理解目标和验收条件，再检查提交、文件差异、测试与运行影响，并在必要时本地检出验证。
+        tags: [Review, Diff, 测试]
+        status: planned
+        link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request
+      - type: node
+        id: give-actionable-review-feedback
+        title: 提供明确且可执行的评审意见
+        description: 区分阻塞问题、建议和提问，将反馈关联到具体代码与风险，并使用建议变更降低简单修正成本。
+        tags: [Review Comments, 协作]
+        status: planned
+      - type: node
+        id: route-reviews-with-codeowners
+        title: 用 CODEOWNERS 路由领域评审
+        description: 为关键目录和配置指定实际负责的个人或团队，验证匹配规则，并避免把自动请求误当作已完成评审。
+        tags: [CODEOWNERS, Ownership]
+        status: planned
+        link: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+      - type: node
+        id: enforce-merge-requirements
+        title: 用规则集强制合并要求
+        description: 对关键分支要求 PR、审批、状态检查和必要历史策略，限制绕过权限并记录紧急例外。
+        tags: [Rulesets, Status Checks]
+        status: planned
+        link: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets
+      - type: node
+        id: choose-and-verify-merge-method
+        title: 选择合并方式并验证结果
+        description: 根据保留提交、压缩或线性历史的团队约定选择 merge、squash 或 rebase，合并后确认 Issue、分支和部署状态正确。
+        tags: [Merge, Squash, Rebase]
+        status: planned
+        link: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges
+
+  - type: node
+    id: build-ci-with-actions
+    title: 用 GitHub Actions 构建可信持续集成
+    description: 为 Pull Request 和关键分支建立可复现的自动检查，保存诊断证据并控制自动化代码的权限与依赖。
+    tags: [GitHub Actions, CI, 自动化]
+    status: planned
+    link: https://docs.github.com/en/actions/get-started/continuous-integration
+    children:
+      - type: node
+        id: model-workflow-events-jobs-steps
+        title: 建模工作流触发、作业与步骤
+        description: 用 YAML 声明最小必要触发事件、作业依赖和执行步骤，理解上下文、表达式与默认行为的边界。
+        tags: [Workflow, YAML, Events]
+        status: planned
+        link: https://docs.github.com/en/actions/concepts/workflows-and-actions
+      - type: node
+        id: run-reproducible-quality-checks
+        title: 在干净 Runner 中复现质量检查
+        description: 明确检出版本和工具链，在与开发环境无隐式依赖的作业中运行格式、静态分析、测试与构建。
+        tags: [Runner, 测试, 构建]
+        status: planned
+      - type: node
+        id: test-supported-variants
+        title: 用矩阵覆盖受支持环境
+        description: 只为真正承诺支持的系统或运行时建立矩阵，设置合理失败策略并从结果识别平台特有问题。
+        tags: [Matrix, 兼容性]
+        status: planned
+        link: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations
+      - type: node
+        id: manage-artifacts-and-caches
+        title: 区分制品与依赖缓存
+        description: 用制品保存测试报告和构建输出，用缓存加速可再生依赖，并将恢复的缓存内容视为不可信输入。
+        tags: [Artifacts, Cache, 性能]
+        status: planned
+        link: https://docs.github.com/en/actions/concepts/workflows-and-actions/dependency-caching
+      - type: node
+        id: debug-workflow-failures
+        title: 从日志和运行上下文诊断失败
+        description: 检查触发事件、权限、表达式、Runner 环境和步骤日志，复现根因后再选择重跑失败作业或提交修复。
+        tags: [调试, Logs]
+        status: planned
+        link: https://docs.github.com/en/actions/how-tos/monitor-workflows
+      - type: node
+        id: harden-actions-workflows
+        title: 最小化工作流权限与供应链风险
+        description: 显式收紧 GITHUB_TOKEN 权限，隔离不可信 Fork，固定第三方 Action 到不可变提交，并避免将秘密传入低信任作业。
+        tags: [Workflow Security, 最小权限]
+        status: planned
+        link: https://docs.github.com/en/actions/how-tos/security-for-github-actions/security-guides/security-hardening-for-github-actions
+
+  - type: node
+    id: release-and-deploy-software
+    title: 自动化可追溯的发布与部署
+    description: 让已验证提交生成版本、制品和发布记录，并通过受保护环境将同一产物晋级到目标系统。
+    tags: [Release, Deployment, CD]
+    status: planned
+    link: https://docs.github.com/en/actions/get-started/continuous-deployment
+    children:
+      - type: node
+        id: publish-versioned-releases
+        title: 从受信任提交创建版本发布
+        description: 选择明确标签和目标提交，生成可审阅发布说明，附加必要制品，并验证下载内容与源提交一致。
+        tags: [Releases, Tags, Changelog]
+        status: planned
+        link: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+      - type: node
+        id: protect-deployment-environments
+        title: 用 Environments 保护部署目标
+        description: 为测试与生产定义独立环境、审批与分支限制，使高风险部署只能由满足条件的工作流执行。
+        tags: [Environments, 审批]
+        status: planned
+        link: https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments
+      - type: node
+        id: use-short-lived-cloud-credentials
+        title: 用 OIDC 获取短期云凭据
+        description: 让工作流按仓库、引用和环境声明身份，限制云端信任条件，避免为部署长期保存云访问密钥。
+        tags: [OIDC, 云安全]
+        status: planned
+        link: https://docs.github.com/en/actions/concepts/security/openid-connect
+      - type: node
+        id: verify-and-recover-deployments
+        title: 验证部署并保留恢复路径
+        description: 在部署后执行健康与冒烟检查，记录制品和环境证据，并为失败定义停止、回滚或前滚步骤。
+        tags: [部署验证, 回滚]
+        status: planned
+      - type: roadmap
+        roadmapId: devops
+        title: 深入持续交付与可靠性实践
+        description: 将 GitHub 自动化扩展为制品治理、基础设施即代码、可观测性和事件响应闭环。
+
+  - type: node
+    id: secure-code-and-supply-chain
+    title: 保护源码、依赖与自动化供应链
+    description: 按仓库类型和可用许可启用合适的安全能力，将发现纳入日常分流、修复和验证流程。
+    tags: [Code Security, Dependabot, Secrets]
+    status: planned
+    link: https://docs.github.com/en/code-security/getting-started/github-security-features
+    children:
+      - type: node
+        id: maintain-dependency-visibility
+        title: 建立依赖清单与更新流程
+        description: 维护准确清单和锁文件，启用可用的漏洞告警与自动更新，并让每次升级通过项目测试和评审。
+        tags: [Dependency Graph, Dependabot]
+        status: planned
+        link: https://docs.github.com/en/code-security/dependabot
+      - type: node
+        id: review-dependency-diffs
+        title: 在合并前审查依赖变化
+        description: 检查新增与升级组件的版本、许可证和已知风险，按项目能力将高风险依赖变化设为合并门禁。
+        tags: [Dependency Review, SCA]
+        status: planned
+        link: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review
+      - type: node
+        id: triage-code-scanning-alerts
+        title: 运行并分流代码扫描结果
+        description: 为支持的语言配置 CodeQL 或兼容工具，复现高置信度发现，修复根因并以回归验证关闭告警。
+        tags: [CodeQL, Code Scanning]
+        status: planned
+        link: https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning
+      - type: node
+        id: prevent-and-respond-to-secret-leaks
+        title: 阻止并响应秘密泄露
+        description: 启用可用的 secret scanning 与 push protection，确认泄露后立即撤销轮换凭据，再评估历史清理和影响范围。
+        tags: [Secret Scanning, Push Protection]
+        status: planned
+        link: https://docs.github.com/en/code-security/concepts/secret-security
+      - type: node
+        id: publish-security-policy
+        title: 提供私密且可响应的漏洞报告入口
+        description: 用 SECURITY.md 说明支持版本、报告渠道与响应预期，在公开讨论前保护尚未修复漏洞的细节。
+        tags: [SECURITY.md, Vulnerability Reporting]
+        status: planned
+        link: https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository
+      - type: roadmap
+        roadmapId: devsecops
+        title: 深入端到端 DevSecOps 治理
+        description: 将 GitHub 安全功能衔接到威胁建模、流水线加固、供应链保证和漏洞运营。
+
+  - type: node
+    id: maintain-healthy-collaboration
+    title: 维护可持续的团队与开源协作
+    description: 通过贡献规范、分流节奏、社区行为边界和维护交接，让仓库在贡献者增加后仍然可理解、可响应。
+    tags: [Open Source, Community, 维护]
+    status: planned
+    link: https://docs.github.com/en/communities
+    children:
+      - type: node
+        id: create-community-health-files
+        title: 建立完整的社区健康文件
+        description: 用 CONTRIBUTING、CODE_OF_CONDUCT、SUPPORT 和 SECURITY 文件说明贡献、行为、求助与安全报告路径。
+        tags: [Community Profile, Governance]
+        status: planned
+        link: https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions
+      - type: node
+        id: triage-contributions-consistently
+        title: 一致地分流 Issue 与 Pull Request
+        description: 按影响、可复现性、范围和维护承诺分类新请求，明确下一步、等待条件或关闭理由。
+        tags: [Triage, Labels]
+        status: planned
+        link: https://docs.github.com/en/communities/moderating-comments-and-conversations
+      - type: node
+        id: guide-first-time-contributors
+        title: 降低首次贡献的上下文成本
+        description: 标注边界明确的入门任务，提供本地验证和提交流程，并在反馈中解释项目约束而非只给结论。
+        tags: [Contributors, Onboarding]
+        status: planned
+      - type: node
+        id: moderate-community-interactions
+        title: 依据公开规则处理社区互动
+        description: 对破坏性行为使用锁定、限制、举报或屏蔽等匹配措施，保留必要记录并保护参与者安全。
+        tags: [Moderation, Code of Conduct]
+        status: planned
+        link: https://docs.github.com/en/communities/maintaining-your-safety-on-github
+      - type: node
+        id: share-maintenance-ownership
+        title: 分散关键维护职责
+        description: 用团队、CODEOWNERS、文档和轮值分享评审、发布与安全响应责任，验证离开单一维护者后流程仍可运行。
+        tags: [Bus Factor, Ownership]
+        status: planned
+
+  - type: node
+    id: capstone-governed-delivery
+    title: 交付一个受治理的 GitHub 项目
+    description: 为一个小型应用或库建立从需求、贡献、评审和自动检查到版本发布与安全维护的完整仓库。
+    tags: [综合实践, GitHub Actions, 治理]
+    status: planned
+    children:
+      - type: node
+        id: capstone-configure-repository
+        title: 配置仓库入口与协作规则
+        description: 完成 README、许可证、贡献与安全说明、Issue/PR 模板、权限和关键分支规则，并由另一位参与者验证入口清晰。
+        tags: [Repository, 验收]
+        status: planned
+      - type: node
+        id: capstone-deliver-linked-change
+        title: 从 Issue 交付一项可追踪变更
+        description: 由 Issue 定义验收条件，经分支或 Fork 创建 Draft PR，处理评审反馈并保留需求到合并提交的关联。
+        tags: [Issue, Pull Request, Traceability]
+        status: planned
+      - type: node
+        id: capstone-enforce-ci
+        title: 用自动检查保护合并入口
+        description: 在 PR 上运行格式、测试和构建，保存诊断制品，并证明失败检查或缺少审批时变更无法进入关键分支。
+        tags: [CI, Rulesets, 测试]
+        status: planned
+      - type: node
+        id: capstone-publish-release
+        title: 发布并验证一个可追溯版本
+        description: 从受保护分支创建标签与 Release，附带可验证制品，并从干净环境确认版本来源、安装和运行结果。
+        tags: [Release, Artifact, 验证]
+        status: planned
+      - type: node
+        id: capstone-run-security-drill
+        title: 演练安全告警与失败发布响应
+        description: 分别处理一次模拟依赖或秘密告警和一次失败部署，记录分流、修复、凭据轮换或恢复证据。
+        tags: [安全演练, Incident, Recovery]
+        status: planned
+
+  - type: node
+    id: optional-platform-extensions
+    title: 按开发与集成需求扩展 GitHub 平台能力
+    description: 在核心协作和交付流程稳定后，再选择命令行、API、云开发环境、静态站点、包托管或应用集成。
+    tags: [进阶, API, 平台]
+    status: optional
+    children:
+      - type: node
+        id: automate-with-github-cli
+        title: 用 GitHub CLI 自动化日常操作
+        description: 通过 gh 查询和创建 Issue、PR、Actions 运行与 Release，并在脚本中显式处理认证、输出格式和失败状态。
+        tags: [GitHub CLI, 自动化]
+        status: optional
+        link: https://docs.github.com/en/github-cli/github-cli/about-github-cli
+      - type: node
+        id: integrate-with-github-api
+        title: 使用 REST 或 GraphQL API 构建集成
+        description: 根据数据形态选择 API，使用最小权限认证，处理分页、速率限制、重试和幂等写入。
+        tags: [REST, GraphQL, API]
+        status: optional
+        link: https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api
+      - type: node
+        id: standardize-with-codespaces
+        title: 用 Codespaces 提供可复现开发环境
+        description: 将工具、扩展和启动步骤编码进 dev container，控制秘密与端口暴露，并评估预构建和计算成本。
+        tags: [Codespaces, Dev Container]
+        status: optional
+        link: https://docs.github.com/en/codespaces/overview
+      - type: node
+        id: publish-sites-with-pages
+        title: 用 GitHub Pages 发布静态站点
+        description: 选择分支或 Actions 发布源，配置自定义域名与 HTTPS，并确认构建产物不包含敏感数据。
+        tags: [GitHub Pages, 静态站点]
+        status: optional
+        link: https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages
+      - type: node
+        id: distribute-with-packages
+        title: 用 GitHub Packages 分发制品
+        description: 按生态配置包身份、版本和认证，限制发布权限，并验证消费者能从发布元数据追溯源码。
+        tags: [GitHub Packages, Registry]
+        status: optional
+        link: https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages
+      - type: node
+        id: build-github-apps
+        title: 用 GitHub Apps 提供受控自动化
+        description: 为跨仓库集成定义最小权限、Webhook 事件和安装范围，安全验证请求并处理令牌生命周期。
+        tags: [GitHub Apps, Webhooks]
+        status: optional
+        link: https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps
