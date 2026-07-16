@@ -1,0 +1,360 @@
+id: postgresql
+title: PostgreSQL
+description: 从关系建模、SQL 与事务基础到性能诊断、备份恢复和安全运维，独立交付一个使用 PostgreSQL 的小型生产级项目。
+tags: [PostgreSQL, SQL, 数据库, 后端]
+nodes:
+  - type: node
+    id: postgresql-foundations
+    title: 建立 PostgreSQL 基础并完成本地连接
+    description: 理解客户端与服务端的基本架构，在隔离环境中创建数据库、角色和表，并使用 psql 完成读写。
+    tags: [基础, psql]
+    status: planned
+    link: https://www.postgresql.org/docs/current/tutorial-start.html
+    children:
+      - type: roadmap
+        roadmapId: backend
+        title: 衔接后端数据库实践
+        description: 将 PostgreSQL 能力应用到 API、测试、配置与服务部署中。
+      - type: node
+        id: install-create-and-connect
+        title: 安装实例并创建第一个数据库
+        description: 启动受支持的本地 PostgreSQL 实例，创建非超级用户角色和数据库，并验证网络或 Unix socket 连接。
+        tags: [安装, 连接]
+        status: planned
+      - type: node
+        id: use-psql-productively
+        title: 使用 psql 检查和操作数据库
+        description: 使用元命令、脚本执行、事务控制与输出格式高效检查对象和执行 SQL，避免在生产环境误操作。
+        tags: [psql, CLI]
+        status: planned
+        link: https://www.postgresql.org/docs/current/app-psql.html
+
+  - type: node
+    id: query-and-modify-data
+    title: 使用 SQL 查询和修改关系数据
+    description: 用可读、可验证的 SQL 完成筛选、关联、聚合和数据变更，并正确处理 NULL 与重复行。
+    tags: [SQL, 查询]
+    status: planned
+    link: https://www.postgresql.org/docs/current/tutorial-sql.html
+    children:
+      - type: node
+        id: select-filter-and-sort
+        title: 编写筛选、排序与分页查询
+        description: 使用 SELECT、表达式、WHERE、ORDER BY 和 LIMIT 获取确定的结果集，并解释 NULL 的三值逻辑。
+        tags: [SELECT, "NULL"]
+        status: planned
+      - type: node
+        id: joins-and-aggregates
+        title: 用连接与聚合回答跨表问题
+        description: 根据关系选择内连接或外连接，使用 GROUP BY、聚合函数与 HAVING 生成可核对的统计结果。
+        tags: [JOIN, 聚合]
+        status: planned
+      - type: node
+        id: subqueries-cte-and-windows
+        title: 用子查询、CTE 与窗口函数组织复杂查询
+        description: 在不丢失明细行的前提下完成排名、累计和分组比较，并依据可读性与执行计划选择表达方式。
+        tags: [CTE, 窗口函数]
+        status: planned
+        link: https://www.postgresql.org/docs/current/tutorial-window.html
+      - type: node
+        id: safe-data-modification
+        title: 安全执行数据写入与批量变更
+        description: 使用 INSERT、UPDATE、DELETE、MERGE、RETURNING 和 COPY 完成数据变更，并在提交前核对影响范围。
+        tags: [DML, COPY]
+        status: planned
+
+  - type: node
+    id: relational-schema-design
+    title: 用模式与约束表达业务规则
+    description: 从业务不变量推导表、列、关系和约束，使数据库主动拒绝无效数据而非只依赖应用校验。
+    tags: [数据建模, DDL, 约束]
+    status: planned
+    link: https://www.postgresql.org/docs/current/ddl.html
+    children:
+      - type: node
+        id: choose-data-types
+        title: 为字段选择准确的数据类型
+        description: 根据精度、范围、时区和查询方式选择数值、文本、日期时间、枚举、数组或领域类型，避免滥用 text。
+        tags: [数据类型]
+        status: planned
+        link: https://www.postgresql.org/docs/current/datatype.html
+      - type: node
+        id: enforce-data-integrity
+        title: 使用键与约束维护完整性
+        description: 使用 NOT NULL、CHECK、UNIQUE、PRIMARY KEY、FOREIGN KEY 和必要的排除约束表达可持续验证的规则。
+        tags: [约束, 完整性]
+        status: planned
+        link: https://www.postgresql.org/docs/current/ddl-constraints.html
+      - type: node
+        id: normalize-and-denormalize
+        title: 权衡规范化与冗余数据
+        description: 先用规范化减少更新异常，再以经测量的查询需求决定是否引入可维护的冗余和派生数据。
+        tags: [范式, 建模]
+        status: planned
+      - type: node
+        id: schema-design-review
+        title: 完成一次模式设计评审
+        description: 从一组业务规则产出 ER 模型、DDL 和示例数据，并用约束失败用例证明关键不变量得到保护。
+        tags: [实践, 评审]
+        status: planned
+
+  - type: node
+    id: application-integration
+    title: 在应用中可靠地访问 PostgreSQL
+    description: 使用维护良好的驱动管理连接、参数和错误边界，让数据库访问可测试、可迁移且不会泄漏资源。
+    tags: [应用集成, 驱动]
+    status: planned
+    link: https://www.postgresql.org/docs/current/libpq.html
+    children:
+      - type: node
+        id: parameterized-queries
+        title: 使用参数化查询处理外部输入
+        description: 将 SQL 结构与输入值分离，正确处理类型、NULL 和返回值，防止 SQL 注入与转义错误。
+        tags: [参数化查询, 安全]
+        status: planned
+      - type: node
+        id: connections-pooling-and-timeouts
+        title: 管理连接池、超时与取消
+        description: 按实例连接预算配置池大小、获取超时和语句超时，并在请求取消后及时释放连接。
+        tags: [连接池, 超时]
+        status: planned
+      - type: node
+        id: versioned-schema-migrations
+        title: 用版本化迁移演进数据库模式
+        description: 编写可审查、可重复部署且考虑锁影响的迁移，并在类生产数据上演练前滚和恢复方案。
+        tags: [迁移, Schema]
+        status: planned
+
+  - type: node
+    id: transactions-and-concurrency
+    title: 使用事务维护并发一致性
+    description: 根据业务不变量划定事务边界，理解 MVCC、隔离级别与锁，并对可重试的并发失败做显式处理。
+    tags: [事务, MVCC, 并发]
+    status: planned
+    link: https://www.postgresql.org/docs/current/mvcc.html
+    children:
+      - type: node
+        id: transaction-boundaries
+        title: 为业务操作划定事务边界
+        description: 使用 BEGIN、COMMIT、ROLLBACK 与保存点将相关写入作为一个原子操作，并保持事务短小。
+        tags: [ACID, Savepoint]
+        status: planned
+      - type: node
+        id: isolation-and-anomalies
+        title: 依据并发异常选择隔离级别
+        description: 复现实读已提交、可重复读和可串行化下的可见性与异常，并为序列化失败实现有界重试。
+        tags: [隔离级别, 并发异常]
+        status: planned
+        link: https://www.postgresql.org/docs/current/transaction-iso.html
+      - type: node
+        id: locks-and-deadlocks
+        title: 识别锁等待并处理死锁
+        description: 区分表锁与行锁，使用一致的加锁顺序和短事务减少竞争，并从活动视图定位阻塞链。
+        tags: [锁, 死锁]
+        status: planned
+        link: https://www.postgresql.org/docs/current/explicit-locking.html
+
+  - type: node
+    id: indexes-and-query-performance
+    title: 用执行计划指导查询与索引优化
+    description: 从真实负载和 EXPLAIN 输出识别扫描、连接与估算问题，在读性能和写入成本之间做出可测量的取舍。
+    tags: [索引, EXPLAIN, 性能]
+    status: planned
+    link: https://www.postgresql.org/docs/current/performance-tips.html
+    children:
+      - type: node
+        id: read-explain-plans
+        title: 阅读并验证执行计划
+        description: 使用 EXPLAIN 与谨慎的 EXPLAIN ANALYZE 比较估算行数、实际行数、成本、缓冲区和耗时，定位主要瓶颈。
+        tags: [EXPLAIN ANALYZE, 执行计划]
+        status: planned
+        link: https://www.postgresql.org/docs/current/using-explain.html
+      - type: node
+        id: design-useful-indexes
+        title: 为查询模式设计有效索引
+        description: 根据过滤、连接与排序条件选择 B-tree 或其他访问方法，并评估多列、部分、表达式和覆盖索引。
+        tags: [B-tree, GIN, BRIN]
+        status: planned
+        link: https://www.postgresql.org/docs/current/indexes.html
+      - type: node
+        id: statistics-and-query-rewrites
+        title: 修正统计信息与查询结构问题
+        description: 在新增索引前检查统计信息、基数估算和 SQL 结构，以最小改动验证计划与延迟是否改善。
+        tags: [统计信息, 查询优化]
+        status: planned
+      - type: node
+        id: performance-regression-test
+        title: 建立查询性能回归基线
+        description: 用接近真实分布的数据记录关键查询的计划和延迟，在迁移或版本升级后自动比较退化。
+        tags: [基准测试, 回归]
+        status: planned
+
+  - type: node
+    id: storage-and-maintenance
+    title: 维护统计信息与表存储健康
+    description: 理解更新产生的行版本及 VACUUM、ANALYZE 和 autovacuum 的作用，避免膨胀和事务 ID 风险积累。
+    tags: [VACUUM, autovacuum, 维护]
+    status: planned
+    link: https://www.postgresql.org/docs/current/routine-vacuuming.html
+    children:
+      - type: node
+        id: vacuum-and-analyze
+        title: 验证 VACUUM 与 ANALYZE 的效果
+        description: 观察高更新表的死行、空间和计划估算变化，确认自动维护能够跟上实际写入负载。
+        tags: [VACUUM, ANALYZE]
+        status: planned
+      - type: node
+        id: capacity-and-configuration
+        title: 按资源预算配置实例
+        description: 依据内存、存储、连接数和工作负载调整少量关键参数，并通过负载测试验证而非复制通用配置。
+        tags: [配置, 容量规划]
+        status: planned
+        link: https://www.postgresql.org/docs/current/runtime-config-resource.html
+
+  - type: node
+    id: security-and-access-control
+    title: 以最小权限保护数据库访问
+    description: 将网络边界、客户端认证、角色权限、传输加密和凭据轮换组合成可审计的访问控制方案。
+    tags: [安全, 角色, TLS]
+    status: planned
+    link: https://www.postgresql.org/docs/current/client-authentication.html
+    children:
+      - type: node
+        id: roles-and-privileges
+        title: 为人员与应用划分角色权限
+        description: 使用登录角色、组角色、对象所有权、GRANT、默认权限和独立迁移身份落实最小权限。
+        tags: [RBAC, GRANT]
+        status: planned
+        link: https://www.postgresql.org/docs/current/user-manag.html
+      - type: node
+        id: pg-hba-and-tls
+        title: 配置主机认证与加密连接
+        description: 按规则顺序限制来源、数据库、用户和认证方法，启用并验证 TLS，拒绝不需要的网络暴露。
+        tags: [pg_hba.conf, TLS]
+        status: planned
+        link: https://www.postgresql.org/docs/current/ssl-tcp.html
+      - type: node
+        id: security-verification
+        title: 验证越权与凭据失效场景
+        description: 用自动化测试证明应用角色无法访问无关对象，并演练凭据轮换和离职账号撤销不会中断服务。
+        tags: [安全测试, 审计]
+        status: planned
+
+  - type: node
+    id: backup-and-recovery
+    title: 设计并演练备份恢复
+    description: 从恢复点和恢复时间目标反推备份方式、保留策略与恢复步骤，并以实际恢复结果而非备份成功日志验收。
+    tags: [备份, 恢复, PITR]
+    status: planned
+    link: https://www.postgresql.org/docs/current/backup.html
+    children:
+      - type: node
+        id: logical-backup-and-restore
+        title: 执行逻辑备份与选择性恢复
+        description: 使用 pg_dump、pg_dumpall 和 pg_restore 备份对象与全局定义，并恢复到独立实例核对权限和数据。
+        tags: [pg_dump, pg_restore]
+        status: planned
+        link: https://www.postgresql.org/docs/current/backup-dump.html
+      - type: node
+        id: physical-backup-and-pitr
+        title: 理解物理备份与时间点恢复
+        description: 在数据规模或恢复目标需要时，组合基础备份与 WAL 归档恢复到指定时间，并记录所需基础设施。
+        tags: [WAL, PITR]
+        status: planned
+        link: https://www.postgresql.org/docs/current/continuous-archiving.html
+      - type: node
+        id: recovery-drill
+        title: 完成一次有计时的恢复演练
+        description: 在全新环境恢复备份，执行完整性和应用连通性检查，并将实测 RPO、RTO 与缺陷写入运行手册。
+        tags: [灾难恢复, 演练]
+        status: planned
+
+  - type: node
+    id: observability-and-troubleshooting
+    title: 观测实例并排查运行故障
+    description: 结合活动会话、统计视图、锁、日志和磁盘指标回答实例正在做什么，并为主要风险建立告警。
+    tags: [监控, 故障排查]
+    status: planned
+    link: https://www.postgresql.org/docs/current/monitoring.html
+    children:
+      - type: node
+        id: activity-locks-and-slow-queries
+        title: 定位长事务、锁等待与慢查询
+        description: 使用 pg_stat_activity、锁视图、日志和查询统计识别阻塞源与高成本语句，并安全终止异常会话。
+        tags: [pg_stat_activity, 慢查询]
+        status: planned
+      - type: node
+        id: database-alerts
+        title: 为容量、可用性和数据安全建立告警
+        description: 监测连接、延迟、错误、磁盘、WAL、复制延迟、事务 ID 与备份新鲜度，并为告警附上处置步骤。
+        tags: [指标, 告警]
+        status: planned
+      - type: node
+        id: safe-upgrades
+        title: 演练补丁与大版本升级
+        description: 阅读发行说明，在副本或恢复环境验证扩展、客户端和查询计划兼容性，并准备回退或切换方案。
+        tags: [升级, 兼容性]
+        status: planned
+        link: https://www.postgresql.org/docs/current/upgrading.html
+
+  - type: node
+    id: capstone-postgresql-service
+    title: 交付一个可恢复的 PostgreSQL 应用
+    description: 为小型业务设计模式并接入后端服务，以测试、性能基线、最小权限、监控和恢复演练形成生产闭环。
+    tags: [综合实践, 生产就绪]
+    status: planned
+    children:
+      - type: node
+        id: capstone-data-and-api
+        title: 实现数据模型与事务接口
+        description: 提交带约束和索引的迁移、参数化数据访问层及至少一个需要并发一致性的业务事务。
+        tags: [Schema, API, 事务]
+        status: planned
+      - type: node
+        id: capstone-quality-gates
+        title: 通过正确性与性能验收
+        description: 用集成测试覆盖约束和并发失败，为关键查询保存执行计划与延迟基线，并验证连接耗尽时的降级行为。
+        tags: [集成测试, 性能验收]
+        status: planned
+      - type: node
+        id: capstone-operational-readiness
+        title: 完成上线与恢复检查
+        description: 使用受限应用角色部署，接入关键告警，从备份恢复到新实例并用应用冒烟测试确认可用。
+        tags: [上线检查, 恢复]
+        status: planned
+
+  - type: node
+    id: advanced-postgresql-directions
+    title: 按系统需求选择 PostgreSQL 进阶方向
+    description: 在单实例数据建模、查询和恢复能力稳定后，再依据容量、可用性与查询形态探索专门能力。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: replication-and-high-availability
+        title: 评估复制与高可用架构
+        description: 理解流复制、复制槽、故障切换和数据丢失窗口，仅在明确可用性目标后设计并演练拓扑。
+        tags: [流复制, 高可用]
+        status: optional
+        link: https://www.postgresql.org/docs/current/high-availability.html
+      - type: node
+        id: table-partitioning
+        title: 为超大表评估声明式分区
+        description: 当维护或查询确实受单表规模影响时，按访问模式设计分区键并验证裁剪、索引和分区生命周期。
+        tags: [分区, 大表]
+        status: optional
+        link: https://www.postgresql.org/docs/current/ddl-partitioning.html
+      - type: node
+        id: jsonb-and-full-text-search
+        title: 按查询需求使用 JSONB 与全文搜索
+        description: 为结构变化但仍需事务一致的数据评估 JSONB 和 GIN 索引，并在引入独立搜索系统前验证内置全文搜索。
+        tags: [JSONB, 全文搜索]
+        status: optional
+        link: https://www.postgresql.org/docs/current/datatype-json.html
+      - type: node
+        id: extensions-and-procedural-code
+        title: 谨慎引入扩展与数据库端代码
+        description: 评估扩展兼容性、升级和托管环境支持，只将靠近数据能显著改善一致性或性能的逻辑放入数据库。
+        tags: [Extensions, PL/pgSQL]
+        status: optional
+        link: https://www.postgresql.org/docs/current/external-extensions.html

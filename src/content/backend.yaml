@@ -85,6 +85,11 @@ nodes:
         description: 设计表结构、约束与关联，熟练编写查询。
         status: planned
         link: https://www.postgresql.org/docs/current/
+        children:
+          - type: roadmap
+            roadmapId: postgresql
+            title: 进入 PostgreSQL 路线图
+            description: 系统学习 PostgreSQL 的建模、事务、性能、安全与恢复实践。
       - type: node
         id: indexes-query
         title: 索引与查询优化
