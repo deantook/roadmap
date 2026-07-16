@@ -28,6 +28,7 @@ export interface Roadmap {
   description?: string
   tags: string[]
   nodes: RoadmapChild[]
+  category: string
   source: string
 }
 

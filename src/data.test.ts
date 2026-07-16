@@ -46,6 +46,13 @@ describe('parseRoadmaps', () => {
     expect(roadmap.nodes[0]).toMatchObject({ tags: ['样式'] })
   })
 
+  it('derives a roadmap category from its content directory', () => {
+    const result = parseRoadmaps({ './content/languages/main.yaml': valid, './content/languages/child.yaml': child })
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    expect(result.catalog.roadmaps.get('main')?.category).toBe('languages')
+  })
+
   it('reports malformed YAML with its filename', () => {
     const result = parseRoadmaps({ 'broken.yaml': 'id: [unterminated' })
     expect(result.ok).toBe(false)

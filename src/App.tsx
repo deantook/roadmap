@@ -13,6 +13,25 @@ const statusLabels: Record<NodeStatus, string> = {
 
 const progressStorageKey = 'roadmap-node-statuses:v1'
 
+const categoryLabels: Record<string, string> = {
+  ai: 'AI 与智能体',
+  backend: '后端开发',
+  career: '职业发展',
+  'computer-science': '计算机基础',
+  data: '数据',
+  devops: 'DevOps',
+  frontend: '前端开发',
+  languages: '编程语言',
+  mobile: '移动端开发',
+  security: '安全',
+  tools: '开发工具',
+  other: '其他',
+}
+
+function categoryLabel(category: string) {
+  return categoryLabels[category] ?? category
+}
+
 function readProgress() {
   try {
     const value: unknown = JSON.parse(localStorage.getItem(progressStorageKey) ?? '{}')
@@ -127,14 +146,27 @@ function countNodes(children: RoadmapChild[]): number {
 
 function Home({ catalog }: { catalog: RoadmapCatalog }) {
   const [query, setQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState('全部')
   const [activeTag, setActiveTag] = useState('全部')
   const tags = useMemo(() => [...new Set(catalog.roots.flatMap((roadmap) => roadmap.tags))].sort((a, b) => a.localeCompare(b, 'zh-CN')), [catalog])
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>()
+    for (const roadmap of catalog.roots) counts.set(roadmap.category, (counts.get(roadmap.category) ?? 0) + 1)
+    return [...counts].map(([id, count]) => ({ id, count, label: categoryLabel(id) })).sort((a, b) => a.label.localeCompare(b.label, 'zh-CN'))
+  }, [catalog])
   const normalizedQuery = query.trim().toLocaleLowerCase('zh-CN')
   const visibleRoadmaps = catalog.roots.filter((roadmap) => {
+    const matchesCategory = activeCategory === '全部' || roadmap.category === activeCategory
     const matchesTag = activeTag === '全部' || roadmap.tags.includes(activeTag)
-    const searchable = `${roadmap.title} ${roadmap.description ?? ''} ${roadmap.tags.join(' ')}`.toLocaleLowerCase('zh-CN')
-    return matchesTag && (!normalizedQuery || searchable.includes(normalizedQuery))
+    const searchable = `${roadmap.title} ${roadmap.description ?? ''} ${categoryLabel(roadmap.category)} ${roadmap.tags.join(' ')}`.toLocaleLowerCase('zh-CN')
+    return matchesCategory && matchesTag && (!normalizedQuery || searchable.includes(normalizedQuery))
   })
+
+  const clearFilters = () => {
+    setQuery('')
+    setActiveCategory('全部')
+    setActiveTag('全部')
+  }
 
   return (
     <div className="home page-enter">
@@ -162,8 +194,8 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
             <div className="sidebar-inner">
               <div className="sidebar-heading">
                 <span>筛选路线</span>
-                {(query || activeTag !== '全部') && (
-                  <button type="button" onClick={() => { setQuery(''); setActiveTag('全部') }}>重置</button>
+                {(query || activeCategory !== '全部' || activeTag !== '全部') && (
+                  <button type="button" onClick={clearFilters}>重置</button>
                 )}
               </div>
               <label className="home-search">
@@ -181,11 +213,25 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
             </div>
           </aside>
           <div className="roadmap-results">
+            <div className="category-bar">
+              <div className="category-bar-heading">内容分类</div>
+              <div className="category-filters" aria-label="按分类筛选">
+                <button type="button" className={activeCategory === '全部' ? 'active' : ''} onClick={() => setActiveCategory('全部')} aria-pressed={activeCategory === '全部'}>
+                  <span>全部分类</span><small>{catalog.roots.length}</small>
+                </button>
+                {categories.map((category) => (
+                  <button key={category.id} type="button" className={activeCategory === category.id ? 'active' : ''} onClick={() => setActiveCategory(category.id)} aria-pressed={activeCategory === category.id}>
+                    <span>{category.label}</span><small>{category.count}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
             {visibleRoadmaps.length > 0 ? (
               <div className="roadmap-grid">
                 {visibleRoadmaps.map((roadmap) => (
                   <Link className="roadmap-card" to={`/roadmaps/${roadmap.id}`} key={roadmap.id}>
                     <div className="card-meta">
+                      <span>{categoryLabel(roadmap.category)}</span>
                       <span>{String(countNodes(roadmap.nodes)).padStart(2, '0')} 节点</span>
                     </div>
                     <div>
@@ -200,8 +246,8 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
               <div className="filter-empty">
                 <span aria-hidden="true">⌕</span>
                 <h3>没有匹配的路线</h3>
-                <p>试试其他关键词，或清除当前标签筛选。</p>
-                <button type="button" onClick={() => { setQuery(''); setActiveTag('全部') }}>清除筛选</button>
+                <p>试试其他关键词，或清除当前分类与标签筛选。</p>
+                <button type="button" onClick={clearFilters}>清除筛选</button>
               </div>
             )}
           </div>

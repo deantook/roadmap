@@ -33,6 +33,18 @@ describe('App', () => {
     expect(screen.queryByRole('heading', { level: 3, name: '后端开发' })).not.toBeInTheDocument()
   })
 
+  it('filters roadmaps by their content directory category', () => {
+    render(<MemoryRouter><App /></MemoryRouter>)
+
+    fireEvent.click(screen.getByRole('button', { name: /编程语言/ }))
+    expect(screen.getByRole('heading', { level: 3, name: 'Python' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 3, name: 'Java' })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { level: 3, name: '后端开发' })).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: '重置' }))
+    expect(screen.getByRole('heading', { level: 3, name: '后端开发' })).toBeInTheDocument()
+  })
+
   it('renders a vertical roadmap and nested routes', () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
     expect(screen.getByRole('heading', { level: 1, name: 'Web 开发' })).toBeInTheDocument()

@@ -39,6 +39,13 @@ function printablePath(path: PropertyKey[]) {
   return path.length ? path.map(String).join('.') : '根节点'
 }
 
+function categoryFromSource(source: string) {
+  const parts = source.replaceAll('\\', '/').split('/').filter(Boolean)
+  if (parts.length < 2) return 'other'
+  const contentIndex = parts.lastIndexOf('content')
+  return contentIndex >= 0 && contentIndex < parts.length - 2 ? parts[contentIndex + 1]! : parts[parts.length - 2]!
+}
+
 function collectReferences(children: RoadmapChild[], result = new Set<string>()) {
   for (const child of children) {
     if (child.type === 'roadmap') result.add(child.roadmapId)
@@ -85,7 +92,7 @@ export function parseRoadmaps(files: Record<string, string>): CatalogResult {
         errors.push(`${source}: 路线图 ID “${parsed.data.id}” 与 ${roadmaps.get(parsed.data.id)?.source} 重复`)
         continue
       }
-      roadmaps.set(parsed.data.id, { ...parsed.data, source })
+      roadmaps.set(parsed.data.id, { ...parsed.data, category: categoryFromSource(source), source })
     } catch (error) {
       errors.push(`${source}: ${error instanceof Error ? error.message : '无法解析 YAML'}`)
     }
