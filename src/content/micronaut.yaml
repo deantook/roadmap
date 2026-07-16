@@ -1,0 +1,360 @@
+id: micronaut
+title: Micronaut
+description: 面向具备 Java 与 HTTP 基础的学习者，从编译期依赖注入和 HTTP 服务出发，构建、测试、保护并交付生产就绪的 Micronaut 后端应用。
+tags: [后端, Java, Micronaut, 云原生, API]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 补齐 Java、HTTP 与构建基础
+    description: 能使用现代 Java 编写和测试代码，理解 HTTP 请求响应，并选择 Maven 或 Gradle 管理注解处理、依赖与构建。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 补齐 Java 语言与 JVM 基础
+        description: 掌握类型系统、异常、集合、并发与测试，避免在框架阶段回补语言知识。
+      - type: roadmap
+        roadmapId: maven
+        title: 选择 Maven 构建路线
+        description: 理解 POM、依赖、生命周期与 Wrapper，能够运行和打包 Micronaut 项目。
+      - type: roadmap
+        roadmapId: gradle
+        title: 选择 Gradle 构建路线
+        description: 理解构建脚本、依赖、任务与 Wrapper，能够运行和打包 Micronaut 项目。
+
+  - type: node
+    id: first-application
+    title: 建立 Micronaut 开发闭环
+    description: 创建首个 HTTP 应用，理解项目功能选择和注解处理，再完成本地运行、测试与 JVM 打包。
+    tags: [入门, 开发工具]
+    status: planned
+    link: https://guides.micronaut.io/latest/creating-your-first-micronaut-app-maven-java.html
+    children:
+      - type: node
+        id: scaffold-project
+        title: 使用 Launch 或 CLI 创建项目
+        description: 选择 application 类型、Java、JUnit 和构建工具，按业务需要添加功能而非一次引入全部模块。
+        status: planned
+      - type: node
+        id: project-layout
+        title: 读懂项目结构与构建配置
+        description: 识别应用入口、控制器、配置、测试、BOM 与注解处理器的职责，并确认 IDE 与命令行构建一致。
+        status: planned
+      - type: node
+        id: compile-time-model
+        title: 理解编译期元数据模型
+        description: 解释 Micronaut 如何在编译期生成 Bean、AOP 和序列化元数据，以及反射受限时对代码设计的影响。
+        status: planned
+        link: https://docs.micronaut.io/latest/guide/
+      - type: node
+        id: run-test-package
+        title: 运行、测试并打包 JVM 应用
+        description: 使用 Wrapper 启动内嵌服务器、执行测试、生成可运行 JAR，并在独立进程中完成冒烟验证。
+        status: planned
+
+  - type: node
+    id: dependency-injection-config
+    title: 使用依赖注入与配置组织应用
+    description: 用 ApplicationContext 管理 Bean 生命周期，通过限定符、条件装配和类型安全配置建立明确的组件边界。
+    tags: [依赖注入, 配置, AOP]
+    status: planned
+    link: https://docs.micronaut.io/latest/guide/
+    children:
+      - type: node
+        id: constructor-injection
+        title: 使用构造器注入协作对象
+        description: 以 Singleton 等作用域声明 Bean，优先构造器注入，并通过接口隔离应用逻辑与基础设施。
+        status: planned
+      - type: node
+        id: qualifiers-factories
+        title: 用限定符和 Factory 明确装配
+        description: 在多个实现或第三方对象需要托管时，使用 Named、Primary、Factory 与 Bean 方法消除依赖歧义。
+        status: planned
+      - type: node
+        id: conditional-beans
+        title: 按条件启用和替换 Bean
+        description: 使用 Requires 表达类路径、环境或配置条件，并用 Replaces 在测试或集成边界替换实现。
+        status: planned
+      - type: node
+        id: typed-configuration
+        title: 绑定并校验类型安全配置
+        description: 使用 ConfigurationProperties 或 ConfigurationReader 映射结构化参数，在启动时暴露缺失或非法值。
+        status: planned
+      - type: node
+        id: environments-secrets
+        title: 区分环境配置与敏感信息
+        description: 理解配置源优先级和 Environment，将凭据交给环境变量或密钥系统，并验证生产覆盖规则。
+        status: planned
+
+  - type: node
+    id: http-api
+    title: 构建可靠的 HTTP API
+    description: 使用 Controller、Micronaut Serialization 与 Validation 实现资源接口、稳定错误模型和可验证的 OpenAPI 契约。
+    tags: [HTTP, REST, OpenAPI]
+    status: planned
+    link: https://docs.micronaut.io/latest/guide/
+    children:
+      - type: node
+        id: controllers-dtos
+        title: 用控制器与 DTO 表达 HTTP 契约
+        description: 设计路径、方法、状态码和媒体类型，使用 Serdeable DTO 隔离传输模型与持久化模型。
+        status: planned
+        link: https://micronaut-projects.github.io/micronaut-serialization/latest/guide/
+      - type: node
+        id: binding-validation
+        title: 绑定并校验请求输入
+        description: 正确绑定路径、查询、标头与请求体，使用 Jakarta Validation 拒绝非法数据并返回可读反馈。
+        status: planned
+        link: https://guides.micronaut.io/latest/micronaut-error-handling-maven-java.html
+      - type: node
+        id: exception-handling
+        title: 统一异常与错误响应
+        description: 使用 Error 或 ExceptionHandler 将业务失败映射为一致、可机读且不泄露内部细节的 HTTP 响应。
+        status: planned
+      - type: node
+        id: openapi-contract
+        title: 生成并核对 OpenAPI 契约
+        description: 在编译期生成 OpenAPI 文档，通过 Swagger UI 和自动化测试确认契约与实际端点一致。
+        status: planned
+        link: https://guides.micronaut.io/latest/micronaut-openapi-swagger-ui-maven-java.html
+      - type: node
+        id: filters-cross-cutting
+        title: 用 HTTP Filter 实现横切能力
+        description: 在过滤器中处理关联 ID、审计或协议级策略，保持业务控制器不依赖传输层样板逻辑。
+        status: planned
+
+  - type: node
+    id: http-client-integration
+    title: 安全集成下游服务
+    description: 使用声明式或低层 HTTP Client 调用外部 API，明确超时、错误映射、重试边界与连接资源管理。
+    tags: [HTTP Client, 集成]
+    status: planned
+    link: https://guides.micronaut.io/latest/micronaut-http-client-maven-java.html
+    children:
+      - type: node
+        id: declarative-client
+        title: 声明类型安全的 HTTP Client
+        description: 使用 Client 和 HTTP 映射注解定义下游契约，配置基础地址并复用序列化模型。
+        status: planned
+      - type: node
+        id: failures-timeouts
+        title: 处理超时与非成功响应
+        description: 为连接和读取设置界限，将下游状态映射为领域结果，并避免无条件重试非幂等请求。
+        status: planned
+      - type: node
+        id: client-observability
+        title: 观测跨服务调用
+        description: 传播关联信息与身份上下文，记录延迟和错误类别，同时避免在日志中输出令牌或敏感请求体。
+        status: planned
+
+  - type: node
+    id: persistence
+    title: 用 Micronaut Data 维护持久化状态
+    description: 以 PostgreSQL 和 Micronaut Data JDBC 为主线，完成实体映射、编译期 Repository 查询、事务与 Schema 迁移。
+    tags: [数据库, Micronaut Data, PostgreSQL]
+    status: planned
+    link: https://micronaut-projects.github.io/micronaut-data/latest/guide/
+    children:
+      - type: node
+        id: datasource-test-resources
+        title: 建立可重复的数据环境
+        description: 为生产显式配置连接池与凭据，并让 Test Resources 在本地和测试阶段提供临时 PostgreSQL 实例。
+        status: planned
+        link: https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/
+      - type: node
+        id: entities-repositories
+        title: 建模实体并声明 Repository
+        description: 映射主键、字段和关联关系，选择合适的 CRUD Repository，并理解编译期查询生成的约束。
+        status: planned
+      - type: node
+        id: queries-pagination
+        title: 编写可控的查询与分页
+        description: 使用方法名、显式查询或 Criteria 表达筛选与排序，检查生成 SQL 并避免 N+1 和无界结果集。
+        status: planned
+      - type: node
+        id: transaction-boundaries
+        title: 使用事务维护业务不变量
+        description: 在应用用例边界声明事务和回滚规则，并避免在数据库事务中执行无界远程调用。
+        status: planned
+      - type: node
+        id: schema-migrations
+        title: 用 Flyway 演进 Schema
+        description: 版本化数据库变更，在集成测试和发布流程中验证迁移顺序、兼容窗口与失败恢复。
+        status: planned
+        link: https://micronaut-projects.github.io/micronaut-flyway/latest/guide/
+
+  - type: node
+    id: security
+    title: 保护服务与数据边界
+    description: 使用 Micronaut Security 验证 Bearer Token，通过安全规则实施最小权限，并测试匿名、认证与越权场景。
+    tags: [安全, JWT, OIDC]
+    status: planned
+    link: https://micronaut-projects.github.io/micronaut-security/latest/guide/
+    children:
+      - type: node
+        id: security-filter-rules
+        title: 理解安全过滤器与规则顺序
+        description: 明确默认保护策略、匿名端点与规则匹配方式，避免因路径或规则优先级意外公开资源。
+        status: planned
+      - type: node
+        id: jwt-authentication
+        title: 验证 JWT Bearer Token
+        description: 配置签名、发行者、受众与过期校验，从认证对象读取主体和声明而不信任客户端输入。
+        status: planned
+        link: https://guides.micronaut.io/latest/micronaut-security-jwt-maven-java.html
+      - type: node
+        id: role-authorization
+        title: 实施角色与表达式授权
+        description: 使用 Secured、Jakarta 安全注解或拦截 URL 规则限制敏感操作，并对最小权限编写测试。
+        status: planned
+      - type: node
+        id: oidc-integration
+        title: 接入外部 OIDC 身份提供方
+        description: 使用 OIDC Discovery 配置授权服务器，区分服务 Bearer Token 验证与浏览器授权码流程。
+        status: planned
+      - type: node
+        id: transport-security
+        title: 收紧浏览器与传输边界
+        description: 按调用方配置 CORS、TLS、CSRF 与安全响应头，将客户端密钥和签名材料移出源码。
+        status: planned
+
+  - type: node
+    id: testing-debugging
+    title: 建立分层测试与调试策略
+    description: 组合快速单元测试、MicronautTest 集成测试和真实依赖验证，覆盖正常路径、失败路径与生产配置。
+    tags: [测试, 调试]
+    status: planned
+    link: https://micronaut-projects.github.io/micronaut-test/latest/guide/
+    children:
+      - type: node
+        id: unit-tests
+        title: 隔离验证领域逻辑
+        description: 对无框架依赖的业务规则运行快速单元测试，并只在需要容器行为时启动 ApplicationContext。
+        status: planned
+      - type: node
+        id: context-tests
+        title: 验证 Bean 装配与条件
+        description: 使用 MicronautTest 启动真实上下文，通过测试属性和 MockBean 验证配置、替换与 AOP 行为。
+        status: planned
+      - type: node
+        id: embedded-http-tests
+        title: 测试运行中的 HTTP 接口
+        description: 启动 EmbeddedServer 并注入 HTTP Client，验证路由、序列化、校验、错误响应和授权规则。
+        status: planned
+      - type: node
+        id: real-dependency-tests
+        title: 用 Test Resources 验证集成边界
+        description: 使用临时 PostgreSQL 或身份服务运行关键路径，避免仅靠 Mock 掩盖 SQL、迁移和协议差异。
+        status: planned
+        link: https://guides.micronaut.io/latest/replace-h2-with-real-database-for-testing-maven-java.html
+      - type: node
+        id: startup-di-debugging
+        title: 定位启动与依赖注入故障
+        description: 从编译错误、Bean 候选、条件装配、环境配置和服务器日志逐层缩小故障范围。
+        status: planned
+
+  - type: node
+    id: capstone-service
+    title: 交付一个完整的业务服务
+    description: 构建含 REST 契约、PostgreSQL 持久化、Flyway、OIDC 授权和自动化测试的可运行服务，并提供本地启动与验收说明。
+    tags: [综合实践]
+    status: planned
+    children:
+      - type: node
+        id: design-contract
+        title: 设计领域边界与验收契约
+        description: 从业务不变量推导资源、DTO、错误模型、数据库约束和角色权限，并记录关键取舍。
+        status: planned
+      - type: node
+        id: implement-vertical-slices
+        title: 按纵向切片完成核心用例
+        description: 逐个交付从控制器到数据库的可测试用例，保持传输、应用逻辑和持久化职责清晰。
+        status: planned
+      - type: node
+        id: verify-failure-paths
+        title: 验证失败与恢复路径
+        description: 覆盖非法输入、重复请求、无权限、下游超时、数据库不可用和迁移失败，并确认结果可诊断。
+        status: planned
+
+  - type: node
+    id: production-readiness
+    title: 让服务可观测且可部署
+    description: 配置健康端点、指标与追踪，构建容器镜像并在目标环境验证配置、资源限制和优雅终止。
+    tags: [可观测性, 部署, 容器]
+    status: planned
+    link: https://guides.micronaut.io/latest/micronaut-health-endpoint-maven-java.html
+    children:
+      - type: node
+        id: health-management
+        title: 暴露健康与管理端点
+        description: 启用 Management，区分存活与就绪条件，限制敏感端点访问并验证依赖故障时的状态。
+        status: planned
+      - type: node
+        id: logs-metrics
+        title: 关联日志与 Micrometer 指标
+        description: 输出结构化日志和请求关联信息，采集 HTTP、JVM、连接池及业务指标并验证关键告警信号。
+        status: planned
+        link: https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/
+      - type: node
+        id: distributed-tracing
+        title: 用 OpenTelemetry 追踪跨服务调用
+        description: 配置传播器和 OTLP 导出，为 HTTP 与数据库链路验证 Span 关联、错误标记和采样策略。
+        status: planned
+        link: https://micronaut-projects.github.io/micronaut-tracing/latest/guide/
+      - type: node
+        id: container-delivery
+        title: 构建并验证容器交付物
+        description: 生成 JVM 容器镜像，以非 root 用户运行，设置运行时配置与资源限制并执行镜像级冒烟测试。
+        status: planned
+        link: https://guides.micronaut.io/latest/micronaut-docker-image-maven-java.html
+      - type: node
+        id: runtime-behavior
+        title: 基于测量调整运行参数
+        description: 在目标资源限制下检查启动、内存、线程、事件循环、连接池、超时与优雅终止，再依据数据调优。
+        status: planned
+      - type: roadmap
+        roadmapId: docker
+        title: 深入容器镜像与运行实践
+        description: 补充镜像分层、安全运行、网络和可重复构建能力。
+
+  - type: node
+    id: advanced-paths
+    title: 按场景选择深化方向
+    description: 只有在业务约束和测量结果支持时，再引入 Native Image、额外 AOT、响应式链路、消息系统或集群编排。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: graalvm-native
+        title: 构建并验证 GraalVM Native Image
+        description: 生成原生可执行文件，复用 HTTP 与集成测试，并量化启动、内存、构建时间和第三方库兼容性取舍。
+        status: optional
+        link: https://guides.micronaut.io/latest/tag-graalvm.html
+      - type: node
+        id: micronaut-aot
+        title: 评估 Micronaut AOT 优化
+        description: 为明确部署环境启用构建期优化，检查诊断报告，并比较优化前后的启动、体积和配置灵活性。
+        status: optional
+        link: https://micronaut-projects.github.io/micronaut-aot/latest/guide/
+      - type: node
+        id: reactive-io
+        title: 掌握响应式 I/O 边界
+        description: 理解 Netty 事件循环、Reactor、背压与阻塞卸载，只在并发需求明确时选择端到端非阻塞链路。
+        status: optional
+      - type: node
+        id: messaging
+        title: 构建消息驱动流程
+        description: 按需集成 Kafka 或 RabbitMQ，设计确认、重试、死信、幂等消费与可观测的故障恢复。
+        status: optional
+        link: https://micronaut-projects.github.io/micronaut-kafka/latest/guide/
+      - type: node
+        id: serverless-functions
+        title: 适配 Serverless 与函数运行时
+        description: 在冷启动、事件模型和供应商约束适合时，将应用边界调整为函数并验证本地与云端行为一致。
+        status: optional
+        link: https://guides.micronaut.io/latest/
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 交付路线
+        description: 当服务需要集群编排时，继续学习工作负载、配置、探针、资源限制和发布策略。

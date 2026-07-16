@@ -1,0 +1,452 @@
+id: aspnet-core
+title: ASP.NET Core
+description: 面向具备 C#、.NET 与 HTTP 基础的学习者，从托管模型、依赖注入和请求管道出发，构建、测试、保护并交付生产就绪的 ASP.NET Core Web API。
+tags: [后端, C#, .NET, ASP.NET Core, API]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 补齐 C#、.NET 与 Web 基础
+    description: 能使用现代 C#、异步编程和 .NET CLI 编写测试，理解 HTTP、JSON、进程、端口与关系数据库的基本语义。
+    tags: [前置, C#, HTTP]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/csharp/
+    children:
+      - type: node
+        id: csharp-language
+        title: 使用现代 C# 表达业务逻辑
+        description: 熟练使用类型、记录、模式匹配、泛型、集合、LINQ、异常和 nullable reference types 编写清晰代码。
+        status: planned
+      - type: node
+        id: async-cancellation
+        title: 正确传播异步与取消
+        description: 使用 async、await、Task 和 CancellationToken 完成非阻塞 I/O，并避免同步阻塞与遗失异常。
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
+      - type: node
+        id: dotnet-cli-projects
+        title: 管理 SDK、项目与 NuGet 依赖
+        description: 使用 dotnet CLI 创建、还原、构建、测试和发布项目，理解目标框架、项目引用、包版本与锁定策略。
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/tools/
+      - type: roadmap
+        roadmapId: backend
+        title: 补齐通用后端工程基础
+        description: 复习 Internet、HTTP、API、数据库、安全、测试与生产交付的通用能力。
+
+  - type: node
+    id: first-application
+    title: 建立 ASP.NET Core 开发闭环
+    description: 创建可运行的 Web API，理解 Program.cs、WebApplication、Kestrel 与环境，并完成开发、测试和配置闭环。
+    tags: [入门, 托管]
+    status: planned
+    link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-10.0
+    children:
+      - type: node
+        id: choose-supported-sdk
+        title: 选择受支持的 .NET SDK
+        description: 根据支持策略选择当前 LTS 或受支持版本，用 global.json 固定团队 SDK，并确认开发与部署环境一致。
+        status: planned
+        link: https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core
+      - type: node
+        id: create-web-api
+        title: 创建并检查首个 Web API
+        description: 从官方模板创建项目，运行 HTTPS 开发端点，并用 curl 或 HTTP 文件检查状态、标头和 JSON 响应。
+        status: planned
+      - type: node
+        id: hosting-model
+        title: 理解现代托管模型
+        description: 说明 WebApplicationBuilder 如何组装配置、日志、依赖注入与 Kestrel，以及 WebApplication 如何定义请求管道。
+        status: planned
+      - type: node
+        id: environments
+        title: 隔离开发与生产行为
+        description: 使用 Development、Staging 和 Production 环境控制诊断、配置与中间件，避免把开发异常信息暴露到生产。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-10.0
+      - type: node
+        id: configuration-options
+        title: 用 Options 模式管理配置
+        description: 组合 JSON、环境变量和命令行配置，绑定并验证强类型 Options，将机密移出源码和普通配置文件。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-10.0
+
+  - type: node
+    id: request-pipeline
+    title: 掌握请求管道与依赖注入
+    description: 按正确顺序组装中间件与端点，理解 HttpContext 生命周期，并通过内置容器管理服务边界与资源生命周期。
+    tags: [Middleware, DI, HttpContext]
+    status: planned
+    link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0
+    children:
+      - type: node
+        id: middleware-flow
+        title: 解释中间件的双向执行流
+        description: 区分 Use、Run 与 Map，理解短路和响应回程，并能根据安全与功能依赖安排组件顺序。
+        status: planned
+      - type: node
+        id: custom-middleware
+        title: 编写职责单一的自定义中间件
+        description: 实现请求关联、计时或异常映射等横切关注点，并避免在中间件中累积业务逻辑。
+        status: planned
+      - type: node
+        id: service-lifetimes
+        title: 正确选择服务生命周期
+        description: 区分 Singleton、Scoped 和 Transient，识别 captive dependency、线程安全与作用域资源泄漏风险。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-10.0
+      - type: node
+        id: constructor-injection
+        title: 用构造函数注入显式表达依赖
+        description: 在消费方定义小型接口并使用构造函数注入，避免 Service Locator 和静态全局状态。
+        status: planned
+      - type: node
+        id: http-context-boundaries
+        title: 尊重 HttpContext 的请求边界
+        description: 不跨线程并发访问或长期保存 HttpContext，向下游传递必要值与 RequestAborted 取消信号。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/use-http-context?view=aspnetcore-10.0
+
+  - type: node
+    id: http-apis
+    title: 设计清晰且可演进的 HTTP API
+    description: 使用路由、模型绑定、验证与标准响应表达资源语义，并能在 Minimal APIs 和 Controllers 之间做有依据的选择。
+    tags: [Minimal API, Controller, REST]
+    status: planned
+    link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/apis?view=aspnetcore-10.0
+    children:
+      - type: node
+        id: minimal-api-handlers
+        title: 用 Minimal APIs 构建垂直切片
+        description: 使用 MapGet、MapPost、Route Group、参数绑定和 TypedResults 实现内聚端点，并保持处理器可测试。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0
+      - type: node
+        id: controller-apis
+        title: 用 Controllers 组织复杂 API
+        description: 使用 ControllerBase、属性路由、ActionResult 和过滤器处理需要成熟 MVC 扩展点的接口。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-10.0
+      - type: node
+        id: routing-semantics
+        title: 建立稳定的路由与 HTTP 语义
+        description: 设计资源路径、方法、状态码、Location、条件请求和幂等行为，并识别模糊或冲突路由。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-10.0
+      - type: node
+        id: binding-validation
+        title: 约束输入绑定与验证
+        description: 用专用请求 DTO、验证规则和大小限制处理 route、query、header 与 body 输入，并返回可操作的 400 响应。
+        status: planned
+      - type: node
+        id: response-contracts
+        title: 隔离持久化模型与响应契约
+        description: 使用响应 DTO 和明确映射控制字段、空值、枚举、时间与分页格式，避免序列化内部实体或敏感数据。
+        status: planned
+      - type: node
+        id: problem-details
+        title: 统一使用 Problem Details 表达错误
+        description: 将验证、未找到、冲突和内部异常映射为一致的 RFC 9457 响应，并用稳定错误码关联内部日志。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-10.0
+      - type: node
+        id: openapi-contract
+        title: 生成并审查 OpenAPI 契约
+        description: 为端点补充响应、认证和 schema 元数据，生成 OpenAPI 文档并把破坏性变更纳入评审。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/overview?view=aspnetcore-10.0
+
+  - type: node
+    id: application-architecture
+    title: 建立可维护的应用边界
+    description: 将 HTTP、用例、领域规则与基础设施解耦，在不过度抽象的前提下支持测试、替换与持续演进。
+    tags: [架构, 工程化]
+    status: planned
+    children:
+      - type: node
+        id: vertical-slices
+        title: 按业务能力组织垂直切片
+        description: 让端点、用例、验证与相关数据访问围绕功能聚合，减少仅按技术层分组造成的跨目录跳转。
+        status: planned
+      - type: node
+        id: domain-boundaries
+        title: 把业务规则留在领域边界
+        description: 使用实体、值对象和领域服务维护不变量，避免让 Endpoint、Controller 或 DbContext 承担全部规则。
+        status: planned
+      - type: node
+        id: dependency-direction
+        title: 让依赖指向稳定策略
+        description: 由应用核心定义必要抽象，让数据库、消息和外部 API 适配器实现边界，并只为真实替换点创建接口。
+        status: planned
+      - type: node
+        id: error-taxonomy
+        title: 建立可映射的错误分类
+        description: 区分输入、未找到、冲突、权限、依赖暂时失败与程序缺陷，使重试、日志级别和 HTTP 响应保持一致。
+        status: planned
+      - type: node
+        id: http-client-factory
+        title: 可靠调用外部 HTTP 服务
+        description: 通过 IHttpClientFactory 管理连接、命名或类型化客户端、超时与处理器，并只对安全操作采用有限重试。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-10.0
+
+  - type: node
+    id: persistence
+    title: 使用 EF Core 维护持久化一致性
+    description: 以 PostgreSQL 和 EF Core 为默认实践栈，正确建模、查询、更新、迁移并验证关系数据。
+    tags: [EF Core, PostgreSQL, 数据库]
+    status: planned
+    link: https://learn.microsoft.com/en-us/ef/core/
+    children:
+      - type: node
+        id: db-context-lifetime
+        title: 管理 DbContext 生命周期
+        description: 将 DbContext 视为短生命周期工作单元，使用作用域注入和异步 API，并避免跨线程共享实例。
+        status: planned
+      - type: node
+        id: model-constraints
+        title: 用模型和数据库约束维护规则
+        description: 明确键、关系、必填、长度、精度、唯一约束与删除行为，并检查生成的数据库类型。
+        status: planned
+      - type: node
+        id: efficient-queries
+        title: 编写有界且可观测的查询
+        description: 使用投影、分页、AsNoTracking 和必要索引控制数据量，检查生成 SQL 并识别 N+1 与笛卡尔膨胀。
+        status: planned
+        link: https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying
+      - type: node
+        id: concurrency-transactions
+        title: 处理事务与并发冲突
+        description: 利用 SaveChanges 的事务边界，在跨步骤一致性场景显式控制事务，并通过并发令牌检测丢失更新。
+        status: planned
+        link: https://learn.microsoft.com/en-us/ef/core/saving/transactions
+      - type: node
+        id: migrations
+        title: 审查并安全发布数据库迁移
+        description: 创建、检查和测试迁移，为生产生成可审计脚本，并设计失败恢复而非让每个实例启动时竞争升级。
+        status: planned
+        link: https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying
+      - type: roadmap
+        roadmapId: postgresql
+        title: 深入 PostgreSQL 数据与运维实践
+        description: 补充关系建模、索引、事务、备份恢复、安全和性能诊断能力。
+
+  - type: node
+    id: security
+    title: 建立纵深安全边界
+    description: 根据客户端类型选择认证机制，以策略授权保护资源，并在代理、浏览器、密钥与输入边界实施默认安全配置。
+    tags: [安全, 认证, 授权]
+    status: planned
+    link: https://learn.microsoft.com/en-us/aspnet/core/security/?view=aspnetcore-10.0
+    children:
+      - type: node
+        id: authentication-scheme
+        title: 按客户端选择认证方案
+        description: 区分同站浏览器 Cookie、标准 OIDC/OAuth 与 Bearer Token 场景，优先使用成熟身份提供方而非自创协议。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-10.0
+      - type: node
+        id: policy-authorization
+        title: 用策略和资源授权表达权限
+        description: 基于 claims、requirements 和 handlers 实现最小权限，并在需要对象级判断时检查资源所有权。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-10.0
+      - type: node
+        id: data-protection-secrets
+        title: 保护密钥与 Data Protection Keys
+        description: 在开发环境使用 Secret Manager、生产环境使用受控密钥存储，并在多实例部署时持久化和保护密钥环。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-10.0
+      - type: node
+        id: browser-security
+        title: 防御浏览器侧请求攻击
+        description: 对 Cookie 认证写操作实施 antiforgery，设置严格 CORS 白名单、安全 Cookie、HTTPS 与必要安全标头。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-10.0
+      - type: node
+        id: proxy-forwarding
+        title: 只信任明确配置的代理
+        description: 限定 KnownProxies 或 KnownNetworks，正确处理 Forwarded Headers，并验证外部 scheme、host 和客户端地址。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0
+      - type: node
+        id: rate-limits-input-limits
+        title: 限制流量与资源消耗
+        description: 按身份或分区应用限流，限制请求体、上传、连接和耗时操作，并让超限响应可观测且不泄漏内部细节。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-10.0
+
+  - type: node
+    id: testing-debugging
+    title: 构建分层验证与诊断闭环
+    description: 用单元、组件、集成和数据库测试覆盖高风险行为，通过调试器、日志与诊断工具快速定位请求和运行时问题。
+    tags: [测试, 调试, 质量]
+    status: planned
+    link: https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0
+    children:
+      - type: node
+        id: unit-tests
+        title: 单元测试纯业务规则
+        description: 使用 xUnit 或同类框架覆盖边界值、状态转换和错误分类，优先测试可观察行为而非实现细节。
+        status: planned
+      - type: node
+        id: endpoint-tests
+        title: 测试端点与序列化契约
+        description: 对命名 Minimal API 处理器或 Controller 行为验证状态码、标头、Problem Details 与 JSON 形状。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/test-min-api?view=aspnetcore-10.0
+      - type: node
+        id: web-application-factory
+        title: 运行进程内集成测试
+        description: 使用 WebApplicationFactory 和 TestServer 替换受控依赖，验证完整路由、中间件、认证和错误管道。
+        status: planned
+      - type: node
+        id: database-integration
+        title: 在真实数据库引擎验证持久化
+        description: 使用隔离的 PostgreSQL 测试环境验证查询、约束、事务、并发和迁移，不把 InMemory Provider 当作关系数据库替身。
+        status: planned
+        link: https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy
+      - type: node
+        id: failure-tests
+        title: 覆盖取消、超时与依赖故障
+        description: 验证客户端断开、请求取消、外部服务超时、数据库不可用和部分失败时的响应、回滚与日志。
+        status: planned
+      - type: node
+        id: runtime-diagnostics
+        title: 使用 .NET 诊断工具定位问题
+        description: 结合 debugger、dotnet-counters、dotnet-trace 和 dotnet-dump 分析异常、线程池、GC、CPU 与内存问题。
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/
+
+  - type: node
+    id: capstone-api
+    title: 交付一个可验证的生产型 API
+    description: 综合 Minimal API 或 Controller、EF Core、认证授权、测试和可观测性，完成可本地复现且有明确验收标准的业务服务。
+    tags: [综合项目, 实践]
+    status: planned
+    children:
+      - type: node
+        id: design-contract
+        title: 先定义边界与 API 契约
+        description: 选择订单、工单或预订领域，记录角色、资源、不变量、错误、分页、幂等、权限和 OpenAPI 验收样例。
+        status: planned
+      - type: node
+        id: implement-slices
+        title: 实现端到端业务切片
+        description: 完成至少一个查询和一个修改流程，贯通端点、验证、用例、EF Core、事务、授权与统一错误响应。
+        status: planned
+      - type: node
+        id: verify-contract
+        title: 自动验证成功与失败路径
+        description: 用单元和集成测试覆盖正常、非法输入、未认证、无权限、重复请求、并发冲突与依赖不可用。
+        status: planned
+      - type: node
+        id: delivery-runbook
+        title: 提供发布与排障手册
+        description: 记录配置、机密、迁移、构建、启动、探针、日志、回滚和常见故障处理，使新环境可独立复现。
+        status: planned
+
+  - type: node
+    id: production-readiness
+    title: 让服务可观测、可扩展、可关闭
+    description: 配置 Kestrel、反向代理、健康检查、结构化遥测与优雅关闭，并通过可重复发布流程交付无状态实例。
+    tags: [部署, 可观测性, 可靠性]
+    status: planned
+    link: https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-10.0
+    children:
+      - type: node
+        id: kestrel-limits
+        title: 配置 Kestrel 端点与限制
+        description: 明确监听地址、协议、证书、超时、最大请求和并发限制，并在代理内外验证真实部署拓扑。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-10.0
+      - type: node
+        id: health-checks
+        title: 区分存活、就绪与依赖健康
+        description: 用标签和独立端点区分 liveness 与 readiness，避免探针对共享依赖造成高成本或级联故障。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-10.0
+      - type: node
+        id: structured-logging
+        title: 输出安全的结构化日志
+        description: 使用 ILogger 记录模板化字段、TraceId、路由、状态与延迟，过滤敏感值并控制分类和环境日志级别。
+        status: planned
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-10.0
+      - type: node
+        id: observability
+        title: 关联日志、指标与分布式追踪
+        description: 使用 OpenTelemetry 传播上下文并采集 RED、运行时和依赖遥测，以服务目标驱动仪表板与告警。
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel
+      - type: node
+        id: graceful-shutdown
+        title: 排空请求并优雅关闭资源
+        description: 收到终止信号后停止接流量，尊重 HostOptions 关闭期限，等待在途请求与后台任务并释放作用域资源。
+        status: planned
+      - type: node
+        id: publish-artifacts
+        title: 生成可重复的发布产物
+        description: 根据环境选择 framework-dependent、self-contained 或容器发布，固定依赖并验证非 root、只读与资源限制。
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/deploying/
+      - type: roadmap
+        roadmapId: docker
+        title: 深入容器镜像与运行实践
+        description: 补充多阶段构建、最小镜像、非 root 运行、资源限制、探针和可重复发布能力。
+
+  - type: node
+    id: advanced-paths
+    title: 按产品需求选择深化方向
+    description: 在核心 Web API 稳定后，再根据交互模式、通信协议、吞吐目标和部署规模选择额外能力。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: server-rendered-ui
+        title: 构建 Razor Pages 或 MVC 界面
+        description: 在需要服务端 HTML 时学习 Razor、模型绑定、表单验证、antiforgery、布局和静态资源交付。
+        status: optional
+        link: https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-10.0
+      - type: node
+        id: blazor
+        title: 构建 Blazor Web 应用
+        description: 根据交互与部署需求选择合适渲染模式，管理组件状态、导航、表单、认证和 JavaScript 互操作。
+        status: optional
+        link: https://learn.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-10.0
+      - type: node
+        id: grpc
+        title: 使用 gRPC 构建强类型服务通信
+        description: 设计 protobuf 契约、截止时间、取消、流式调用、错误与兼容演进，并评估浏览器和代理限制。
+        status: optional
+        link: https://learn.microsoft.com/en-us/aspnet/core/grpc/?view=aspnetcore-10.0
+      - type: node
+        id: signalr
+        title: 使用 SignalR 支持实时交互
+        description: 设计 Hub、连接生命周期、分组、授权、背压与重连，并在多实例环境配置共享扩展后端。
+        status: optional
+        link: https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction?view=aspnetcore-10.0
+      - type: node
+        id: background-services
+        title: 运行有界的后台任务
+        description: 使用 BackgroundService 处理进程内短任务并创建依赖作用域，对需持久化重试的工作改用外部队列和 Worker。
+        status: optional
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-10.0
+      - type: node
+        id: redis-capabilities
+        title: 按需引入分布式状态
+        description: 为缓存、共享 Session、限流或实时扩展选择 Redis，并设计过期、一致性、雪崩保护与故障降级。
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: redis
+            title: 深入 Redis 数据与运行实践
+            description: 学习数据结构、缓存、并发、持久化、安全和监控。
+      - type: node
+        id: native-aot
+        title: 评估 Native AOT 发布
+        description: 以启动、内存和部署约束为依据评估 Native AOT，检查反射、动态代码和依赖兼容性后再采用。
+        status: optional
+        link: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/native-aot/?view=aspnetcore-10.0
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 交付路线
+        description: 当服务确需集群编排时，继续学习工作负载、配置、探针、资源限制和发布策略。

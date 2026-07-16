@@ -1,50 +1,64 @@
 id: frontend
 title: 前端开发
 description: 面向具备基本计算机操作能力的学习者，从 Web 工作原理、HTML、CSS 与 JavaScript 出发，成长为能独立构建、测试、优化并发布现代前端应用的开发者。
-tags: [前端, Web, JavaScript, TypeScript]
+tags:
+  - 前端
+  - Web
+  - JavaScript
+  - TypeScript
 nodes:
   - type: node
     id: web-foundations
     title: 建立 Web 与浏览器基础
     description: 解释浏览器如何通过 DNS、HTTP 与服务器取得资源，并能使用开发者工具观察一次完整的页面加载。
-    tags: [Internet, HTTP, 浏览器]
-    status: planned
+    tags:
+      - Internet
+      - HTTP
+      - 浏览器
     link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work
     children:
       - type: node
         id: internet-and-dns
         title: 追踪域名到服务器的访问过程
         description: 说明客户端、服务器、IP、域名、DNS 与托管服务在一次访问中的职责。
-        tags: [DNS, 域名, 托管]
-        status: planned
+        tags:
+          - DNS
+          - 域名
+          - 托管
         link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name
       - type: node
         id: http-and-https
         title: 阅读 HTTP 请求与响应
         description: 使用方法、状态码、标头和消息体解释请求结果，并理解 HTTPS 提供的传输保护。
-        tags: [HTTP, HTTPS]
-        status: planned
+        tags:
+          - HTTP
+          - HTTPS
         link: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Guides/Overview
       - type: node
         id: browser-rendering-basics
         title: 理解浏览器如何呈现页面
         description: 概述解析 HTML 与 CSS、执行 JavaScript、布局和绘制的过程，以便定位加载与渲染问题。
-        tags: [浏览器, 渲染]
-        status: planned
+        tags:
+          - 浏览器
+          - 渲染
         link: https://developer.mozilla.org/zh-CN/docs/Web/Performance/Guides/How_browsers_work
       - type: node
         id: inspect-page-load
         title: 用开发者工具检查页面加载
         description: 在 Elements、Network 与 Console 面板中识别资源、请求时序、样式来源和运行错误。
-        tags: [DevTools, 调试, 实践]
-        status: planned
+        tags:
+          - DevTools
+          - 调试
+          - 实践
         link: https://developer.chrome.com/docs/devtools/overview
-
   - type: node
     id: semantic-html
     title: 语义化 HTML
     description: 选择与内容含义匹配的元素，完成结构清晰、可访问且便于搜索引擎理解的页面。
-    tags: [HTML, 可访问性, SEO]
+    tags:
+      - HTML
+      - 可访问性
+      - SEO
     status: completed
     link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Structuring_content
     children:
@@ -52,41 +66,50 @@ nodes:
         id: document-structure-and-semantics
         title: 组织文档结构与内容层级
         description: 正确使用标题、地标、列表、链接、图片与表格，使页面脱离视觉样式后仍可理解。
-        tags: [语义化, 文档结构]
-        status: planned
+        tags:
+          - 语义化
+          - 文档结构
       - type: node
         id: accessible-forms
         title: 构建可验证的可访问表单
         description: 为控件提供标签、输入类型、约束和清晰错误反馈，并验证键盘与辅助技术的使用体验。
-        tags: [表单, 验证, a11y]
-        status: planned
+        tags:
+          - 表单
+          - 验证
+          - a11y
         link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Forms
       - type: node
         id: html-accessibility-basics
         title: 优先用原生语义满足可访问性
         description: 理解可访问名称、焦点顺序与键盘操作，仅在原生元素不足时补充必要的 ARIA。
-        tags: [可访问性, ARIA, 键盘]
-        status: planned
+        tags:
+          - 可访问性
+          - ARIA
+          - 键盘
         link: https://www.w3.org/WAI/fundamentals/accessibility-intro/
       - type: node
         id: technical-seo-basics
         title: 落实页面级 SEO 基础
         description: 配置唯一标题、元描述、规范链接与可抓取内容，并检查结构是否准确表达页面主题。
-        tags: [SEO, 元数据]
-        status: planned
+        tags:
+          - SEO
+          - 元数据
         link: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
       - type: node
         id: build-content-page
         title: 完成一个多区块内容页面
         description: 根据设计稿实现含导航、正文、媒体和表单的页面，并通过 HTML 校验与键盘检查。
-        tags: [项目, 实践]
-        status: planned
-
+        tags:
+          - 项目
+          - 实践
   - type: node
     id: modern-css
     title: 现代 CSS
     description: 运用级联、盒模型、布局与响应式技术还原设计，并让样式在不同内容和视口下保持稳健。
-    tags: [CSS, 布局, 响应式]
+    tags:
+      - CSS
+      - 布局
+      - 响应式
     status: in-progress
     link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Styling_basics
     children:
@@ -94,96 +117,117 @@ nodes:
         id: cascade-box-model
         title: 用级联与盒模型解释样式结果
         description: 根据选择器、特异性、继承、层叠顺序和盒尺寸定位样式覆盖与溢出问题。
-        tags: [级联, 选择器, 盒模型]
-        status: planned
+        tags:
+          - 级联
+          - 选择器
+          - 盒模型
       - type: node
         id: typography-colors-units
         title: 建立可缩放的视觉基础
         description: 合理选择字体、颜色、间距和相对单位，并用自定义属性集中表达设计令牌。
-        tags: [排版, 颜色, CSS 变量]
-        status: planned
+        tags:
+          - 排版
+          - 颜色
+          - CSS 变量
       - type: node
         id: flexbox-grid
         title: Flexbox 与 Grid
         description: 根据一维排列或二维网格选择布局模型，并处理对齐、换行、最小尺寸与溢出。
-        tags: [Flexbox, Grid]
+        tags:
+          - Flexbox
+          - Grid
         status: in-progress
         link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/CSS_layout
       - type: node
         id: responsive-design
         title: 实现内容驱动的响应式设计
         description: 结合流式布局、媒体或容器查询、响应式图片和移动优先策略适配不同设备。
-        tags: [响应式, Media Queries]
-        status: planned
+        tags:
+          - 响应式
+          - Media Queries
         link: https://web.dev/learn/design/
       - type: node
         id: css-states-and-motion
         title: 表达交互状态与适度动效
         description: 为悬停、焦点、禁用和错误状态提供明确反馈，并尊重用户的减少动态效果偏好。
-        tags: [交互状态, 动画, a11y]
-        status: planned
+        tags:
+          - 交互状态
+          - 动画
+          - a11y
       - type: node
         id: reproduce-responsive-layout
         title: 还原一套响应式设计
         description: 从设计稿实现移动端与桌面端页面，验证缩放、长文本、焦点样式和不同内容数量。
-        tags: [项目, 实践]
-        status: planned
-
+        tags:
+          - 项目
+          - 实践
   - type: roadmap
     roadmapId: javascript
     title: 系统掌握 JavaScript 与浏览器编程
     description: 学习语言、DOM、事件、异步、Fetch、模块、调试与测试，为框架开发建立可靠基础。
-
+  - type: roadmap
+    roadmapId: git
+    title: 建立可协作的源码与依赖工作流
+  - type: node
+    id: git-daily-workflow
+    title: 使用 Git 完成日常协作
+    description: 创建分支与聚焦提交，阅读差异、解决常见冲突，并通过合并请求接受评审。
+    tags:
+      - Git
+      - Code Review
+    link: https://git-scm.com/book/zh/v2
   - type: node
     id: collaboration-and-packages
     title: 建立可协作的源码与依赖工作流
     description: 使用 Git 管理可审查的变更，并通过包管理器和项目脚本复现开发环境。
-    tags: [Git, npm, 协作]
-    status: planned
+    tags:
+      - Git
+      - npm
+      - 协作
     children:
-      - type: node
-        id: git-daily-workflow
-        title: 使用 Git 完成日常协作
-        description: 创建分支与聚焦提交，阅读差异、解决常见冲突，并通过合并请求接受评审。
-        tags: [Git, Code Review]
-        status: planned
-        link: https://git-scm.com/book/zh/v2
       - type: node
         id: repository-hosting-workflow
         title: 在代码托管平台协作
         description: 使用 issue、分支保护和 pull request 记录上下文，让自动检查参与合并决策。
-        tags: [GitHub, GitLab, Pull Request]
-        status: planned
+        tags:
+          - GitHub
+          - GitLab
+          - Pull Request
         link: https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests
       - type: node
         id: package-manager-workflow
         title: 管理包、脚本与锁文件
         description: 使用 npm、pnpm 或 yarn 安装依赖，区分运行时与开发依赖，并提交锁文件保证可重复安装。
-        tags: [npm, pnpm, 依赖管理]
-        status: planned
+        tags:
+          - npm
+          - pnpm
+          - 依赖管理
         link: https://docs.npmjs.com/about-npm
-
   - type: node
     id: typescript-react
     title: 使用 TypeScript 与一种组件框架构建应用
     description: 先用 TypeScript 约束数据与模块边界，再选择 React、Vue 或其他主流框架实现组件化界面。
-    tags: [TypeScript, 组件, 框架]
-    status: planned
+    tags:
+      - TypeScript
+      - 组件
+      - 框架
     link: https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html
     children:
       - type: node
         id: typescript-core-model
         title: 用 TypeScript 描述程序契约
         description: 掌握类型推断、联合类型、泛型与收窄，为函数、接口和外部数据建立可验证边界。
-        tags: [TypeScript, 类型系统]
-        status: planned
+        tags:
+          - TypeScript
+          - 类型系统
         link: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
       - type: node
         id: choose-component-framework
         title: 根据项目约束选择组件框架
         description: 比较团队经验、生态、渲染需求和维护成本，只选择一条框架路径深入学习。
-        tags: [技术选型, 框架]
-        status: planned
+        tags:
+          - 技术选型
+          - 框架
         children:
           - type: roadmap
             roadmapId: react
@@ -197,21 +241,25 @@ nodes:
         id: component-design-principles
         title: 设计职责清晰的组件边界
         description: 使用明确输入输出、单向数据流和组合拆分界面，区分本地、共享与服务端状态。
-        tags: [组件设计, 状态管理]
-        status: planned
+        tags:
+          - 组件设计
+          - 状态管理
       - type: node
         id: framework-data-flow
         title: 实现路由、表单与远程数据流程
         description: 为导航、加载、空数据、错误、重试和提交反馈建立完整的用户可见状态。
-        tags: [路由, 表单, 数据请求]
-        status: planned
-
+        tags:
+          - 路由
+          - 表单
+          - 数据请求
   - type: node
     id: frontend-toolchain
     title: 配置现代前端工具链
     description: 让本地开发、类型检查、代码规范、测试和生产构建通过统一命令稳定运行。
-    tags: [构建工具, Lint, CI]
-    status: planned
+    tags:
+      - 构建工具
+      - Lint
+      - CI
     children:
       - type: roadmap
         roadmapId: vite
@@ -221,177 +269,220 @@ nodes:
         id: lint-and-format
         title: 自动检查并格式化代码
         description: 配置 ESLint 与格式化工具，将可自动发现的问题纳入编辑器、脚本和 CI。
-        tags: [ESLint, Prettier, 代码规范]
-        status: planned
+        tags:
+          - ESLint
+          - Prettier
+          - 代码规范
         link: https://eslint.org/docs/latest/use/getting-started
       - type: node
         id: environment-and-secrets
         title: 区分公开配置与服务端秘密
         description: 按环境管理客户端配置，明确构建时注入的值会被用户读取，绝不在前端包中保存秘密。
-        tags: [环境变量, 安全]
-        status: planned
+        tags:
+          - 环境变量
+          - 安全
       - type: node
         id: ai-assisted-development
         title: 审慎使用 AI 辅助开发
         description: 为生成代码提供清晰约束，通过文档、类型、测试和人工评审核验结果，不向工具泄露敏感信息。
-        tags: [AI, Code Review]
+        tags:
+          - AI
+          - Code Review
         status: optional
-
   - type: node
     id: api-security
     title: 安全地连接 Web API 与身份系统
     description: 正确消费 HTTP API、处理身份状态，并在浏览器安全模型内防范常见前端风险。
-    tags: [API, Web 安全, 认证]
-    status: planned
+    tags:
+      - API
+      - Web 安全
+      - 认证
     link: https://developer.mozilla.org/zh-CN/docs/Web/Security
     children:
       - type: node
         id: robust-api-consumption
         title: 可靠地消费 REST 或 GraphQL API
         description: 校验外部数据，处理超时、取消、分页、缓存、错误与并发写入，避免把网络成功等同于业务成功。
-        tags: [REST, GraphQL, Fetch]
-        status: planned
+        tags:
+          - REST
+          - GraphQL
+          - Fetch
       - type: node
         id: same-origin-cors
         title: 用同源策略解释跨域行为
         description: 区分简单请求、预检、凭据与服务端许可，避免用不安全的客户端绕过方案处理 CORS。
-        tags: [同源策略, CORS]
-        status: planned
+        tags:
+          - 同源策略
+          - CORS
         link: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Guides/CORS
       - type: node
         id: authentication-boundaries
         title: 理解会话与令牌的安全边界
         description: 区分认证和授权，比较 Cookie 会话、OAuth 与令牌方案，并将权限校验保留在服务端。
-        tags: [认证, OAuth, Cookie]
-        status: planned
+        tags:
+          - 认证
+          - OAuth
+          - Cookie
       - type: node
         id: mitigate-browser-risks
         title: 缓解 XSS、CSRF 与供应链风险
         description: 避免不可信 HTML 注入，使用安全 Cookie、CSRF 防护与内容安全策略，并审查第三方依赖。
-        tags: [XSS, CSRF, CSP]
-        status: planned
+        tags:
+          - XSS
+          - CSRF
+          - CSP
         link: https://owasp.org/www-project-top-ten/
-
   - type: node
     id: frontend-quality
     title: 验证并提升前端工程质量
     description: 通过测试、可访问性检查、兼容性验证和性能测量，为关键用户流程建立可持续的质量门槛。
-    tags: [测试, 性能, 可访问性]
+    tags:
+      - 测试
+      - 性能
+      - 可访问性
     status: optional
     children:
       - type: node
         id: testing-strategy
         title: 建立分层测试策略
         description: 用单元和组件测试覆盖快速反馈，用端到端测试保护少量关键流程，避免依赖实现细节。
-        tags: [Vitest, Playwright, E2E]
-        status: planned
+        tags:
+          - Vitest
+          - Playwright
+          - E2E
         link: https://testing-library.com/docs/guiding-principles
       - type: node
         id: debugging-workflow
         title: 系统定位前端故障
         description: 从可复现步骤出发，结合断点、调用栈、网络记录、源映射和最小复现缩小问题范围。
-        tags: [调试, DevTools]
-        status: planned
+        tags:
+          - 调试
+          - DevTools
       - type: node
         id: accessibility-audit
         title: 验证真实用户的可访问流程
         description: 结合键盘操作、浏览器辅助工具和人工检查验证名称、焦点、对比度与错误反馈。
-        tags: [a11y, WCAG]
-        status: planned
+        tags:
+          - a11y
+          - WCAG
         link: https://www.w3.org/WAI/test-evaluate/
       - type: node
         id: performance-measurement
         title: 使用指标驱动性能优化
         description: 用 DevTools、Lighthouse 与真实用户指标定位瓶颈，再优化资源、渲染、缓存和代码分割。
-        tags: [Core Web Vitals, Lighthouse, 性能]
-        status: planned
+        tags:
+          - Core Web Vitals
+          - Lighthouse
+          - 性能
         link: https://web.dev/articles/vitals
       - type: node
         id: compatibility-progressive-enhancement
         title: 验证兼容性并渐进增强
         description: 根据目标浏览器检查 Web 特性支持，让核心内容和操作在增强能力失败时仍可使用。
-        tags: [兼容性, 渐进增强]
-        status: planned
+        tags:
+          - 兼容性
+          - 渐进增强
         link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Testing
       - type: node
         id: automate-quality-gates
         title: 在 CI 中执行质量门槛
         description: 对每次变更自动运行类型检查、Lint、测试和生产构建，并保留可诊断的失败结果。
-        tags: [CI, 自动化]
-        status: planned
-
+        tags:
+          - CI
+          - 自动化
   - type: node
     id: ship-frontend-application
     title: 完成并发布一款生产化前端应用
     description: 将设计、数据、框架、测试、安全与性能能力组合成可部署、可验收和可维护的真实作品。
-    tags: [综合项目, 部署, 作品集]
-    status: planned
+    tags:
+      - 综合项目
+      - 部署
+      - 作品集
     children:
       - type: node
         id: define-product-scope
         title: 定义用户流程与验收标准
         description: 选择内容管理、预约、看板或电商等场景，明确目标用户、页面流程、数据边界和完成条件。
-        tags: [需求分析, UX]
-        status: planned
+        tags:
+          - 需求分析
+          - UX
       - type: node
         id: implement-production-states
         title: 实现完整的产品状态
         description: 覆盖加载、空数据、失败、离线、无权限、表单校验与恢复路径，而不仅实现理想流程。
-        tags: [错误处理, UX]
-        status: planned
+        tags:
+          - 错误处理
+          - UX
       - type: node
         id: verify-critical-flows
         title: 验收关键用户流程
         description: 为主流程补充自动化测试，并完成人工键盘、安全、响应式和目标浏览器检查。
-        tags: [测试, 验收]
-        status: planned
+        tags:
+          - 测试
+          - 验收
       - type: node
         id: deploy-observe-iterate
         title: 部署、观察并迭代应用
         description: 发布生产构建，配置错误与性能观测，依据真实问题修复缺陷并记录技术决策。
-        tags: [部署, 监控, 迭代]
-        status: planned
+        tags:
+          - 部署
+          - 监控
+          - 迭代
         link: https://web.dev/articles/vitals-tools
-
   - type: node
     id: advanced-frontend-directions
     title: 按产品需求选择前端深化方向
     description: 在核心 Web 应用能力稳定后，再依据内容、离线、跨平台或组件复用需求选择专题。
-    tags: [进阶, 选修]
+    tags:
+      - 进阶
+      - 选修
     status: optional
     children:
       - type: node
         id: rendering-architectures
         title: 探索 CSR、SSR 与 SSG 渲染架构
         description: 比较首屏、交互、缓存、SEO、服务端成本与部署约束，再选择框架和渲染策略。
-        tags: [CSR, SSR, SSG]
+        tags:
+          - CSR
+          - SSR
+          - SSG
         status: optional
         link: https://web.dev/articles/rendering-on-the-web
       - type: node
         id: progressive-web-apps
         title: 构建渐进式 Web 应用
         description: 根据离线与安装需求学习 manifest、Service Worker、缓存更新和恢复策略。
-        tags: [PWA, Service Worker, 离线]
+        tags:
+          - PWA
+          - Service Worker
+          - 离线
         status: optional
         link: https://web.dev/learn/pwa/
       - type: node
         id: web-components-path
         title: 使用 Web Components 封装跨框架组件
         description: 学习 Custom Elements、Shadow DOM 与模板，在确有跨框架复用需求时设计原生组件。
-        tags: [Web Components, Shadow DOM]
+        tags:
+          - Web Components
+          - Shadow DOM
         status: optional
         link: https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components
       - type: node
         id: design-systems-path
         title: 建设可维护的设计系统
         description: 将设计令牌、组件契约、可访问性、文档和视觉回归检查组合为跨团队共享能力。
-        tags: [设计系统, 组件库]
+        tags:
+          - 设计系统
+          - 组件库
         status: optional
       - type: node
         id: browser-api-specialties
         title: 按场景学习高级浏览器 API
         description: 根据实时通信、存储、通知、支付或设备能力的实际需求选择 API，并处理权限和兼容性。
-        tags: [Web API, WebSocket, Storage]
+        tags:
+          - Web API
+          - WebSocket
+          - Storage
         status: optional
         link: https://developer.mozilla.org/zh-CN/docs/Web/API
       - type: roadmap

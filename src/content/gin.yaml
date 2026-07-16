@@ -1,0 +1,437 @@
+id: gin
+title: Gin
+description: 面向具备 Go 与 HTTP 基础的学习者，从路由、gin.Context 和中间件出发，构建、测试、保护并交付生产就绪的 Gin REST API。
+tags: [后端, Go, Gin, API, 云原生]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 补齐 Go、HTTP 与并发基础
+    description: 能使用现代 Go 编写模块、接口、错误和测试，理解 HTTP 请求响应、context 取消、goroutine 与数据竞争。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: golang
+        title: 补齐 Go 语言与服务端基础
+        description: 掌握模块、接口、错误、并发、标准库 HTTP、测试与工程工具，再进入 Gin 框架实践。
+
+  - type: node
+    id: first-application
+    title: 建立 Gin 开发闭环
+    description: 创建最小 Gin 应用，理解 Engine、Handler 和 gin.Context，并完成构建、测试、配置与可重复启动。
+    tags: [入门, 工程化]
+    status: planned
+    link: https://go.dev/doc/tutorial/web-service-gin
+    children:
+      - type: node
+        id: initialize-module
+        title: 初始化 Go Module 并引入 Gin
+        description: 声明受支持的 Go 版本，通过 go get 和 go mod tidy 管理依赖，并在干净环境验证可重复构建。
+        status: planned
+      - type: node
+        id: hello-endpoint
+        title: 启动并验证首个 JSON 端点
+        description: 创建 Engine、注册 GET 路由并启动服务，使用 curl 检查状态、标头和响应体。
+        status: planned
+        link: https://gin-gonic.com/en/docs/quickstart/
+      - type: node
+        id: default-vs-new
+        title: 区分 gin.Default 与 gin.New
+        description: 理解 Default 自动附带 Logger 与 Recovery，在需要完全控制中间件和输出时使用 New 并显式组装。
+        status: planned
+      - type: node
+        id: separate-router-server
+        title: 分离 Router 组装与进程入口
+        description: 让构建 Router 的函数可注入依赖和测试，让 main 负责配置、http.Server、信号与资源生命周期。
+        status: planned
+      - type: node
+        id: startup-config
+        title: 在启动阶段校验配置
+        description: 解析并验证监听地址、环境、数据库、代理与密钥配置，使错误在接收流量前明确失败。
+        status: planned
+
+  - type: node
+    id: routing-http
+    title: 用路由表达清晰的 HTTP API
+    description: 根据资源和 HTTP 语义注册方法与路径，通过 Route Group 组织模块，并返回一致的状态与表示形式。
+    tags: [路由, HTTP, REST]
+    status: planned
+    link: https://gin-gonic.com/en/docs/routing/
+    children:
+      - type: node
+        id: methods-path-params
+        title: 正确处理方法与路径参数
+        description: 使用 GET、POST、PUT、PATCH、DELETE 与命名参数表达端点，并理解静态、参数和通配路由的匹配关系。
+        status: planned
+      - type: node
+        id: query-pagination
+        title: 约束查询、过滤与分页
+        description: 读取并校验 query 参数，设置页大小和排序白名单，并为集合响应提供稳定的翻页语义。
+        status: planned
+      - type: node
+        id: route-groups
+        title: 用 Route Group 划分业务边界
+        description: 为相关资源创建共享前缀和中间件的路由组，只在确需兼容演进时引入版本前缀。
+        status: planned
+        link: https://gin-gonic.com/en/docs/routing/grouping-routes/
+      - type: node
+        id: response-semantics
+        title: 返回符合 HTTP 语义的响应
+        description: 为创建、读取、更新、删除、空结果和冲突选择正确状态码，并设置 Location、缓存或内容类型等必要标头。
+        status: planned
+      - type: node
+        id: redirects-idempotency
+        title: 正确处理重定向与幂等写入
+        description: 依据是否保留方法选择重定向状态，并为需要安全重试的写入设计幂等键或资源状态约束。
+        status: planned
+        link: https://gin-gonic.com/en/docs/routing/redirects/
+
+  - type: node
+    id: binding-responses-errors
+    title: 绑定输入并统一响应与错误
+    description: 将所有请求数据视为不可信输入，使用显式 DTO、ShouldBind 和统一错误模型保护 handler 与客户端契约。
+    tags: [绑定, 校验, 错误处理]
+    status: planned
+    link: https://gin-gonic.com/en/docs/binding/binding-and-validation/
+    children:
+      - type: node
+        id: request-dtos
+        title: 用专用 Struct 表达请求 DTO
+        description: 为 JSON、URI、query、form 和 header 定义独立结构与标签，避免直接把持久化模型暴露为输入边界。
+        status: planned
+      - type: node
+        id: should-bind
+        title: 使用 ShouldBind 保持错误控制
+        description: 根据已知内容类型选择 ShouldBind 变体，自行映射校验错误，避免 Must Bind 提前写入响应后无法统一格式。
+        status: planned
+      - type: node
+        id: custom-validation
+        title: 实现跨字段与领域校验
+        description: 用自定义 Validator 表达格式和跨字段规则，再在应用服务中验证需查询数据库或权限上下文的业务约束。
+        status: planned
+      - type: node
+        id: json-response-dtos
+        title: 用响应 DTO 稳定 JSON 契约
+        description: 使用明确 Struct 和 json 标签输出字段，避免 gin.H 扩散到大型接口，并防止意外泄露内部属性。
+        status: planned
+      - type: node
+        id: centralized-errors
+        title: 集中映射领域与基础设施错误
+        description: 通过 c.Error 收集失败，在错误中间件中映射状态、错误码和安全消息，同时保留可关联的内部日志。
+        status: planned
+        link: https://gin-gonic.com/en/docs/middleware/error-handling-middleware/
+      - type: node
+        id: openapi-contract
+        title: 维护可验证的 OpenAPI 契约
+        description: 描述端点、Schema、安全方案和错误响应，在 CI 中校验文档并用契约测试减少实现与客户端漂移。
+        status: planned
+        link: https://spec.openapis.org/oas/latest.html
+
+  - type: node
+    id: middleware-context
+    title: 掌握 Middleware 与 Context 生命周期
+    description: 理解中间件的前置与后置阶段、Abort 控制流，并安全地把请求取消和关联信息传入下游代码。
+    tags: [Middleware, Context, 并发]
+    status: planned
+    link: https://gin-gonic.com/en/docs/middleware/using-middleware/
+    children:
+      - type: node
+        id: middleware-flow
+        title: 遵守 Next 与 Abort 控制流
+        description: 在 c.Next 前后实现前置与收尾逻辑，在拒绝请求时写入响应并 Abort，避免下游 handler 继续执行。
+        status: planned
+      - type: node
+        id: middleware-scope-order
+        title: 设计中间件作用域与顺序
+        description: 区分全局、Group 和路由级中间件，按恢复、请求 ID、日志、安全、认证、限流和错误处理排列并测试。
+        status: planned
+      - type: node
+        id: request-context
+        title: 向下游传递标准 context.Context
+        description: 将 c.Request.Context 传给数据库和客户端，使截止时间与客户端断开能够取消工作，而非让业务层依赖 gin.Context。
+        status: planned
+        link: https://gin-gonic.com/en/docs/server-config/context/
+      - type: node
+        id: context-values
+        title: 最小化 Gin Context 状态
+        description: 只在请求边界保存主体、关联 ID 等少量值，使用类型明确的转换函数读取，避免隐式字符串键成为全局依赖。
+        status: planned
+      - type: node
+        id: goroutine-safety
+        title: 安全处理请求中的 Goroutine
+        description: 不跨 goroutine 使用原始 gin.Context；需要只读请求快照时调用 Copy，并优先把长任务交给受管理的后台系统。
+        status: planned
+        link: https://gin-gonic.com/en/docs/middleware/goroutines-inside-a-middleware/
+
+  - type: node
+    id: architecture-dependencies
+    title: 组织可测试的应用结构
+    description: 将 Gin 限定在传输层，通过接口和构造函数连接应用用例、Repository、外部客户端与运行生命周期。
+    tags: [架构, 依赖注入]
+    status: planned
+    children:
+      - type: node
+        id: handler-service-repository
+        title: 分离 Handler、Service 与 Repository
+        description: 让 Handler 负责 HTTP 映射，Service 维护业务用例，Repository 封装持久化，并避免过度按技术目录切碎代码。
+        status: planned
+      - type: node
+        id: interfaces-consumer-side
+        title: 在使用方定义最小接口
+        description: 让应用服务只依赖所需方法，使用小接口替换数据库、时钟和外部客户端，并避免为每个 Struct 机械创建接口。
+        status: planned
+      - type: node
+        id: constructor-wiring
+        title: 用构造函数显式组装依赖
+        description: 在 main 或 bootstrap 包创建配置、连接池、Repository、Service 和 Handler，使依赖图与关闭顺序清晰可见。
+        status: planned
+      - type: node
+        id: error-taxonomy
+        title: 建立稳定的错误分类
+        description: 定义 not found、conflict、validation、unauthorized 和 unavailable 等领域错误，使用 errors.Is/As 解耦底层实现。
+        status: planned
+      - type: node
+        id: startup-readiness
+        title: 在接流量前完成启动检查
+        description: 建立关键连接并验证配置和数据库兼容性，只在应用可服务后报告 readiness，失败时释放已创建资源。
+        status: planned
+
+  - type: node
+    id: persistence
+    title: 持久化关系数据并维护一致性
+    description: 以 PostgreSQL 为主线，使用 database/sql 或兼容驱动管理连接池、参数化查询、事务和版本化 Schema。
+    tags: [PostgreSQL, database/sql, 事务]
+    status: planned
+    link: https://go.dev/doc/database/
+    children:
+      - type: node
+        id: connection-pool
+        title: 配置连接池与健康检查
+        description: 设置最大打开和空闲连接、连接寿命与获取超时，通过 PingContext 验证可用性并在关闭时释放池。
+        status: planned
+      - type: node
+        id: parameterized-queries
+        title: 使用参数化查询隔离输入
+        description: 将 SQL 结构与外部值分开，检查 Scan 和 Rows 错误，并避免字符串拼接造成注入与类型问题。
+        status: planned
+      - type: node
+        id: repository-queries
+        title: 封装可观察的数据查询
+        description: 在 Repository 中集中 SQL 和结果映射，保留检查执行计划的能力，并通过批量或关联查询消除 N+1。
+        status: planned
+      - type: node
+        id: transaction-boundaries
+        title: 用事务维护业务不变量
+        description: 在 Service 用例边界开始事务，将同一 context 传给查询，显式提交或回滚，并对并发失败实施有界重试。
+        status: planned
+        link: https://go.dev/doc/database/execute-transactions
+      - type: node
+        id: schema-migrations
+        title: 用版本化迁移演进 Schema
+        description: 选择独立迁移工具，在 CI 和类生产数据库上验证前滚、锁影响、兼容窗口与失败恢复。
+        status: planned
+      - type: roadmap
+        roadmapId: postgresql
+        title: 深入 PostgreSQL 设计与运维
+        description: 补充建模、索引、执行计划、隔离级别、安全、备份和恢复能力。
+
+  - type: node
+    id: authentication-security
+    title: 实施认证、授权与安全防护
+    description: 根据客户端选择 Session 或标准 Bearer Token，在每个敏感操作执行授权，并加固代理、TLS、输入和依赖边界。
+    tags: [安全, 认证, 授权]
+    status: planned
+    link: https://gin-gonic.com/en/docs/middleware/security-guide/
+    children:
+      - type: node
+        id: authentication-strategy
+        title: 选择适合客户端的认证方式
+        description: 浏览器同源应用评估安全 Session，独立客户端与服务间调用评估标准 Bearer Token，避免自创密码和令牌协议。
+        status: planned
+      - type: node
+        id: credential-security
+        title: 保护密码、Token 与 Cookie
+        description: 使用专用密码哈希和经审查的令牌库，验证签名、发行者、受众与过期，并配置 Secure、HttpOnly、SameSite Cookie。
+        status: planned
+        link: https://gin-gonic.com/en/docs/server-config/cookie/
+      - type: node
+        id: authorization
+        title: 对每个资源操作执行授权
+        description: 在加载资源后检查主体、角色和所有权，采用默认拒绝策略，并防止仅靠隐藏路由或客户端 UI 限权。
+        status: planned
+      - type: node
+        id: trusted-proxies
+        title: 只信任已知反向代理
+        description: 使用 SetTrustedProxies 配置准确地址或 CIDR，避免伪造 X-Forwarded-For 绕过日志、限流与 IP 规则。
+        status: planned
+        link: https://gin-gonic.com/en/docs/server-config/trusted-proxies/
+      - type: node
+        id: cors-csrf-headers
+        title: 配置 CORS、CSRF 与安全标头
+        description: 仅开放必要来源，为 Cookie 状态变更实施 CSRF 防护，并按应用内容设置 HSTS、CSP 与 nosniff 等标头。
+        status: planned
+        link: https://gin-gonic.com/en/docs/middleware/security-headers/
+      - type: node
+        id: limits-uploads-dependencies
+        title: 限制滥用、上传与依赖风险
+        description: 限制请求体、multipart 内存、文件数量和认证尝试，不信任客户端文件名，并持续运行 govulncheck 与更新依赖。
+        status: planned
+        link: https://gin-gonic.com/en/docs/routing/upload-file/
+
+  - type: node
+    id: testing-debugging
+    title: 建立分层测试与调试策略
+    description: 使用 testing、httptest、Race Detector 和 Fuzzing 覆盖领域逻辑、中间件、Router、数据库与进程生命周期。
+    tags: [测试, 调试]
+    status: planned
+    link: https://gin-gonic.com/en/docs/testing/
+    children:
+      - type: node
+        id: unit-tests
+        title: 用表驱动测试验证应用逻辑
+        description: 对无 Gin 依赖的 Service 和领域规则运行快速测试，通过手写 Fake 或小接口替换外部依赖。
+        status: planned
+      - type: node
+        id: handler-tests
+        title: 用 httptest 验证 Handler
+        description: 创建测试模式 Router 和 ResponseRecorder，发送真实 http.Request，并断言状态、标头、JSON 与错误模型。
+        status: planned
+        link: https://pkg.go.dev/net/http/httptest
+      - type: node
+        id: middleware-router-tests
+        title: 验证 Middleware 与路由契约
+        description: 覆盖 Next、Abort、执行顺序、认证、校验、404 和 panic 恢复，确认拒绝后不会继续执行 handler。
+        status: planned
+      - type: node
+        id: database-integration-tests
+        title: 在真实 PostgreSQL 上验证数据路径
+        description: 为测试提供隔离数据库，应用迁移并覆盖约束、事务回滚和并发失败，避免仅用内存替身掩盖差异。
+        status: planned
+      - type: node
+        id: race-fuzz-tests
+        title: 用 Race Detector 与 Fuzzing 检查边界
+        description: 在 CI 运行 go test -race，并对解析器、验证器和关键 handler 输入进行 Fuzzing，捕获竞争、panic 和异常资源消耗。
+        status: planned
+        link: https://go.dev/doc/security/fuzz/
+      - type: node
+        id: failure-lifecycle-tests
+        title: 测试取消、超时与关闭流程
+        description: 模拟客户端断开、下游缓慢、数据库不可用和 SIGTERM，确认 context 取消、错误响应与资源释放符合预期。
+        status: planned
+
+  - type: node
+    id: capstone-api
+    title: 交付一个完整的业务 API
+    description: 构建含 OpenAPI、PostgreSQL、迁移、认证授权、自动化测试和故障处理的可运行 Gin 服务，并提供本地验收说明。
+    tags: [综合实践]
+    status: planned
+    children:
+      - type: node
+        id: design-contract
+        title: 设计领域边界与 API 契约
+        description: 从业务不变量推导资源、DTO、错误码、数据库约束、权限和幂等要求，并记录关键取舍。
+        status: planned
+      - type: node
+        id: implement-vertical-slices
+        title: 按纵向切片完成核心用例
+        description: 逐个交付从 Router、绑定、Service 到 Repository 的可测试用例，避免先搭建无法验收的抽象层。
+        status: planned
+      - type: node
+        id: verify-failure-paths
+        title: 验证失败与恢复路径
+        description: 覆盖非法输入、重复请求、无权限、并发冲突、客户端取消、数据库不可用和迁移失败。
+        status: planned
+      - type: node
+        id: publish-runbook
+        title: 提供运行与排障手册
+        description: 记录配置、迁移、启动、探针、日志查询、关闭和常见故障处理，使新环境可独立复现。
+        status: planned
+
+  - type: node
+    id: production-readiness
+    title: 让服务可观测、可扩展、可关闭
+    description: 使用自定义 http.Server 和生产模式运行无状态实例，通过超时、可信代理、健康检查、遥测与优雅关闭支撑安全发布。
+    tags: [部署, 可观测性, 可靠性]
+    status: planned
+    link: https://gin-gonic.com/en/docs/server-config/custom-http-config/
+    children:
+      - type: node
+        id: production-server
+        title: 配置生产级 http.Server
+        description: 使用 gin.ReleaseMode，设置读取、写入、空闲和标头限制，区分 ErrServerClosed 与真正的监听失败。
+        status: planned
+      - type: node
+        id: reverse-proxy-scaling
+        title: 在可信代理后水平扩展
+        description: 让代理处理 TLS、压缩与负载均衡，保持实例无状态，并把共享 Session、限流或缓存状态放入外部系统。
+        status: planned
+      - type: node
+        id: health-readiness
+        title: 区分存活与就绪检查
+        description: 让 liveness 只判断进程能否恢复，让 readiness 反映是否可接流量，并避免探针制造高成本依赖风暴。
+        status: planned
+      - type: node
+        id: structured-logging
+        title: 输出安全的结构化请求日志
+        description: 记录关联 ID、方法、路由模板、状态和延迟，隐藏敏感标头与 query 值，并让内部错误可追踪到响应错误码。
+        status: planned
+        link: https://gin-gonic.com/en/docs/logging/
+      - type: node
+        id: metrics-traces
+        title: 关联指标与分布式追踪
+        description: 采集吞吐、延迟、错误率、goroutine、内存和依赖池指标，传播标准追踪上下文并验证采样与告警。
+        status: planned
+      - type: node
+        id: graceful-shutdown
+        title: 排空请求并优雅关闭依赖
+        description: 收到 SIGTERM 后标记未就绪，使用带截止时间的 Server.Shutdown 等待在途请求，再关闭数据库和后台资源。
+        status: planned
+        link: https://gin-gonic.com/en/docs/server-config/graceful-restart-or-stop/
+      - type: roadmap
+        roadmapId: docker
+        title: 深入容器镜像与运行实践
+        description: 补充多阶段构建、最小非 root 镜像、资源限制、探针和可重复发布能力。
+
+  - type: node
+    id: advanced-paths
+    title: 按产品需求选择深化方向
+    description: 在核心 REST 服务稳定后，再根据交互模式、吞吐目标和运维约束选择额外能力。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: server-rendered-html
+        title: 渲染服务端 HTML
+        description: 在确需多页应用时加载模板并使用 html/template 自动转义，构建明确 View Model 并独立交付静态资源。
+        status: optional
+        link: https://gin-gonic.com/en/docs/rendering/
+      - type: node
+        id: streaming-realtime
+        title: 支持流式与实时连接
+        description: 为 SSE、WebSocket 或流式下载设计取消、Flush、背压、心跳、连接上限与多实例协调。
+        status: optional
+      - type: node
+        id: background-jobs
+        title: 将长任务移出请求周期
+        description: 使用外部队列和 Worker 执行可重试工作，设计幂等、超时、死信、结果可见性与优雅关闭。
+        status: optional
+      - type: node
+        id: redis-capabilities
+        title: 按需引入 Redis 能力
+        description: 为共享 Session、限流、缓存或 Streams 选择合适数据结构，并处理过期、一致性与故障降级。
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: redis
+            title: 深入 Redis 数据与运行实践
+            description: 学习数据结构、缓存、并发、持久化、安全和监控。
+      - type: node
+        id: performance-profiling
+        title: 基于 Profile 优化性能
+        description: 使用 benchmark、pprof 和执行追踪定位 CPU、分配、锁与 I/O 瓶颈，避免只凭框架基准推断应用性能。
+        status: optional
+        link: https://go.dev/doc/diagnostics
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 交付路线
+        description: 当服务确需集群编排时，继续学习工作负载、配置、探针、资源限制和发布策略。

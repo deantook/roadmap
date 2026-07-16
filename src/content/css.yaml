@@ -1,0 +1,463 @@
+id: css
+title: CSS
+description: 面向已具备 HTML 基础的学习者，从级联与盒模型出发，成长为能独立实现可访问、响应式且可维护界面的 CSS 开发者。
+tags: [CSS, Web, 前端, 响应式]
+nodes:
+  - type: roadmap
+    roadmapId: html
+    title: 先建立可靠的 HTML 结构
+    description: CSS 学习默认页面已具备语义化文档、媒体、表单与可访问性基础，尚未具备时先完成 HTML 路线。
+
+  - type: node
+    id: language-and-cascade
+    title: 用级联模型解释样式结果
+    description: 掌握规则语法、选择器与级联算法，能够说明浏览器为何采用某个声明而忽略其他声明。
+    tags: [语法, 选择器, 级联]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics
+    children:
+      - type: node
+        id: attach-stylesheets
+        title: 正确加载并组织样式表
+        description: 区分外部、内部与行内样式的来源和维护成本，使用外部样式表完成一个最小页面。
+        tags: [stylesheet, link, source order]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started
+      - type: node
+        id: selectors-combinators
+        title: 用低耦合选择器定位元素
+        description: 根据语义和组件边界选择类型、类、属性、伪类、伪元素与组合器，避免依赖脆弱的深层 DOM 结构。
+        tags: [选择器, 伪类, 组合器]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors
+      - type: node
+        id: cascade-specificity
+        title: 计算来源、层叠与优先级
+        description: 按来源、重要性、层叠层、优先级、作用域距离和源码顺序追踪获胜声明，并限制 !important 的使用。
+        tags: [specificity, inheritance, cascade]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts
+      - type: node
+        id: inheritance-initial-values
+        title: 区分继承值与默认值
+        description: 使用 inherit、initial、unset、revert 与 revert-layer 控制值的来源，并能解释属性是否自然继承。
+        tags: [继承, 初始值, 回退]
+        status: planned
+      - type: node
+        id: debug-cascade
+        title: 用 DevTools 追踪失效声明
+        description: 在 Styles 与 Computed 面板中检查匹配规则、覆盖来源、继承链和最终计算值，修复一次真实冲突。
+        tags: [DevTools, 调试, 实践]
+        status: planned
+
+  - type: node
+    id: box-values-sizing
+    title: 建立盒模型与尺寸系统
+    description: 用内容盒、内边距、边框和外边距解释元素尺寸，并选择能适应内容与环境的值和单位。
+    tags: [盒模型, 尺寸, 单位]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model
+    children:
+      - type: node
+        id: content-border-box
+        title: 计算 content-box 与 border-box
+        description: 根据 box-sizing、宽高、padding 和 border 推导最终占用空间，并用全局 border-box 简化组件尺寸约束。
+        tags: [box-sizing, padding, border]
+        status: planned
+      - type: node
+        id: margin-collapse
+        title: 解释外边距折叠与格式化上下文
+        description: 识别块级垂直外边距何时折叠，并通过布局模型或新的格式化上下文解决间距问题。
+        tags: [margin, BFC, normal flow]
+        status: planned
+      - type: node
+        id: values-units-functions
+        title: 选择相对单位与计算函数
+        description: 根据字体、容器、视口或物理像素需求选择 rem、em、百分比和视口单位，并用 calc、min、max 与 clamp 表达约束。
+        tags: [rem, viewport, clamp]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units
+      - type: node
+        id: intrinsic-sizing
+        title: 让尺寸服从内容约束
+        description: 使用 min-width、max-width、min-content、max-content、fit-content 与 aspect-ratio 避免固定尺寸造成截断或溢出。
+        tags: [内在尺寸, aspect-ratio, 约束]
+        status: planned
+      - type: node
+        id: overflow-management
+        title: 有意识地处理内容溢出
+        description: 区分可见、裁剪、滚动和自动溢出，保留缩放、长文本与键盘访问所需的内容可达性。
+        tags: [overflow, 长文本, 可访问性]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Overflow
+
+  - type: node
+    id: visual-foundations
+    title: 建立清晰且可适配的视觉基础
+    description: 组合字体、颜色、背景、边框与间距形成稳定视觉层级，并在用户偏好和内容变化下保持可读。
+    tags: [排版, 颜色, 视觉设计]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling
+    children:
+      - type: node
+        id: readable-typography
+        title: 构建可读的排版层级
+        description: 设置可靠字体栈、字号、行高、字重、行宽与段落间距，让正文和标题在缩放后仍易读。
+        tags: [字体, 行高, 排版]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Fundamentals
+      - type: node
+        id: web-font-loading
+        title: 稳健地加载 Web 字体
+        description: 用 @font-face 声明格式、范围和显示策略，提供度量相近的后备字体并检查加载失败和布局偏移。
+        tags: [Web Fonts, font-display, 性能]
+        status: planned
+      - type: node
+        id: accessible-colors
+        title: 使用可区分的颜色系统
+        description: 为文本、控件和状态提供足够对比度，不只依赖颜色传递含义，并同时验证浅色与深色背景。
+        tags: [颜色, 对比度, a11y]
+        status: planned
+        link: https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
+      - type: node
+        id: backgrounds-borders-effects
+        title: 组合背景、边框与适度效果
+        description: 使用颜色、渐变、背景图、圆角、阴影和滤镜表达层次，同时控制重绘成本与内容可读性。
+        tags: [background, border, shadow]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders
+      - type: node
+        id: visual-token-practice
+        title: 为内容页建立视觉令牌
+        description: 定义一套颜色、字体、间距、圆角与阴影变量，并用它们统一文章、按钮、提示和表单的视觉关系。
+        tags: [设计令牌, 实践, CSS 变量]
+        status: planned
+
+  - type: node
+    id: flow-positioning
+    title: 控制正常流、显示与定位
+    description: 先利用正常流组织内容，再根据叠放、浮动或固定需求选择不会破坏阅读顺序的布局机制。
+    tags: [正常流, display, position]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Introduction
+    children:
+      - type: node
+        id: block-inline-flow
+        title: 预测块级与行内布局
+        description: 根据外部和内部 display 类型解释块、行内、inline-block 与匿名盒如何参与正常流。
+        tags: [block, inline, formatting context]
+        status: planned
+      - type: node
+        id: display-visibility
+        title: 区分隐藏与移除布局
+        description: 比较 display、visibility、opacity 和视觉隐藏模式对布局、点击、焦点与辅助技术暴露的影响。
+        tags: [visibility, opacity, a11y]
+        status: planned
+      - type: node
+        id: positioning-containing-block
+        title: 用包含块定位元素
+        description: 区分 relative、absolute、fixed 与 sticky，确认包含块、滚动容器和偏移属性后再选择定位方案。
+        tags: [position, sticky, containing block]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Positioning
+      - type: node
+        id: stacking-contexts
+        title: 追踪层叠上下文与绘制顺序
+        description: 识别哪些属性创建层叠上下文，用元素层级和局部 z-index 解决覆盖问题，避免无限提高数值。
+        tags: [z-index, stacking context]
+        status: planned
+      - type: node
+        id: floats-modern-uses
+        title: 将浮动限制在内容环绕场景
+        description: 理解 float、clear 与清除包含关系，只在图文环绕等适用场景使用，页面布局改用现代模型。
+        tags: [float, clear, legacy]
+        status: planned
+
+  - type: node
+    id: flexbox-grid
+    title: 用 Flexbox 与 Grid 构建现代布局
+    description: 根据一维内容分配或二维轨道关系选择布局系统，并让项目在空间不足和内容增长时保持稳健。
+    tags: [Flexbox, Grid, 布局]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout
+    children:
+      - type: node
+        id: flex-axis-sizing
+        title: 沿主轴分配弹性空间
+        description: 使用方向、换行、flex-basis、grow 与 shrink 解释项目如何获得或让出空间，并处理默认最小尺寸。
+        tags: [flex, 主轴, 弹性尺寸]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox
+      - type: node
+        id: box-alignment
+        title: 统一处理对齐与间距
+        description: 区分容器和项目的主轴、交叉轴对齐，使用 gap 表达项目间距，并验证换行后的行为。
+        tags: [alignment, gap, wrap]
+        status: planned
+      - type: node
+        id: grid-tracks-placement
+        title: 定义网格轨道与项目位置
+        description: 使用显式和隐式轨道、fr、repeat、minmax、命名线与区域表达二维布局，理解自动放置规则。
+        tags: [grid, tracks, minmax]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids
+      - type: node
+        id: subgrid-content-layout
+        title: 用 Subgrid 对齐嵌套内容
+        description: 在子组件需要继承父网格轨道时使用 subgrid，让卡片标题、正文和操作区跨项目保持对齐。
+        tags: [subgrid, 组件, 对齐]
+        status: planned
+      - type: node
+        id: layout-recreation
+        title: 用两种布局模型还原页面
+        description: 使用 Grid 构建整体区域、Flexbox 处理组件内部排列，并测试短内容、长内容、缺失内容和额外项目。
+        tags: [项目, 内容压力测试]
+        status: planned
+
+  - type: node
+    id: responsive-adaptive-design
+    title: 实现内容驱动的响应式设计
+    description: 从流式布局出发，仅在内容需要时增加查询条件，并适配视口、容器、输入方式和用户显示偏好。
+    tags: [响应式, Media Queries, Container Queries]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design
+    children:
+      - type: node
+        id: fluid-layout-media
+        title: 让布局与媒体自然缩放
+        description: 组合百分比、最大宽度、clamp、自动换行和响应式图片，避免依赖固定设备宽度。
+        tags: [流式布局, 图片, clamp]
+        status: planned
+      - type: node
+        id: content-breakpoints
+        title: 根据内容选择媒体查询断点
+        description: 在布局开始拥挤或失衡的位置增加 min-width 或 range 查询，而不是按特定设备型号划分页面。
+        tags: [断点, media query, mobile-first]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Media_queries
+      - type: node
+        id: container-queries
+        title: 让组件响应容器空间
+        description: 声明查询容器并使用尺寸或样式查询，使同一组件在主栏、侧栏和卡片组中独立调整布局。
+        tags: [container-type, 容器查询, 组件]
+        status: planned
+        link: https://web.dev/learn/css/container-queries/
+      - type: node
+        id: logical-properties
+        title: 使用逻辑属性适配书写方向
+        description: 用 inline 与 block 方向的尺寸、边距、内边距和边框属性支持从右到左及纵向书写模式。
+        tags: [逻辑属性, RTL, 国际化]
+        status: planned
+      - type: node
+        id: zoom-reflow-input
+        title: 验证缩放、重排与输入方式
+        description: 在窄视口和高倍缩放下检查无双向滚动，并针对触摸、鼠标、键盘和悬停能力提供合适交互反馈。
+        tags: [reflow, zoom, pointer]
+        status: planned
+
+  - type: node
+    id: controls-states-motion
+    title: 为控件、状态与动效提供完整反馈
+    description: 在保留原生行为的前提下统一控件外观，并让焦点、错误、禁用、加载和运动偏好清晰可辨。
+    tags: [表单, 状态, 动效]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Styling_web_forms
+    children:
+      - type: node
+        id: native-control-styling
+        title: 渐进地美化原生控件
+        description: 理解表单元素的系统外观与平台差异，只重置需要控制的属性，并保留标签、尺寸和可操作区域。
+        tags: [form controls, appearance]
+        status: planned
+      - type: node
+        id: interaction-states
+        title: 覆盖交互与校验状态
+        description: 为 hover、active、focus-visible、disabled、checked、invalid 和 busy 状态提供不依赖单一视觉线索的反馈。
+        tags: [伪类, focus-visible, 验证]
+        status: planned
+      - type: node
+        id: focus-indicators
+        title: 设计清晰且不被遮挡的焦点样式
+        description: 为所有键盘交互元素保留高对比焦点指示，并检查粘性区域、溢出裁剪和滚动定位不会遮挡焦点。
+        tags: [焦点, 键盘, WCAG]
+        status: planned
+        link: https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html
+      - type: node
+        id: transitions-animations
+        title: 用动效解释状态变化
+        description: 使用 transition、transform 与 keyframes 强化因果和空间关系，避免无目的持续动画和昂贵布局变化。
+        tags: [transition, animation, transform]
+        status: planned
+      - type: node
+        id: reduced-motion
+        title: 尊重减少动态效果偏好
+        description: 使用 prefers-reduced-motion 关闭或替换非必要运动，并确保关键状态变化不依赖动画才能理解。
+        tags: [prefers-reduced-motion, a11y]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
+
+  - type: node
+    id: scalable-css
+    title: 组织可扩展的样式系统
+    description: 用明确的令牌、组件边界和级联策略管理增长中的样式表，使修改局部样式时不需要猜测全局副作用。
+    tags: [架构, CSS 变量, 组件]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Organizing
+    children:
+      - type: node
+        id: custom-properties-tokens
+        title: 用自定义属性表达设计令牌
+        description: 为颜色、字体、空间和组件参数定义带回退值的变量，利用继承完成主题和局部定制。
+        tags: [custom properties, design tokens]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+      - type: node
+        id: component-boundaries
+        title: 设计稳定的组件样式边界
+        description: 以组件职责命名类，减少对标签层级和页面位置的依赖，并明确变体、状态与组合规则。
+        tags: [命名, 组件, 封装]
+        status: planned
+      - type: node
+        id: cascade-layers
+        title: 用层叠层声明样式优先级
+        description: 将重置、基础、组件、工具和覆盖规则放入有意排序的 @layer，减少优先级竞争。
+        tags: ['@layer', cascade, 架构]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/CSS/@layer
+      - type: node
+        id: theme-preferences
+        title: 实现可覆盖的主题系统
+        description: 组合 color-scheme、prefers-color-scheme 和语义化颜色变量支持浅色、深色与用户选择，同时验证所有状态对比度。
+        tags: [主题, dark mode, color-scheme]
+        status: planned
+      - type: node
+        id: team-style-contract
+        title: 建立团队样式契约
+        description: 记录文件顺序、命名、令牌、浏览器范围和覆盖规则，并用格式化与静态检查自动执行可机械验证的约束。
+        tags: [规范, Stylelint, 协作]
+        status: planned
+
+  - type: node
+    id: quality-debugging
+    title: 系统验证 CSS 的正确性与成本
+    description: 通过开发者工具、跨环境检查和性能测量定位级联、布局与渲染问题，并为关键界面建立回归证据。
+    tags: [调试, 兼容性, 性能]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Debugging_CSS
+    children:
+      - type: node
+        id: inspect-layout-tools
+        title: 使用布局与渲染检查工具
+        description: 借助盒模型、Grid、Flexbox、滚动容器和绘制面板查看实际尺寸、轨道、对齐、溢出及重绘区域。
+        tags: [DevTools, Grid inspector, paint]
+        status: planned
+      - type: node
+        id: minimal-css-reproduction
+        title: 构造最小 CSS 复现
+        description: 固定问题输入，逐步移除规则与标记，区分级联、布局、浏览器差异和内容数据造成的故障。
+        tags: [最小复现, 排错]
+        status: planned
+      - type: node
+        id: browser-compatibility
+        title: 根据目标浏览器验证兼容性
+        description: 检查特性支持和前缀需求，使用 @supports 渐进增强，并确保不支持新能力时仍有可用基础布局。
+        tags: [兼容性, '@supports', 回退]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing
+      - type: node
+        id: rendering-performance
+        title: 测量后优化渲染性能
+        description: 用性能记录识别布局、绘制和合成瓶颈，再减少复杂效果、布局抖动和未使用样式，避免凭规则数量猜测性能。
+        tags: [渲染, 性能, 测量]
+        status: planned
+        link: https://web.dev/articles/rendering-performance
+      - type: node
+        id: visual-regression
+        title: 保护关键视口与组件状态
+        description: 为代表性视口、主题、内容长度和交互状态保存可复查截图或视觉回归测试，并人工审查有意变化。
+        tags: [视觉回归, 截图, 测试]
+        status: planned
+
+  - type: node
+    id: ship-responsive-interface
+    title: 完成并发布一套响应式界面
+    description: 将视觉令牌、现代布局、组件状态、可访问性与质量检查组合成可部署、可评审的真实页面作品。
+    tags: [综合项目, 响应式, 作品集]
+    status: planned
+    children:
+      - type: node
+        id: define-layout-contract
+        title: 定义内容与布局验收标准
+        description: 选择资讯站、产品页或仪表盘场景，列出内容层级、组件状态、目标视口、主题和可访问性要求。
+        tags: [需求, 内容模型, 验收]
+        status: planned
+      - type: node
+        id: build-design-system-slice
+        title: 实现最小设计系统切片
+        description: 建立颜色、排版和空间令牌，完成按钮、表单、卡片、导航与反馈组件及其关键状态。
+        tags: [设计系统, 组件, 实现]
+        status: planned
+      - type: node
+        id: compose-responsive-pages
+        title: 组合至少三个响应式页面
+        description: 用 Grid 与 Flexbox 组合共享组件，使页面在窄屏、宽屏、缩放、长文本和不同数据数量下保持可用。
+        tags: [页面, Grid, Flexbox]
+        status: planned
+      - type: node
+        id: verify-interface-quality
+        title: 留存多环境质量证据
+        description: 记录键盘、焦点、对比度、重排、主题、目标浏览器和性能检查结果，并修复阻断关键任务的问题。
+        tags: [验收, 可访问性, 性能]
+        status: planned
+      - type: node
+        id: publish-review-iterate
+        title: 发布、评审并迭代样式
+        description: 部署真实页面，请他人完成关键任务并审查代码，再依据行为和维护反馈改进布局与样式架构。
+        tags: [发布, Code Review, 迭代]
+        status: planned
+
+  - type: node
+    id: advanced-css-directions
+    title: 按项目需求选择 CSS 深化方向
+    description: 在核心布局和质量能力稳定后，再按内容形态、团队架构或平台能力选择专题，避免为追逐语法而增加复杂度。
+    tags: [进阶, 选修]
+    status: optional
+    link: https://developer.mozilla.org/en-US/docs/Web/CSS
+    children:
+      - type: node
+        id: native-css-nesting
+        title: 用原生嵌套组织局部规则
+        description: 在不隐藏选择器权重和生成结果的前提下使用 CSS nesting，并限制嵌套深度以保留可读性。
+        tags: [CSS Nesting, 选择器]
+        status: optional
+        link: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting
+      - type: node
+        id: content-specialized-layouts
+        title: 探索内容专用布局
+        description: 根据出版、图文环绕或复杂视觉需求选择多列布局、Shapes、书写模式和纵横比等能力。
+        tags: [Multi-column, Shapes, Writing Modes]
+        status: optional
+      - type: node
+        id: preprocessors-postprocessors
+        title: 评估预处理与后处理工具
+        description: 仅在原生 CSS 无法满足团队需求时比较 Sass、PostCSS 等工具的抽象收益、构建成本和调试体验。
+        tags: [Sass, PostCSS, 构建]
+        status: optional
+      - type: node
+        id: framework-strategies
+        title: 比较组件样式与实用类策略
+        description: 根据运行时成本、封装边界、设计约束和团队工作流评估 CSS Modules、CSS-in-JS 或实用类框架。
+        tags: [CSS Modules, CSS-in-JS, Utility CSS]
+        status: optional
+      - type: node
+        id: emerging-css-features
+        title: 通过渐进增强试用新平台能力
+        description: 先查阅规范状态和目标浏览器支持，再用 @supports 隔离新特性并为核心体验保留稳定回退。
+        tags: [CSSWG, 渐进增强, 实验]
+        status: optional
+        link: https://www.w3.org/Style/CSS/current-work
+
+  - type: roadmap
+    roadmapId: frontend
+    title: 继续学习完整前端开发
+    description: 将 CSS 能力与 JavaScript、组件框架、测试、构建工具和生产发布流程结合。

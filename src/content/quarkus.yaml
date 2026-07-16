@@ -1,0 +1,304 @@
+id: quarkus
+title: Quarkus
+description: 面向具备 Java 与 HTTP 基础的学习者，从开发模式、Quarkus REST 和 CDI 出发，构建、测试、保护并交付生产就绪的云原生后端服务。
+tags: [后端, Java, Quarkus, 云原生, API]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 补齐 Java、HTTP 与构建基础
+    description: 能使用现代 Java 编写和测试代码，理解 HTTP 请求响应，并选择 Maven 或 Gradle 管理依赖与构建。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: java
+        title: 补齐 Java 语言与 JVM 基础
+        description: 掌握类型系统、异常、集合、并发与测试，避免在框架阶段回补语言知识。
+      - type: roadmap
+        roadmapId: maven
+        title: 选择 Maven 构建路线
+        description: 理解 POM、依赖、生命周期与 Wrapper，能够运行和打包 Quarkus 项目。
+      - type: roadmap
+        roadmapId: gradle
+        title: 选择 Gradle 构建路线
+        description: 理解构建脚本、依赖、任务与 Wrapper，能够运行和打包 Quarkus 项目。
+
+  - type: node
+    id: first-application
+    title: 建立 Quarkus 开发闭环
+    description: 创建首个 REST 应用，在开发模式中体验实时重载和 Dev UI，再构建并运行 JVM 产物。
+    tags: [入门, 开发模式]
+    status: planned
+    link: https://quarkus.io/guides/getting-started
+    children:
+      - type: node
+        id: scaffold-project
+        title: 创建并读懂项目骨架
+        description: 使用 Quarkus CLI 或项目生成器选择扩展，识别源码、测试、配置、BOM 与构建插件的职责。
+        status: planned
+      - type: node
+        id: dev-mode
+        title: 使用开发模式缩短反馈循环
+        description: 运行 quarkus dev、实时重载与连续测试，并从 Dev UI 检查端点、配置和已安装扩展。
+        status: planned
+      - type: node
+        id: extensions-build-time
+        title: 理解扩展与构建时增强
+        description: 通过扩展添加框架能力，并解释 Quarkus 将部分元数据处理前移到构建阶段的原因与限制。
+        status: planned
+      - type: node
+        id: package-jvm-app
+        title: 构建并运行 JVM 产物
+        description: 生成 fast-jar，完整部署 quarkus-app 目录，并在 prod Profile 下验证启动和配置。
+        status: planned
+
+  - type: node
+    id: cdi-configuration
+    title: 使用 CDI 与配置组织应用
+    description: 用 ArC 管理组件生命周期和依赖，通过类型安全配置与 Profile 分离代码和运行环境。
+    tags: [CDI, 配置]
+    status: planned
+    link: https://quarkus.io/guides/cdi
+    children:
+      - type: node
+        id: bean-scopes-injection
+        title: 声明 Bean 作用域并注入依赖
+        description: 正确选用 ApplicationScoped、RequestScoped 与依赖注入，保持组件边界清晰且便于测试。
+        status: planned
+      - type: node
+        id: qualifiers-producers
+        title: 用限定符和 Producer 消除装配歧义
+        description: 在同一接口存在多个实现或第三方对象需托管时，显式表达依赖选择和创建方式。
+        status: planned
+      - type: node
+        id: typed-configuration
+        title: 绑定并校验类型安全配置
+        description: 使用 Config Mapping 表达结构化配置，设置默认值并在启动时暴露缺失或非法参数。
+        status: planned
+        link: https://quarkus.io/guides/config-reference
+      - type: node
+        id: profiles-secrets
+        title: 区分环境配置与敏感信息
+        description: 理解配置源优先级及 dev、test、prod Profile，将密钥交给环境或专用密钥系统而非源码。
+        status: planned
+
+  - type: node
+    id: rest-api
+    title: 构建可靠的 REST API
+    description: 使用 Quarkus REST 实现资源接口、输入校验、稳定错误模型与可验证的 OpenAPI 契约。
+    tags: [REST, HTTP, OpenAPI]
+    status: planned
+    link: https://quarkus.io/guides/rest
+    children:
+      - type: node
+        id: resources-dtos
+        title: 用资源类与 DTO 表达 HTTP 契约
+        description: 使用 Jakarta REST 注解设计路径、方法、状态码和媒体类型，并隔离传输模型与持久化模型。
+        status: planned
+      - type: node
+        id: validation-errors
+        title: 校验输入并统一错误响应
+        description: 使用 Jakarta Bean Validation 约束请求，在 ExceptionMapper 中将失败映射为一致且不泄露内部细节的响应。
+        status: planned
+        link: https://quarkus.io/guides/validation
+      - type: node
+        id: openapi-contract
+        title: 生成并核对 OpenAPI 契约
+        description: 用 SmallRye OpenAPI 描述端点和数据结构，通过 Swagger UI 验证文档与实际行为一致。
+        status: planned
+        link: https://quarkus.io/guides/openapi-swaggerui
+      - type: node
+        id: rest-client
+        title: 安全调用下游 HTTP 服务
+        description: 使用 Quarkus REST Client 声明类型化客户端，配置超时并处理非成功响应与连接失败。
+        status: planned
+        link: https://quarkus.io/guides/rest-client
+
+  - type: node
+    id: persistence
+    title: 持久化关系数据并维护一致性
+    description: 配置数据源，以 Hibernate ORM with Panache 实现数据访问，并用事务与迁移管理数据生命周期。
+    tags: [数据库, Hibernate ORM, Panache]
+    status: planned
+    link: https://quarkus.io/guides/hibernate-orm-panache
+    children:
+      - type: node
+        id: datasource-dev-services
+        title: 用 Dev Services 建立本地数据环境
+        description: 让开发与测试模式自动提供数据库，同时为生产环境显式配置数据源和凭据。
+        status: planned
+        link: https://quarkus.io/guides/dev-services
+      - type: node
+        id: entities-repositories
+        title: 建模实体并选择 Panache 风格
+        description: 映射实体、主键和关联关系，在 Active Record 与 Repository 模式之间做一致选择。
+        status: planned
+      - type: node
+        id: queries-pagination
+        title: 编写可控的查询与分页
+        description: 实现筛选、排序和分页，检查抓取策略与 SQL，避免 N+1 查询和无界结果集。
+        status: planned
+      - type: node
+        id: transaction-boundaries
+        title: 使用事务维护业务不变量
+        description: 在用例边界使用 Transactional，明确回滚行为，并避免把远程调用和长耗时工作放入数据库事务。
+        status: planned
+        link: https://quarkus.io/guides/transaction
+      - type: node
+        id: schema-migrations
+        title: 用迁移脚本演进 Schema
+        description: 使用 Flyway 版本化数据库变更，在自动化测试和发布流程中验证迁移成功与失败恢复。
+        status: planned
+        link: https://quarkus.io/guides/flyway
+
+  - type: node
+    id: security
+    title: 保护服务与数据边界
+    description: 使用 OIDC 验证访问令牌，在资源和方法层实施最小权限，并测试公开与受保护路径。
+    tags: [安全, OIDC, OAuth 2.0]
+    status: planned
+    link: https://quarkus.io/guides/security-oidc-bearer-token-authentication
+    children:
+      - type: node
+        id: oidc-authentication
+        title: 验证 OIDC Bearer Token
+        description: 配置发行者、客户端与受众校验，区分 JWT 本地验证和远程令牌自省的适用条件。
+        status: planned
+      - type: node
+        id: role-authorization
+        title: 实施角色与策略授权
+        description: 使用 RolesAllowed 或 HTTP 权限策略限制敏感操作，并对默认拒绝和越权场景编写测试。
+        status: planned
+      - type: node
+        id: transport-boundaries
+        title: 收紧浏览器与传输边界
+        description: 按调用方配置 CORS、TLS 和安全响应头，不在日志或错误响应中暴露凭据与令牌。
+        status: planned
+
+  - type: node
+    id: testing-debugging
+    title: 建立分层测试与调试策略
+    description: 组合快速单元测试、Quarkus 集成测试和真实依赖验证，覆盖正常路径、失败路径与生产产物。
+    tags: [测试, 调试]
+    status: planned
+    link: https://quarkus.io/guides/getting-started-testing
+    children:
+      - type: node
+        id: unit-component-tests
+        title: 隔离验证领域与组件逻辑
+        description: 对无容器依赖的业务规则运行快速单元测试，并只在需要 CDI 行为时启用组件测试能力。
+        status: planned
+      - type: node
+        id: quarkus-http-tests
+        title: 测试运行中的 HTTP 接口
+        description: 使用 QuarkusTest 与 REST Assured 验证路由、状态码、响应体、校验和授权行为。
+        status: planned
+      - type: node
+        id: real-dependency-tests
+        title: 用真实依赖验证集成边界
+        description: 借助 Dev Services 或 QuarkusTestResource 启动数据库和身份服务，避免只用 Mock 掩盖协议差异。
+        status: planned
+      - type: node
+        id: packaged-integration-tests
+        title: 验证打包后的应用
+        description: 使用 QuarkusIntegrationTest 对 JVM 产物运行黑盒测试，并在采用原生构建时复用同一验收契约。
+        status: planned
+      - type: node
+        id: dev-mode-debugging
+        title: 在开发模式中定位故障
+        description: 利用错误页、日志、Dev UI、远程调试和连续测试缩小启动、注入、配置与请求失败的范围。
+        status: planned
+
+  - type: node
+    id: capstone-service
+    title: 交付一个完整的业务服务
+    description: 构建含 REST 契约、PostgreSQL 持久化、迁移、OIDC 授权和自动化测试的可运行服务，并提供本地启动与验收说明。
+    tags: [综合实践]
+    status: planned
+    children:
+      - type: node
+        id: design-service-contract
+        title: 设计领域边界与验收契约
+        description: 从业务不变量推导资源、DTO、错误模型、数据库约束和角色权限，并记录关键取舍。
+        status: planned
+      - type: node
+        id: implement-service-slices
+        title: 按纵向切片完成核心用例
+        description: 逐个交付从 HTTP 到数据库的可测试用例，保持资源层、应用逻辑和持久化职责清晰。
+        status: planned
+      - type: node
+        id: verify-failure-paths
+        title: 验证失败与恢复路径
+        description: 覆盖非法输入、重复请求、无权限、数据库不可用和迁移失败，并确认响应、日志与数据状态可接受。
+        status: planned
+
+  - type: node
+    id: production-readiness
+    title: 让服务可观测且可部署
+    description: 配置健康检查、日志、指标与追踪，构建容器镜像并在目标环境验证配置、资源限制和优雅终止。
+    tags: [可观测性, 部署, 容器]
+    status: planned
+    link: https://quarkus.io/guides/observability
+    children:
+      - type: node
+        id: health-probes
+        title: 暴露存活与就绪探针
+        description: 使用 SmallRye Health 区分进程存活和接流量条件，并验证依赖故障时的探针行为。
+        status: planned
+        link: https://quarkus.io/guides/smallrye-health
+      - type: node
+        id: logs-metrics-traces
+        title: 关联日志、指标与追踪
+        description: 输出可检索日志和请求关联信息，通过推荐的 OpenTelemetry 路径导出遥测并验证关键告警信号。
+        status: planned
+        link: https://quarkus.io/guides/opentelemetry
+      - type: node
+        id: container-delivery
+        title: 构建并验证容器交付物
+        description: 生成 JVM 容器镜像，以非 root 用户运行，设置资源与运行时配置，并执行镜像级冒烟测试。
+        status: planned
+      - type: node
+        id: runtime-behavior
+        title: 验证生产运行行为
+        description: 在资源限制下检查启动、内存、超时、连接池、优雅终止和滚动发布行为，再依据测量结果调优。
+        status: planned
+      - type: roadmap
+        roadmapId: docker
+        title: 深入容器镜像与运行实践
+        description: 补充镜像分层、安全运行、网络和可重复构建能力。
+
+  - type: node
+    id: advanced-paths
+    title: 按场景选择深化方向
+    description: 只有在业务约束和测量结果支持时，再引入原生镜像、响应式编程、消息驱动或 Kubernetes 等额外复杂度。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: native-executable
+        title: 构建并验证原生可执行文件
+        description: 使用 Mandrel 或 GraalVM 构建原生产物，运行集成测试，并量化启动、内存、构建时间与兼容性取舍。
+        status: optional
+        link: https://quarkus.io/guides/building-native-image
+      - type: node
+        id: reactive-concurrency
+        title: 掌握响应式执行模型
+        description: 理解事件循环、Worker、Mutiny、背压和上下文传播，只在 I/O 并发需求明确时选择非阻塞链路。
+        status: optional
+        link: https://quarkus.io/guides/quarkus-reactive-architecture
+      - type: node
+        id: messaging
+        title: 构建消息驱动流程
+        description: 使用 Quarkus Messaging 设计通道、确认、重试、死信与幂等消费，并在真实 Broker 上验证故障恢复。
+        status: optional
+        link: https://quarkus.io/guides/messaging
+      - type: node
+        id: virtual-threads
+        title: 用虚拟线程简化阻塞型并发
+        description: 在适合请求级并发且依赖允许阻塞的场景评估虚拟线程，测试 ThreadLocal、锁与资源池约束。
+        status: optional
+        link: https://quarkus.io/guides/virtual-threads
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 交付路线
+        description: 当服务需要集群编排时，继续学习工作负载、配置、探针、资源限制和发布策略。

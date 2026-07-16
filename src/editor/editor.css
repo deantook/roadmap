@@ -145,6 +145,10 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .field textarea { min-height: 82px; padding: 10px; resize: vertical; line-height: 1.65; }
 .field input:focus, .field textarea:focus, .field select:focus { border-color: #9d90ed; outline: 0; box-shadow: 0 0 0 3px rgb(105 82 232 / 8%); }
 .field input::placeholder, .field textarea::placeholder { color: #abb2be; }
+.node-type-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border: 1px solid #dfe3e9; border-radius: 8px; background: #f5f6f8; }
+.node-type-switch button { height: 32px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 8px; color: #7a8496; border: 0; border-radius: 5px; background: transparent; cursor: pointer; font-size: 10px; font-weight: 600; }
+.node-type-switch button:hover { color: #3f4a5d; }
+.node-type-switch button.active { color: var(--accent); background: #fff; box-shadow: 0 1px 4px rgb(30 41 59 / 10%); }
 .tag-editor { display: grid; gap: 8px; }
 .tag-input-row { display: flex; align-items: center; overflow: hidden; }
 .tag-input-row:focus-within { border-color: #9d90ed; box-shadow: 0 0 0 3px rgb(105 82 232 / 8%); }

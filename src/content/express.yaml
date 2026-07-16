@@ -1,0 +1,425 @@
+id: express
+title: Express
+description: 面向具备 Node.js 与 HTTP 基础的学习者，从路由和中间件出发，构建、测试、保护并交付生产就绪的 Express REST API。
+tags: [后端, Node.js, Express, JavaScript, API]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 补齐 Node.js、JavaScript 与 HTTP 基础
+    description: 能使用现代 JavaScript、Promise 和 ESM 编写 Node.js 程序，并理解请求方法、状态码、标头、消息体和事件循环。
+    tags: [前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: nodejs
+        title: 补齐 Node.js 服务端基础
+        description: 掌握运行时、包管理、异步 I/O、原生 HTTP、测试、调试和优雅关闭，再进入 Express 框架实践。
+
+  - type: node
+    id: first-application
+    title: 建立 Express 开发闭环
+    description: 创建最小 Express 5 应用，分离 app 与监听入口，并完成配置校验、自动重载、测试和可重复启动。
+    tags: [入门, 工程化]
+    status: planned
+    link: https://expressjs.com/en/starter/installing/
+    children:
+      - type: node
+        id: initialize-project
+        title: 初始化 ESM 项目并安装 Express
+        description: 声明受支持的 Node.js 版本、模块类型和 npm scripts，提交 lockfile 并区分运行与开发依赖。
+        status: planned
+      - type: node
+        id: hello-world
+        title: 启动并验证首个 HTTP 端点
+        description: 创建 app、注册 GET 路由和监听端口，使用 curl 检查状态、标头与响应体，再从日志确认请求到达。
+        status: planned
+        link: https://expressjs.com/en/starter/hello-world/
+      - type: node
+        id: separate-app-server
+        title: 分离应用组装与进程入口
+        description: 让 app 模块只负责中间件和路由，让 server 模块负责监听、信号与依赖生命周期，以便集成测试和关闭。
+        status: planned
+      - type: node
+        id: validate-configuration
+        title: 在启动阶段校验运行配置
+        description: 读取并验证端口、环境、数据库和密钥配置，使缺失或非法值在接收流量前明确失败。
+        status: planned
+      - type: node
+        id: express-five-migration
+        title: 识别 Express 5 行为边界
+        description: 使用当前路由路径语法和响应 API，理解 rejected Promise 的错误传播，并在升级旧项目时运行迁移检查。
+        status: planned
+        link: https://expressjs.com/en/guide/migrating-5/
+
+  - type: node
+    id: routing-http
+    title: 用 Router 表达清晰的 HTTP API
+    description: 根据资源和 HTTP 语义设计路由，以 Router 划分模块，并返回一致的状态、标头与表示形式。
+    tags: [路由, HTTP, REST]
+    status: planned
+    link: https://expressjs.com/en/5x/guide/routing/
+    children:
+      - type: node
+        id: methods-paths-params
+        title: 正确匹配方法、路径与参数
+        description: 使用 METHOD、路径参数和查询参数表达端点，理解路由声明顺序、匹配语法和 query 不属于 route path。
+        status: planned
+      - type: node
+        id: modular-routers
+        title: 用 Router 划分业务边界
+        description: 为一组相关资源创建可挂载 Router，使用 namespace 风格路径，并只在确有父参数依赖时启用 mergeParams。
+        status: planned
+      - type: node
+        id: handler-chains
+        title: 组合路由级处理链
+        description: 将认证、校验、加载资源和 handler 按明确顺序组合，保证每个函数只发送响应或调用 next 一次。
+        status: planned
+      - type: node
+        id: response-semantics
+        title: 返回符合 HTTP 语义的响应
+        description: 为创建、读取、更新、删除、空结果和冲突选择正确状态码，设置 Location、缓存或内容类型等必要标头。
+        status: planned
+      - type: node
+        id: pagination-idempotency
+        title: 设计可扩展的集合与写入端点
+        description: 约定分页、过滤和排序边界，为需要安全重试的写入设计幂等键或资源状态约束。
+        status: planned
+
+  - type: node
+    id: middleware-errors
+    title: 掌握 Middleware 与错误传播
+    description: 将 Express 视为有顺序的中间件栈，明确 next、响应结束、异步错误和 404/错误处理器之间的控制流。
+    tags: [Middleware, 错误处理]
+    status: planned
+    link: https://expressjs.com/en/guide/using-middleware/
+    children:
+      - type: node
+        id: middleware-contract
+        title: 遵守中间件控制流契约
+        description: 在每条路径上选择调用 next、next(error) 或结束响应，避免重复发送、悬挂请求和错误后继续执行。
+        status: planned
+      - type: node
+        id: middleware-order
+        title: 设计可解释的中间件顺序
+        description: 按代理配置、请求 ID、日志、解析、认证、路由、404 和错误处理排列组件，并用测试锁定顺序假设。
+        status: planned
+      - type: node
+        id: built-in-middleware
+        title: 配置内置解析与静态中间件
+        description: 只在需要的路径启用 express.json、urlencoded 或 static，并限制消息体大小、类型和静态文件暴露范围。
+        status: planned
+      - type: node
+        id: async-errors
+        title: 统一传播同步与异步错误
+        description: 让 async handler 返回 Promise，理解 Express 5 自动转发 rejected Promise，同时显式处理脱离请求链的回调错误。
+        status: planned
+        link: https://expressjs.com/en/5x/guide/error-handling/
+      - type: node
+        id: error-middleware
+        title: 输出稳定且安全的错误模型
+        description: 在四参数错误中间件中归类预期与未知错误，映射状态和错误码，并在响应已发送时委托默认处理器。
+        status: planned
+      - type: node
+        id: not-found-handler
+        title: 显式处理未匹配路由
+        description: 在所有 Router 之后返回统一 404，避免把未匹配请求误当作异常或回落到意外静态资源。
+        status: planned
+
+  - type: node
+    id: api-boundaries
+    title: 校验并约束 API 边界
+    description: 把 params、query、headers 和 body 一律视为不可信输入，通过 Schema、契约和大小限制保护应用与调用方。
+    tags: [校验, OpenAPI, 契约]
+    status: planned
+    children:
+      - type: node
+        id: schema-validation
+        title: 用 Schema 校验所有外部输入
+        description: 选择一个维护良好的验证库，对类型、格式、范围和未知字段执行解析，并只把规范化结果交给应用逻辑。
+        status: planned
+      - type: node
+        id: content-negotiation
+        title: 约束内容类型与编码
+        description: 检查 Content-Type 和 Accept，只解析支持的表示形式，并对错误媒体类型、过大或畸形消息体给出明确响应。
+        status: planned
+      - type: node
+        id: openapi-contract
+        title: 维护可验证的 OpenAPI 契约
+        description: 描述端点、Schema、安全方案和错误响应，在 CI 中校验文档，并用契约测试减少实现与客户端漂移。
+        status: planned
+        link: https://spec.openapis.org/oas/latest.html
+      - type: node
+        id: request-files
+        title: 安全处理文件上传
+        description: 使用专用流式 multipart 组件限制数量、大小和类型，将文件置于隔离存储并避免信任原始文件名。
+        status: planned
+      - type: node
+        id: outbound-http
+        title: 为下游 HTTP 调用设置边界
+        description: 使用 fetch 配置超时、取消、有限重试和错误映射，并在客户端断开或请求截止后停止无效工作。
+        status: planned
+        link: https://nodejs.org/docs/latest/api/globals.html#fetch
+
+  - type: node
+    id: architecture-dependencies
+    title: 组织可测试的应用结构
+    description: 将 Express 限定在传输层，通过显式依赖和启动组装连接应用逻辑、数据库与外部服务。
+    tags: [架构, 依赖]
+    status: planned
+    children:
+      - type: node
+        id: transport-application-data
+        title: 分离传输、应用与数据职责
+        description: 让 Router 处理 HTTP 映射，应用服务维护用例，Repository 负责持久化，避免 req 和 res 穿透业务层。
+        status: planned
+      - type: node
+        id: dependency-injection
+        title: 使用显式依赖组装组件
+        description: 通过工厂函数或构造参数传入数据库、时钟、日志和客户端，使替换、测试与生命周期管理保持可见。
+        status: planned
+      - type: node
+        id: request-context
+        title: 安全传递请求上下文
+        description: 为关联 ID、主体和截止时间定义明确上下文，避免依赖可变全局变量或在任意中间件上随意扩展 req。
+        status: planned
+      - type: node
+        id: startup-readiness
+        title: 在接流量前完成启动检查
+        description: 建立数据库与关键依赖连接，执行必要的兼容检查，并只在应用可服务后报告 readiness。
+        status: planned
+
+  - type: node
+    id: persistence
+    title: 持久化关系数据并维护一致性
+    description: 以 PostgreSQL 为主线，使用驱动或查询层管理连接池、参数化查询、事务和版本化 Schema。
+    tags: [PostgreSQL, SQL, 事务]
+    status: planned
+    link: https://expressjs.com/en/guide/database-integration/
+    children:
+      - type: node
+        id: connection-pool
+        title: 管理连接池与超时
+        description: 按实例连接预算设置池大小、获取和语句超时，在请求取消与进程关闭时正确释放连接。
+        status: planned
+      - type: node
+        id: parameterized-queries
+        title: 使用参数化查询隔离输入
+        description: 将 SQL 结构与外部值分开，显式映射数据库结果和错误，避免字符串拼接造成注入与类型问题。
+        status: planned
+      - type: node
+        id: repository-queries
+        title: 封装可观察的数据访问
+        description: 在 Repository 中集中查询与结果映射，保留查看生成 SQL 和执行计划的能力，避免 N+1 和无界查询。
+        status: planned
+      - type: node
+        id: transaction-boundaries
+        title: 用事务维护业务不变量
+        description: 在应用用例边界获取单一连接并提交或回滚，保持事务短小，并对可重试并发失败实施有界策略。
+        status: planned
+      - type: node
+        id: schema-migrations
+        title: 用版本化迁移演进 Schema
+        description: 选择独立迁移工具，在 CI 和类生产数据库上验证前滚、锁影响、兼容窗口与失败恢复。
+        status: planned
+      - type: roadmap
+        roadmapId: postgresql
+        title: 深入 PostgreSQL 设计与运维
+        description: 补充建模、索引、执行计划、隔离级别、安全、备份和恢复能力。
+
+  - type: node
+    id: authentication-security
+    title: 实施认证、授权与安全防护
+    description: 根据客户端选择 Session 或 Bearer Token，在每个敏感操作执行服务端授权，并加固代理、Cookie、输入和依赖边界。
+    tags: [安全, 认证, 授权]
+    status: planned
+    link: https://expressjs.com/en/advanced/best-practice-security.html
+    children:
+      - type: node
+        id: authentication-strategy
+        title: 选择适合客户端的认证方式
+        description: 浏览器同源应用优先评估服务端 Session，跨服务或独立客户端评估标准 Bearer Token，避免自创密码和令牌协议。
+        status: planned
+      - type: node
+        id: password-session-security
+        title: 保护密码、Session 与 Cookie
+        description: 使用专用密码哈希、轮换 Session ID、服务端生产存储和 Secure、HttpOnly、SameSite Cookie，并设置合理过期。
+        status: planned
+        link: https://expressjs.com/en/resources/middleware/session.html
+      - type: node
+        id: authorization
+        title: 对每个资源操作执行授权
+        description: 在加载资源后检查主体、角色与所有权，采用默认拒绝策略，并防止仅靠隐藏路由或客户端 UI 限权。
+        status: planned
+      - type: node
+        id: proxy-tls-headers
+        title: 正确配置代理、TLS 与安全标头
+        description: 只信任已知代理跳数或网段，验证 X-Forwarded 信息，终止 TLS 并用 Helmet 等方式设置适合应用的安全标头。
+        status: planned
+        link: https://expressjs.com/en/guide/behind-proxies.html
+      - type: node
+        id: cors-csrf
+        title: 区分 CORS 与 CSRF 防护
+        description: 仅向必要来源开放 CORS，并为基于 Cookie 的状态变更实施 CSRF 防护，理解 CORS 本身不是访问控制。
+        status: planned
+        link: https://expressjs.com/en/resources/middleware/cors/
+      - type: node
+        id: limits-abuse-dependencies
+        title: 限制滥用并维护依赖安全
+        description: 对登录和高成本端点限流，限制请求资源，隐藏框架指纹，并持续审计、更新和最小化生产依赖。
+        status: planned
+
+  - type: node
+    id: testing-debugging
+    title: 建立分层测试与调试策略
+    description: 用 Node.js 测试运行器覆盖领域逻辑、中间件、Router、数据库与完整 HTTP 行为，并在真实失败条件下验证资源清理。
+    tags: [测试, 调试]
+    status: planned
+    link: https://nodejs.org/docs/latest/api/test.html
+    children:
+      - type: node
+        id: unit-tests
+        title: 隔离测试应用逻辑
+        description: 对无 Express 依赖的服务和领域规则运行快速单元测试，通过显式依赖替换数据库、时钟和外部客户端。
+        status: planned
+      - type: node
+        id: middleware-router-tests
+        title: 验证 Middleware 与 Router 契约
+        description: 覆盖 next、错误传播、认证、校验、404 和顺序行为，防止双重响应与请求悬挂回归。
+        status: planned
+      - type: node
+        id: http-integration-tests
+        title: 对真实 HTTP Server 运行集成测试
+        description: 监听随机端口并通过 HTTP Client 请求 app，断言状态、标头、JSON、重定向和安全规则，测试后关闭 Server。
+        status: planned
+      - type: node
+        id: database-integration-tests
+        title: 在真实 PostgreSQL 上验证数据路径
+        description: 为测试提供隔离数据库，应用迁移并覆盖约束、事务回滚和并发失败，避免仅用内存替身掩盖差异。
+        status: planned
+      - type: node
+        id: failure-lifecycle-tests
+        title: 测试超时、断开与关闭流程
+        description: 模拟下游缓慢、客户端取消、数据库不可用和 SIGTERM，确认截止时间、错误响应与资源释放符合预期。
+        status: planned
+      - type: node
+        id: express-debugging
+        title: 用调试命名空间定位框架行为
+        description: 在受控环境启用 express 调试日志，结合请求日志、Inspector 和堆栈定位路由、代理、中间件与性能问题。
+        status: planned
+        link: https://expressjs.com/en/5x/guide/debugging/
+
+  - type: node
+    id: capstone-api
+    title: 交付一个完整的业务 API
+    description: 构建含 OpenAPI、PostgreSQL、迁移、认证授权、自动化测试和故障处理的可运行 REST 服务，并提供本地验收说明。
+    tags: [综合实践]
+    status: planned
+    children:
+      - type: node
+        id: design-contract
+        title: 设计领域边界与 API 契约
+        description: 从业务不变量推导资源、Schema、错误码、数据库约束、权限和幂等要求，并记录关键取舍。
+        status: planned
+      - type: node
+        id: implement-vertical-slices
+        title: 按纵向切片完成核心用例
+        description: 逐个交付从 Router、校验、应用服务到数据库的可测试用例，避免先搭建无法验收的抽象层。
+        status: planned
+      - type: node
+        id: verify-failure-paths
+        title: 验证失败与恢复路径
+        description: 覆盖非法输入、重复请求、无权限、并发冲突、下游超时、数据库不可用和迁移失败。
+        status: planned
+      - type: node
+        id: publish-runbook
+        title: 提供运行与排障手册
+        description: 记录配置、迁移、启动、健康检查、日志查询、关闭和常见故障处理，使新环境可独立复现。
+        status: planned
+
+  - type: node
+    id: production-readiness
+    title: 让服务可观测、可扩展、可关闭
+    description: 在生产模式和反向代理后运行无状态实例，通过健康检查、结构化遥测、资源限制和优雅关闭支撑安全发布。
+    tags: [部署, 可观测性, 可靠性]
+    status: planned
+    link: https://expressjs.com/en/advanced/best-practice-performance/
+    children:
+      - type: node
+        id: production-process
+        title: 以生产模式运行受监管进程
+        description: 设置 NODE_ENV=production，使用平台或 init system 自动重启异常退出进程，并避免用开发重载器承载流量。
+        status: planned
+      - type: node
+        id: reverse-proxy-scaling
+        title: 在可信反向代理后水平扩展
+        description: 让代理处理 TLS、压缩、静态资源和负载均衡，保持实例无状态，并让共享 Session 等状态进入外部存储。
+        status: planned
+      - type: node
+        id: health-readiness
+        title: 区分存活与就绪检查
+        description: 让 liveness 只判断进程能否恢复，让 readiness 反映是否可接流量，并避免探针制造高成本依赖风暴。
+        status: planned
+        link: https://expressjs.com/en/advanced/healthcheck-graceful-shutdown/
+      - type: node
+        id: logs-metrics-traces
+        title: 关联日志、指标与追踪
+        description: 记录请求 ID、安全错误上下文和延迟，采集吞吐、错误率、事件循环、内存与依赖指标，并传播标准追踪上下文。
+        status: planned
+      - type: node
+        id: graceful-shutdown
+        title: 排空请求并优雅关闭依赖
+        description: 收到 SIGTERM 后停止接收新请求，在截止时间内等待在途工作，并依次关闭 HTTP Server、数据库与后台资源。
+        status: planned
+      - type: node
+        id: container-release
+        title: 构建并验证容器交付物
+        description: 生成最小非 root 镜像，设置只读或受限文件系统与资源限制，并在镜像级测试迁移、启动、探针和关闭。
+        status: planned
+      - type: roadmap
+        roadmapId: docker
+        title: 深入容器镜像与运行实践
+        description: 补充镜像分层、安全运行、网络、资源限制和可重复构建能力。
+
+  - type: node
+    id: advanced-paths
+    title: 按产品需求选择深化方向
+    description: 在核心 REST 服务稳定后，再根据团队类型需求、交互模式和运维约束选择额外能力。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: typescript
+        title: 用 TypeScript 约束应用边界
+        description: 启用 strict 模式，为验证后的输入、响应、依赖和错误建立类型，并理解 Express 类型定义来自 DefinitelyTyped。
+        status: optional
+        link: https://expressjs.com/en/starter/installing/#typescript
+      - type: node
+        id: server-rendered-pages
+        title: 渲染服务端页面
+        description: 在确需多页应用时选择模板引擎，安全传递视图模型、自动转义输出，并将静态交付交给合适层级。
+        status: optional
+        link: https://expressjs.com/en/guide/using-template-engines.html
+      - type: node
+        id: realtime-connections
+        title: 支持实时与长连接
+        description: 在明确需要 WebSocket 或 Server-Sent Events 时设计连接认证、心跳、背压、广播和多实例协调。
+        status: optional
+      - type: node
+        id: background-jobs
+        title: 将长任务移出请求周期
+        description: 使用外部队列和 Worker 执行可重试工作，设计幂等、超时、死信、结果可见性与优雅关闭。
+        status: optional
+      - type: node
+        id: redis-capabilities
+        title: 按需引入 Redis 能力
+        description: 为共享 Session、限流、缓存或 Streams 选择合适数据结构，并处理过期、一致性与故障降级。
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: redis
+            title: 深入 Redis 数据与运行实践
+            description: 学习数据结构、缓存、并发、持久化、安全和监控。
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 交付路线
+        description: 当服务确需集群编排时，继续学习工作负载、配置、探针、资源限制和发布策略。

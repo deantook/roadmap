@@ -1,0 +1,374 @@
+id: html
+title: HTML
+description: 面向零基础学习者，从文档语法与语义出发，成长为能独立编写、检查并交付可访问、可发现且稳健的 HTML 页面开发者。
+tags: [HTML, Web, 前端, 可访问性]
+nodes:
+  - type: node
+    id: document-foundations
+    title: 建立 HTML 文档基础
+    description: 理解 HTML 在 Web 中负责内容与结构，并能创建一个由浏览器正确解析的最小文档。
+    tags: [语法, 文档结构, 浏览器]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content
+    children:
+      - type: node
+        id: html-role
+        title: 区分 HTML、CSS 与 JavaScript 的职责
+        description: 用内容结构、视觉表现和交互行为解释三者边界，避免用 HTML 承担纯样式职责。
+        tags: [Web 基础, 职责边界]
+        status: planned
+      - type: node
+        id: elements-attributes
+        title: 正确书写元素与属性
+        description: 掌握起止标签、嵌套、空元素、布尔属性、字符引用与注释，并能识别常见语法错误。
+        tags: [元素, 属性, 语法]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax
+      - type: node
+        id: document-skeleton
+        title: 搭建完整的文档骨架
+        description: 使用 doctype、html、head 与 body 创建页面，并正确声明字符编码、语言和视口。
+        tags: [doctype, head, lang]
+        status: planned
+      - type: node
+        id: inspect-source-dom
+        title: 对照源码与 DOM 检查解析结果
+        description: 使用查看源代码和开发者工具观察浏览器如何纠正不合法嵌套，建立基于实际 DOM 的调试习惯。
+        tags: [DOM, DevTools, 调试]
+        status: planned
+        link: https://html.spec.whatwg.org/multipage/parsing.html
+
+  - type: node
+    id: semantic-content
+    title: 用语义表达文本与内容层级
+    description: 根据内容含义选择元素，使页面在没有 CSS 时仍具备清晰、可导航的阅读结构。
+    tags: [语义化, 文本, 内容结构]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs
+    children:
+      - type: node
+        id: headings-paragraphs-lists
+        title: 组织标题、段落与列表
+        description: 建立连续的标题层级，并根据内容关系选择段落、有序列表、无序列表或描述列表。
+        tags: [标题, 段落, 列表]
+        status: planned
+      - type: node
+        id: text-level-semantics
+        title: 标记文本级含义
+        description: 根据强调、重要性、引用、代码、时间、缩写和联系信息的含义选择元素，而不是按默认外观选择标签。
+        tags: [文本语义, 引用, 时间]
+        status: planned
+      - type: node
+        id: page-landmarks
+        title: 划分页面地标与独立内容
+        description: 使用 header、nav、main、article、section、aside 与 footer 表达区域职责，并为需要的分区提供标题。
+        tags: [地标, 分区, 文档大纲]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents
+      - type: node
+        id: semantic-refactor
+        title: 重构一页无语义标记
+        description: 将由 div、span 和换行堆砌的文章重构为语义结构，并用浏览器可访问性树核对结果。
+        tags: [实践, 重构, 可访问性树]
+        status: planned
+
+  - type: node
+    id: links-navigation
+    title: 构建可靠的链接与导航
+    description: 使用 URL、链接和站内导航连接资源，让用户能预判目标并在键盘或辅助技术中顺畅移动。
+    tags: [链接, URL, 导航]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links
+    children:
+      - type: node
+        id: url-paths-fragments
+        title: 解析 URL、路径与片段
+        description: 区分绝对 URL、相对路径、根路径、查询参数和文档片段，并在目录变化后保持链接有效。
+        tags: [URL, 路径, 锚点]
+        status: planned
+      - type: node
+        id: meaningful-link-text
+        title: 编写有意义的链接文本
+        description: 让链接名称脱离上下文仍能说明目的，并在下载或打开新环境时提前告知用户。
+        tags: [链接文本, a11y]
+        status: planned
+      - type: node
+        id: navigation-structure
+        title: 标记一致的站点导航
+        description: 用 nav、列表、当前页面状态与跳过链接组织主导航和页内目录，确保焦点顺序符合阅读顺序。
+        tags: [nav, 键盘, 焦点]
+        status: planned
+      - type: node
+        id: link-safety
+        title: 安全处理外部链接与新窗口
+        description: 仅在确有必要时打开新窗口，并为外部目标、下载和 referrer 行为选择清晰且安全的属性。
+        tags: [安全, 隐私, rel]
+        status: planned
+
+  - type: node
+    id: media-embeds
+    title: 提供自适应且可替代的媒体内容
+    description: 为图片、音频、视频与嵌入内容选择合适标记，在不同设备和辅助技术下保留信息与控制能力。
+    tags: [图片, 音视频, 响应式媒体]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_images
+    children:
+      - type: node
+        id: image-alternatives
+        title: 为图片提供恰当的文本替代
+        description: 根据图片是信息、功能、装饰还是复杂图表决定 alt、可见说明和详细描述，而不是机械填写文件名。
+        tags: [img, alt, 可访问性]
+        status: planned
+        link: https://www.w3.org/WAI/tutorials/images/
+      - type: node
+        id: responsive-images
+        title: 交付尺寸合适的响应式图片
+        description: 使用 width、height、srcset、sizes 与 picture 控制固有尺寸、分辨率和艺术方向，减少布局偏移与无效传输。
+        tags: [srcset, picture, 性能]
+        status: planned
+      - type: node
+        id: audio-video-captions
+        title: 发布带替代内容的音视频
+        description: 使用 audio、video、source 与 track 提供兼容格式、字幕和备用内容，并保留可用的原生控制。
+        tags: [audio, video, 字幕]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_video_and_audio
+      - type: node
+        id: safe-embeds
+        title: 约束第三方嵌入内容
+        description: 为 iframe 设置准确标题、懒加载、权限与 sandbox 边界，并评估隐私、性能和不可用时的替代方案。
+        tags: [iframe, sandbox, 隐私]
+        status: planned
+
+  - type: node
+    id: accessible-data-tables
+    title: 用表格表达结构化数据
+    description: 只为具有行列关系的数据使用表格，并让表头与单元格关系可被视觉和辅助技术共同理解。
+    tags: [表格, 数据, 可访问性]
+    status: planned
+    link: https://www.w3.org/WAI/tutorials/tables/
+    children:
+      - type: node
+        id: table-structure
+        title: 标记表格标题与行列结构
+        description: 使用 caption、thead、tbody、tfoot、tr、th 与 td 表达数据结构，不用表格承担页面布局。
+        tags: [table, caption, 表头]
+        status: planned
+      - type: node
+        id: header-associations
+        title: 建立表头与数据的关联
+        description: 为简单表格使用 scope，为复杂表格谨慎使用 id 与 headers，并通过屏幕阅读器导航验证上下文。
+        tags: [scope, headers, 屏幕阅读器]
+        status: planned
+      - type: node
+        id: table-practice
+        title: 完成一张可访问的数据表
+        description: 将一组真实的二维数据标记为包含标题、单位、分组和空值说明的表格，并验证窄屏阅读顺序。
+        tags: [实践, 验证]
+        status: planned
+
+  - type: node
+    id: robust-forms
+    title: 构建可填写、可验证的表单
+    description: 使用原生控件、标签与约束表达数据收集流程，并为键盘、自动填充和错误恢复提供完整体验。
+    tags: [表单, 验证, 可访问性]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms
+    children:
+      - type: node
+        id: form-controls-labels
+        title: 选择控件并建立标签关系
+        description: 根据数据类型选择 input、textarea、select 或 button，使用显式 label、fieldset 与 legend 表达名称和分组。
+        tags: [input, label, fieldset]
+        status: planned
+      - type: node
+        id: submission-contract
+        title: 理解表单提交契约
+        description: 解释 form 的 action、method、enctype、name 与提交按钮如何生成请求，并区分 GET 与 POST 的用途。
+        tags: [HTTP, GET, POST]
+        status: planned
+      - type: node
+        id: input-purpose-autofill
+        title: 声明输入目的与移动键盘
+        description: 使用合适的 type、autocomplete 与 inputmode 帮助浏览器校验、自动填充并呈现合适的输入界面。
+        tags: [autocomplete, inputmode, 移动端]
+        status: planned
+      - type: node
+        id: constraints-errors
+        title: 提供可恢复的校验反馈
+        description: 组合 required、长度、范围和 pattern 约束，在保留用户输入的同时提供可定位且不只依赖颜色的错误信息。
+        tags: [约束验证, 错误反馈]
+        status: planned
+        link: https://www.w3.org/WAI/tutorials/forms/
+      - type: node
+        id: form-practice
+        title: 实现一份多步骤信息表单
+        description: 构建包含条件说明、校验、确认和重新编辑路径的表单，并仅用键盘完成一次提交验收。
+        tags: [项目, 键盘, 验收]
+        status: planned
+
+  - type: node
+    id: native-accessibility
+    title: 以原生语义保障可访问性
+    description: 先利用 HTML 内建语义、名称与交互行为满足需求，再在原生能力不足时谨慎补充 ARIA。
+    tags: [a11y, 原生语义, ARIA]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML
+    children:
+      - type: node
+        id: accessible-names
+        title: 检查名称、角色、状态和值
+        description: 在可访问性树中确认交互元素向辅助技术暴露了正确名称、角色、当前状态和值。
+        tags: [可访问性树, 名称计算]
+        status: planned
+      - type: node
+        id: keyboard-focus-order
+        title: 保持自然的键盘与焦点顺序
+        description: 优先使用可聚焦的原生控件，让 DOM 顺序匹配阅读与操作顺序，并避免用正 tabindex 修补结构问题。
+        tags: [键盘, 焦点, tabindex]
+        status: planned
+      - type: node
+        id: language-readable-content
+        title: 声明语言与可理解内容
+        description: 为页面及局部语言变化设置 lang，展开含义不明的缩写，并让标题和控件说明准确描述目的。
+        tags: [lang, 可读性]
+        status: planned
+      - type: node
+        id: aria-last-resort
+        title: 只在必要时补充 ARIA
+        description: 遵循不改变原生语义和键盘行为的原则，仅为确有缺口的名称、关系或状态添加 ARIA 并人工测试。
+        tags: [ARIA, 渐进增强]
+        status: planned
+        link: https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/
+
+  - type: node
+    id: metadata-discovery
+    title: 配置页面元数据与机器可读信息
+    description: 在 head 中提供准确的页面身份、资源关系和分享信息，同时区分标准元数据与平台特定扩展。
+    tags: [head, 元数据, SEO]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata
+    children:
+      - type: node
+        id: page-identity
+        title: 定义页面标题、描述与规范地址
+        description: 为每页编写唯一且准确的 title 与 description，并在重复地址场景声明 canonical URL。
+        tags: [title, description, canonical]
+        status: planned
+      - type: node
+        id: icons-resource-hints
+        title: 声明图标与外部资源关系
+        description: 用 link 关联图标、样式和必要的资源提示，理解不同 rel 值对加载与文档关系的影响。
+        tags: [link, rel, favicon]
+        status: planned
+      - type: node
+        id: social-metadata
+        title: 为分享预览提供可靠元数据
+        description: 在内容需要传播时补充平台支持的标题、描述与图片信息，并用对应调试工具验证预览结果。
+        tags: [Open Graph, 分享预览]
+        status: optional
+      - type: node
+        id: structured-data
+        title: 按内容类型添加结构化数据
+        description: 仅在页面真实内容匹配时选择 JSON-LD 或 HTML 内嵌结构化数据，并用搜索平台工具验证声明。
+        tags: [结构化数据, JSON-LD]
+        status: optional
+        link: https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
+
+  - type: node
+    id: quality-debugging
+    title: 验证并调试 HTML 质量
+    description: 将语法校验、可访问性、兼容性、性能与安全检查纳入页面交付，而不是只以视觉结果作为完成标准。
+    tags: [校验, 调试, 质量]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Debugging_HTML
+    children:
+      - type: node
+        id: validate-conformance
+        title: 使用校验器修复结构错误
+        description: 运行 HTML Checker，按源码位置修复无效嵌套、重复属性、缺失必需内容和过时写法，并理解警告的上下文。
+        tags: [Validator, 规范一致性]
+        status: planned
+        link: https://validator.w3.org/nu/
+      - type: node
+        id: keyboard-screen-reader-check
+        title: 执行键盘与辅助技术检查
+        description: 无鼠标完成导航和表单任务，并用可访问性树或屏幕阅读器核对地标、标题、名称、状态与错误提示。
+        tags: [键盘, 屏幕阅读器, 人工测试]
+        status: planned
+        link: https://www.w3.org/WAI/test-evaluate/preliminary/
+      - type: node
+        id: resilient-html
+        title: 检查兼容性与渐进增强
+        description: 根据目标浏览器核对元素和属性支持，让核心内容与提交能力在 CSS、JavaScript 或第三方资源失败时仍然可用。
+        tags: [兼容性, 渐进增强, 韧性]
+        status: planned
+      - type: node
+        id: html-performance-security
+        title: 审查 HTML 引入的性能与安全风险
+        description: 检查过大的媒体、阻塞资源、第三方嵌入、内联事件处理器和不可信内容注入点，记录需要由服务器策略补足的边界。
+        tags: [性能, XSS, 第三方内容]
+        status: planned
+
+  - type: node
+    id: publish-semantic-site
+    title: 完成并发布一个语义化多页面网站
+    description: 将文档、导航、媒体、表格、表单、元数据与质量检查组合为一个可直接访问和验收的静态网站。
+    tags: [综合项目, 发布, 作品集]
+    status: planned
+    children:
+      - type: node
+        id: define-content-model
+        title: 设计内容模型与验收标准
+        description: 选择个人档案、活动介绍或小型知识库场景，列出页面、内容层级、导航关系和关键用户任务。
+        tags: [信息架构, 需求]
+        status: planned
+      - type: node
+        id: build-multipage-site
+        title: 实现共享导航的多页面结构
+        description: 创建至少三个互相连接的页面，包含一种媒体、一张数据表和一份可提交表单，并保持标题与地标一致。
+        tags: [多页面, 实现]
+        status: planned
+      - type: node
+        id: verify-site-quality
+        title: 留存可复查的质量证据
+        description: 保存 HTML 校验结果、断链检查、键盘测试、不同视口检查和至少一次辅助技术检查的结论与修复记录。
+        tags: [验收, 测试记录]
+        status: planned
+      - type: node
+        id: publish-and-review
+        title: 发布网站并进行外部评审
+        description: 将站点部署到静态托管环境，确认真实 URL、元数据和表单行为，再依据一轮用户反馈修正结构或文案。
+        tags: [部署, 评审, 迭代]
+        status: planned
+
+  - type: node
+    id: advanced-html-directions
+    title: 按产品需求选择 HTML 深化方向
+    description: 在文档与表单基础稳定后，再根据交互、国际化或内容分发需求选择专题，避免把平台所有元素都纳入主线。
+    tags: [进阶, 选修]
+    status: optional
+    link: https://html.spec.whatwg.org/
+    children:
+      - type: node
+        id: native-interactive-elements
+        title: 评估原生交互元素
+        description: 根据兼容性与可访问性需求试用 details、dialog、popover 等能力，并设计不支持时的回退路径。
+        tags: [dialog, popover, 渐进增强]
+        status: optional
+      - type: node
+        id: multilingual-documents
+        title: 交付多语言与双向文本
+        description: 使用 lang、dir、bdi 与 bdo 正确表达语言和书写方向，并验证混合方向内容的阅读顺序。
+        tags: [国际化, RTL, bidi]
+        status: optional
+      - type: node
+        id: template-components
+        title: 理解模板与组件化标记边界
+        description: 学习 template 与 slot 如何保存和分发结构，为后续 Web Components 或框架模板建立正确的 HTML 心智模型。
+        tags: [template, slot, Web Components]
+        status: optional
+      - type: roadmap
+        roadmapId: frontend
+        title: 继续学习完整前端开发
+        description: 在 HTML 基础之上学习 CSS、JavaScript、工程化、测试、性能与应用发布。

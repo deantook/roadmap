@@ -156,6 +156,38 @@ export function containsKey(child: EditorChild, key: string): boolean {
 
 export type DropPosition = 'before' | 'inside' | 'after'
 
+function slugify(value: string) {
+  const slug = value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/[\s-]+/g, '-').replace(/^-|-$/g, '')
+  return slug || 'new-node'
+}
+
+export function convertChildType(child: EditorChild, type: EditorChild['type'], defaultRoadmapId = ''): EditorChild {
+  if (child.type === type) return child
+  if (child.type === 'node' && type === 'roadmap') {
+    return {
+      type: 'roadmap',
+      _key: child._key,
+      roadmapId: defaultRoadmapId,
+      ...(child.title.trim() ? { title: child.title } : {}),
+      ...(child.description?.trim() ? { description: child.description } : {}),
+    }
+  }
+  if (child.type === 'roadmap' && type === 'node') {
+    const title = child.title?.trim() || child.roadmapId || '新知识节点'
+    return {
+      type: 'node',
+      _key: child._key,
+      id: slugify(child.roadmapId || title),
+      title,
+      ...(child.description?.trim() ? { description: child.description } : {}),
+      tags: [],
+      status: 'planned',
+      children: [],
+    }
+  }
+  return child
+}
+
 export function moveChild(children: EditorChild[], draggedKey: string, targetKey: string, position: DropPosition): EditorChild[] {
   if (draggedKey === targetKey) return children
   const dragged = findChild(children, draggedKey)

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { hydrateRoadmap, moveChild, snapshot, stripEditorState, validateRoadmap } from './model'
+import { convertChildType, hydrateRoadmap, moveChild, snapshot, stripEditorState, validateRoadmap } from './model'
 
 describe('editor model', () => {
   const roadmap = () => hydrateRoadmap({
@@ -43,5 +43,15 @@ describe('editor model', () => {
     }
     const errors = validateRoadmap(document, ['demo'])
     expect(errors.join(' ')).toMatch(/已存在|重复|http/)
+  })
+
+  it('converts between knowledge nodes and roadmap references', () => {
+    const document = roadmap()
+    const node = document.nodes[0]!
+    const reference = convertChildType(node, 'roadmap', 'java')
+    expect(reference).toMatchObject({ type: 'roadmap', roadmapId: 'java', title: 'One' })
+    expect(reference._key).toBe(node._key)
+    const convertedBack = convertChildType(reference, 'node')
+    expect(convertedBack).toMatchObject({ type: 'node', id: 'java', title: 'One', status: 'planned', children: [] })
   })
 })

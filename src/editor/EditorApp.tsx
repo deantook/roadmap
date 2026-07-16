@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { DragEvent, ReactNode } from 'react'
 import {
   createKey,
+  convertChildType,
   findChild,
   hydrateRoadmap,
   moveChild,
@@ -46,6 +47,13 @@ function Button({ children, icon, tone = 'default', ...props }: React.ButtonHTML
 
 function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return <label className="field"><span>{label}</span>{children}{hint && <small>{hint}</small>}</label>
+}
+
+function NodeTypeSwitch({ value, onChange }: { value: EditorChild['type']; onChange: (type: EditorChild['type']) => void }) {
+  return <div className="node-type-switch" aria-label="节点类型">
+    <button type="button" className={value === 'node' ? 'active' : ''} onClick={() => onChange('node')}><Icon name="node" size={15} />知识节点</button>
+    <button type="button" className={value === 'roadmap' ? 'active' : ''} onClick={() => onChange('roadmap')}><Icon name="reference" size={15} />路线图节点</button>
+  </div>
 }
 
 function TagEditor({ value, onChange }: { value: string[]; onChange: (tags: string[]) => void }) {
@@ -237,6 +245,12 @@ export default function EditorApp() {
     setSelectedKey(null)
   }
 
+  const changeSelectedType = (type: EditorChild['type']) => {
+    if (!selected || selected.type === type) return
+    if (selected.type === 'node' && selected.children.length > 0 && !window.confirm(`转换为路线图节点后，“${selected.title}”下的 ${countNodes(selected.children)} 个子节点将被移除。继续转换？`)) return
+    updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => convertChildType(child, type)) }))
+  }
+
   const createRoadmap = () => {
     const index = files.length + 1
     const document: EditorRoadmap = { id: `new-roadmap-${index}`, title: '新路线图', tags: [], nodes: [] }
@@ -321,6 +335,7 @@ export default function EditorApp() {
       {document && selected?.type === 'node' && <>
         <div className="inspector-heading"><div><span className="inspector-icon node"><Icon name="node" size={15} /></span><div><small>知识节点</small><strong>{selected.title || '未命名节点'}</strong></div></div><div className="inspector-heading-actions"><button type="button" onClick={duplicateSelected} aria-label="复制"><Icon name="copy" size={14} /></button><button type="button" className="danger" onClick={deleteSelected} aria-label="删除"><Icon name="trash" size={14} /></button><button type="button" onClick={() => setSelectedKey(null)} aria-label="关闭"><Icon name="close" size={14} /></button></div></div>
         <div className="inspector-form">
+          <Field label="节点类型"><NodeTypeSwitch value={selected.type} onChange={changeSelectedType} /></Field>
           <Field label="节点标题"><input value={selected.title} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => ({ ...child, title: event.target.value })) }))} /></Field>
           <Field label="节点 ID"><input value={selected.id} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => ({ ...child, id: event.target.value.toLowerCase().replace(/\s+/g, '-') })) }))} spellCheck={false} /></Field>
           <Field label="学习状态"><select value={selected.status} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => child.type === 'node' ? { ...child, status: event.target.value as EditorNode['status'] } : child) }))}><option value="planned">待开始</option><option value="in-progress">进行中</option><option value="completed">已完成</option><option value="optional">选修</option></select></Field>
@@ -334,6 +349,7 @@ export default function EditorApp() {
       {document && selected?.type === 'roadmap' && <>
         <div className="inspector-heading"><div><span className="inspector-icon reference"><Icon name="reference" size={15} /></span><div><small>路线引用</small><strong>{selected.title || selected.roadmapId || '未设置引用'}</strong></div></div><div className="inspector-heading-actions"><button type="button" onClick={duplicateSelected} aria-label="复制"><Icon name="copy" size={14} /></button><button type="button" className="danger" onClick={deleteSelected} aria-label="删除"><Icon name="trash" size={14} /></button><button type="button" onClick={() => setSelectedKey(null)} aria-label="关闭"><Icon name="close" size={14} /></button></div></div>
         <div className="inspector-form">
+          <Field label="节点类型"><NodeTypeSwitch value={selected.type} onChange={changeSelectedType} /></Field>
           <Field label="引用路线"><select value={selected.roadmapId} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => child.type === 'roadmap' ? { ...child, roadmapId: event.target.value } : child) }))}><option value="">选择路线图</option>{files.filter((file) => file.filename !== activeFilename).map((file) => <option value={file.document.id} key={file.filename}>{file.document.title}</option>)}</select></Field>
           <Field label="自定义标题" hint="留空则使用目标路线标题"><input value={selected.title ?? ''} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => child.type === 'roadmap' ? { ...child, title: event.target.value || undefined } : child) }))} /></Field>
           <Field label="自定义说明"><textarea rows={6} value={selected.description ?? ''} onChange={(event) => updateDocument((current) => ({ ...current, nodes: updateChild(current.nodes, selected._key, (child) => ({ ...child, description: event.target.value || undefined })) }))} /></Field>
