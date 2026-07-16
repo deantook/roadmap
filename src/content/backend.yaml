@@ -7,6 +7,28 @@ nodes:
     title: 服务端语言
     description: 选择一种语言并掌握其运行时与生态。
     status: in-progress
+    children:
+      - type: node
+        id: language-basics
+        title: 语言基础与标准库
+        description: 扎实掌握语法、类型、错误处理与常用标准库。
+        status: in-progress
+      - type: node
+        id: packaging-modules
+        title: 包管理与模块
+        description: 理解依赖管理、模块边界与可复用项目结构。
+        status: planned
+      - type: node
+        id: concurrency
+        title: 异步与并发
+        description: 学会用异步 I/O、线程或协程处理并发请求。
+        status: planned
+      - type: node
+        id: web-framework
+        title: Web 框架入门
+        description: 用一种主流框架快速搭建可维护的 HTTP 服务。
+        status: planned
+
   - type: node
     id: api-design
     title: API 设计
@@ -16,18 +38,135 @@ nodes:
       - type: node
         id: rest
         title: REST 与 HTTP 语义
+        description: 正确使用方法、状态码、幂等性与资源命名。
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/HTTP
+      - type: node
+        id: validation-errors
+        title: 请求校验与错误模型
+        description: 统一校验输入，并返回可机读、可调试的错误结构。
         status: planned
       - type: node
         id: auth
         title: 身份认证与授权
+        description: 实现登录会话、令牌与基于角色/权限的访问控制。
         status: planned
+      - type: node
+        id: api-versioning-docs
+        title: 版本与 API 文档
+        description: 制定版本策略，并用 OpenAPI 等工具维护契约。
+        status: planned
+        link: https://swagger.io/specification/
+
   - type: node
     id: databases
     title: 数据库
     description: 理解建模、索引、事务与迁移。
     status: planned
+    children:
+      - type: node
+        id: relational-sql
+        title: 关系建模与 SQL
+        description: 设计表结构、约束与关联，熟练编写查询。
+        status: planned
+        link: https://www.postgresql.org/docs/current/
+      - type: node
+        id: indexes-query
+        title: 索引与查询优化
+        description: 用索引、执行计划分析定位慢查询。
+        status: planned
+      - type: node
+        id: transactions
+        title: 事务与一致性
+        description: 理解 ACID、隔离级别与常见并发异常。
+        status: planned
+      - type: node
+        id: migrations
+        title: 迁移与种子数据
+        description: 用可重复的迁移管理 schema 演进与初始数据。
+        status: planned
+      - type: node
+        id: nosql
+        title: NoSQL 何时用
+        description: 了解文档/键值等模型的取舍，避免盲目引入。
+        status: optional
+
+  - type: node
+    id: cache-messaging
+    title: 缓存与消息
+    description: 用缓存降低延迟，用消息解耦耗时与高峰流量。
+    status: planned
+    children:
+      - type: node
+        id: caching
+        title: 缓存策略
+        description: 掌握缓存键设计、TTL、穿透/击穿/雪崩与失效策略。
+        status: planned
+        link: https://redis.io/docs/latest/
+      - type: node
+        id: message-queues
+        title: 消息队列与异步任务
+        description: 用队列处理异步作业、重试与削峰填谷。
+        status: planned
+
+  - type: node
+    id: testing-quality
+    title: 测试与质量
+    description: 用自动化测试守住接口行为与回归风险。
+    status: planned
+    children:
+      - type: node
+        id: unit-integration
+        title: 单元与集成测试
+        description: 覆盖核心业务逻辑，并用真实依赖做集成验证。
+        status: planned
+      - type: node
+        id: api-contract-tests
+        title: 契约与 API 测试
+        description: 验证请求/响应契约，防止前后端接口漂移。
+        status: planned
+
+  - type: node
+    id: deploy-ops
+    title: 部署与运维
+    description: 把服务可靠地发布到可重复的运行环境。
+    status: planned
+    children:
+      - type: node
+        id: containers
+        title: 容器化
+        description: 用容器打包运行时依赖，保证环境一致。
+        status: planned
+        link: https://docs.docker.com/get-started/
+      - type: node
+        id: cicd
+        title: CI/CD
+        description: 自动化构建、测试与发布流水线。
+        status: planned
+      - type: node
+        id: config-env
+        title: 环境与配置管理
+        description: 区分环境配置，安全管理密钥与功能开关。
+        status: planned
+
   - type: node
     id: observability
     title: 可观测性
     description: 使用日志、指标与追踪定位生产问题。
     status: optional
+    children:
+      - type: node
+        id: logging
+        title: 结构化日志
+        description: 输出可检索的日志，并关联请求上下文。
+        status: optional
+      - type: node
+        id: metrics
+        title: 指标与告警
+        description: 采集延迟、错误率等关键指标并设置告警。
+        status: optional
+      - type: node
+        id: tracing
+        title: 分布式追踪
+        description: 跨服务追踪请求路径，定位瓶颈与故障点。
+        status: optional
