@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -98,6 +98,15 @@ describe('App', () => {
 
     fireEvent.keyDown(window, { key: 'Escape' })
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('renders fenced code blocks in node descriptions', () => {
+    render(<MemoryRouter initialEntries={['/roadmaps/spring-boot']}><App /></MemoryRouter>)
+
+    fireEvent.click(screen.getByRole('button', { name: '查看 创建并运行首个 Spring Boot 应用 详情' }))
+    const drawer = screen.getByRole('dialog', { name: '创建并运行首个 Spring Boot 应用' })
+    expect(within(drawer).getByLabelText('java 代码')).toHaveTextContent('@SpringBootApplication')
+    expect(within(drawer).getByLabelText('bash 代码')).toHaveTextContent('./mvnw spring-boot:run')
   })
 
   it('shows a not-found page for an invalid relationship path', () => {

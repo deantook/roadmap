@@ -229,6 +229,65 @@ function nextNodeStatus(node: RoadmapNode, status: NodeStatus) {
   return sequence[(index + 1) % sequence.length] ?? sequence[0]!
 }
 
+type DescriptionBlock =
+  | { type: 'paragraph'; content: string }
+  | { type: 'code'; content: string; language?: string }
+
+function parseDescription(description: string): DescriptionBlock[] {
+  const blocks: DescriptionBlock[] = []
+  const lines = description.split('\n')
+  let textLines: string[] = []
+  let codeLines: string[] = []
+  let codeLanguage: string | undefined
+
+  const flushText = () => {
+    const text = textLines.join('\n').trim()
+    if (text) {
+      for (const paragraph of text.split(/\n{2,}/)) {
+        blocks.push({ type: 'paragraph', content: paragraph })
+      }
+    }
+    textLines = []
+  }
+
+  for (const line of lines) {
+    const fence = line.match(/^```([\w-]*)\s*$/)
+    if (fence) {
+      if (codeLanguage !== undefined) {
+        blocks.push({ type: 'code', content: codeLines.join('\n'), language: codeLanguage || undefined })
+        codeLines = []
+        codeLanguage = undefined
+      } else {
+        flushText()
+        codeLanguage = fence[1] ?? ''
+      }
+    } else if (codeLanguage !== undefined) {
+      codeLines.push(line)
+    } else {
+      textLines.push(line)
+    }
+  }
+
+  if (codeLanguage !== undefined) {
+    textLines.push(`\`\`\`${codeLanguage}`, ...codeLines)
+  }
+  flushText()
+  return blocks
+}
+
+function DescriptionContent({ description }: { description: string }) {
+  return (
+    <div className="drawer-description">
+      {parseDescription(description).map((block, index) => block.type === 'code' ? (
+        <div className="drawer-code-block" key={index}>
+          {block.language && <span className="drawer-code-language">{block.language}</span>}
+          <pre aria-label={block.language ? `${block.language} 代码` : '代码'}><code>{block.content}</code></pre>
+        </div>
+      ) : <p key={index}>{block.content}</p>)}
+    </div>
+  )
+}
+
 function NodeCard({ node, onOpen }: {
   node: RoadmapNode
   onOpen: () => void
@@ -293,7 +352,7 @@ function NodeDrawer({ node, status, onStatusChange, onClose }: {
           </div>
           <h2 id="drawer-title">{node.title}</h2>
           {node.tags.length > 0 && <div className="drawer-tags">{node.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
-          {node.description && <p className="drawer-description">{node.description}</p>}
+          {node.description && <DescriptionContent description={node.description} />}
 
           {node.children.length > 0 && (
             <div className="drawer-section">
