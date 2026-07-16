@@ -1,0 +1,263 @@
+id: kubernetes
+title: Kubernetes 路线图
+description: 从容器化应用部署到在集群中以声明式方式运行、更新、排错和保护小型服务。
+tags: [Kubernetes, 容器编排, DevOps, 云原生]
+nodes:
+  - type: node
+    id: prerequisites-and-cluster-model
+    title: 建立 Kubernetes 集群与对象模型
+    description: 在已有容器镜像和命令行基础上，理解控制平面、节点、API 对象与期望状态如何协作。
+    tags: [集群架构, API]
+    status: planned
+    link: https://kubernetes.io/docs/concepts/overview/
+    children:
+      - type: roadmap
+        roadmapId: docker
+        title: 补齐 Docker 容器基础
+        description: 先掌握镜像构建、运行和交付，再将应用交给 Kubernetes 编排。
+      - type: node
+        id: control-plane-and-nodes
+        title: 识别控制平面与工作节点的职责
+        description: 能说明 API server、调度器、控制器、kubelet 和容器运行时在一次部署中的角色。
+        tags: [控制平面, 节点]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/architecture/
+      - type: node
+        id: objects-labels-namespaces
+        title: 用对象、标签与命名空间组织资源
+        description: 使用 YAML 声明资源，借助 labels 和 selectors 连接对象，并用 namespace 划分隔离边界。
+        tags: [YAML, Labels, Namespace]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/overview/working-with-objects/
+
+  - type: node
+    id: local-learning-environment
+    title: 搭建本地学习集群并使用 kubectl
+    description: 在本机创建可重复的练习环境，并通过 kubectl 查询、应用和删除声明式资源。
+    tags: [kubectl, 本地集群]
+    status: planned
+    children:
+      - type: node
+        id: install-kubectl
+        title: 安装并配置 kubectl
+        description: 安装与集群兼容的 kubectl，理解 kubeconfig、context 与 namespace 对目标集群的影响。
+        tags: [kubectl, kubeconfig]
+        status: planned
+        link: https://kubernetes.io/docs/tasks/tools/
+      - type: node
+        id: create-local-cluster
+        title: 创建隔离的本地练习集群
+        description: 使用一种本地 Kubernetes 方案创建和删除练习集群，避免在共享或生产集群上试错。
+        tags: [本地集群, 练习]
+        status: planned
+        link: https://kubernetes.io/docs/tasks/tools/#learning-environment
+      - type: node
+        id: declarative-kubectl-workflow
+        title: 用 kubectl 应用、查看和回滚资源
+        description: 使用 apply、get、describe、diff 与 delete 管理清单，并将每次变更保留在版本控制中。
+        tags: [kubectl, 声明式管理]
+        status: planned
+        link: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/
+
+  - type: node
+    id: run-application-workloads
+    title: 将无状态应用运行成可更新的工作负载
+    description: 从 Pod 的最小运行单元出发，用 Deployment 管理副本、更新和故障后的自愈。
+    tags: [Pod, Deployment]
+    status: planned
+    children:
+      - type: node
+        id: pods-and-container-specs
+        title: 为应用定义 Pod 运行规格
+        description: 声明镜像、端口、命令、环境变量和挂载，并理解 Pod 生命周期及其短暂性。
+        tags: [Pod, 容器]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/workloads/pods/
+      - type: node
+        id: deployments-and-replicas
+        title: 用 Deployment 维持所需副本数
+        description: 通过 Deployment 声明副本和 Pod 模板，让控制器在实例失败或数量偏离时自动协调。
+        tags: [Deployment, ReplicaSet]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+      - type: node
+        id: rolling-updates-and-rollbacks
+        title: 安全执行滚动更新与回滚
+        description: 调整镜像版本和更新策略，观察 rollout 状态，并在新版本异常时回滚到可用修订版。
+        tags: [滚动更新, 回滚]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment
+
+  - type: node
+    id: expose-and-connect-services
+    title: 让服务在集群内外可发现和访问
+    description: 用稳定的 Service 抽象连接易变的 Pod，并按访问范围选择合适的入口方式。
+    tags: [Service, 网络]
+    status: planned
+    children:
+      - type: node
+        id: services-and-dns
+        title: 用 Service 提供稳定服务发现
+        description: 通过 selector 将 Service 指向一组 Pod，并使用集群 DNS 在服务间按名称通信。
+        tags: [Service, DNS]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/services-networking/service/
+      - type: node
+        id: ingress-and-gateway-boundaries
+        title: 选择 HTTP 入口与流量路由方案
+        description: 理解 Ingress 需要控制器，并根据集群能力评估使用 Ingress 或 Gateway API 暴露 HTTP 服务。
+        tags: [Ingress, Gateway API]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/services-networking/ingress/
+      - type: node
+        id: network-policies
+        title: 用 NetworkPolicy 限制服务间流量
+        description: 在网络插件支持的前提下，对关键服务显式允许所需入口和出口流量。
+        tags: [NetworkPolicy, 安全]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/services-networking/network-policies/
+
+  - type: node
+    id: manage-configuration-and-storage
+    title: 分离配置、密钥与持久化数据
+    description: 让部署清单能在不同环境复用，同时为有状态数据声明适当的存储生命周期。
+    tags: [ConfigMap, Secret, 存储]
+    status: planned
+    children:
+      - type: node
+        id: configmaps-for-nonsecret-config
+        title: 用 ConfigMap 注入非敏感配置
+        description: 将端点、开关等非机密配置从镜像移出，并理解配置更新对运行中 Pod 的影响。
+        tags: [ConfigMap, 配置]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/configuration/configmap/
+      - type: node
+        id: secrets-and-secret-handling
+        title: 正确处理 Secret 与外部密钥
+        description: 了解 Secret 不是天然加密保险箱，避免提交明文，并按平台能力接入受控的密钥管理机制。
+        tags: [Secret, 安全]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/configuration/secret/
+      - type: node
+        id: persistent-volumes-and-claims
+        title: 用 PersistentVolumeClaim 申请持久化存储
+        description: 区分 PersistentVolume、PersistentVolumeClaim 和 StorageClass，并为有状态服务明确数据保留策略。
+        tags: [PVC, StorageClass]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
+  - type: node
+    id: reliability-and-scaling
+    title: 为工作负载设置健康与资源边界
+    description: 用探针和资源请求/限制使调度、流量接入和故障恢复基于应用真实状态。
+    tags: [可靠性, 资源管理]
+    status: planned
+    children:
+      - type: node
+        id: health-probes
+        title: 定义启动、存活与就绪探针
+        description: 为应用提供可验证的健康端点，并按启动特性配置 startup、liveness 和 readiness probes。
+        tags: [Probes, 健康检查]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+      - type: node
+        id: resource-requests-and-limits
+        title: 为容器设置资源请求与限制
+        description: 基于观测到的负载声明 CPU 和内存 requests/limits，理解它们对调度、QoS 和 OOM 的影响。
+        tags: [CPU, 内存]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+      - type: node
+        id: horizontal-pod-autoscaling
+        title: 根据负载自动扩缩副本
+        description: 在指标可用后配置 HorizontalPodAutoscaler，并验证扩缩容阈值不会掩盖应用瓶颈。
+        tags: [HPA, 弹性]
+        status: planned
+        link: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+  - type: node
+    id: observe-and-debug
+    title: 观测并排查应用部署故障
+    description: 从事件、状态、日志和资源使用情况出发，定位镜像、调度、网络与应用自身的问题。
+    tags: [可观测性, 调试]
+    status: planned
+    children:
+      - type: node
+        id: inspect-events-status-and-logs
+        title: 用事件、状态与日志定位异常
+        description: 通过 get、describe、events 和 logs 建立故障时间线，区分调度失败、拉取失败和进程崩溃。
+        tags: [Events, 日志]
+        status: planned
+        link: https://kubernetes.io/docs/tasks/debug/debug-application/
+      - type: node
+        id: monitor-workload-resources
+        title: 监测工作负载资源与健康趋势
+        description: 收集 Pod 和节点的 CPU、内存及重启等信号，为容量调整、告警和故障复盘提供依据。
+        tags: [监控, Metrics]
+        status: planned
+        link: https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/
+
+  - type: node
+    id: secure-access-and-workloads
+    title: 以最小权限保护集群和应用
+    description: 将 API 访问、工作负载身份与 Pod 运行权限纳入部署设计，而不是在上线后补救。
+    tags: [RBAC, 安全]
+    status: planned
+    children:
+      - type: node
+        id: rbac-least-privilege
+        title: 为人和工作负载配置最小权限 RBAC
+        description: 使用 Role、ClusterRole 和绑定精确授予操作范围，避免宽泛的通配权限和共享管理员凭据。
+        tags: [RBAC, 最小权限]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/security/rbac-good-practices/
+      - type: node
+        id: pod-security-standards
+        title: 遵循 Pod Security Standards
+        description: 让工作负载采用受限权限、非特权运行和安全上下文，并理解策略如何在命名空间中执行。
+        tags: [Pod Security, 安全上下文]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/security/pod-security-standards/
+
+  - type: node
+    id: capstone-kubernetes-delivery
+    title: 在集群中交付可维护的小型服务
+    description: 将一个已有容器镜像部署到本地或受控测试集群，完成版本更新、访问、配置、健康、资源与故障演练。
+    tags: [综合实践, 部署]
+    status: planned
+    children:
+      - type: node
+        id: capstone-verification
+        title: 完成部署验收与故障演练
+        description: 验证滚动发布、回滚、探针失效、配置变更和副本恢复，并记录启动与排错步骤。
+        tags: [验收, 故障演练]
+        status: planned
+
+  - type: node
+    id: advanced-platform-topics
+    title: 按平台职责深化 Kubernetes 专题
+    description: 在完成应用交付主线后，依据实际岗位选择包管理、GitOps、集群管理或扩展机制等方向。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: helm-packaging
+        title: 用 Helm 打包可配置的应用发布物
+        description: 学习 Chart、values 和模板，以可复用方式管理多环境部署的参数差异。
+        tags: [Helm, 包管理]
+        status: optional
+        link: https://helm.sh/docs/topics/charts/
+      - type: node
+        id: gitops-delivery
+        title: 采用 GitOps 管理部署状态
+        description: 让版本控制中的声明式配置成为期望状态来源，并评估持续同步、审计和回滚流程。
+        tags: [GitOps, 持续交付]
+        status: optional
+        link: https://opengitops.dev/
+      - type: node
+        id: cluster-administration
+        title: 学习集群安装、升级与节点运维
+        description: 当职责扩展到平台运维时，再学习运行时、网络插件、升级、备份和高可用集群设计。
+        tags: [集群管理, 运维]
+        status: optional
+        link: https://kubernetes.io/docs/tasks/administer-cluster/

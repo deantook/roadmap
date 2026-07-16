@@ -1,0 +1,198 @@
+id: langchain-typescript
+title: LangChain TypeScript 路线图
+description: 从 TypeScript 与模型调用基础出发，使用 LangChain 构建可测试、可观测的检索增强与工具调用 AI 应用。
+tags: [AI 应用, LangChain, TypeScript, LLM]
+nodes:
+  - type: node
+    id: prepare-typescript-runtime
+    title: 准备 TypeScript 与 Node.js 开发环境
+    description: 能以 TypeScript 编写、运行并调试一个通过环境变量读取配置的 Node.js 程序。
+    tags: [TypeScript, Node.js, 环境]
+    status: planned
+    link: https://docs.langchain.com/oss/javascript/langchain/overview
+    children:
+      - type: roadmap
+        roadmapId: javascript
+        title: 补齐 JavaScript 基础
+        description: 先掌握异步、模块和包管理，避免把语言问题误判为框架问题。
+      - type: node
+        id: typescript-for-ai-apps
+        title: 用 TypeScript 表达数据边界
+        description: 使用类型、接口、联合类型和泛型约束模型输入、结构化输出与工具参数。
+        tags: [TypeScript, 类型安全]
+        status: planned
+        link: https://www.typescriptlang.org/docs/handbook/intro.html
+      - type: node
+        id: nodejs-configuration
+        title: 管理依赖与敏感配置
+        description: 用 package manager 管理依赖，将 API 密钥与运行参数保存在环境变量而非源代码中。
+        tags: [Node.js, 安全]
+        status: planned
+        link: https://nodejs.org/learn/getting-started/introduction-to-nodejs
+
+  - type: node
+    id: understand-model-interactions
+    title: 建立模型调用与消息交互
+    description: 能选择并调用聊天模型，理解消息角色、上下文窗口、参数与流式响应对结果的影响。
+    tags: [Chat Model, 消息]
+    status: planned
+    link: https://docs.langchain.com/oss/javascript/langchain/messages
+    children:
+      - type: node
+        id: chat-model-invocation
+        title: 调用聊天模型
+        description: 配置模型提供商、调用模型并处理成功、失败与限流等运行结果。
+        status: planned
+      - type: node
+        id: messages-and-multimodality
+        title: 组织消息与多模态内容
+        description: 使用 system、human 和 AI 消息构成对话，并在模型支持时传递图像等内容。
+        status: planned
+      - type: node
+        id: streaming-responses
+        title: 处理流式输出
+        description: 将 token 或消息块增量传给界面，同时正确收集最终结果与错误状态。
+        tags: [流式输出, UX]
+        status: planned
+
+  - type: node
+    id: compose-reliable-generation
+    title: 组合提示词与可靠输出
+    description: 用可复用提示模板、链式处理和结构化结果把自然语言需求转成稳定的应用接口。
+    tags: [Prompt, Structured Output]
+    status: planned
+    link: https://docs.langchain.com/oss/javascript/langchain/structured-output
+    children:
+      - type: node
+        id: prompt-templates
+        title: 编写可维护的提示模板
+        description: 明确变量、角色、输出要求和少量示例，并为提示词版本保留可追踪的来源。
+        status: planned
+      - type: node
+        id: runnable-composition
+        title: 组合 Runnable 工作流
+        description: 将格式化、模型调用、解析和后处理拆成可测试的步骤并组合执行。
+        status: planned
+        link: https://js.langchain.com/docs/concepts/runnables/
+      - type: node
+        id: schema-validated-output
+        title: 校验结构化输出
+        description: 用 schema 约束 JSON 结果，处理解析失败与字段不完整，避免直接信任模型文本。
+        tags: [Zod, 校验]
+        status: planned
+
+  - type: node
+    id: build-tool-using-agents
+    title: 构建工具调用与 Agent
+    description: 为模型提供边界清晰的工具，并让 Agent 在可控条件下完成多步任务。
+    tags: [Tools, Agent]
+    status: planned
+    link: https://docs.langchain.com/oss/javascript/langchain/agents
+    children:
+      - type: node
+        id: define-tools-with-schemas
+        title: 定义可验证的工具
+        description: 为工具输入建立 schema，返回面向模型的结果，并验证权限、参数和外部副作用。
+        status: planned
+        link: https://docs.langchain.com/oss/javascript/langchain/tools
+      - type: node
+        id: agent-control-flow
+        title: 控制 Agent 执行过程
+        description: 设置模型、工具和系统指令，理解 Agent 的调用循环、停止条件与错误恢复。
+        status: planned
+      - type: node
+        id: agent-safety-guardrails
+        title: 限制高风险操作
+        description: 对写入、支付或数据访问工具实施最小权限、确认步骤、输入校验和审计记录。
+        tags: [安全, Guardrails]
+        status: planned
+
+  - type: node
+    id: implement-rag-systems
+    title: 实现检索增强生成（RAG）
+    description: 将可信资料转换为可检索上下文，生成带来源且能处理未命中情况的回答。
+    tags: [RAG, 检索]
+    status: planned
+    link: https://docs.langchain.com/oss/javascript/langchain/retrieval
+    children:
+      - type: node
+        id: ingest-and-chunk-documents
+        title: 导入并切分文档
+        description: 根据文档结构选择加载器、清洗元数据和切分策略，使检索片段保持语义完整。
+        status: planned
+      - type: node
+        id: embeddings-and-vector-store
+        title: 建立嵌入与向量检索
+        description: 生成 embeddings，写入向量存储，并理解相似度、过滤和索引更新的取舍。
+        status: planned
+      - type: node
+        id: grounded-answer-generation
+        title: 生成有依据的回答
+        description: 将检索内容与问题组装为提示，返回引用来源，并在证据不足时明确说明限制。
+        tags: [引用, 幻觉控制]
+        status: planned
+
+  - type: node
+    id: manage-stateful-workflows
+    title: 管理对话状态与复杂工作流
+    description: 为多轮任务设计明确状态、记忆边界与失败恢复策略，而不无限制累积上下文。
+    tags: [Memory, Workflow]
+    status: planned
+    children:
+      - type: node
+        id: short-term-memory
+        title: 维护短期对话状态
+        description: 按会话保存必要上下文，采用摘要或裁剪控制 token 消耗，并避免跨用户泄露状态。
+        status: planned
+        link: https://docs.langchain.com/oss/javascript/langchain/short-term-memory
+      - type: node
+        id: durable-workflow-design
+        title: 设计可恢复的多步流程
+        description: 将状态、分支、重试和人工介入建模为显式工作流，便于调试和恢复执行。
+        tags: [LangGraph, 工作流]
+        status: optional
+        link: https://docs.langchain.com/oss/javascript/langgraph/overview
+
+  - type: node
+    id: evaluate-and-operate-ai-apps
+    title: 测试、评估与运行 AI 应用
+    description: 用可重复的评测、追踪与成本控制持续验证应用质量，而不是只凭单次演示判断效果。
+    tags: [测试, 可观测性, 评估]
+    status: planned
+    link: https://docs.langchain.com/langsmith/evaluation
+    children:
+      - type: node
+        id: deterministic-tests
+        title: 测试确定性代码边界
+        description: 为提示组装、解析器、检索过滤和工具实现编写单元与集成测试，并 mock 外部服务。
+        status: planned
+      - type: node
+        id: dataset-evaluations
+        title: 用数据集评估模型行为
+        description: 建立代表性输入与评分准则，对比提示、模型或检索策略变更前后的质量。
+        status: planned
+      - type: node
+        id: tracing-cost-and-feedback
+        title: 追踪调用、成本与用户反馈
+        description: 记录关键链路、延迟、token 用量与失败原因，并将反馈转化为可复现的评测样例。
+        status: planned
+        link: https://docs.langchain.com/langsmith/observability
+
+  - type: node
+    id: ship-a-grounded-assistant
+    title: 完成一个可验证的知识库助手
+    description: 交付一个支持流式回答、引用来源、RAG、评测与调用追踪的 TypeScript 应用，并记录安全与成本取舍。
+    tags: [综合实践, 项目]
+    status: planned
+    children:
+      - type: node
+        id: project-acceptance-criteria
+        title: 定义可验收的项目标准
+        description: 为正确性、拒答、引用覆盖率、延迟和成本设定可测指标，并准备代表性测试问题。
+        status: planned
+      - type: node
+        id: project-release-review
+        title: 完成上线前审查
+        description: 检查密钥管理、用户数据隔离、错误降级、速率限制、日志脱敏与回滚方案。
+        tags: [安全, 发布]
+        status: planned

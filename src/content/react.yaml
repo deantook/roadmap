@@ -1,0 +1,223 @@
+id: react
+title: React 开发路线图
+description: 面向已有 JavaScript 基础的学习者，从组件化界面到可测试、可访问且可部署的 React Web 应用。
+tags: [React, 前端, JavaScript, TypeScript]
+nodes:
+  - type: roadmap
+    roadmapId: javascript
+    title: 补齐 JavaScript 前置知识
+    description: 先具备函数、数组、模块、异步与浏览器 API 基础，再进入 React。
+
+  - type: node
+    id: setup-and-mental-model
+    title: 建立 React 开发环境与渲染心智模型
+    description: 使用 Vite 创建开发项目，并理解组件渲染、提交更新与开发者工具的基本作用。
+    tags: [Vite, 渲染, 工具链]
+    status: planned
+    link: https://vite.dev/guide/
+    children:
+      - type: node
+        id: create-and-run-project
+        title: 创建并运行本地项目
+        description: 配置 npm 脚本，能在本地启动、构建并定位浏览器中的开发错误。
+        tags: [npm, 本地开发]
+        status: planned
+      - type: node
+        id: inspect-with-react-devtools
+        title: 使用 React Developer Tools 检查组件
+        description: 在浏览器中查看组件树、props 与 state，辅助理解和调试界面更新。
+        tags: [调试]
+        status: planned
+        link: https://react.dev/learn/react-developer-tools
+
+  - type: node
+    id: describe-ui-with-components
+    title: 用组件描述静态界面
+    description: 将页面拆成可组合的函数组件，并用 JSX、props 和 CSS 表达界面结构与数据。
+    tags: [组件, JSX, Props]
+    status: planned
+    link: https://react.dev/learn/describing-the-ui
+    children:
+      - type: node
+        id: jsx-and-component-composition
+        title: 编写 JSX 与组合组件
+        description: 正确使用 JSX 规则、导入导出和 children，把页面拆为职责清晰的组件。
+        tags: [JSX, 组件设计]
+        status: planned
+      - type: node
+        id: props-and-data-rendering
+        title: 通过 props 渲染数据
+        description: 让组件接收明确输入，并用条件渲染和稳定 key 显示列表数据。
+        tags: [Props, 列表]
+        status: planned
+      - type: node
+        id: keep-components-pure
+        title: 保持组件纯粹
+        description: 区分渲染计算与副作用，避免在渲染过程中修改外部数据或触发请求。
+        tags: [纯函数, 副作用]
+        status: planned
+        link: https://react.dev/learn/keeping-components-pure
+
+  - type: node
+    id: add-interactivity
+    title: 用状态构建交互
+    description: 通过事件处理和 state 让界面响应用户输入，并理解状态更新如何触发重新渲染。
+    tags: [State, 事件, Hooks]
+    status: planned
+    link: https://react.dev/learn/adding-interactivity
+    children:
+      - type: node
+        id: events-and-state-snapshots
+        title: 处理事件与状态快照
+        description: 为用户操作绑定事件处理函数，正确使用 setter 和函数式更新处理连续更新。
+        tags: [事件处理, useState]
+        status: planned
+      - type: node
+        id: immutable-state-updates
+        title: 不可变地更新对象与数组状态
+        description: 用复制与派生值更新复杂状态，避免直接修改 state 导致的隐蔽错误。
+        tags: [不可变性, 状态更新]
+        status: planned
+      - type: node
+        id: build-interactive-widget
+        title: 完成一个可交互组件练习
+        description: 实现带筛选、编辑或计数功能的小组件，并验证多个实例之间的状态边界。
+        tags: [实践]
+        status: planned
+
+  - type: node
+    id: manage-shared-state
+    title: 设计可扩展的状态管理
+    description: 根据数据所有权选择状态位置，使用状态提升、reducer 与 context 组织跨组件协作。
+    tags: [状态管理, Context, useReducer]
+    status: planned
+    link: https://react.dev/learn/managing-state
+    children:
+      - type: node
+        id: choose-state-structure
+        title: 选择并归一化 state 结构
+        description: 消除重复和相互矛盾的状态，将可计算的数据保留为派生值。
+        tags: [State]
+        status: planned
+      - type: node
+        id: lift-and-share-state
+        title: 通过状态提升协调组件
+        description: 将共享状态放到最近公共父组件，用受控组件建立单一数据流。
+        tags: [受控组件, 单向数据流]
+        status: planned
+      - type: node
+        id: reducer-and-context
+        title: 使用 reducer 与 context 扩展复杂界面
+        description: 将多步骤状态变更集中到 reducer，并谨慎用 context 传递真正共享的数据。
+        tags: [useReducer, useContext]
+        status: planned
+
+  - type: node
+    id: synchronize-with-external-systems
+    title: 安全地连接外部系统
+    description: 使用 Effect、ref 与自定义 Hook 同步网络、浏览器 API 或第三方组件，并避免不必要的 Effect。
+    tags: [useEffect, useRef, 自定义 Hook]
+    status: planned
+    link: https://react.dev/learn/escape-hatches
+    children:
+      - type: node
+        id: effect-lifecycle-and-dependencies
+        title: 管理 Effect 生命周期与依赖
+        description: 正确编写 setup 与 cleanup，理解依赖项并消除陈旧闭包和重复请求。
+        tags: [Effect, 清理]
+        status: planned
+        link: https://react.dev/learn/lifecycle-of-reactive-effects
+      - type: node
+        id: fetch-display-and-handle-states
+        title: 呈现远程数据的完整状态
+        description: 为加载、成功、空数据和失败设计界面，并在组件卸载或请求过期时避免错误更新。
+        tags: [数据请求, 错误处理]
+        status: planned
+      - type: node
+        id: extract-custom-hooks
+        title: 提取可复用的自定义 Hook
+        description: 将可复用的状态与同步逻辑封装为 Hook，同时保持调用规则和接口清晰。
+        tags: [自定义 Hook]
+        status: planned
+        link: https://react.dev/learn/reusing-logic-with-custom-hooks
+
+  - type: node
+    id: deliver-quality-ui
+    title: 交付可靠且包容的界面
+    description: 从用户行为验证组件，在开发过程中纳入可访问性、响应式布局和性能测量。
+    tags: [测试, 可访问性, 性能]
+    status: planned
+    children:
+      - type: node
+        id: test-user-visible-behavior
+        title: 测试用户可见行为
+        description: 使用 React Testing Library 查询语义和模拟交互，为关键流程建立稳定的回归测试。
+        tags: [React Testing Library, 测试]
+        status: planned
+        link: https://testing-library.com/docs/react-testing-library/intro/
+      - type: node
+        id: design-accessible-components
+        title: 设计可键盘操作的可访问组件
+        description: 优先使用原生语义元素，验证焦点、名称与键盘交互；仅在必要时采用 ARIA 模式。
+        tags: [a11y, ARIA]
+        status: planned
+        link: https://www.w3.org/WAI/ARIA/apg/
+      - type: node
+        id: profile-before-optimizing
+        title: 先测量再优化渲染性能
+        description: 用 React Profiler 定位真实瓶颈，再审慎使用 memo、useMemo 或 useCallback。
+        tags: [Profiler, 性能]
+        status: planned
+        link: https://react.dev/reference/react/Profiler
+
+  - type: node
+    id: build-and-release-project
+    title: 完成并发布一个小型应用
+    description: 将前置能力组合为一款可部署应用，包含数据交互、路由、测试、可访问性检查与构建产物。
+    tags: [项目, 部署, 综合实践]
+    status: planned
+    children:
+      - type: node
+        id: plan-feature-slices
+        title: 按功能切片规划应用
+        description: 选择任务管理、内容浏览或库存管理等场景，定义用户流程、状态边界和验收标准。
+        tags: [需求拆分]
+        status: planned
+      - type: node
+        id: add-client-side-routing
+        title: 为多页面流程接入客户端路由
+        description: 使用选定路由方案实现页面跳转、参数读取和未匹配页面，并保持链接可访问。
+        tags: [路由]
+        status: planned
+      - type: node
+        id: verify-and-build-production
+        title: 验证并构建生产版本
+        description: 完成关键路径测试和键盘检查，分析构建结果并部署静态产物或交给托管平台。
+        tags: [构建, 发布]
+        status: planned
+
+  - type: node
+    id: choose-next-specialization
+    title: 按项目需要选择深化方向
+    description: 在核心 React 能力稳定后，再根据产品形态选择全栈框架、服务端渲染或原生应用开发。
+    tags: [进阶, 选修]
+    status: optional
+    children:
+      - type: node
+        id: react-frameworks
+        title: 学习 React 框架与服务端渲染
+        description: 对比 React 框架提供的路由、数据加载、渲染和部署约定，按项目约束选择方案。
+        tags: [SSR, 框架]
+        status: optional
+        link: https://react.dev/learn/start-a-new-react-project
+      - type: node
+        id: react-native-path
+        title: 探索 React Native
+        description: 将组件与状态管理经验迁移到移动端，并学习平台组件和设备能力的差异。
+        tags: [React Native, 移动端]
+        status: optional
+        link: https://reactnative.dev/docs/getting-started
+      - type: roadmap
+        roadmapId: frontend
+        title: 衔接前端工程实践
+        description: 继续完善 CSS、TypeScript、性能和持续集成等跨项目能力。

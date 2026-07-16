@@ -1,0 +1,251 @@
+id: redis
+title: Redis 路线图
+description: 从常用数据结构与缓存设计到可靠运行 Redis，为小型后端服务构建高性能的数据访问能力。
+tags: [Redis, 缓存, 数据库, 后端]
+nodes:
+  - type: node
+    id: redis-foundations
+    title: 建立 Redis 的适用边界
+    description: 理解 Redis 以内存数据结构为核心的工作方式，并依据数据丢失、查询和容量需求判断是否适用。
+    tags: [基础, 内存数据库]
+    status: planned
+    link: https://redis.io/docs/latest/
+    children:
+      - type: roadmap
+        roadmapId: backend
+        title: 衔接后端缓存实践
+        description: 将 Redis 用于真实服务的数据访问、缓存策略与异步任务设计。
+      - type: node
+        id: install-and-connect
+        title: 启动本地 Redis 并建立连接
+        description: 在隔离的本地环境中运行 Redis，使用 redis-cli 和一种语言客户端完成连接、认证和基本检查。
+        tags: [安装, redis-cli, 客户端]
+        status: planned
+        link: https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/
+      - type: node
+        id: keyspace-and-expiration
+        title: 设计 Key 命名与过期时间
+        description: 用一致、可追溯的 key 前缀与 TTL 表达数据归属和生命周期，避免无界增长的临时数据。
+        tags: [Keys, TTL]
+        status: planned
+        link: https://redis.io/docs/latest/develop/using-commands/keyspace/
+
+  - type: node
+    id: core-data-structures
+    title: 为业务问题选择合适的数据结构
+    description: 用 Redis 原生类型表达缓存、计数、集合、排序与事件数据，并理解相应命令的原子语义。
+    tags: [数据结构, Commands]
+    status: planned
+    link: https://redis.io/docs/latest/develop/data-types/
+    children:
+      - type: node
+        id: strings-and-hashes
+        title: 用 String 与 Hash 存取标量和对象字段
+        description: 为缓存值、计数器和字段集合选择 String 或 Hash，并避免把频繁更新的小字段反复序列化为大对象。
+        tags: [String, Hash]
+        status: planned
+      - type: node
+        id: lists-sets-and-sorted-sets
+        title: 用集合类型实现队列、去重和排行
+        description: 根据顺序、唯一性和分值排序需求选择 List、Set 或 Sorted Set，并编写可验证的读写操作。
+        tags: [List, Set, Sorted Set]
+        status: planned
+      - type: node
+        id: atomic-operations
+        title: 用原子命令维护并发一致性
+        description: 使用原子递增、条件写入和批量操作处理竞争场景，避免先读后写导致的覆盖更新。
+        tags: [原子性, 并发]
+        status: planned
+        link: https://redis.io/docs/latest/develop/using-commands/transactions/
+
+  - type: node
+    id: application-integration
+    title: 在应用中可靠地使用 Redis 客户端
+    description: 选择受维护的客户端，正确管理连接、超时、序列化与错误处理，使 Redis 故障不直接扩大为应用故障。
+    tags: [客户端, 集成]
+    status: planned
+    link: https://redis.io/docs/latest/develop/clients/
+    children:
+      - type: node
+        id: connection-management
+        title: 配置连接池、超时与重试边界
+        description: 复用连接并设置连接、读写超时与有限重试，防止依赖故障耗尽应用线程和连接资源。
+        tags: [连接池, 超时]
+        status: planned
+      - type: node
+        id: serialization-and-schema
+        title: 管理值序列化与兼容性
+        description: 明确字符串、JSON 或二进制编码方式，为缓存值演进制定兼容和失效策略。
+        tags: [序列化, 兼容性]
+        status: planned
+      - type: node
+        id: pipeline-and-batching
+        title: 用 Pipeline 降低批量操作延迟
+        description: 对可独立执行的批量命令使用 Pipeline，比较往返次数、错误处理和内存占用的取舍。
+        tags: [Pipeline, 性能]
+        status: planned
+        link: https://redis.io/docs/latest/develop/using-commands/pipelining/
+
+  - type: node
+    id: caching-patterns
+    title: 设计可失效且可恢复的缓存
+    description: 让缓存加速主数据源而不破坏正确性，并针对热点、未命中和依赖故障预先定义降级行为。
+    tags: [缓存, 一致性]
+    status: planned
+    children:
+      - type: node
+        id: cache-aside
+        title: 实现 Cache-Aside 读写流程
+        description: 在读取未命中时回源并填充缓存，在写入主数据后按业务一致性要求更新或删除缓存。
+        tags: [Cache-Aside, 缓存失效]
+        status: planned
+        link: https://redis.io/learn/howtos/solutions/caching
+      - type: node
+        id: cache-failure-modes
+        title: 防护缓存穿透、击穿与雪崩
+        description: 为无效请求、热点 key 和集中失效设计限流、互斥、随机过期或降级措施，并通过压测验证。
+        tags: [缓存穿透, 缓存击穿]
+        status: planned
+      - type: node
+        id: rate-limiting-and-idempotency
+        title: 用 Redis 实现限流与幂等保护
+        description: 基于原子计数或窗口算法限制请求速率，并为外部写操作保存可过期的幂等标识。
+        tags: [限流, 幂等]
+        status: planned
+
+  - type: node
+    id: messaging-and-streams
+    title: 按交付语义使用 Pub/Sub 与 Streams
+    description: 区分即时广播和可持久消费的需求，避免把不具备确认或重放能力的机制用于关键任务。
+    tags: [Pub/Sub, Streams, 消息]
+    status: planned
+    children:
+      - type: node
+        id: pubsub-boundaries
+        title: 在可丢失广播场景使用 Pub/Sub
+        description: 用 Pub/Sub 实现在线通知等瞬时消息，并明确订阅者离线或断连时不会补发的边界。
+        tags: [Pub/Sub, 广播]
+        status: planned
+        link: https://redis.io/docs/latest/develop/pubsub/
+      - type: node
+        id: streams-consumer-groups
+        title: 用 Streams 与消费者组处理可追踪任务
+        description: 通过消费者组读取、确认、重领和监控待处理消息，为异步任务设计幂等消费者。
+        tags: [Streams, Consumer Groups]
+        status: planned
+        link: https://redis.io/docs/latest/develop/data-types/streams/
+
+  - type: node
+    id: persistence-and-recovery
+    title: 选择持久化与恢复策略
+    description: 按可接受的数据丢失窗口和恢复时间，在 RDB、AOF 与混合策略之间做出明确选择并演练恢复。
+    tags: [持久化, 灾难恢复]
+    status: planned
+    link: https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/
+    children:
+      - type: node
+        id: rdb-and-aof-tradeoffs
+        title: 评估 RDB 与 AOF 的数据安全取舍
+        description: 对比快照与追加日志的恢复速度、磁盘开销和数据耐久性，记录所选策略的风险边界。
+        tags: [RDB, AOF]
+        status: planned
+      - type: node
+        id: backup-and-restore-drill
+        title: 备份并验证恢复流程
+        description: 在非生产环境从备份恢复实例，核对关键 key、过期策略和应用连通性后再认可恢复方案。
+        tags: [备份, 恢复演练]
+        status: planned
+
+  - type: node
+    id: performance-and-memory
+    title: 监控内存并优化访问性能
+    description: 以实际数据分布、命令延迟和淘汰行为为依据控制内存风险，而不是仅凭 key 数量估算容量。
+    tags: [性能, 内存]
+    status: planned
+    children:
+      - type: node
+        id: memory-limits-and-eviction
+        title: 设置内存上限与淘汰策略
+        description: 根据 Redis 的职责选择 maxmemory 与淘汰策略，验证内存压力下哪些数据会被保留或丢弃。
+        tags: [maxmemory, 淘汰策略]
+        status: planned
+        link: https://redis.io/docs/latest/develop/reference/eviction/
+      - type: node
+        id: slow-commands-and-hotkeys
+        title: 定位慢命令与热点 Key
+        description: 通过慢日志、命令统计和 key 分布找出阻塞性操作、过大的值与热点访问，并进行针对性改造。
+        tags: [慢日志, Hot Key]
+        status: planned
+        link: https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/
+      - type: node
+        id: memory-efficient-modeling
+        title: 用紧凑数据模型控制内存开销
+        description: 对照实际 key 和 value 大小选择结构与编码，避免过度碎片化的小对象和不必要的重复数据。
+        tags: [内存优化, 数据建模]
+        status: planned
+        link: https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/
+
+  - type: node
+    id: security-and-operations
+    title: 安全运行并观测 Redis 实例
+    description: 将网络暴露、身份认证、权限、备份和运行指标纳入日常运维，确保实例可控且问题可追溯。
+    tags: [安全, 运维]
+    status: planned
+    children:
+      - type: node
+        id: secure-access
+        title: 限制网络访问并启用认证授权
+        description: 不将 Redis 直接暴露到不可信网络，使用 TLS、ACL 与独立凭据限制客户端可执行的命令范围。
+        tags: [TLS, ACL]
+        status: planned
+        link: https://redis.io/docs/latest/operate/oss_and_stack/management/security/
+      - type: node
+        id: monitor-and-alert
+        title: 监测可用性、延迟与内存风险
+        description: 为连通性、复制状态、内存使用、命中率和延迟建立监控与告警，并为告警准备排查步骤。
+        tags: [监控, 告警]
+        status: planned
+        link: https://redis.io/docs/latest/operate/oss_and_stack/management/monitoring/
+
+  - type: node
+    id: capstone-redis-service
+    title: 为小型服务交付可验证的 Redis 能力
+    description: 将 Redis 接入一个已有后端服务，实现缓存与一种异步或限流场景，并演练失效、内存压力和恢复。
+    tags: [综合实践, 后端]
+    status: planned
+    children:
+      - type: node
+        id: capstone-redis-acceptance
+        title: 验证缓存正确性与故障降级
+        description: 证明缓存命中、失效后回源、Redis 不可用降级、过期和重启恢复均符合预先定义的业务行为。
+        tags: [验收, 故障演练]
+        status: planned
+
+  - type: node
+    id: advanced-redis-topics
+    title: 按业务需求探索 Redis 进阶能力
+    description: 在核心缓存和运维能力稳定后，再选择集群扩展、地理空间、概率结构或搜索等专门方向。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: replication-and-sentinel
+        title: 用复制与 Sentinel 提升单主可用性
+        description: 理解主从复制、故障检测与自动故障转移的边界，并在测试环境演练主节点故障恢复。
+        tags: [Replication, Sentinel]
+        status: optional
+        link: https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/
+      - type: node
+        id: redis-cluster
+        title: 评估 Redis Cluster 的分片需求
+        description: 当单实例容量或吞吐成为瓶颈时，学习 hash slot、分片限制和客户端对集群拓扑的适配。
+        tags: [Redis Cluster, 分片]
+        status: optional
+        link: https://redis.io/docs/latest/operate/oss_and_stack/management/scaling/
+      - type: node
+        id: specialized-data-types
+        title: 探索搜索、JSON 与概率数据结构
+        description: 仅在业务确有文档查询、近似统计或向量检索需求时，评估相应 Redis 数据类型和模块的成本。
+        tags: [JSON, 搜索, 概率结构]
+        status: optional
+        link: https://redis.io/docs/latest/develop/data-types/

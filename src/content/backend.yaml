@@ -114,6 +114,11 @@ nodes:
         description: 掌握缓存键设计、TTL、穿透/击穿/雪崩与失效策略。
         status: planned
         link: https://redis.io/docs/latest/
+        children:
+          - type: roadmap
+            roadmapId: redis
+            title: 进入 Redis 路线图
+            description: 系统学习 Redis 的数据结构、缓存设计、运维与高可用实践。
       - type: node
         id: message-queues
         title: 消息队列与异步任务

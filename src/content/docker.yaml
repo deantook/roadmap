@@ -1,0 +1,243 @@
+id: docker
+title: Docker 路线图
+description: 从容器基础到为小型服务构建、编排、排错并交付可复现的 Docker 环境。
+tags: [Docker, 容器, DevOps, 部署]
+nodes:
+  - type: node
+    id: container-foundations
+    title: 建立容器运行的心智模型
+    description: 区分镜像、容器、Registry 与宿主机资源，理解容器解决的环境一致性问题及其边界。
+    tags: [容器, 镜像]
+    status: planned
+    link: https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/
+    children:
+      - type: node
+        id: install-and-verify
+        title: 安装并验证 Docker 环境
+        description: 根据本机平台安装 Docker Desktop 或 Docker Engine，并通过 CLI 确认客户端与守护进程可用。
+        tags: [安装, CLI]
+        status: planned
+        link: https://docs.docker.com/get-started/get-docker/
+      - type: node
+        id: image-container-registry
+        title: 识别镜像、容器与 Registry 的职责
+        description: 能说明镜像作为只读模板、容器作为运行实例，以及 Registry 如何分发镜像。
+        tags: [镜像, Registry]
+        status: planned
+        link: https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/
+
+  - type: node
+    id: operate-containers
+    title: 使用 CLI 运行和管理容器
+    description: 通过命令行启动、检查、停止和清理容器，并能从运行状态判断常见问题。
+    tags: [CLI, 容器]
+    status: planned
+    link: https://docs.docker.com/reference/cli/docker/container/run/
+    children:
+      - type: node
+        id: run-and-inspect
+        title: 启动并检查单容器应用
+        description: 使用镜像、环境变量、端口和命名启动容器，并用 inspect、ps 与 logs 核实运行结果。
+        tags: [docker run, 日志]
+        status: planned
+      - type: node
+        id: lifecycle-and-cleanup
+        title: 管理容器生命周期与本地资源
+        description: 正确使用停止、重启、删除与 prune 操作，避免误删仍在使用的镜像、卷和容器。
+        tags: [生命周期, 清理]
+        status: planned
+        link: https://docs.docker.com/engine/manage-resources/pruning/
+      - type: node
+        id: debug-running-containers
+        title: 调试运行中的容器
+        description: 结合日志、退出码、exec 与资源状态定位启动失败、配置错误和进程异常。
+        tags: [调试, 日志]
+        status: planned
+        link: https://docs.docker.com/reference/cli/docker/container/logs/
+
+  - type: node
+    id: build-images
+    title: 编写可复现的应用镜像
+    description: 用 Dockerfile 将应用及其运行依赖构建成可移植镜像，并理解构建上下文和分层缓存。
+    tags: [Dockerfile, 构建]
+    status: planned
+    link: https://docs.docker.com/build/concepts/dockerfile/
+    children:
+      - type: node
+        id: dockerfile-instructions
+        title: 用 Dockerfile 声明构建步骤
+        description: 合理使用 FROM、WORKDIR、COPY、RUN、ENV、EXPOSE、ENTRYPOINT 与 CMD 表达运行方式。
+        tags: [Dockerfile]
+        status: planned
+        link: https://docs.docker.com/reference/dockerfile/
+      - type: node
+        id: build-context-and-ignore
+        title: 控制构建上下文与敏感文件
+        description: 使用 .dockerignore 排除无关和敏感文件，避免放大构建上下文或泄露凭据。
+        tags: [构建上下文, 安全]
+        status: planned
+        link: https://docs.docker.com/build/concepts/context/#dockerignore-files
+      - type: node
+        id: layers-cache-and-tags
+        title: 利用分层缓存并管理镜像标签
+        description: 调整指令顺序提升缓存命中率，并以可追溯标签区分版本、环境和构建产物。
+        tags: [缓存, 标签]
+        status: planned
+        link: https://docs.docker.com/build/cache/
+
+  - type: node
+    id: production-image-quality
+    title: 优化镜像的体积、可靠性与安全性
+    description: 将镜像从能运行提升为适合交付的构建产物，控制依赖、权限与可维护性。
+    tags: [最佳实践, 安全]
+    status: planned
+    link: https://docs.docker.com/build/building/best-practices/
+    children:
+      - type: node
+        id: multi-stage-builds
+        title: 使用多阶段构建分离编译与运行
+        description: 仅将运行所需产物复制到最终镜像，减少体积和不必要的构建工具暴露。
+        tags: [多阶段构建]
+        status: planned
+        link: https://docs.docker.com/build/building/multi-stage/
+      - type: node
+        id: image-security-basics
+        title: 以最小权限运行容器
+        description: 选择可信且精简的基础镜像，避免在镜像中写入密钥，并使用非 root 用户运行应用。
+        tags: [安全, 最小权限]
+        status: planned
+        link: https://docs.docker.com/engine/security/
+      - type: node
+        id: image-validation
+        title: 验证镜像可运行且不含构建残留
+        description: 在干净容器中验证启动命令、必要文件和运行用户，确保镜像不依赖本机状态。
+        tags: [验证, 质量]
+        status: planned
+
+  - type: node
+    id: data-and-networking
+    title: 配置持久化数据与容器网络
+    description: 让容器化服务以明确的卷、端口和网络边界连接外部客户端与依赖服务。
+    tags: [存储, 网络]
+    status: planned
+    children:
+      - type: node
+        id: persist-state-with-volumes
+        title: 使用卷保存需要持久化的数据
+        description: 区分 volume、bind mount 与临时文件系统，并为数据库等有状态服务选择合适的挂载方式。
+        tags: [Volumes, 挂载]
+        status: planned
+        link: https://docs.docker.com/engine/storage/volumes/
+      - type: node
+        id: publish-ports-safely
+        title: 显式发布服务端口
+        description: 区分容器端口暴露和主机端口发布，只开放应用实际需要被访问的端口。
+        tags: [端口, 网络]
+        status: planned
+        link: https://docs.docker.com/engine/network/port-publishing/
+      - type: node
+        id: connect-services-on-networks
+        title: 使用用户定义网络连接服务
+        description: 让服务通过网络内 DNS 名称互相访问，并避免依赖容器 IP 或不必要的公网暴露。
+        tags: [DNS, 网络]
+        status: planned
+        link: https://docs.docker.com/engine/network/
+
+  - type: node
+    id: compose-applications
+    title: 用 Docker Compose 编排多服务应用
+    description: 通过 Compose 文件一致地定义应用服务、网络、卷和环境配置，并在本地重复启动整套环境。
+    tags: [Docker Compose, 编排]
+    status: planned
+    link: https://docs.docker.com/compose/
+    children:
+      - type: node
+        id: define-compose-services
+        title: 在 Compose 文件中声明服务依赖
+        description: 为应用、数据库和辅助服务定义镜像或构建方式、网络、卷及启动配置。
+        tags: [Compose, 服务]
+        status: planned
+        link: https://docs.docker.com/reference/compose-file/services/
+      - type: node
+        id: compose-configuration
+        title: 管理环境配置与密钥输入
+        description: 用环境变量和受版本控制策略隔离配置，避免把真实密钥提交到镜像或 Compose 文件。
+        tags: [配置, 密钥]
+        status: planned
+        link: https://docs.docker.com/compose/how-tos/environment-variables/
+      - type: node
+        id: healthchecks-and-startup
+        title: 为服务加入健康检查与启动条件
+        description: 定义可验证的健康检查，并基于依赖服务健康状态安排启动顺序而非猜测延迟。
+        tags: [健康检查, 可靠性]
+        status: planned
+        link: https://docs.docker.com/compose/how-tos/startup-order/
+
+  - type: node
+    id: deliver-images
+    title: 发布并自动化交付镜像
+    description: 将经验证的镜像推送到 Registry，并在持续集成中构建、测试和标记可追溯的产物。
+    tags: [Registry, CI]
+    status: planned
+    children:
+      - type: node
+        id: registry-workflow
+        title: 推送并拉取版本化镜像
+        description: 完成登录、打标签、推送与拉取流程，理解镜像名称、仓库和不可变版本的关系。
+        tags: [Registry, 标签]
+        status: planned
+        link: https://docs.docker.com/get-started/introduction/build-and-push-first-image/
+      - type: node
+        id: ci-build-test-publish
+        title: 在 CI 中构建、测试并发布镜像
+        description: 让流水线在发布前构建镜像、运行测试并仅对通过验证的提交推送指定标签。
+        tags: [CI, 自动化]
+        status: planned
+        link: https://docs.docker.com/build/ci/
+
+  - type: node
+    id: capstone-containerized-service
+    title: 交付一个可复现的容器化小型服务
+    description: 将一个已有 Web 服务与数据库用 Docker Compose 交付，并提供从零启动、验证、排错和清理的说明。
+    tags: [综合实践, Docker Compose]
+    status: planned
+    children:
+      - type: node
+        id: capstone-acceptance
+        title: 验证端到端交付质量
+        description: 在另一台或干净环境中完成构建、启动、健康检查、持久化验证与日志排错，并修复发现的问题。
+        tags: [验收, 调试]
+        status: planned
+
+  - type: node
+    id: advanced-container-topics
+    title: 按实际部署需求深化容器能力
+    description: 在掌握单机 Docker 交付后，再按项目约束选择跨平台构建、资源限制或集群编排等专题。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: multi-platform-images
+        title: 构建多平台镜像
+        description: 使用构建器为不同 CPU 架构产出兼容镜像，并验证目标平台的运行结果。
+        tags: [Buildx, 多平台]
+        status: optional
+        link: https://docs.docker.com/build/building/multi-platform/
+      - type: node
+        id: resource-constraints
+        title: 为容器设置资源边界
+        description: 根据服务需求设置 CPU 和内存限制，并通过负载观察限制对稳定性的影响。
+        tags: [资源限制, 性能]
+        status: optional
+        link: https://docs.docker.com/engine/containers/resource_constraints/
+      - type: node
+        id: kubernetes-next-step
+        title: 评估何时进入 Kubernetes
+        description: 当单机 Compose 无法满足多节点调度、弹性和声明式运维需求时，再学习 Kubernetes 的部署模型。
+        tags: [Kubernetes, 编排]
+        status: optional
+        link: https://kubernetes.io/docs/concepts/overview/
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 路线图
+        description: 将可交付的容器镜像部署到集群，并学习声明式运维、服务治理与可观测性。
