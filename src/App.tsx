@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { contentResult, referencesRoadmap } from './data'
 import type { NodeStatus, Roadmap, RoadmapCatalog, RoadmapChild, RoadmapNode, RoadmapReference } from './types'
 
@@ -71,79 +71,6 @@ function ThemeButton() {
   )
 }
 
-interface SearchEntry {
-  node: RoadmapNode
-  roadmap: Roadmap
-}
-
-function buildSearchEntries(catalog: RoadmapCatalog) {
-  const entries: SearchEntry[] = []
-  const visit = (roadmap: Roadmap, children: RoadmapChild[]) => {
-    for (const child of children) {
-      if (child.type === 'node') {
-        entries.push({ node: child, roadmap })
-        visit(roadmap, child.children)
-      }
-    }
-  }
-  for (const roadmap of catalog.roadmaps.values()) visit(roadmap, roadmap.nodes)
-  return entries
-}
-
-function Search({ catalog }: { catalog: RoadmapCatalog }) {
-  const [query, setQuery] = useState('')
-  const [open, setOpen] = useState(false)
-  const navigate = useNavigate()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const entries = useMemo(() => buildSearchEntries(catalog), [catalog])
-  const normalized = query.trim().toLocaleLowerCase('zh-CN')
-  const results = normalized
-    ? entries.filter(({ node, roadmap }) => `${node.title} ${node.description ?? ''} ${node.tags.join(' ')} ${roadmap.tags.join(' ')}`.toLocaleLowerCase('zh-CN').includes(normalized)).slice(0, 8)
-    : []
-
-  useEffect(() => {
-    const close = (event: PointerEvent) => {
-      if (!containerRef.current?.contains(event.target as Node)) setOpen(false)
-    }
-    window.addEventListener('pointerdown', close)
-    return () => window.removeEventListener('pointerdown', close)
-  }, [])
-
-  const select = ({ roadmap, node }: SearchEntry) => {
-    setOpen(false)
-    setQuery('')
-    navigate(`/roadmaps/${roadmap.id}#node-${node.id}`)
-  }
-
-  return (
-    <div className="search" ref={containerRef}>
-      <span aria-hidden="true" className="search-icon">⌕</span>
-      <input
-        type="search"
-        value={query}
-        onChange={(event) => { setQuery(event.target.value); setOpen(true) }}
-        onFocus={() => setOpen(true)}
-        placeholder="搜索全部节点…"
-        aria-label="搜索全部路线图节点"
-        aria-expanded={open && Boolean(normalized)}
-      />
-      {open && normalized && (
-        <div className="search-results" role="listbox" aria-label="搜索结果">
-          {results.length ? results.map((entry) => (
-            <button key={`${entry.roadmap.id}-${entry.node.id}`} role="option" onClick={() => select(entry)}>
-              <span className="search-result-copy">
-                <strong>{entry.node.title}</strong>
-                {entry.node.tags.length > 0 && <small>{entry.node.tags.slice(0, 2).join(' · ')}</small>}
-              </span>
-              <span>{entry.roadmap.title}</span>
-            </button>
-          )) : <p>没有找到匹配节点</p>}
-        </div>
-      )}
-    </div>
-  )
-}
-
 function GitHubIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
@@ -152,16 +79,14 @@ function GitHubIcon() {
   )
 }
 
-function Shell({ catalog, children }: { catalog: RoadmapCatalog; children: React.ReactNode }) {
+function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="app-shell">
       <header className="site-header">
-        <Link to="/" className="brand" aria-label="路线图首页">
-          <span className="brand-mark" aria-hidden="true">R</span>
-          <span>路线图</span>
+        <Link to="/" className="brand" aria-label="ROADMAP 首页">
+          <span>ROADMAP</span>
         </Link>
         <div className="header-actions">
-          <Search catalog={catalog} />
           <ThemeButton />
         </div>
       </header>
@@ -215,7 +140,6 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
       <section aria-labelledby="roadmaps-title">
         <div className="section-heading">
           <div>
-            <p className="section-number">01</p>
             <h2 id="roadmaps-title">选择路线</h2>
           </div>
           <span>{visibleRoadmaps.length} / {catalog.roots.length} 条路线</span>
@@ -250,7 +174,6 @@ function Home({ catalog }: { catalog: RoadmapCatalog }) {
                   <Link className="roadmap-card" to={`/roadmaps/${roadmap.id}`} key={roadmap.id}>
                     <div className="card-meta">
                       <span>{String(countNodes(roadmap.nodes)).padStart(2, '0')} 节点</span>
-                      <span className="card-arrow" aria-hidden="true">↗</span>
                     </div>
                     <div>
                       <h3>{roadmap.title}</h3>
@@ -578,7 +501,7 @@ export default function App() {
   if (!contentResult.ok) return <ErrorPage errors={contentResult.errors} />
   const { catalog } = contentResult
   return (
-    <Shell catalog={catalog}>
+    <Shell>
       <Routes>
         <Route path="/" element={<Home catalog={catalog} />} />
         <Route path="/roadmaps/*" element={<RoadmapPage catalog={catalog} />} />

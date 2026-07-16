@@ -1,0 +1,376 @@
+id: git
+title: Git
+description: 从版本控制与提交模型出发，掌握分支、远程协作、历史整理和安全恢复，并完成一次可评审、可发布、可追溯的团队协作实践。
+tags: [Git, 版本控制, 协作, 工程化]
+nodes:
+  - type: node
+    id: build-git-mental-model
+    title: 建立 Git 版本控制心智模型
+    description: 理解 Git 如何用快照、对象和引用记录项目历史，并区分工作区、暂存区与仓库的职责。
+    tags: [基础, 数据模型]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-Git-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F
+    children:
+      - type: node
+        id: install-configure-and-help
+        title: 安装、配置并查询 Git 帮助
+        description: 验证 Git 版本，设置提交身份、默认编辑器和初始分支名称，并能从内置帮助定位命令选项。
+        tags: [安装, 配置, CLI]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE
+      - type: node
+        id: distinguish-three-states
+        title: 区分工作区、暂存区与仓库状态
+        description: 能沿文件修改、暂存和提交的路径解释数据位于何处，并预测常用命令会改变哪一层。
+        tags: [工作区, 暂存区, 仓库]
+        status: planned
+      - type: node
+        id: understand-objects-and-refs
+        title: 用对象与引用解释提交历史
+        description: 识别 blob、tree、commit、tag 与分支引用的关系，理解 HEAD 如何指向当前检出位置。
+        tags: [对象, 引用, HEAD]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Git-%E5%AF%B9%E8%B1%A1
+
+  - type: node
+    id: record-focused-changes
+    title: 将工作拆成清晰可复查的提交
+    description: 从初始化或克隆仓库开始，用状态、差异、暂存和提交组成可靠的日常变更循环。
+    tags: [提交, 暂存, Diff]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93
+    children:
+      - type: node
+        id: initialize-or-clone-repository
+        title: 初始化或克隆一个仓库
+        description: 分别用 init 和 clone 建立可工作的本地仓库，并检查工作树、当前分支和远程配置。
+        tags: [init, clone]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%8E%B7%E5%8F%96-Git-%E4%BB%93%E5%BA%93
+      - type: node
+        id: inspect-status-and-diffs
+        title: 在提交前核对状态与差异
+        description: 使用 status 和 diff 分别检查未暂存与已暂存内容，确保提交只包含预期变更。
+        tags: [status, diff]
+        status: planned
+      - type: node
+        id: stage-intentional-snapshots
+        title: 有选择地暂存一个逻辑变更
+        description: 按文件或补丁块加入暂存区，将混杂的工作拆成边界清晰且可独立解释的快照。
+        tags: [add, Patch]
+        status: planned
+        link: https://git-scm.com/docs/git-add
+      - type: node
+        id: write-useful-commits
+        title: 创建可理解的原子提交
+        description: 为单一目的提交完整变更，用准确消息说明意图，并在提交后复查内容与元数据。
+        tags: [commit, 提交消息]
+        status: planned
+      - type: node
+        id: ignore-generated-and-secret-files
+        title: 忽略生成文件并隔离敏感信息
+        description: 用分层 .gitignore 排除可再生文件和本地配置，同时确保密钥从未进入版本历史。
+        tags: [.gitignore, 安全]
+        status: planned
+        link: https://git-scm.com/docs/gitignore
+
+  - type: node
+    id: read-and-compare-history
+    title: 阅读、定位并比较项目历史
+    description: 用提交图、引用和差异回答改动由谁、何时、为何引入，以及两个版本之间发生了什么。
+    tags: [历史, 查询, Diff]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2
+    children:
+      - type: node
+        id: navigate-commit-graph
+        title: 用引用和修订语法定位提交
+        description: 使用分支、标签、提交 ID、父提交和祖先表达式准确选择单个提交或提交范围。
+        tags: [Revision, 提交图]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%80%89%E6%8B%A9%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC
+      - type: node
+        id: filter-and-format-log
+        title: 筛选并呈现需要的提交记录
+        description: 按路径、作者、时间、内容或提交范围过滤 log，并用图形视图辨认分叉与合并。
+        tags: [log, 查询]
+        status: planned
+      - type: node
+        id: compare-versions
+        title: 比较文件、提交与分支差异
+        description: 选择正确的比较端点和合并基准，核对一个分支相对主线实际引入的变化。
+        tags: [diff, Range]
+        status: planned
+      - type: node
+        id: trace-lines-and-changes
+        title: 追踪代码行和行为的来源
+        description: 结合 blame、log 与内容搜索定位一次变化的引入提交，再从上下文判断原因而非只归因于作者。
+        tags: [blame, Pickaxe]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E4%BD%BF%E7%94%A8-Git-%E8%B0%83%E8%AF%95
+
+  - type: node
+    id: develop-with-branches
+    title: 使用分支隔离并集成开发工作
+    description: 以轻量分支承载独立任务，理解分叉与合并，并能验证和解决文本冲突。
+    tags: [分支, 合并, 冲突]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B
+    children:
+      - type: node
+        id: create-switch-and-delete-branches
+        title: 创建、切换并清理任务分支
+        description: 从明确基点创建分支，安全切换工作上下文，并在确认合并状态后删除已完成分支。
+        tags: [branch, switch]
+        status: planned
+        link: https://git-scm.com/docs/git-switch
+      - type: node
+        id: merge-related-work
+        title: 合并经过验证的分支
+        description: 区分快进和三方合并，在合并前检查待集成提交，并在合并后运行项目验证。
+        tags: [merge, 集成]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6
+      - type: node
+        id: resolve-merge-conflicts
+        title: 依据预期行为解决合并冲突
+        description: 阅读冲突标记和三方上下文，选择或重写正确结果，暂存解决方案并通过测试验证集成行为。
+        tags: [冲突解决, 测试]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6
+      - type: node
+        id: choose-branch-integration-policy
+        title: 为团队选择一致的分支集成策略
+        description: 根据发布节奏和审计需求约定短分支、合并提交、压缩或变基策略，并明确允许重写历史的边界。
+        tags: [工作流, 策略]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E4%BD%9C%E6%B5%81
+
+  - type: node
+    id: collaborate-with-remotes
+    title: 通过远程仓库安全同步变更
+    description: 理解远程引用的本地视图，先检查再集成上游变化，并在共享前确认将要发布的提交。
+    tags: [Remote, fetch, push]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8
+    children:
+      - type: node
+        id: manage-remotes-and-authentication
+        title: 配置远程地址与安全认证
+        description: 检查和维护命名远程，使用 SSH 或受保护的凭证辅助工具认证，避免明文长期保存访问凭据。
+        tags: [remote, SSH, 凭证]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%87%AD%E8%AF%81%E5%AD%98%E5%82%A8
+      - type: node
+        id: fetch-and-inspect-upstream
+        title: 获取并检查上游状态
+        description: 使用 fetch 更新远程跟踪引用，在修改本地分支前比较本地与上游的领先、落后和分叉情况。
+        tags: [fetch, 远程跟踪分支]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF
+      - type: node
+        id: integrate-upstream-changes
+        title: 明确选择合并或变基来同步上游
+        description: 理解 pull 组合了获取与集成，根据团队策略显式使用 merge 或 rebase，并在冲突后验证结果。
+        tags: [pull, merge, rebase]
+        status: planned
+      - type: node
+        id: push-reviewed-history
+        title: 推送预期的分支和标签
+        description: 在 push 前核对目标远程、目标引用与提交范围，正确设置上游关系并处理非快进拒绝。
+        tags: [push, upstream]
+        status: planned
+        link: https://git-scm.com/docs/git-push
+
+  - type: node
+    id: shape-local-history
+    title: 在共享前整理本地提交历史
+    description: 用修补、交互式变基和拣选改进尚未共享的提交序列，同时保持每个提交可理解、可验证。
+    tags: [rebase, amend, cherry-pick]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2
+    children:
+      - type: node
+        id: amend-latest-commit
+        title: 修补最近一次本地提交
+        description: 在确认提交尚未共享后修正其内容或消息，并理解修补会创建新的提交对象。
+        tags: [amend, 历史重写]
+        status: planned
+      - type: node
+        id: rebase-topic-branch
+        title: 将任务分支变基到新基点
+        description: 在私有分支上重放提交以简化集成，逐个解决冲突并比较变基前后的最终内容。
+        tags: [rebase, 提交图]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
+      - type: node
+        id: edit-commit-series
+        title: 交互式整理一组本地提交
+        description: 重排、合并、拆分或修改提交，让评审者可以按逻辑顺序检查每一步且每步保持可构建。
+        tags: [交互式变基, 代码评审]
+        status: planned
+      - type: node
+        id: transplant-selected-commits
+        title: 有选择地移植独立提交
+        description: 用 cherry-pick 将明确提交应用到另一分支，记录冲突处理并避免无意复制整条分支历史。
+        tags: [cherry-pick, 移植]
+        status: planned
+        link: https://git-scm.com/docs/git-cherry-pick
+
+  - type: node
+    id: undo-and-recover-safely
+    title: 按变更是否共享选择撤销与恢复方式
+    description: 先识别工作区、暂存区、分支引用和共享历史的状态，再选择影响范围最小且可恢复的操作。
+    tags: [恢复, 撤销, 安全]
+    status: planned
+    link: https://git-scm.com/docs/git#_reset_restore_and_revert
+    children:
+      - type: node
+        id: restore-uncommitted-changes
+        title: 恢复未提交的文件或暂存状态
+        description: 使用 restore 的路径与补丁模式撤销选定改动或取消暂存，并在执行前确认可能丢失的内容。
+        tags: [restore, 工作区, 暂存区]
+        status: planned
+        link: https://git-scm.com/docs/git-restore
+      - type: node
+        id: reset-private-branch-state
+        title: 调整尚未共享的分支引用
+        description: 区分 reset 的 soft、mixed 与 hard 模式对 HEAD、暂存区和工作区的影响，仅在明确备份和边界后使用破坏性模式。
+        tags: [reset, HEAD]
+        status: planned
+        link: https://git-scm.com/docs/git-reset
+      - type: node
+        id: revert-shared-change
+        title: 用新提交撤销已共享变更
+        description: 对公共分支创建可审计的反向提交，处理冲突并验证撤销没有破坏后续依赖变更。
+        tags: [revert, 公共历史]
+        status: planned
+        link: https://git-scm.com/docs/git-revert
+      - type: node
+        id: recover-with-reflog
+        title: 从引用日志找回丢失的提交
+        description: 使用 reflog 定位本地引用曾指向的位置，通过新分支保护目标提交后再恢复工作。
+        tags: [reflog, 灾难恢复]
+        status: planned
+        link: https://git-scm.com/docs/git-reflog
+      - type: node
+        id: preserve-work-in-progress
+        title: 临时保存并恢复未完成工作
+        description: 在必须切换上下文时用临时提交或 stash 保存有名称的工作，恢复后检查冲突并及时清理。
+        tags: [stash, 上下文切换]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E8%B4%AE%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86.html
+
+  - type: node
+    id: run-team-git-workflow
+    title: 建立可评审、可追踪的团队工作流
+    description: 将 Git 操作与任务拆分、代码评审、自动检查、发布标记和访问安全组合成一致的协作规则。
+    tags: [团队协作, Code Review, 发布]
+    status: planned
+    link: https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B
+    children:
+      - type: node
+        id: prepare-reviewable-contributions
+        title: 准备易于评审的贡献
+        description: 从最新基线创建聚焦分支，以小提交记录意图，补充测试和说明，并在请求评审前自查完整差异。
+        tags: [贡献, Code Review]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%90%91%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE
+      - type: node
+        id: protect-shared-branches
+        title: 保护共享分支与发布入口
+        description: 通过托管平台限制直接推送和强制推送，要求必要评审与自动检查，并为紧急绕过保留审计记录。
+        tags: [分支保护, 权限, CI]
+        status: planned
+      - type: node
+        id: tag-auditable-releases
+        title: 用带注释标签标记可审计版本
+        description: 在经过验证的提交上创建带注释标签，推送明确标签并能从标签追溯版本来源和发布说明。
+        tags: [tag, Release]
+        status: planned
+        link: https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE
+      - type: node
+        id: handle-credentials-and-secrets
+        title: 防止凭据和秘密进入历史
+        description: 使用受控认证和密钥扫描，在泄露时立即撤销凭据并按风险决定清理历史及协调所有克隆。
+        tags: [凭据, Secrets, 事件响应]
+        status: planned
+      - type: roadmap
+        roadmapId: devops
+        title: 将 Git 协作衔接到自动化交付
+        description: 继续学习持续集成、制品追踪、基础设施即代码和可回滚发布。
+
+  - type: node
+    id: capstone-collaboration-recovery
+    title: 完成一次多参与者协作与恢复演练
+    description: 用两个独立克隆模拟贡献者和维护者，从任务分支、评审式集成到版本发布完整交付一项小功能。
+    tags: [综合实践, 协作, 恢复]
+    status: planned
+    children:
+      - type: node
+        id: capstone-build-reviewable-history
+        title: 构建可逐步评审的功能历史
+        description: 将功能、测试和文档组织成少量原子提交，并证明每个提交的内容、消息和顺序都可独立理解。
+        tags: [提交质量, 验收]
+        status: planned
+      - type: node
+        id: capstone-simulate-concurrent-work
+        title: 模拟并发开发与冲突集成
+        description: 在两个克隆中修改同一功能的相关区域，通过 fetch 检查分叉，解决冲突并用测试证明最终行为正确。
+        tags: [并发协作, 冲突]
+        status: planned
+      - type: node
+        id: capstone-publish-release
+        title: 集成并标记一个可追溯版本
+        description: 按选定团队策略合并贡献，在干净工作树上运行验证，创建带注释标签并从新克隆复核发布内容。
+        tags: [发布, Tag, 验证]
+        status: planned
+      - type: node
+        id: capstone-recover-failures
+        title: 演练误操作与公共变更恢复
+        description: 分别恢复误删分支、未提交文件和已共享错误提交，记录所选命令、影响范围和验证证据。
+        tags: [故障演练, reflog, revert]
+        status: planned
+
+  - type: node
+    id: advanced-git-tools
+    title: 按项目规模和诊断需求深化 Git 工具
+    description: 在日常协作稳定后，再选择自动定位回归、多工作树、大型仓库依赖或签名验证等专题。
+    tags: [进阶, 工具]
+    status: optional
+    children:
+      - type: node
+        id: locate-regressions-with-bisect
+        title: 用二分查找定位回归提交
+        description: 定义可重复的好坏判定，通过 bisect 缩小问题范围，并在条件稳定时用脚本自动执行验证。
+        tags: [bisect, 调试]
+        status: optional
+        link: https://git-scm.com/docs/git-bisect
+      - type: node
+        id: automate-local-checks-with-hooks
+        title: 用钩子自动执行本地检查
+        description: 为提交或推送前反馈配置可维护的钩子，同时认识本地钩子不可替代服务端策略和 CI 门禁。
+        tags: [Hooks, 自动化]
+        status: optional
+        link: https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90
+      - type: node
+        id: work-on-multiple-branches
+        title: 用多个工作树并行处理分支
+        description: 为同一仓库创建独立工作目录，避免频繁暂存上下文，并正确清理工作树与关联元数据。
+        tags: [worktree, 并行开发]
+        status: optional
+        link: https://git-scm.com/docs/git-worktree
+      - type: node
+        id: manage-repository-dependencies
+        title: 评估子模块与大文件方案
+        description: 根据依赖所有权、版本固定和克隆成本评估 submodule、subtree 或 Git LFS，并记录团队操作约定。
+        tags: [Submodule, Git LFS, 大型仓库]
+        status: optional
+        link: https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97
+      - type: node
+        id: sign-and-verify-work
+        title: 签名并验证提交与标签
+        description: 在来源认证有明确需求时配置受保护的签名密钥，验证提交或标签，并制定密钥轮换和吊销流程。
+        tags: [签名, 验证, 供应链安全]
+        status: optional
+        link: https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work

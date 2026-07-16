@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -65,15 +65,6 @@ describe('App', () => {
     expect(await screen.findByRole('heading', { level: 1, name: '前端开发' })).toBeInTheDocument()
     const breadcrumb = screen.getByRole('navigation', { name: '面包屑导航' })
     expect(breadcrumb).toHaveTextContent('Web 开发')
-  })
-
-  it('searches globally and navigates to a result', async () => {
-    render(<MemoryRouter><App /></MemoryRouter>)
-    const input = screen.getByRole('searchbox', { name: '搜索全部路线图节点' })
-    fireEvent.change(input, { target: { value: '身份认证' } })
-    fireEvent.click(await screen.findByRole('option', { name: /身份认证与授权/ }))
-    expect(await screen.findByRole('heading', { level: 1, name: '后端开发' })).toBeInTheDocument()
-    await waitFor(() => expect(Element.prototype.scrollIntoView).toHaveBeenCalled())
   })
 
   it('persists theme changes', () => {
