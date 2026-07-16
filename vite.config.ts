@@ -19,9 +19,19 @@ async function readBody(request: import('node:http').IncomingMessage) {
   return JSON.parse(Buffer.concat(chunks).toString('utf8')) as Record<string, unknown>
 }
 
-function safeFilename(value: unknown) {
-  if (typeof value !== 'string' || !/^[a-z0-9][a-z0-9-]*\.yaml$/.test(value)) return null
+function safeContentPath(value: unknown) {
+  if (typeof value !== 'string' || !/^(?:[a-z0-9][a-z0-9-]*\/)*[a-z0-9][a-z0-9-]*\.yaml$/.test(value)) return null
   return value
+}
+
+async function listYamlFiles(directory: string, prefix = ''): Promise<string[]> {
+  const entries = await readdir(directory, { withFileTypes: true })
+  const files = await Promise.all(entries.map(async (entry) => {
+    const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name
+    if (entry.isDirectory()) return listYamlFiles(path.join(directory, entry.name), relativePath)
+    return entry.isFile() && entry.name.endsWith('.yaml') ? [relativePath] : []
+  }))
+  return files.flat().sort()
 }
 
 function editorApi(): Plugin {
@@ -31,7 +41,7 @@ function editorApi(): Plugin {
       server.middlewares.use('/api/editor/roadmaps', async (request, response) => {
         try {
           if (request.method === 'GET') {
-            const filenames = (await readdir(contentDirectory)).filter((name) => name.endsWith('.yaml')).sort()
+            const filenames = await listYamlFiles(contentDirectory)
             const files = await Promise.all(filenames.map(async (filename) => ({
               filename,
               document: load(await readFile(path.join(contentDirectory, filename), 'utf8')),
@@ -41,9 +51,9 @@ function editorApi(): Plugin {
           }
 
           const body = await readBody(request)
-          const filename = safeFilename(body.filename)
+          const filename = safeContentPath(body.filename)
           if (!filename) {
-            sendJson(response, 400, { error: '文件名只能包含小写字母、数字和连字符，并以 .yaml 结尾。' })
+            sendJson(response, 400, { error: '文件路径的目录和文件名只能包含小写字母、数字和连字符，并以 .yaml 结尾。' })
             return
           }
           const target = path.join(contentDirectory, filename)
@@ -53,7 +63,7 @@ function editorApi(): Plugin {
               sendJson(response, 400, { error: '路线图数据无效。' })
               return
             }
-            await mkdir(contentDirectory, { recursive: true })
+            await mkdir(path.dirname(target), { recursive: true })
             const yaml = dump(body.document, { noRefs: true, lineWidth: 120 })
             const temporary = `${target}.tmp`
             await writeFile(temporary, yaml, 'utf8')

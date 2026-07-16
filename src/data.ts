@@ -104,7 +104,7 @@ export function referencesRoadmap(roadmap: Roadmap, targetId: string) {
   return collectReferences(roadmap.nodes).has(targetId)
 }
 
-const yamlFiles = import.meta.glob('./content/*.yaml', {
+const yamlFiles = import.meta.glob('./content/**/*.yaml', {
   query: '?raw',
   import: 'default',
   eager: true,

@@ -191,7 +191,8 @@ export default function EditorApp() {
     if (errors.length) { notify('error', errors[0]!); return }
     setSaving(true)
     try {
-      const nextFilename = `${file.document.id}.yaml`
+      const directory = file.filename.includes('/') ? file.filename.slice(0, file.filename.lastIndexOf('/') + 1) : ''
+      const nextFilename = `${directory}${file.document.id}.yaml`
       const response = await fetch('/api/editor/roadmaps', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ filename: nextFilename, document: stripEditorState(file.document) }) })
       const body = await response.json() as { error?: string }
       if (!response.ok) throw new Error(body.error || '保存失败。')
@@ -254,7 +255,7 @@ export default function EditorApp() {
   const createRoadmap = () => {
     const index = files.length + 1
     const document: EditorRoadmap = { id: `new-roadmap-${index}`, title: '新路线图', tags: [], nodes: [] }
-    const filename = `${document.id}.yaml`
+    const filename = `other/${document.id}.yaml`
     setFiles((current) => [...current, { filename, document, savedSnapshot: '', isNew: true }])
     setActiveFilename(filename)
     setSelectedKey(null)
