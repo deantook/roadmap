@@ -87,7 +87,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .search-results p { padding: 10px 12px; margin: 0; color: var(--muted); }
 
 main { width: min(1320px, calc(100% - 48px)); margin: 0 auto; }
-footer { width: min(1320px, calc(100% - 48px)); margin: 76px auto 0; padding: 28px 0 38px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
+footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: min(1320px, calc(100% - 48px)); margin: 76px auto 0; padding: 28px 0 38px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
+.footer-github { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); transition: color .2s ease, border-color .2s ease, transform .2s ease; }
+.footer-github:hover { color: var(--ink); border-color: var(--accent); transform: translateY(-1px); }
 .page-enter { animation: rise .45s ease-out both; }
 @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
 
