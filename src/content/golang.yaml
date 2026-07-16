@@ -1,0 +1,163 @@
+id: golang
+title: Go 语言路线图
+description: 从语法与接口到并发、模块、标准库与 Web 服务入门。
+nodes:
+  - type: node
+    id: go-basics
+    title: 语言基础
+    description: 掌握语法、类型、结构体与接口这一 Go 的核心抽象。
+    status: planned
+    link: https://go.dev/doc/
+    children:
+      - type: node
+        id: syntax-types
+        title: 语法与类型
+        description: 变量声明、控制流、基本类型、指针与零值语义。
+        status: planned
+        link: https://go.dev/tour/welcome/1
+      - type: node
+        id: structs-methods
+        title: 结构体与方法
+        description: 用 struct 建模数据，用 method 组织行为。
+        status: planned
+      - type: node
+        id: interfaces
+        title: 接口
+        description: 理解隐式实现、小接口设计与常见标准接口。
+        status: planned
+
+  - type: node
+    id: errors-packages
+    title: 错误处理与包
+    description: 用显式错误与清晰包边界写出可维护代码。
+    status: planned
+    children:
+      - type: node
+        id: error-handling
+        title: 错误处理
+        description: error 接口、包装（%w）、sentinel 与错误判断。
+        status: planned
+      - type: node
+        id: packages-visibility
+        title: 包与可见性
+        description: 包组织、导出规则、init 使用边界与项目布局。
+        status: planned
+
+  - type: node
+    id: collections-generics
+    title: 集合与泛型
+    description: 熟练使用切片、映射，并用泛型减少重复。
+    status: planned
+    children:
+      - type: node
+        id: slices-maps
+        title: 切片与映射
+        description: 底层数组、容量、append 陷阱与 map 用法。
+        status: planned
+      - type: node
+        id: generics
+        title: 泛型
+        description: 类型参数、约束与常见泛型工具函数。
+        status: planned
+
+  - type: node
+    id: concurrency
+    title: 并发编程
+    description: 用 goroutine 与 channel 构建清晰的并发模型。
+    status: planned
+    link: https://go.dev/blog/pipelines
+    children:
+      - type: node
+        id: goroutines-channels
+        title: Goroutine 与 Channel
+        description: 启动并发任务、通道通信与 select 多路复用。
+        status: planned
+      - type: node
+        id: context
+        title: Context
+        description: 用 context 传递取消、超时与请求级元数据。
+        status: planned
+        link: https://pkg.go.dev/context
+      - type: node
+        id: sync-primitives
+        title: sync 包
+        description: Mutex、WaitGroup、Once 等同步原语的适用场景。
+        status: planned
+
+  - type: node
+    id: modules-tooling
+    title: 模块与工具链
+    description: 用 Go modules 管理依赖，并用官方工具提升质量。
+    status: planned
+    children:
+      - type: node
+        id: go-modules
+        title: Go Modules
+        description: go.mod、版本选择、replace 与私有模块基础。
+        status: planned
+        link: https://go.dev/ref/mod
+      - type: node
+        id: go-tooling
+        title: 格式化与静态检查
+        description: gofmt、go vet、golangci-lint 等日常质量工具。
+        status: planned
+      - type: node
+        id: testing
+        title: 测试
+        description: testing 包、表驱动测试、子测试与基准测试入门。
+        status: planned
+        link: https://go.dev/doc/tutorial/add-a-test
+
+  - type: node
+    id: stdlib
+    title: 常用标准库
+    description: 优先用标准库完成 HTTP、编码与常见工程任务。
+    status: planned
+    children:
+      - type: node
+        id: net-http
+        title: net/http
+        description: Handler、中间件模式、客户端与服务端基础。
+        status: planned
+        link: https://pkg.go.dev/net/http
+      - type: node
+        id: encoding-json
+        title: encoding/json
+        description: 结构体标签、编解码与常见序列化陷阱。
+        status: planned
+      - type: node
+        id: io-fs
+        title: io 与文件系统
+        description: Reader/Writer、io/fs 与文件读写模式。
+        status: planned
+
+  - type: node
+    id: runtime-observability
+    title: 运行时与诊断
+    description: 理解调度与内存，便于排查性能与泄漏问题。
+    status: optional
+    children:
+      - type: node
+        id: scheduler-gc
+        title: 调度与 GC 直觉
+        description: GMP 模型与垃圾回收的基本概念，够用即可。
+        status: optional
+      - type: node
+        id: pprof
+        title: pprof 性能分析
+        description: 用 pprof 定位 CPU、内存与阻塞热点。
+        status: optional
+        link: https://pkg.go.dev/net/http/pprof
+
+  - type: node
+    id: go-ecosystem
+    title: 进入后端生态
+    description: 语言扎实后，用路由框架落地 Web 服务，再回到后端路线图继续。
+    status: planned
+    children:
+      - type: node
+        id: web-framework-intro
+        title: Web 框架入门
+        description: 选用 Chi / Gin / Echo 之一，快速搭建 REST 服务。
+        status: planned
+        link: https://go.dev/doc/tutorial/web-service-gin

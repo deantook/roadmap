@@ -1,0 +1,160 @@
+id: java
+title: Java 语言路线图
+description: 从语法与面向对象到并发、构建与现代 Java 特性。
+nodes:
+  - type: node
+    id: java-basics
+    title: 语言基础
+    description: 掌握语法、类型系统与面向对象核心概念。
+    status: planned
+    link: https://docs.oracle.com/en/java/javase/21/docs/api/index.html
+    children:
+      - type: node
+        id: syntax-types
+        title: 语法与类型
+        description: 变量、控制流、基本类型、引用类型与装箱拆箱。
+        status: planned
+      - type: node
+        id: oop
+        title: 面向对象
+        description: 类、接口、继承、多态、封装与访问控制。
+        status: planned
+      - type: node
+        id: packages-classpath
+        title: 包与类路径
+        description: 理解包结构、classpath 与模块化之前的组织方式。
+        status: planned
+
+  - type: node
+    id: collections-generics
+    title: 集合与泛型
+    description: 用集合框架与泛型写出类型安全、可维护的代码。
+    status: planned
+    children:
+      - type: node
+        id: collections
+        title: 集合框架
+        description: List、Set、Map 的选用、遍历与常见陷阱。
+        status: planned
+        link: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/package-summary.html
+      - type: node
+        id: generics
+        title: 泛型
+        description: 类型参数、通配符、上下界与类型擦除直觉。
+        status: planned
+      - type: node
+        id: equals-hashcode
+        title: equals 与 hashCode
+        description: 正确实现相等性，保证哈希集合行为正确。
+        status: planned
+
+  - type: node
+    id: exceptions-io
+    title: 异常与 I/O
+    description: 可靠地处理失败路径，并完成文件与流式读写。
+    status: planned
+    children:
+      - type: node
+        id: exceptions
+        title: 异常处理
+        description: checked/unchecked、try-with-resources 与异常设计。
+        status: planned
+      - type: node
+        id: io-nio
+        title: I/O 与 NIO
+        description: 字节/字符流、Path、Files 与基本非阻塞概念。
+        status: planned
+
+  - type: node
+    id: concurrency
+    title: 并发编程
+    description: 理解线程模型，安全地共享状态与协调任务。
+    status: planned
+    children:
+      - type: node
+        id: threads-sync
+        title: 线程与同步
+        description: Thread、synchronized、volatile 与可见性/原子性。
+        status: planned
+      - type: node
+        id: executors
+        title: 线程池与 Future
+        description: ExecutorService、Callable、Future 与任务提交策略。
+        status: planned
+      - type: node
+        id: concurrent-utils
+        title: 并发工具类
+        description: ConcurrentHashMap、锁、CountDownLatch 等常用工具。
+        status: planned
+        link: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html
+
+  - type: node
+    id: build-tooling
+    title: 构建与依赖
+    description: 用构建工具管理依赖、测试与可重复交付。
+    status: planned
+    children:
+      - type: node
+        id: maven-or-gradle
+        title: Maven 或 Gradle
+        description: 选定一种工具，掌握依赖、插件与多模块项目。
+        status: planned
+        link: https://maven.apache.org/guides/getting-started/
+      - type: node
+        id: testing-junit
+        title: 单元测试（JUnit）
+        description: 用 JUnit 写可维护的单元测试与断言。
+        status: planned
+        link: https://junit.org/junit5/docs/current/user-guide/
+
+  - type: node
+    id: modern-java
+    title: 现代 Java
+    description: 掌握 Java 8+ 常用特性，提升表达力与安全性。
+    status: planned
+    children:
+      - type: node
+        id: streams-optional
+        title: Stream 与 Optional
+        description: 用声明式集合处理与显式空值建模。
+        status: planned
+      - type: node
+        id: records-sealed
+        title: Record 与密封类
+        description: 用不可变数据载体与受限继承表达领域模型。
+        status: planned
+      - type: node
+        id: java-modules
+        title: 模块系统（JPMS）
+        description: 了解 module-info 与强封装；按需深入。
+        status: optional
+
+  - type: node
+    id: jvm-basics
+    title: JVM 基础
+    description: 理解运行时如何执行代码，便于排查性能与内存问题。
+    status: optional
+    children:
+      - type: node
+        id: memory-gc
+        title: 内存与垃圾回收
+        description: 堆/栈、对象生命周期与常见 GC 概念。
+        status: optional
+      - type: node
+        id: tooling-debug
+        title: 调试与诊断工具
+        description: 使用 jcmd、可视化工具与日志定位运行时问题。
+        status: optional
+
+  - type: node
+    id: java-ecosystem
+    title: 进入后端生态
+    description: 语言扎实后，用主流框架把 Java 落到 Web 服务，再回到后端路线图继续。
+    status: planned
+    children:
+      - type: node
+        id: spring-boot-intro
+        title: Spring Boot 入门
+        description: 快速搭建 REST 服务，理解依赖注入与自动配置。
+        status: planned
+        link: https://spring.io/projects/spring-boot

@@ -8,6 +8,14 @@ nodes:
     description: 选择一种语言并掌握其运行时与生态。
     status: in-progress
     children:
+      - type: roadmap
+        roadmapId: java
+        title: 进入 Java 路线图
+        description: 系统学习 Java 语言、并发、构建与 Spring Boot 入门。
+      - type: roadmap
+        roadmapId: golang
+        title: 进入 Go 路线图
+        description: 系统学习 Go 语言、并发、模块、标准库与 Web 入门。
       - type: node
         id: language-basics
         title: 语言基础与标准库
