@@ -24,14 +24,14 @@ nodes:
         description: 掌握局部变量、常量、真值规则、条件、循环和 case 表达式，并理解 Ruby 方法通常返回最后一个表达式。
         tags: [语法, 控制流]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/syntax/control_expressions_rdoc.html
+        link: https://docs.ruby-lang.org/en/4.0/syntax/control_expressions_rdoc.html
       - type: node
         id: methods-arguments-and-keywords
         title: 设计清晰的方法参数
         description: 正确使用位置参数、关键字参数、默认值、可变参数和返回值，并避免模糊的调用约定。
         tags: [方法, 参数]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/syntax/methods_rdoc.html
+        link: https://docs.ruby-lang.org/en/4.0/syntax/methods_rdoc.html
 
   - type: node
     id: objects-and-core-data
@@ -39,7 +39,7 @@ nodes:
     description: 理解值都是对象以及变量保存引用的语义，并根据可变性、相等性和查找需求选择合适的数据结构。
     tags: [对象模型, 数据类型]
     status: planned
-    link: https://docs.ruby-lang.org/en/master/syntax/literals_rdoc.html
+    link: https://docs.ruby-lang.org/en/4.0/syntax/literals_rdoc.html
     children:
       - type: node
         id: strings-symbols-and-numbers
@@ -47,7 +47,7 @@ nodes:
         description: 区分可变 String 和用于稳定标识的 Symbol，掌握插值、编码与常用数值操作的行为边界。
         tags: [String, Symbol, 编码]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/String.html
+        link: https://docs.ruby-lang.org/en/4.0/String.html
       - type: node
         id: arrays-hashes-and-ranges
         title: 使用 Array、Hash 与 Range 建模集合
@@ -67,7 +67,7 @@ nodes:
     description: 利用块、迭代器和模式匹配表达集合转换与资源操作，减少手写循环和临时状态。
     tags: [Block, Enumerable, 模式匹配]
     status: planned
-    link: https://docs.ruby-lang.org/en/master/Enumerable.html
+    link: https://docs.ruby-lang.org/en/4.0/Enumerable.html
     children:
       - type: node
         id: blocks-yield-and-proc
@@ -75,7 +75,7 @@ nodes:
         description: 根据调用和返回语义选择隐式块、Proc 或 lambda，并使用 block_given? 和 &block 设计可扩展接口。
         tags: [Block, Proc, lambda]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html
+        link: https://docs.ruby-lang.org/en/4.0/syntax/calling_methods_rdoc.html
       - type: node
         id: enumerable-pipelines
         title: 组合 Enumerable 数据处理管道
@@ -88,7 +88,7 @@ nodes:
         description: 使用数组、Hash 和对象模式提取结构化数据，并通过分支覆盖处理不匹配输入。
         tags: [Pattern Matching, 解构]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/syntax/pattern_matching_rdoc.html
+        link: https://docs.ruby-lang.org/en/4.0/syntax/pattern_matching_rdoc.html
 
   - type: node
     id: classes-modules-and-design
@@ -96,7 +96,7 @@ nodes:
     description: 用封装、组合、继承和 mixin 组织对象协作，并让公开接口与状态不变量保持清晰。
     tags: [类, Module, 面向对象]
     status: planned
-    link: https://docs.ruby-lang.org/en/master/syntax/modules_and_classes_rdoc.html
+    link: https://docs.ruby-lang.org/en/4.0/syntax/modules_and_classes_rdoc.html
     children:
       - type: node
         id: classes-state-and-visibility
@@ -129,7 +129,7 @@ nodes:
     description: 只捕获能够处理的异常，确保资源释放，并在文件、JSON、网络或进程边界验证不可信数据。
     tags: [异常, I/O, 输入验证]
     status: planned
-    link: https://docs.ruby-lang.org/en/master/language/exceptions_md.html
+    link: https://docs.ruby-lang.org/en/4.0/language/exceptions_md.html
     children:
       - type: node
         id: exception-design-and-cleanup
@@ -143,14 +143,14 @@ nodes:
         description: 使用块自动关闭文件，以 Pathname 组织路径，并在解析或生成 JSON 时验证字段、编码和数据规模。
         tags: [File, JSON, Pathname]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/File.html
+        link: https://docs.ruby-lang.org/en/4.0/File.html
       - type: node
         id: command-process-and-environment
         title: 控制命令、进程与环境变量边界
         description: 区分参数数组与 shell 字符串，检查退出状态和超时，并避免把不可信输入拼接进命令。
         tags: [进程, 安全, ENV]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/Process.html
+        link: https://docs.ruby-lang.org/en/4.0/Process.html
 
   - type: node
     id: gems-bundler-and-projects
@@ -172,7 +172,7 @@ nodes:
         description: 使用 require 和 require_relative 加载代码，按 lib、exe、test 等职责组织目录，并避免隐式修改全局加载路径。
         tags: [require, 项目结构]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/Kernel.html#method-i-require
+        link: https://docs.ruby-lang.org/en/4.0/Kernel.html#method-i-require
       - type: node
         id: semantic-versioning-and-gem-metadata
         title: 维护版本约束与 Gem 元数据
@@ -187,7 +187,7 @@ nodes:
     description: 用自动化测试保护公共行为，通过风格检查和 CI 降低回归风险，并利用运行时诊断快速定位问题。
     tags: [测试, 调试, CI]
     status: planned
-    link: https://docs.ruby-lang.org/en/master/stdlibs/minitest/Minitest.html
+    link: https://github.com/minitest/minitest
     children:
       - type: node
         id: unit-and-integration-tests
@@ -213,7 +213,7 @@ nodes:
         description: 复现最小失败案例，阅读完整 backtrace，并通过交互式检查、断点和日志验证对象状态与控制流。
         tags: [IRB, Backtrace, 调试]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/stdlibs/debug/DEBUGGER__.html
+        link: https://github.com/ruby/debug
 
   - type: node
     id: concurrency-and-runtime
@@ -221,7 +221,7 @@ nodes:
     description: 根据工作负载选择 Thread、Fiber、进程或 Ractor，并通过测量判断分配、GC 和 I/O 等真实瓶颈。
     tags: [并发, Thread, Fiber, 性能]
     status: planned
-    link: https://docs.ruby-lang.org/en/master/Thread.html
+    link: https://docs.ruby-lang.org/en/4.0/Thread.html
     children:
       - type: node
         id: threads-and-synchronization
@@ -235,21 +235,21 @@ nodes:
         description: 区分 Fiber 与系统线程，并在支持的 I/O 场景评估调度器、阻塞操作和取消边界。
         tags: [Fiber, Scheduler]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/Fiber.html
+        link: https://docs.ruby-lang.org/en/4.0/Fiber.html
       - type: node
         id: processes-and-ractors
         title: 按隔离需求评估进程与 Ractor
         description: 比较进程隔离、进程间通信与 Ractor 的可共享对象约束，并在采用前验证库兼容性和维护状态。
         tags: [Process, Ractor]
         status: optional
-        link: https://docs.ruby-lang.org/en/master/Ractor.html
+        link: https://docs.ruby-lang.org/en/4.0/Ractor.html
       - type: node
         id: profile-before-optimizing
         title: 基于分析结果优化性能
         description: 先使用基准和 profiler 定位时间与分配热点，再评估算法、对象创建、缓存和并行策略。
         tags: [Benchmark, Profiling, GC]
         status: planned
-        link: https://docs.ruby-lang.org/en/master/stdlibs/benchmark/Benchmark.html
+        link: https://github.com/ruby/benchmark
 
   - type: node
     id: capstone-gem-and-cli
@@ -297,7 +297,7 @@ nodes:
         description: 理解方法查找、开放类、define_method 和 method_missing 的代价，并为动态接口提供文档、测试和可诊断错误。
         tags: [元编程, DSL]
         status: optional
-        link: https://docs.ruby-lang.org/en/master/Module.html
+        link: https://docs.ruby-lang.org/en/4.0/Module.html
       - type: node
         id: rails-web-applications
         title: 使用 Rails 构建 Web 应用
@@ -318,7 +318,7 @@ nodes:
         description: 仅在性能或系统库互操作确有收益时使用 C 扩展，并管理内存、异常、构建和跨平台兼容风险。
         tags: [C Extension, FFI]
         status: optional
-        link: https://docs.ruby-lang.org/en/master/extension_rdoc.html
+        link: https://docs.ruby-lang.org/en/4.0/extension_rdoc.html
       - type: node
         id: alternative-ruby-implementations
         title: 评估替代 Ruby 实现

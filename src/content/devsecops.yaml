@@ -1,0 +1,445 @@
+id: devsecops
+title: DevSecOps
+description: 面向已有基础 CI/CD 能力的学习者，将威胁建模、安全验证、供应链保护、运行时检测和漏洞响应嵌入软件交付闭环。
+tags: [DevSecOps, 应用安全, 供应链安全, CI/CD]
+nodes:
+  - type: node
+    id: devsecops-foundations
+    title: 建立共同负责的安全交付基础
+    description: 在理解软件交付流程的基础上，用风险和可验证结果连接开发、平台、安全与运维职责。
+    tags: [安全文化, SDLC, 风险]
+    status: planned
+    link: https://csrc.nist.gov/pubs/sp/800/218/final
+    children:
+      - type: roadmap
+        roadmapId: devops
+        title: 补齐 DevOps 交付与运行基础
+        description: 先掌握版本控制、CI/CD、IaC、可观测性和事件响应，再深化各环节的安全控制。
+      - type: node
+        id: map-security-to-delivery
+        title: 将安全活动映射到交付生命周期
+        description: 画出从需求、设计、编码、构建、发布到运行的流程，标明每阶段的输入、信任边界、责任人和安全反馈。
+        tags: [SDLC, Value Stream]
+        status: planned
+      - type: node
+        id: apply-core-security-principles
+        title: 用核心安全原则评审系统
+        description: 围绕机密性、完整性、可用性、最小权限、纵深防御和安全默认值识别设计与运行中的薄弱点。
+        tags: [CIA, 最小权限, 纵深防御]
+        status: planned
+      - type: node
+        id: define-shared-security-ownership
+        title: 明确跨职能安全责任与升级路径
+        description: 为安全需求、控制实现、门禁维护、风险接受和事件响应指定可执行的责任边界，避免把安全交给单一末端团队。
+        tags: [协作, 责任模型]
+        status: planned
+
+  - type: node
+    id: security-program-and-governance
+    title: 建立风险驱动的安全改进机制
+    description: 用成熟度基线、风险例外和结果指标决定先改善什么，并让安全要求可以持续演进。
+    tags: [治理, OWASP SAMM, 指标]
+    status: planned
+    link: https://owaspsamm.org/model/
+    children:
+      - type: node
+        id: assess-security-practices
+        title: 评估当前软件安全实践
+        description: 依据 NIST SSDF 或 OWASP SAMM 检查组织准备、软件保护、安全生产、验证、运营和漏洞响应能力，记录证据与缺口。
+        tags: [SSDF, SAMM, 成熟度]
+        status: planned
+      - type: node
+        id: prioritize-security-improvements
+        title: 按业务风险安排改进顺序
+        description: 结合资产价值、威胁、暴露面、影响与实施成本选择少量优先控制，并为每项改进定义负责人和完成标准。
+        tags: [风险评估, 路线规划]
+        status: planned
+      - type: node
+        id: govern-security-exceptions
+        title: 管理门禁例外与风险接受
+        description: 对无法立即修复的发现记录原因、补偿控制、批准人和到期时间，并在条件变化时自动触发复审。
+        tags: [例外管理, 审计]
+        status: planned
+      - type: node
+        id: measure-security-outcomes
+        title: 用结果指标检验安全改进
+        description: 跟踪高风险缺陷逃逸率、修复周期、控制覆盖率和重复问题，而不是仅用扫描次数或发现总量衡量成效。
+        tags: [Metrics, 持续改进]
+        status: planned
+
+  - type: node
+    id: threat-modeling-and-requirements
+    title: 在设计阶段识别并处理威胁
+    description: 将系统、数据流和信任边界转化为优先威胁、安全需求与可验证缓解措施。
+    tags: [威胁建模, 安全设计, 安全需求]
+    status: planned
+    link: https://owasp.org/www-project-threat-modeling/
+    children:
+      - type: node
+        id: model-assets-and-trust-boundaries
+        title: 建模资产、数据流与信任边界
+        description: 为一个服务绘制关键组件、身份、数据存储、外部依赖、入口和信任边界，并记录需要验证的安全假设。
+        tags: [DFD, 资产, 信任边界]
+        status: planned
+      - type: node
+        id: identify-abuse-cases
+        title: 从攻击者视角识别滥用路径
+        description: 使用四问框架、STRIDE、攻击树或滥用案例系统地枚举可能出错之处，而不是依赖通用漏洞清单。
+        tags: [STRIDE, Abuse Case]
+        status: planned
+        link: https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+      - type: node
+        id: derive-security-requirements
+        title: 将威胁转化为可验证安全需求
+        description: 为身份、授权、输入处理、密码学、日志和数据保护定义明确验收条件，并按应用风险选择合适验证深度。
+        tags: [ASVS, 验收标准]
+        status: planned
+        link: https://owasp.org/www-project-application-security-verification-standard/
+      - type: node
+        id: track-threat-mitigations
+        title: 跟踪缓解措施与剩余风险
+        description: 将每个优先威胁关联到设计变更、实现任务和验证证据，对接受、规避、缓解或转移的决定保留依据。
+        tags: [风险处置, Traceability]
+        status: planned
+
+  - type: node
+    id: secure-source-and-dependencies
+    title: 保护源代码与第三方依赖入口
+    description: 防止未经授权的源码变更、凭据泄露和高风险组件进入受信任构建流程。
+    tags: [源码安全, SCA, 依赖治理]
+    status: planned
+    children:
+      - type: node
+        id: protect-source-changes
+        title: 对关键源码变更实施保护
+        description: 启用强身份认证、受保护分支、必要评审、状态检查和敏感目录责任人，使绕过正常流程的修改可被阻止或审计。
+        tags: [Branch Protection, Code Review]
+        status: planned
+      - type: node
+        id: prevent-secret-commits
+        title: 在提交前后检测并处置密钥泄露
+        description: 结合本地钩子、仓库扫描和响应流程发现密钥，确认泄露后立即撤销轮换，而不是只从历史中删除文本。
+        tags: [Secret Scanning, 凭据轮换]
+        status: planned
+      - type: node
+        id: evaluate-new-dependencies
+        title: 在引入前评估第三方组件
+        description: 检查来源、维护状态、发布完整性、权限、许可证和已知风险，为关键依赖记录接受标准与替代方案。
+        tags: [开源风险, 依赖准入]
+        status: planned
+        link: https://scorecard.dev/
+      - type: node
+        id: pin-and-update-dependencies
+        title: 固定并持续更新依赖版本
+        description: 使用锁文件、可信仓库和自动更新任务控制解析结果，以小批量测试更新并移除不再使用的组件。
+        tags: [Lockfile, 依赖更新]
+        status: planned
+
+  - type: node
+    id: security-verification-pipeline
+    title: 构建分层的自动化安全验证
+    description: 根据威胁和安全需求组合代码、组件、接口与运行测试，让高置信度发现尽早反馈且能够复现。
+    tags: [SAST, SCA, DAST, 安全测试]
+    status: planned
+    children:
+      - type: node
+        id: define-risk-based-security-gates
+        title: 按风险定义安全门禁策略
+        description: 为不同应用和环境规定必须执行的检查、阻断阈值、结果格式、例外流程和最长反馈时间。
+        tags: [质量门禁, Policy]
+        status: planned
+      - type: node
+        id: run-static-and-component-analysis
+        title: 执行静态分析与组件分析
+        description: 在变更阶段运行 SAST 和 SCA，将发现关联到具体代码或依赖，并通过规则调优、基线和去重控制噪声。
+        tags: [SAST, SCA, 漏洞扫描]
+        status: planned
+      - type: node
+        id: test-running-applications
+        title: 验证运行中应用与 API 的安全行为
+        description: 在隔离测试环境对认证、授权、会话、输入边界和错误处理执行 DAST 或契约化安全测试，避免影响真实用户数据。
+        tags: [DAST, API Security]
+        status: planned
+      - type: node
+        id: verify-findings-and-feedback
+        title: 复现发现并反馈到开发流程
+        description: 保存工具版本、规则、输入和证据，确认可利用条件与影响后创建可执行修复任务，并用回归测试验证关闭。
+        tags: [Triage, 回归测试]
+        status: planned
+      - type: node
+        id: add-fuzz-testing
+        title: 对高风险解析边界加入模糊测试
+        description: 为处理不可信输入的解析器、协议或关键库设计有效语料、崩溃收集和最小化流程，持续修复可复现异常。
+        tags: [Fuzzing, 进阶测试]
+        status: optional
+
+  - type: node
+    id: harden-ci-cd
+    title: 加固 CI/CD 控制平面与执行环境
+    description: 限制流水线、Runner、第三方步骤和部署身份的权限，防止不可信输入借自动化路径影响受保护环境。
+    tags: [CI/CD 安全, Runner, IAM]
+    status: planned
+    link: https://docs.github.com/en/actions/how-tos/secure-your-work
+    children:
+      - type: node
+        id: threat-model-pipeline
+        title: 为流水线建立专门威胁模型
+        description: 标出触发事件、脚本输入、缓存、制品、密钥、Runner 和部署接口，分析恶意提交、依赖篡改与权限提升路径。
+        tags: [Pipeline, Threat Model]
+        status: planned
+      - type: node
+        id: isolate-untrusted-builds
+        title: 隔离不可信构建与高权限任务
+        description: 使用临时干净执行环境，将外部贡献代码与密钥、内部网络、签名和部署步骤分离，并在作业结束后清理状态。
+        tags: [隔离, Ephemeral Runner]
+        status: planned
+      - type: node
+        id: minimize-workflow-permissions
+        title: 最小化工作流令牌与环境权限
+        description: 为每个作业显式授予所需权限，优先通过 OIDC 获取短期环境凭据，并限制可部署的来源、目标和操作。
+        tags: [OIDC, 最小权限, 短期凭据]
+        status: planned
+      - type: node
+        id: pin-workflow-dependencies
+        title: 固定并审查流水线第三方依赖
+        description: 将 Actions、插件、镜像和工具固定到不可变标识，验证来源并通过受控更新流程吸收安全修复。
+        tags: [依赖固定, Workflow Security]
+        status: planned
+      - type: node
+        id: protect-release-environments
+        title: 保护发布环境和敏感操作
+        description: 对生产部署、密钥访问和制品发布启用环境隔离、必要审批、职责分离与完整审计，并验证紧急通道同样受控。
+        tags: [Environment Protection, 审计]
+        status: planned
+
+  - type: node
+    id: software-supply-chain
+    title: 生成并验证软件供应链证据
+    description: 为源码、构建过程、组件清单和发布制品建立可验证关联，使消费端能够阻止来源不明或被篡改的产物。
+    tags: [SLSA, SBOM, 签名, Provenance]
+    status: planned
+    link: https://slsa.dev/spec/v1.2/
+    children:
+      - type: node
+        id: produce-controlled-builds
+        title: 在受控环境生成不可变制品
+        description: 从已评审的源码修订启动隔离构建，固定顶层输入并按内容摘要标识输出，避免发布者工作站成为隐式信任根。
+        tags: [构建安全, 不可变制品]
+        status: planned
+      - type: node
+        id: generate-and-validate-sbom
+        title: 生成并验证机器可读 SBOM
+        description: 在构建时记录直接与传递组件、版本和依赖关系，校验清单与制品一致并随发布物保存。
+        tags: [SBOM, CycloneDX, SPDX]
+        status: planned
+        link: https://cyclonedx.org/capabilities/sbom/
+      - type: node
+        id: generate-build-provenance
+        title: 生成构建来源证明
+        description: 让受信任构建平台自动记录构建者、流程、源码修订和输入，并根据风险逐步满足更高的 SLSA Build 保证。
+        tags: [SLSA, Attestation, Provenance]
+        status: planned
+        link: https://slsa.dev/spec/v1.2/build-track-basics
+      - type: node
+        id: sign-and-verify-artifacts
+        title: 签名并验证制品和证明材料
+        description: 使用工作负载身份或受保护密钥签名制品、SBOM 与证明，在下载或部署前验证身份、摘要和策略预期。
+        tags: [Sigstore, Cosign, 签名]
+        status: planned
+        link: https://docs.sigstore.dev/about/overview/
+      - type: node
+        id: enforce-artifact-admission
+        title: 在发布入口执行制品准入策略
+        description: 仅允许来自批准仓库、构建者和源码流程且通过签名与证明验证的制品进入受保护环境，并记录拒绝原因。
+        tags: [Admission, Policy, Verification]
+        status: planned
+
+  - type: node
+    id: infrastructure-and-runtime-protection
+    title: 保护基础设施、容器与运行环境
+    description: 将最小权限、安全配置和策略验证应用到 IaC、镜像、编排平台及云资源，并持续发现实际状态偏差。
+    tags: [IaC 安全, 容器安全, 云安全]
+    status: planned
+    children:
+      - type: node
+        id: scan-and-test-iac
+        title: 在变更阶段验证 IaC 安全配置
+        description: 对基础设施计划执行语法、错误配置、暴露面、加密和权限检查，在应用前展示资源变化与破坏性影响。
+        tags: [IaC, CSPM, Plan]
+        status: planned
+      - type: node
+        id: enforce-policy-as-code
+        title: 用策略即代码统一环境护栏
+        description: 将禁止公网暴露、强制加密、标签和最小权限等规则版本化测试，并在评审、部署和运行检查中复用。
+        tags: [Policy as Code, OPA, Guardrails]
+        status: planned
+        link: https://www.openpolicyagent.org/docs/latest/
+      - type: node
+        id: manage-runtime-secrets-and-identities
+        title: 管理运行时密钥与工作负载身份
+        description: 使用专用密钥系统、细粒度工作负载身份和自动轮换，避免静态共享凭据出现在镜像、配置、状态或日志中。
+        tags: [Secrets, Workload Identity, IAM]
+        status: planned
+      - type: roadmap
+        roadmapId: docker
+        title: 衔接 Docker 镜像与容器安全
+        description: 掌握最小基础镜像、非 root 运行、构建上下文和容器资源边界，再实施镜像扫描与签名。
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 衔接 Kubernetes 工作负载安全
+        description: 在具备编排基础后，深化 RBAC、Pod Security、NetworkPolicy、准入控制和集群安全基线。
+      - type: node
+        id: detect-configuration-drift
+        title: 检测运行环境配置漂移
+        description: 将实际权限、网络暴露、软件版本和策略状态与声明基线持续比较，通过受控变更修正并调查绕过来源。
+        tags: [Drift, Continuous Compliance]
+        status: planned
+        link: https://kubernetes.io/docs/concepts/security/security-checklist/
+
+  - type: node
+    id: detection-and-security-response
+    title: 监测攻击信号并响应安全事件
+    description: 将应用、身份、流水线、云平台和运行时信号关联成可行动检测，并用预演过的流程遏制和恢复。
+    tags: [检测工程, SIEM, 事件响应]
+    status: planned
+    link: https://csrc.nist.gov/pubs/sp/800/61/r3/final
+    children:
+      - type: node
+        id: collect-security-telemetry
+        title: 采集可关联的安全遥测
+        description: 集中记录认证授权、管理操作、流水线、制品、部署、网络和运行时事件，统一时间、身份、资源与请求上下文。
+        tags: [Audit Log, Telemetry]
+        status: planned
+      - type: node
+        id: build-actionable-detections
+        title: 将威胁场景转化为检测规则
+        description: 为高风险滥用路径定义数据源、查询、阈值和预期响应，通过历史数据和安全测试验证信号质量。
+        tags: [Detection as Code, Alerting]
+        status: planned
+      - type: node
+        id: create-security-playbooks
+        title: 编写并演练安全事件处置手册
+        description: 为凭据泄露、恶意制品、依赖入侵和运行时攻击规定分级、遏制、证据保全、沟通、恢复与升级步骤。
+        tags: [Playbook, Incident Response]
+        status: planned
+      - type: node
+        id: preserve-investigation-evidence
+        title: 保留可用于调查的交付证据
+        description: 保护源码历史、构建日志、签名、证明、SBOM、部署记录和审计日志的完整性与留存期，使事件范围可追溯。
+        tags: [Forensics, Evidence]
+        status: planned
+      - type: node
+        id: learn-from-security-incidents
+        title: 从安全事件和险情中改进控制
+        description: 无责分析攻击路径、检测缺口和促成条件，将行动项反馈到威胁模型、门禁、架构与运行手册并验证效果。
+        tags: [Postmortem, 持续改进]
+        status: planned
+
+  - type: node
+    id: vulnerability-management
+    title: 运营风险驱动的漏洞治理闭环
+    description: 将资产与组件库存、利用情报、业务影响和修复验证结合起来，持续减少真正可利用的风险与积压。
+    tags: [漏洞管理, EPSS, KEV, 修复]
+    status: planned
+    children:
+      - type: node
+        id: maintain-vulnerability-inventory
+        title: 将漏洞关联到实际资产与版本
+        description: 结合资产清单、部署记录和 SBOM 确定受影响组件的位置、所有者、环境、暴露面及修复版本。
+        tags: [Asset Inventory, SBOM, CVE]
+        status: planned
+      - type: node
+        id: prioritize-exploitable-risk
+        title: 按可利用性与业务影响排序
+        description: 综合已知在野利用、EPSS、漏洞严重度、外部暴露、数据敏感性和补偿控制确定处理优先级，不将单一分数等同于风险。
+        tags: [EPSS, CVSS, KEV, Risk]
+        status: planned
+        link: https://www.first.org/epss/user-guide
+      - type: node
+        id: remediate-and-verify-vulnerabilities
+        title: 修复、验证并部署漏洞变更
+        description: 为风险等级设置响应目标，以可回滚的小批量更新依赖、镜像或配置，运行回归与安全测试并确认所有受影响环境完成部署。
+        tags: [Patch Management, SLA, 验证]
+        status: planned
+      - type: node
+        id: handle-coordinated-disclosure
+        title: 建立漏洞报告与协调披露入口
+        description: 发布安全联系与披露政策，安全接收和确认报告，与报告者、维护者及使用方协调修复和公告时间线。
+        tags: [Disclosure, PSIRT]
+        status: planned
+      - type: node
+        id: reduce-recurring-defects
+        title: 消除重复漏洞的系统性原因
+        description: 聚合缺陷类别和逃逸阶段，通过共享安全组件、编码规则、设计约束和针对性培训降低同类问题复发率。
+        tags: [Root Cause, Secure Defaults]
+        status: planned
+
+  - type: node
+    id: capstone-secure-delivery
+    title: 交付一条可验证的安全软件供应链
+    description: 为一个小型服务建立从威胁模型到运行时响应的 DevSecOps 闭环，并用机器可读证据证明关键控制生效。
+    tags: [综合实践, 安全流水线, 供应链]
+    status: planned
+    children:
+      - type: node
+        id: capstone-model-and-plan
+        title: 建立威胁模型与安全验收计划
+        description: 选定关键资产和滥用场景，将优先威胁映射到 ASVS 风格需求、流水线检查、运行时控制与验收证据。
+        tags: [Threat Model, ASVS, 计划]
+        status: planned
+      - type: node
+        id: capstone-secure-pipeline
+        title: 实现隔离且最小权限的安全流水线
+        description: 对变更运行代码、依赖、密钥和 IaC 检查，隔离不可信任务，使用短期部署身份并保留完整审计记录。
+        tags: [CI/CD, OIDC, Security Gates]
+        status: planned
+      - type: node
+        id: capstone-supply-chain-evidence
+        title: 发布可验证制品与供应链材料
+        description: 从受控构建生成唯一制品、SBOM、SLSA 来源证明和签名，并在部署前自动验证来源与策略。
+        tags: [SBOM, SLSA, Sigstore]
+        status: planned
+      - type: node
+        id: capstone-runtime-controls
+        title: 部署并验证运行时安全护栏
+        description: 以策略即代码检查身份、网络、密钥和工作负载配置，采集安全遥测并证明声明状态与实际环境一致。
+        tags: [Policy as Code, Runtime Security]
+        status: planned
+      - type: node
+        id: capstone-incident-drill
+        title: 完成一次供应链安全事件演练
+        description: 模拟泄露密钥、易受攻击依赖或未经签名制品，完成检测、阻断、范围确认、修复发布、证据保全和复盘改进。
+        tags: [演练, Incident Response, 验收]
+        status: planned
+
+  - type: node
+    id: advanced-devsecops-directions
+    title: 按风险场景深化专业方向
+    description: 完成通用安全交付闭环后，再根据系统类型、岗位职责和合规边界选择需要持续投入的专题。
+    tags: [进阶, 专业方向]
+    status: optional
+    children:
+      - type: node
+        id: cloud-native-security-engineering
+        title: 深化云原生安全工程
+        description: 围绕云 IAM、组织策略、Kubernetes 多租户、服务身份、网络分段、准入和运行时检测建立平台级护栏。
+        tags: [Cloud Native, Kubernetes, IAM]
+        status: optional
+      - type: node
+        id: security-platform-engineering
+        title: 构建自助式安全平台能力
+        description: 将批准的流水线模板、身份、密钥、策略、签名和证据收集封装为黄金路径，用开发者反馈验证可用性。
+        tags: [平台工程, Golden Path]
+        status: optional
+      - type: node
+        id: offensive-security-validation
+        title: 用攻击性测试验证防御假设
+        description: 在明确授权和隔离范围内开展渗透测试、红队或对抗模拟，将发现映射回威胁模型、检测和工程控制。
+        tags: [Penetration Testing, Red Team]
+        status: optional
+      - type: node
+        id: compliance-automation
+        title: 自动生成合规控制证据
+        description: 将适用法规或框架要求映射到已有工程控制，持续收集可追溯证据并识别控制失效，而不是另建手工检查流程。
+        tags: [Compliance as Code, Evidence]
+        status: optional
