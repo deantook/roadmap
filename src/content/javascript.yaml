@@ -1,0 +1,234 @@
+id: javascript
+title: JavaScript 语言路线图
+description: 从语法与闭包到异步、模块、浏览器 API 与 Node.js 入门。
+nodes:
+  - type: node
+    id: js-basics
+    title: 语言基础
+    description: 掌握语法、值类型、控制流与 JavaScript 特有的类型转换规则。
+    status: planned
+    link: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
+    children:
+      - type: node
+        id: syntax-types
+        title: 语法与类型
+        description: 变量声明、基本类型、引用类型、null/undefined 与 typeof。
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types
+      - type: node
+        id: control-flow
+        title: 控制流
+        description: 条件、循环、switch 与短路求值。
+        status: planned
+      - type: node
+        id: coercion-equality
+        title: 相等与类型转换
+        description: == 与 ===、隐式转换规则与常见陷阱。
+        status: planned
+
+  - type: node
+    id: functions-scope
+    title: 函数与作用域
+    description: 理解函数是一等公民，掌握闭包、this 与词法作用域。
+    status: planned
+    children:
+      - type: node
+        id: function-forms
+        title: 函数形式
+        description: 函数声明、函数表达式、箭头函数与 IIFE 的适用场景。
+        status: planned
+      - type: node
+        id: closures
+        title: 闭包
+        description: 捕获外部变量、私有状态与常见闭包模式。
+        status: planned
+      - type: node
+        id: this-binding
+        title: this 绑定
+        description: 默认、隐式、显式与 new 绑定；call/apply/bind。
+        status: planned
+
+  - type: node
+    id: objects-classes
+    title: 对象与类
+    description: 用对象字面量、原型与 class 语法组织数据与行为。
+    status: planned
+    children:
+      - type: node
+        id: objects-prototypes
+        title: 对象与原型链
+        description: 属性描述符、原型继承与 Object 常用方法。
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
+      - type: node
+        id: classes
+        title: class 语法
+        description: 构造函数、继承、静态成员与私有字段。
+        status: planned
+      - type: node
+        id: destructuring-spread
+        title: 解构与展开
+        description: 对象/数组解构、剩余参数与展开运算符。
+        status: planned
+
+  - type: node
+    id: collections-iteration
+    title: 集合与迭代
+    description: 熟练使用数组与内置集合，并掌握现代迭代方式。
+    status: planned
+    children:
+      - type: node
+        id: arrays
+        title: 数组
+        description: 变异/非变异方法、map/filter/reduce 与高阶函数思维。
+        status: planned
+      - type: node
+        id: map-set
+        title: Map 与 Set
+        description: 键值映射、去重集合与 WeakMap/WeakSet 的使用边界。
+        status: planned
+      - type: node
+        id: iterators-generators
+        title: 迭代器与生成器
+        description: 可迭代协议、for...of 与 generator 基础。
+        status: planned
+
+  - type: node
+    id: async-event-loop
+    title: 异步与事件循环
+    description: 从回调到 Promise，理解单线程下的并发模型。
+    status: planned
+    link: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop
+    children:
+      - type: node
+        id: callbacks
+        title: 回调模式
+        description: 错误优先回调、回调地狱与解耦思路。
+        status: planned
+      - type: node
+        id: promises
+        title: Promise
+        description: then/catch/finally、链式组合与 Promise.all/race。
+        status: planned
+      - type: node
+        id: async-await
+        title: async/await
+        description: 用同步风格写异步逻辑，并正确处理错误。
+        status: planned
+      - type: node
+        id: event-loop
+        title: 事件循环
+        description: 调用栈、宏任务/微任务与 setTimeout 执行顺序直觉。
+        status: planned
+
+  - type: node
+    id: modules-tooling
+    title: 模块与工具链
+    description: 用标准模块组织代码，并借助包管理与构建工具协作。
+    status: planned
+    children:
+      - type: node
+        id: esm-cjs
+        title: ESM 与 CommonJS
+        description: import/export 与 require/module.exports 的差异与互操作。
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules
+      - type: node
+        id: npm-pnpm
+        title: npm 或 pnpm
+        description: package.json、依赖版本、脚本命令与 lockfile 直觉。
+        status: planned
+        link: https://docs.npmjs.com/
+      - type: node
+        id: bundlers
+        title: 构建工具入门
+        description: 了解 Vite / esbuild / Webpack 各自解决什么问题。
+        status: planned
+
+  - type: node
+    id: browser-apis
+    title: 浏览器 API
+    description: 在浏览器环境中操作页面、处理事件与发起网络请求。
+    status: planned
+    children:
+      - type: node
+        id: dom-events
+        title: DOM 与事件
+        description: 查询与修改节点、事件委托与基础交互模式。
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
+      - type: node
+        id: fetch-apis
+        title: Fetch 与 Web API
+        description: 用 fetch 请求数据，并了解 FormData、URL 等常用 API。
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
+      - type: node
+        id: storage
+        title: 客户端存储
+        description: localStorage、sessionStorage 与 Cookie 的取舍。
+        status: planned
+
+  - type: node
+    id: errors-debugging
+    title: 错误处理与调试
+    description: 写出可诊断的代码，并熟练使用开发者工具定位问题。
+    status: planned
+    children:
+      - type: node
+        id: error-handling
+        title: 异常处理
+        description: try/catch/finally、自定义 Error 与异步错误传播。
+        status: planned
+      - type: node
+        id: devtools
+        title: 开发者工具
+        description: 断点、调用栈、网络面板与性能分析入门。
+        status: planned
+
+  - type: node
+    id: testing
+    title: 测试
+    description: 用主流测试框架为函数与模块建立回归保护。
+    status: planned
+    children:
+      - type: node
+        id: unit-testing
+        title: 单元测试（Vitest / Jest）
+        description: 断言、mock、测试组织与常见测试边界。
+        status: planned
+        link: https://vitest.dev/guide/
+
+  - type: node
+    id: runtime-basics
+    title: 运行时基础
+    description: 理解 JS 引擎如何执行代码，便于排查性能与内存问题。
+    status: optional
+    children:
+      - type: node
+        id: memory-gc
+        title: 内存与垃圾回收
+        description: 堆/栈、引用与常见内存泄漏场景。
+        status: optional
+      - type: node
+        id: performance
+        title: 性能优化直觉
+        description: 避免阻塞主线程、减少重排重绘与节流防抖。
+        status: optional
+
+  - type: node
+    id: js-ecosystem
+    title: 进入应用生态
+    description: 语言扎实后，按方向进入前端界面开发或 Node.js 服务端。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: frontend
+        title: 进入前端路线图
+        description: 在 JavaScript 基础上学习 TypeScript、React 与前端工程质量。
+      - type: node
+        id: nodejs-intro
+        title: Node.js 入门
+        description: 理解事件驱动 I/O，用内置模块搭建简单 HTTP 服务。
+        status: planned
+        link: https://nodejs.org/docs/latest/api/

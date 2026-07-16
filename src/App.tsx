@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { contentResult, referencesRoadmap } from './data'
 import type { NodeStatus, Roadmap, RoadmapCatalog, RoadmapChild, RoadmapNode, RoadmapReference } from './types'
@@ -21,8 +22,8 @@ function readProgress() {
   }
 }
 
-function storedNodeStatus(roadmapId: string, node: RoadmapNode) {
-  const status = readProgress()[`${roadmapId}:${node.id}`]
+function resolvedNodeStatus(progress: Record<string, NodeStatus>, roadmapId: string, node: RoadmapNode) {
+  const status = progress[`${roadmapId}:${node.id}`]
   return status && status in statusLabels ? status : node.status
 }
 
@@ -208,36 +209,93 @@ function RoadmapReferenceCard({ reference, target, basePath }: { reference: Road
   )
 }
 
-function NodeCard({ node, roadmapId }: { node: RoadmapNode; roadmapId: string }) {
-  const [status, setStatus] = useState<NodeStatus>(() => storedNodeStatus(roadmapId, node))
+function nextNodeStatus(node: RoadmapNode, status: NodeStatus) {
   const sequence: NodeStatus[] = node.status === 'optional'
     ? ['optional', 'completed']
     : ['planned', 'in-progress', 'completed']
-  const updateStatus = () => {
-    const index = sequence.indexOf(status)
-    const nextStatus = sequence[(index + 1) % sequence.length] ?? sequence[0]!
-    setStatus(nextStatus)
-    saveNodeStatus(roadmapId, node.id, nextStatus)
-  }
+  const index = sequence.indexOf(status)
+  return sequence[(index + 1) % sequence.length] ?? sequence[0]!
+}
 
+function NodeCard({ node, onOpen }: {
+  node: RoadmapNode
+  onOpen: () => void
+}) {
   return (
-    <article className="node-card" id={`node-${node.id}`} tabIndex={-1}>
-      <div className="node-topline">
-        <button
-          type="button"
-          className={`status status-${status}`}
-          onClick={updateStatus}
-          aria-label={`${node.title} 当前状态：${statusLabels[status]}，点击切换`}
-          title="点击切换并保存状态"
-        >
-          <i aria-hidden="true" />{statusLabels[status]}
-        </button>
-        <span className="node-id">{node.id}</span>
-      </div>
+    <article className="node-card node-summary" id={`node-${node.id}`} tabIndex={-1}>
+      <button
+        type="button"
+        className="node-open-button"
+        onClick={onOpen}
+        aria-label={`查看 ${node.title} 详情`}
+      />
       <h3>{node.title}</h3>
-      {node.description && <p>{node.description}</p>}
-      {node.link && <a className="resource-link" href={node.link} target="_blank" rel="noreferrer">查看资源 <span aria-hidden="true">↗</span></a>}
     </article>
+  )
+}
+
+function NodeDrawer({ node, status, onStatusChange, onClose }: {
+  node: RoadmapNode
+  status: NodeStatus
+  onStatusChange: (status: NodeStatus) => void
+  onClose: () => void
+}) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    closeButtonRef.current?.focus()
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onClose])
+
+  return createPortal(
+    <div className="drawer-layer">
+      <button className="drawer-backdrop" type="button" onClick={onClose} aria-label="关闭节点详情" />
+      <aside className="node-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+        <div className="drawer-header">
+          <span className="drawer-kicker">学习节点</span>
+          <button ref={closeButtonRef} type="button" className="drawer-close" onClick={onClose} aria-label="关闭详情">×</button>
+        </div>
+        <div className="drawer-body">
+          <div className="drawer-titlebar">
+            <span className="drawer-node-id">{node.id}</span>
+            <button
+              type="button"
+              className={`status drawer-status status-${status}`}
+              onClick={() => onStatusChange(nextNodeStatus(node, status))}
+              aria-label={`${node.title} 当前状态：${statusLabels[status]}，点击切换`}
+            >
+              <i aria-hidden="true" />{statusLabels[status]}<span aria-hidden="true"> · 点击切换</span>
+            </button>
+          </div>
+          <h2 id="drawer-title">{node.title}</h2>
+          {node.description && <p className="drawer-description">{node.description}</p>}
+
+          {node.children.length > 0 && (
+            <div className="drawer-section">
+              <span className="drawer-label">后续内容</span>
+              <p className="drawer-meta">包含 {node.children.length} 个子节点，可在路线图中展开继续学习。</p>
+            </div>
+          )}
+        </div>
+        {node.link && (
+          <div className="drawer-footer">
+            <a className="drawer-resource" href={node.link} target="_blank" rel="noreferrer">
+              打开学习资源 <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        )}
+      </aside>
+    </div>,
+    document.body,
   )
 }
 
@@ -247,7 +305,7 @@ function containsNode(children: RoadmapChild[], targetNodeId: string): boolean {
   ))
 }
 
-function TreeItem({ child, index, catalog, basePath, roadmapId, depth, targetNodeId }: {
+function TreeItem({ child, index, catalog, basePath, roadmapId, depth, targetNodeId, onOpenNode }: {
   child: RoadmapChild
   index: number
   catalog: RoadmapCatalog
@@ -255,6 +313,7 @@ function TreeItem({ child, index, catalog, basePath, roadmapId, depth, targetNod
   roadmapId: string
   depth: number
   targetNodeId?: string
+  onOpenNode: (node: RoadmapNode) => void
 }) {
   const hasChildren = child.type === 'node' && child.children.length > 0
   const shouldRevealTarget = hasChildren && Boolean(targetNodeId && containsNode(child.children, targetNodeId))
@@ -278,18 +337,26 @@ function TreeItem({ child, index, catalog, basePath, roadmapId, depth, targetNod
         />
       ) : <div className="tree-dot" aria-hidden="true" />}
       {child.type === 'node'
-        ? <NodeCard node={child} roadmapId={roadmapId} />
+        ? <NodeCard node={child} onOpen={() => onOpenNode(child)} />
         : <RoadmapReferenceCard reference={child} target={catalog.roadmaps.get(child.roadmapId)!} basePath={basePath} />}
       {hasChildren && expanded && (
         <div id={`children-${roadmapId}-${child.id}`}>
-          <TreeChildren children={child.children} catalog={catalog} basePath={basePath} roadmapId={roadmapId} depth={depth + 1} targetNodeId={targetNodeId} />
+          <TreeChildren children={child.children} catalog={catalog} basePath={basePath} roadmapId={roadmapId} depth={depth + 1} targetNodeId={targetNodeId} onOpenNode={onOpenNode} />
         </div>
       )}
     </li>
   )
 }
 
-function TreeChildren({ children, catalog, basePath, roadmapId, depth = 0, targetNodeId }: { children: RoadmapChild[]; catalog: RoadmapCatalog; basePath: string; roadmapId: string; depth?: number; targetNodeId?: string }) {
+function TreeChildren({ children, catalog, basePath, roadmapId, depth = 0, targetNodeId, onOpenNode }: {
+  children: RoadmapChild[]
+  catalog: RoadmapCatalog
+  basePath: string
+  roadmapId: string
+  depth?: number
+  targetNodeId?: string
+  onOpenNode: (node: RoadmapNode) => void
+}) {
   return (
     <ul className={`tree tree-depth-${Math.min(depth, 3)}`} role={depth === 0 ? 'tree' : 'group'}>
       {children.map((child, index) => (
@@ -302,6 +369,7 @@ function TreeChildren({ children, catalog, basePath, roadmapId, depth = 0, targe
           roadmapId={roadmapId}
           depth={depth}
           targetNodeId={targetNodeId}
+          onOpenNode={onOpenNode}
         />
       ))}
     </ul>
@@ -325,9 +393,30 @@ function RoadmapPage({ catalog }: { catalog: RoadmapCatalog }) {
   const rawPath = useParams()['*']
   const location = useLocation()
   const path = resolvePath(rawPath, catalog)
+  const roadmap = path?.[path.length - 1]
+  const [progress, setProgress] = useState<Record<string, NodeStatus>>(readProgress)
+  const [selectedNode, setSelectedNode] = useState<RoadmapNode | null>(null)
+  const selectedTriggerRef = useRef<HTMLElement | null>(null)
+
+  const updateStatus = (node: RoadmapNode, status: NodeStatus) => {
+    if (!roadmap) return
+    setProgress((current) => ({ ...current, [`${roadmap.id}:${node.id}`]: status }))
+    saveNodeStatus(roadmap.id, node.id, status)
+  }
+
+  const openNode = (node: RoadmapNode) => {
+    selectedTriggerRef.current = document.activeElement as HTMLElement | null
+    setSelectedNode(node)
+  }
+
+  const closeNode = () => {
+    setSelectedNode(null)
+    requestAnimationFrame(() => selectedTriggerRef.current?.focus())
+  }
 
   useEffect(() => {
     if (!location.hash) {
+      setSelectedNode(null)
       window.scrollTo({ top: 0 })
       return
     }
@@ -339,10 +428,10 @@ function RoadmapPage({ catalog }: { catalog: RoadmapCatalog }) {
       target?.classList.add('node-highlight')
       window.setTimeout(() => target?.classList.remove('node-highlight'), 2200)
     })
-  }, [location.pathname, location.hash])
+  }, [location.pathname, location.hash, roadmap])
 
   if (!path) return <NotFound />
-  const roadmap = path[path.length - 1]!
+  if (!roadmap) return <NotFound />
   const basePath = `/roadmaps/${path.map(({ id }) => id).join('/')}`
   const targetNodeId = location.hash.startsWith('#node-') ? decodeURIComponent(location.hash.slice(6)) : undefined
   return (
@@ -355,9 +444,17 @@ function RoadmapPage({ catalog }: { catalog: RoadmapCatalog }) {
       </header>
       <div className="journey-label"><span>开始旅程</span><i /></div>
       {roadmap.nodes.length
-        ? <TreeChildren children={roadmap.nodes} catalog={catalog} basePath={basePath} roadmapId={roadmap.id} targetNodeId={targetNodeId} />
+        ? <TreeChildren children={roadmap.nodes} catalog={catalog} basePath={basePath} roadmapId={roadmap.id} targetNodeId={targetNodeId} onOpenNode={openNode} />
         : <div className="empty-state">这条路线图还没有节点。</div>}
       <div className="journey-end"><i />继续前进</div>
+      {selectedNode && (
+        <NodeDrawer
+          node={selectedNode}
+          status={resolvedNodeStatus(progress, roadmap.id, selectedNode)}
+          onStatusChange={(status) => updateStatus(selectedNode, status)}
+          onClose={closeNode}
+        />
+      )}
     </div>
   )
 }

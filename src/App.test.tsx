@@ -19,11 +19,10 @@ describe('App', () => {
     expect(screen.getByRole('link', { name: /后端开发路线图/ })).toBeInTheDocument()
   })
 
-  it('renders a vertical roadmap and nested node statuses', () => {
+  it('renders a vertical roadmap and nested routes', () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
     expect(screen.getByRole('heading', { level: 1, name: 'Web 开发路线图' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '互联网基础' })).toBeInTheDocument()
-    expect(screen.getAllByText('已完成').length).toBeGreaterThan(0)
     fireEvent.click(screen.getByRole('button', { name: '展开 选择深入方向 的子节点' }))
     expect(screen.getByRole('link', { name: /进入前端路线图/ })).toBeInTheDocument()
   })
@@ -74,6 +73,7 @@ describe('App', () => {
 
   it('stores node status changes in the browser and restores them', () => {
     const view = render(<MemoryRouter initialEntries={['/roadmaps/frontend']}><App /></MemoryRouter>)
+    fireEvent.click(screen.getByRole('button', { name: '查看 语义化 HTML 详情' }))
     const status = screen.getByRole('button', { name: '语义化 HTML 当前状态：已完成，点击切换' })
     fireEvent.click(status)
     expect(screen.getByRole('button', { name: '语义化 HTML 当前状态：待开始，点击切换' })).toBeInTheDocument()
@@ -81,7 +81,20 @@ describe('App', () => {
 
     view.unmount()
     render(<MemoryRouter initialEntries={['/roadmaps/frontend']}><App /></MemoryRouter>)
+    fireEvent.click(screen.getByRole('button', { name: '查看 语义化 HTML 详情' }))
     expect(screen.getByRole('button', { name: '语义化 HTML 当前状态：待开始，点击切换' })).toBeInTheDocument()
+  })
+
+  it('opens node details in a drawer and closes it with Escape', () => {
+    render(<MemoryRouter initialEntries={['/roadmaps/golang']}><App /></MemoryRouter>)
+
+    fireEvent.click(screen.getByRole('button', { name: '查看 语言基础 详情' }))
+    const drawer = screen.getByRole('dialog', { name: '语言基础' })
+    expect(drawer).toHaveTextContent('掌握语法、类型、结构体与接口这一 Go 的核心抽象。')
+    expect(screen.getByRole('link', { name: /打开学习资源/ })).toHaveAttribute('href', 'https://go.dev/doc/')
+
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
   it('shows a not-found page for an invalid relationship path', () => {

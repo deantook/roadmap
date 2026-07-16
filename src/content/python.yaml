@@ -1,0 +1,241 @@
+id: python
+title: Python 语言路线图
+description: 从语法与数据结构到面向对象、异步、标准库与 Web 服务入门。
+nodes:
+  - type: node
+    id: python-basics
+    title: 语言基础
+    description: 掌握语法、动态类型、控制流与 Python 的缩进与真值规则。
+    status: planned
+    link: https://docs.python.org/3/tutorial/
+    children:
+      - type: node
+        id: syntax-types
+        title: 语法与类型
+        description: 变量、基本类型、动态类型直觉与 type() / isinstance()。
+        status: planned
+      - type: node
+        id: control-flow
+        title: 控制流
+        description: if/elif/else、for/while、break/continue 与 match 语句入门。
+        status: planned
+      - type: node
+        id: truthiness
+        title: 真值与比较
+        description: 真值测试、is 与 ==、链式比较与常见判断陷阱。
+        status: planned
+
+  - type: node
+    id: data-structures
+    title: 数据结构
+    description: 熟练使用内置容器，并掌握推导式与常用操作模式。
+    status: planned
+    children:
+      - type: node
+        id: list-tuple
+        title: 列表与元组
+        description: 可变性差异、切片、常用方法与元组解包。
+        status: planned
+      - type: node
+        id: dict-set
+        title: 字典与集合
+        description: 键值映射、哈希要求、集合运算与 defaultdict 等扩展。
+        status: planned
+      - type: node
+        id: comprehensions
+        title: 推导式
+        description: 列表/字典/集合推导式与生成器表达式的读写。
+        status: planned
+
+  - type: node
+    id: functions-modules
+    title: 函数与模块
+    description: 用函数组织逻辑，用模块与包管理代码边界。
+    status: planned
+    children:
+      - type: node
+        id: function-basics
+        title: 函数基础
+        description: 参数默认值、*args/**kwargs、返回值与作用域规则。
+        status: planned
+      - type: node
+        id: decorators
+        title: 装饰器
+        description: 高阶函数、@语法糖与 functools.wraps 保持元信息。
+        status: planned
+      - type: node
+        id: import-packages
+        title: 导入与包结构
+        description: import 规则、__init__.py、相对导入与项目布局直觉。
+        status: planned
+        link: https://docs.python.org/3/reference/import.html
+
+  - type: node
+    id: oop
+    title: 面向对象
+    description: 用类建模领域对象，理解鸭子类型与 Python 的 OOP 风格。
+    status: planned
+    children:
+      - type: node
+        id: classes-inheritance
+        title: 类与继承
+        description: 实例/类属性、方法、super()、多重继承与 MRO 直觉。
+        status: planned
+      - type: node
+        id: magic-methods
+        title: 魔术方法
+        description: __str__、__repr__、__eq__、上下文协议等常用双下划线方法。
+        status: planned
+      - type: node
+        id: dataclasses
+        title: dataclass
+        description: 用 @dataclass 表达不可变/可变数据载体，减少样板代码。
+        status: planned
+        link: https://docs.python.org/3/library/dataclasses.html
+
+  - type: node
+    id: exceptions-io
+    title: 异常与 I/O
+    description: 可靠处理失败路径，并完成文件与流式读写。
+    status: planned
+    children:
+      - type: node
+        id: exceptions
+        title: 异常处理
+        description: try/except/else/finally、自定义异常与异常链（raise from）。
+        status: planned
+      - type: node
+        id: context-managers
+        title: 上下文管理器
+        description: with 语句、__enter__/__exit__ 与 contextlib 工具。
+        status: planned
+      - type: node
+        id: pathlib-io
+        title: pathlib 与文件 I/O
+        description: Path 操作文件、文本/二进制读写与编码处理。
+        status: planned
+        link: https://docs.python.org/3/library/pathlib.html
+
+  - type: node
+    id: stdlib
+    title: 常用标准库
+    description: 优先用标准库完成迭代、时间、序列化与日志等常见任务。
+    status: planned
+    link: https://docs.python.org/3/library/
+    children:
+      - type: node
+        id: itertools-functools
+        title: itertools 与 functools
+        description: 惰性迭代工具、partial、lru_cache 等函数式辅助。
+        status: planned
+      - type: node
+        id: datetime-json
+        title: datetime 与 json
+        description: 时区/格式化时间处理，以及 JSON 编解码与自定义序列化。
+        status: planned
+      - type: node
+        id: logging
+        title: logging
+        description: 配置 logger、日志级别与结构化输出基础。
+        status: planned
+        link: https://docs.python.org/3/library/logging.html
+
+  - type: node
+    id: typing
+    title: 类型标注
+    description: 用类型提示提升可读性与 IDE 支持，理解静态检查边界。
+    status: planned
+    children:
+      - type: node
+        id: type-hints
+        title: 类型提示基础
+        description: 基本注解、Optional、Union、泛型容器与 Callable。
+        status: planned
+        link: https://docs.python.org/3/library/typing.html
+      - type: node
+        id: static-checking
+        title: 静态检查（mypy / pyright）
+        description: 在 CI 或本地运行类型检查，逐步收紧类型覆盖。
+        status: planned
+
+  - type: node
+    id: concurrency
+    title: 并发编程
+    description: 理解 GIL 影响，按场景选用线程、进程或 asyncio。
+    status: planned
+    children:
+      - type: node
+        id: threading
+        title: 线程
+        description: threading 模块、锁、Queue 与 I/O 密集场景的适用边界。
+        status: planned
+      - type: node
+        id: multiprocessing
+        title: 多进程
+        description: CPU 密集任务用进程池绕过 GIL 的基本思路。
+        status: planned
+      - type: node
+        id: asyncio
+        title: asyncio
+        description: 协程、事件循环、Task 与 async/await 网络服务基础。
+        status: planned
+        link: https://docs.python.org/3/library/asyncio.html
+
+  - type: node
+    id: tooling
+    title: 包管理与工具链
+    description: 用虚拟环境与现代工具管理依赖、格式与测试。
+    status: planned
+    children:
+      - type: node
+        id: venv-pip
+        title: 虚拟环境与 pip
+        description: venv 隔离环境、requirements.txt 与依赖安装基础。
+        status: planned
+      - type: node
+        id: uv-or-poetry
+        title: uv 或 Poetry
+        description: 选定一种现代工具，管理 lockfile 与可重复安装。
+        status: planned
+        link: https://docs.astral.sh/uv/
+      - type: node
+        id: formatting-linting
+        title: 格式化与静态检查
+        description: Ruff / Black 统一风格，配合 isort 或 Ruff 规则集。
+        status: planned
+      - type: node
+        id: pytest
+        title: 测试（pytest）
+        description: fixture、参数化、mock 与测试目录组织。
+        status: planned
+        link: https://docs.pytest.org/en/stable/
+
+  - type: node
+    id: runtime-basics
+    title: 运行时基础
+    description: 理解解释器与对象模型，便于排查性能与内存问题。
+    status: optional
+    children:
+      - type: node
+        id: gil-memory
+        title: GIL 与内存模型
+        description: 全局解释器锁对并发的影响，以及引用计数直觉。
+        status: optional
+      - type: node
+        id: profiling
+        title: 性能分析入门
+        description: cProfile、timeit 与基本瓶颈定位思路。
+        status: optional
+
+  - type: node
+    id: python-ecosystem
+    title: 进入后端生态
+    description: 语言扎实后，用主流框架落地 Web 服务，再回到后端路线图继续。
+    status: planned
+    children:
+      - type: node
+        id: fastapi-intro
+        title: FastAPI 入门
+        description: 快速搭建类型友好的 REST API，理解依赖注入与自动文档。
+        status: planned
+        link: https://fastapi.tiangolo.com/
