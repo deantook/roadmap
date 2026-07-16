@@ -1,0 +1,40 @@
+id: web-development
+title: Web 开发路线图
+description: 从网页基础出发，逐步掌握现代前后端开发能力。
+nodes:
+  - type: node
+    id: internet-basics
+    title: 互联网基础
+    description: 理解浏览器、服务器、DNS 与 HTTP 如何协同工作。
+    status: completed
+    link: https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work
+    children:
+      - type: node
+        id: http
+        title: HTTP 与 HTTPS
+        description: 掌握请求、响应、状态码与安全连接。
+        status: completed
+      - type: node
+        id: browsers
+        title: 浏览器工作原理
+        description: 了解解析、渲染和事件循环。
+        status: in-progress
+  - type: node
+    id: choose-direction
+    title: 选择深入方向
+    description: 基础打稳后，进入前端或后端专项路线。
+    status: in-progress
+    children:
+      - type: roadmap
+        roadmapId: frontend
+        title: 进入前端路线图
+        description: 构建可靠、易用且高性能的用户界面。
+      - type: roadmap
+        roadmapId: backend
+        title: 进入后端路线图
+        description: 设计 API、数据层和可扩展服务。
+  - type: node
+    id: ship-project
+    title: 发布完整项目
+    description: 将前后端能力组合起来，部署一个真实应用。
+    status: planned

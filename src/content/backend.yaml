@@ -1,0 +1,33 @@
+id: backend
+title: 后端开发路线图
+description: 从服务端编程到稳定的生产系统。
+nodes:
+  - type: node
+    id: server-language
+    title: 服务端语言
+    description: 选择一种语言并掌握其运行时与生态。
+    status: in-progress
+  - type: node
+    id: api-design
+    title: API 设计
+    description: 设计清晰的资源、错误响应与版本策略。
+    status: planned
+    children:
+      - type: node
+        id: rest
+        title: REST 与 HTTP 语义
+        status: planned
+      - type: node
+        id: auth
+        title: 身份认证与授权
+        status: planned
+  - type: node
+    id: databases
+    title: 数据库
+    description: 理解建模、索引、事务与迁移。
+    status: planned
+  - type: node
+    id: observability
+    title: 可观测性
+    description: 使用日志、指标与追踪定位生产问题。
+    status: optional

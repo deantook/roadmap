@@ -1,0 +1,34 @@
+id: frontend
+title: 前端开发路线图
+description: 从语义化页面到现代 React 应用。
+nodes:
+  - type: node
+    id: semantic-html
+    title: 语义化 HTML
+    description: 使用正确元素组织内容，并兼顾可访问性。
+    status: completed
+  - type: node
+    id: modern-css
+    title: 现代 CSS
+    description: 掌握布局、响应式设计、变量与动画。
+    status: in-progress
+    children:
+      - type: node
+        id: flexbox-grid
+        title: Flexbox 与 Grid
+        status: in-progress
+      - type: node
+        id: responsive-design
+        title: 响应式设计
+        status: planned
+  - type: node
+    id: typescript-react
+    title: TypeScript 与 React
+    description: 使用组件、状态与类型构建可维护界面。
+    status: planned
+    link: https://react.dev/
+  - type: node
+    id: frontend-quality
+    title: 工程质量
+    description: 测试、性能、可访问性与持续集成。
+    status: optional
