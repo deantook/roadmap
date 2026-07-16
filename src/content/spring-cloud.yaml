@@ -1,0 +1,307 @@
+id: spring-cloud
+title: Spring Cloud
+description: 从单体 Spring Boot 服务出发，学习服务治理、配置、通信韧性、网关与可观测性，并交付可验证的小型微服务系统。
+tags: [后端, Java, Spring Cloud, 微服务, 云原生]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 确认 Spring Boot 与分布式系统前置能力
+    description: 能独立构建、测试和运行 Spring Boot REST 服务，并理解 HTTP、容器与网络的基本工作方式。
+    tags: [前置, Spring Boot]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: spring-boot
+        title: 补齐 Spring Boot 服务开发能力
+        description: 先掌握 REST、配置、安全、测试与 Actuator，再进入跨服务治理。
+      - type: roadmap
+        roadmapId: docker
+        title: 补齐容器基础
+        description: 学会构建镜像和编排本地依赖，为多服务联调准备可复现环境。
+
+  - type: node
+    id: microservice-boundaries
+    title: 判断微服务的适用边界
+    description: 从业务边界、团队自治和独立部署需求出发拆分服务，并能说明分布式架构增加的成本。
+    tags: [架构, 微服务]
+    status: planned
+    link: https://spring.io/projects/spring-cloud/
+    children:
+      - type: node
+        id: bounded-services
+        title: 按业务能力划分服务边界
+        description: 为每个服务定义清晰职责、数据所有权与公开契约，避免按技术层机械拆分。
+        status: planned
+      - type: node
+        id: distributed-tradeoffs
+        title: 识别分布式系统代价
+        description: 能分析网络失败、延迟、部分可用、数据一致性和运维复杂度对设计的影响。
+        status: planned
+      - type: node
+        id: evolution-strategy
+        title: 制定渐进式拆分策略
+        description: 从模块化单体或明确的服务切口开始，以可观测指标验证拆分收益。
+        status: planned
+
+  - type: node
+    id: release-train-dependencies
+    title: 管理 Release Train 与依赖兼容性
+    description: 根据 Spring Boot 版本选择受支持的 Spring Cloud Release Train，并用 BOM 保持组件版本一致。
+    tags: [依赖管理, Release Train]
+    status: planned
+    link: https://spring.io/projects/spring-cloud/
+    children:
+      - type: node
+        id: compatibility-matrix
+        title: 核对 Spring Boot 兼容矩阵
+        description: 在升级或建项时查询官方兼容表，不凭 Release Train 名称猜测可用组合。
+        status: planned
+      - type: node
+        id: import-cloud-bom
+        title: 导入 Spring Cloud BOM
+        description: 使用 spring-cloud-dependencies 统一管理组件版本，避免逐项指定造成依赖漂移。
+        status: planned
+      - type: node
+        id: minimal-starters
+        title: 只引入需要的 Starter
+        description: 从最小依赖集合开始，通过依赖树和自动配置报告确认实际启用的能力。
+        status: planned
+
+  - type: node
+    id: centralized-configuration
+    title: 集中管理跨环境配置
+    description: 使用 Spring Cloud Config 建立可版本化的配置来源，并设计启动失败、刷新与敏感信息策略。
+    tags: [Spring Cloud Config, 配置]
+    status: planned
+    link: https://docs.spring.io/spring-cloud-config/reference/index.html
+    children:
+      - type: node
+        id: config-server-repository
+        title: 搭建 Config Server 与配置仓库
+        description: 按应用、Profile 和标签组织配置，验证服务端能返回预期的属性集合。
+        status: planned
+      - type: node
+        id: config-data-client
+        title: 使用 Config Data 接入客户端
+        description: 通过 spring.config.import 加载远程配置，并明确可选连接与启动失败的取舍。
+        status: planned
+      - type: node
+        id: refresh-and-rollout
+        title: 控制配置刷新与发布
+        description: 区分重启生效和运行时刷新，评估变更影响并保留可审计的回滚路径。
+        status: planned
+      - type: node
+        id: secrets-boundary
+        title: 将密钥移出普通配置仓库
+        description: 使用环境平台或专用密钥系统提供凭据，避免把明文秘密提交到 Git。
+        status: planned
+
+  - type: node
+    id: discovery-load-balancing
+    title: 实现服务发现与客户端负载均衡
+    description: 通过 DiscoveryClient 获取健康实例，并用 Spring Cloud LoadBalancer 在多个实例间选择调用目标。
+    tags: [服务发现, LoadBalancer]
+    status: planned
+    link: https://docs.spring.io/spring-cloud-commons/reference/spring-cloud-commons/loadbalancer.html
+    children:
+      - type: node
+        id: discovery-abstraction
+        title: 理解服务注册与发现抽象
+        description: 说明服务 ID、实例元数据、注册、心跳和下线如何共同维护可调用实例列表。
+        status: planned
+      - type: node
+        id: eureka-practice
+        title: 用 Eureka 完成本地发现实践
+        description: 启动注册中心和多个服务实例，验证注册、发现、故障摘除与重新上线流程。
+        status: planned
+        link: https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html
+      - type: node
+        id: loadbalanced-clients
+        title: 为服务调用接入负载均衡
+        description: 使用服务 ID 发起请求，观察轮询或自定义策略如何选择不同实例。
+        status: planned
+      - type: node
+        id: platform-native-discovery
+        title: 评估平台原生服务发现
+        description: 在 Kubernetes 等平台上比较客户端发现与 DNS、Service 提供的发现能力，避免重复建设。
+        status: optional
+        link: https://docs.spring.io/spring-cloud-kubernetes/reference/index.html
+
+  - type: node
+    id: service-communication
+    title: 构建可维护的服务间调用
+    description: 用明确的 HTTP 契约、超时和错误映射实现同步调用，并控制客户端与服务端的耦合。
+    tags: [HTTP, 服务调用]
+    status: planned
+    link: https://docs.spring.io/spring-framework/reference/integration/rest-clients.html
+    children:
+      - type: node
+        id: http-service-clients
+        title: 使用 HTTP Service Clients 声明接口
+        description: 以 Java 接口表达远程 HTTP 契约，并通过 RestClient 或 WebClient 代理执行调用。
+        status: planned
+      - type: node
+        id: timeouts-errors
+        title: 设置超时并映射远程错误
+        description: 为连接和读取设置有限超时，将状态码与响应体转换为稳定的领域错误。
+        status: planned
+      - type: node
+        id: contract-evolution
+        title: 设计向后兼容的契约演进
+        description: 优先采用增量字段和宽容读取，并为破坏性变更设计版本与迁移窗口。
+        status: planned
+      - type: node
+        id: openfeign-legacy
+        title: 维护已有 OpenFeign 客户端
+        description: 在既有项目中理解 @FeignClient、配置和 LoadBalancer 集成，新项目先评估 HTTP Service Clients。
+        status: optional
+        link: https://docs.spring.io/spring-cloud-openfeign/reference/index.html
+
+  - type: node
+    id: resilient-calls
+    title: 为远程调用设计故障韧性
+    description: 用超时、有限重试、熔断、隔离和降级控制故障传播，并通过实验校准参数。
+    tags: [韧性, Circuit Breaker]
+    status: planned
+    link: https://docs.spring.io/spring-cloud-circuitbreaker/reference/index.html
+    children:
+      - type: node
+        id: timeout-budget
+        title: 建立端到端超时预算
+        description: 从用户请求时限反推各跳连接与读取超时，避免无界等待耗尽资源。
+        status: planned
+      - type: node
+        id: safe-retries
+        title: 只对安全操作执行有限重试
+        description: 结合幂等性、退避和抖动设置重试，防止依赖故障时放大流量。
+        status: planned
+      - type: node
+        id: circuit-breaker-fallback
+        title: 配置熔断与有意义的降级
+        description: 用 Spring Cloud CircuitBreaker 接入实现，基于失败率开启熔断并返回可解释的降级结果。
+        status: planned
+      - type: node
+        id: bulkhead-rate-limit
+        title: 隔离资源并限制过载
+        description: 用并发隔离和限流保护关键依赖，避免单个慢服务拖垮调用方。
+        status: planned
+
+  - type: node
+    id: api-gateway
+    title: 用 API Gateway 管理统一入口
+    description: 通过 Spring Cloud Gateway 配置路由、过滤器与安全边界，并保持业务逻辑在下游服务中。
+    tags: [Gateway, 安全]
+    status: planned
+    link: https://docs.spring.io/spring-cloud-gateway/reference/index.html
+    children:
+      - type: node
+        id: routes-predicates-filters
+        title: 配置路由、断言与过滤器
+        description: 根据路径、主机或请求属性匹配路由，并用过滤器修改请求和响应。
+        status: planned
+      - type: node
+        id: gateway-security
+        title: 在入口实施认证与传输保护
+        description: 验证访问令牌、限制跨域来源并正确处理转发头，同时让下游继续执行授权检查。
+        status: planned
+      - type: node
+        id: gateway-traffic-controls
+        title: 配置限流与故障处理
+        description: 为公开接口设置速率限制、超时和熔断，并返回一致的错误响应。
+        status: planned
+      - type: node
+        id: gateway-observability
+        title: 观测并调试网关请求
+        description: 通过 Actuator、日志和指标检查实际路由与过滤器链，定位入口层失败。
+        status: planned
+
+  - type: node
+    id: event-driven-services
+    title: 构建事件驱动的服务协作（选修）
+    description: 在确需异步解耦或削峰时使用 Spring Cloud Stream，并承担投递、顺序和一致性治理成本。
+    tags: [Spring Cloud Stream, 消息]
+    status: optional
+    link: https://docs.spring.io/spring-cloud-stream/reference/index.html
+    children:
+      - type: node
+        id: functional-bindings
+        title: 用函数模型声明消息处理
+        description: 以 Supplier、Function 或 Consumer 表达处理逻辑，并通过 binding 连接目标主题。
+        status: optional
+      - type: node
+        id: binder-groups-partitions
+        title: 配置 Binder、消费组与分区
+        description: 选择 Kafka 或 RabbitMQ Binder，利用消费组扩容并理解分区对顺序和并行度的影响。
+        status: optional
+      - type: node
+        id: delivery-idempotency
+        title: 处理重复投递与失败消息
+        description: 通过幂等消费者、有限重试和死信处理保证重复或异常消息不会破坏业务状态。
+        status: optional
+      - type: node
+        id: transactional-events
+        title: 协调数据库写入与事件发布
+        description: 使用 Outbox 等模式避免双写不一致，并让事件可追踪、可重放。
+        status: optional
+
+  - type: node
+    id: testing-observability
+    title: 验证并观测跨服务行为
+    description: 用契约、集成和故障测试守住服务协作，并关联日志、指标与追踪定位请求链路。
+    tags: [测试, 可观测性]
+    status: planned
+    link: https://docs.spring.io/spring-boot/reference/actuator/observability.html
+    children:
+      - type: node
+        id: isolated-component-tests
+        title: 隔离测试配置、客户端与路由规则
+        description: 使用测试替身和本地依赖验证远程错误、超时、过滤器与配置绑定行为。
+        status: planned
+      - type: node
+        id: contract-tests
+        title: 用契约测试防止接口漂移
+        description: 在消费者与提供者流水线中验证请求响应或消息契约，并发布可复用 Stub。
+        status: optional
+        link: https://docs.spring.io/spring-cloud-contract/reference/index.html
+      - type: node
+        id: failure-tests
+        title: 注入依赖故障验证韧性
+        description: 模拟延迟、断连、实例下线和错误响应，确认超时、重试、熔断与降级符合预期。
+        status: planned
+      - type: node
+        id: correlated-telemetry
+        title: 关联日志、指标与分布式追踪
+        description: 使用 Micrometer Observation 和 Tracing 传播上下文，以 trace ID 串联跨服务诊断证据。
+        status: planned
+
+  - type: node
+    id: capstone-system
+    title: 交付一个可演练的小型微服务系统
+    description: 构建至少三个有明确边界的服务和统一入口，完成配置、发现、韧性、观测与自动化验收。
+    tags: [综合实践, 生产就绪]
+    status: planned
+    children:
+      - type: node
+        id: capstone-architecture
+        title: 记录边界、契约与故障假设
+        description: 用架构说明标注服务职责、数据归属、同步或异步链路及关键失败模式。
+        status: planned
+      - type: node
+        id: local-multiservice-environment
+        title: 建立可复现的本地多服务环境
+        description: 用容器编排启动服务和基础设施，提供初始化、健康检查与一键清理流程。
+        status: planned
+      - type: node
+        id: acceptance-and-failure-drills
+        title: 通过业务验收与故障演练
+        description: 自动验证关键业务链路，并演练实例下线、配置错误、慢依赖与消息重复等场景。
+        status: planned
+      - type: node
+        id: delivery-runbook
+        title: 编写部署回滚与排障手册
+        description: 记录发布顺序、兼容窗口、回滚条件、告警入口和常见故障的诊断步骤。
+        status: planned
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 选用 Kubernetes 作为生产运行平台
+        description: 在需要集群编排时继续学习声明式部署、服务网络、配置、安全与运维。

@@ -274,6 +274,11 @@ nodes:
         description: 了解服务发现、配置中心与网关等分布式组件的适用边界。
         status: optional
         link: https://spring.io/projects/spring-cloud
+        children:
+          - type: roadmap
+            roadmapId: spring-cloud
+            title: 进入 Spring Cloud 路线图
+            description: 系统学习配置、发现、服务调用、韧性、网关、观测与综合微服务实践。
 
   - type: node
     id: spring-boot-ecosystem
