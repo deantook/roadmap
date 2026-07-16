@@ -42,6 +42,6 @@ nodes:
 
 路线图与普通节点都可以配置 `tags` 字符串数组。路线图标签会用于首页卡片和标签筛选；节点标签会显示在路线卡片与详情抽屉中，也会被全局搜索索引。未配置时默认为空数组。
 
-节点状态可选值为 `planned`、`in-progress`、`completed`、`optional`，省略时为 `planned`。路线图引用必须指向另一个 YAML 中存在的 `id`，且不能形成循环引用。
+节点状态可选值为 `planned`、`in-progress`、`completed`、`optional`，省略时为 `planned`。路线图引用必须指向另一个 YAML 中存在的 `id`；允许路线之间循环引用，例如 Dart 与 Flutter 可以互相提供跳转入口。
 
 页面中的状态标签可以点击切换。用户选择会以路线图 ID 和节点 ID 为键保存在浏览器 `localStorage` 中；YAML 中的 `status` 是尚未保存用户状态时的默认值。普通节点依次在 `planned`、`in-progress`、`completed` 之间切换，选修节点在 `optional` 与 `completed` 之间切换。

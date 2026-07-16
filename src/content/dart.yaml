@@ -204,13 +204,10 @@ nodes:
     description: 语言扎实后，按方向进入 Flutter 跨端开发或服务端应用。
     status: planned
     children:
-      - type: node
-        id: flutter-next
-        title: Flutter 学习入口
-        description: 语言基础扎实后，继续学习 Widget、布局、状态管理与多端发布。
-        tags: [Flutter, 移动端]
-        status: optional
-        link: https://docs.flutter.dev/get-started/learn-more
+      - type: roadmap
+        roadmapId: flutter
+        title: 进入 Flutter 路线图
+        description: 系统学习 Widget、布局、状态管理、测试与多端发布。
       - type: node
         id: shelf-intro
         title: Shelf 服务端入门

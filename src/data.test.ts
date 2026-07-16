@@ -61,16 +61,20 @@ describe('parseRoadmaps', () => {
     expect(result.errors.join(' ')).toMatch(/重复节点 ID|路线图 ID/)
   })
 
-  it('rejects missing and cyclic references', () => {
+  it('rejects missing references', () => {
     const missing = parseRoadmaps({ 'main.yaml': valid })
     expect(missing.ok).toBe(false)
+  })
+
+  it('allows cyclic roadmap references', () => {
     const cyclic = parseRoadmaps({
       'a.yaml': 'id: a\ntitle: A\nnodes:\n  - { type: roadmap, roadmapId: b }',
       'b.yaml': 'id: b\ntitle: B\nnodes:\n  - { type: roadmap, roadmapId: a }',
     })
-    expect(cyclic.ok).toBe(false)
-    if (cyclic.ok) return
-    expect(cyclic.errors.join(' ')).toContain('循环引用')
+    expect(cyclic.ok).toBe(true)
+    if (!cyclic.ok) return
+    expect(referencesRoadmap(cyclic.catalog.roadmaps.get('a')!, 'b')).toBe(true)
+    expect(referencesRoadmap(cyclic.catalog.roadmaps.get('b')!, 'a')).toBe(true)
   })
 
   it('rejects unsupported statuses and URL protocols', () => {

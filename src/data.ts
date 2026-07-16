@@ -62,37 +62,12 @@ function validateNodeIds(roadmap: Roadmap, errors: string[]) {
 }
 
 function validateGraph(roadmaps: Map<string, Roadmap>, errors: string[]) {
-  const adjacency = new Map<string, Set<string>>()
   for (const roadmap of roadmaps.values()) {
     const refs = collectReferences(roadmap.nodes)
-    adjacency.set(roadmap.id, refs)
     for (const id of refs) {
       if (!roadmaps.has(id)) errors.push(`${roadmap.source}: 引用了不存在的路线图 “${id}”`)
     }
   }
-
-  const visiting = new Set<string>()
-  const visited = new Set<string>()
-  const path: string[] = []
-  const reported = new Set<string>()
-  const visit = (id: string) => {
-    if (visiting.has(id)) {
-      const start = path.indexOf(id)
-      const cycle = [...path.slice(start), id].join(' → ')
-      if (!reported.has(cycle)) errors.push(`路线图存在循环引用：${cycle}`)
-      reported.add(cycle)
-      return
-    }
-    if (visited.has(id)) return
-    visiting.add(id)
-    path.push(id)
-    for (const next of adjacency.get(id) ?? []) if (roadmaps.has(next)) visit(next)
-    path.pop()
-    visiting.delete(id)
-    visited.add(id)
-  }
-  for (const id of roadmaps.keys()) visit(id)
-  return adjacency
 }
 
 export function parseRoadmaps(files: Record<string, string>): CatalogResult {
@@ -117,7 +92,7 @@ export function parseRoadmaps(files: Record<string, string>): CatalogResult {
   }
 
   for (const roadmap of roadmaps.values()) validateNodeIds(roadmap, errors)
-  const adjacency = validateGraph(roadmaps, errors)
+  validateGraph(roadmaps, errors)
   if (errors.length) return { ok: false, errors }
 
   const roots = [...roadmaps.values()]
