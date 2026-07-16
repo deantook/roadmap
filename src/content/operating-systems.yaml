@@ -1,0 +1,510 @@
+id: operating-systems
+title: 操作系统
+description: 面向具备基础编程与计算机组成知识的学习者，从内核边界、进程和虚拟内存出发，成长为能解释并发、持久化与 I/O 机制，使用证据分析系统行为，并扩展教学操作系统的实践者。
+tags: [操作系统, 系统编程, 内核, 计算机科学]
+nodes:
+  - type: node
+    id: build-os-mental-model
+    title: 建立操作系统的整体模型
+    description: 从资源抽象、隔离和受控共享解释操作系统如何协调硬件与应用，并能在安全环境中观察这些边界。
+    tags: [内核, 抽象, 资源管理]
+    status: planned
+    link: https://pages.cs.wisc.edu/~remzi/OSTEP/
+    children:
+      - type: node
+        id: prepare-systems-prerequisites
+        title: 补齐系统学习前置能力
+        description: 能阅读 C 或 Rust 中的指针、结构体和位运算，理解栈、寄存器、机器指令、二进制表示与基本数据结构。
+        tags: [C, 计算机组成, 数据结构]
+        status: planned
+      - type: node
+        id: distinguish-os-responsibilities
+        title: 区分操作系统的抽象与职责
+        description: 使用进程、地址空间、文件和设备接口说明虚拟化、并发、持久化与保护解决的具体问题。
+        tags: [虚拟化, 并发, 持久化]
+        status: planned
+      - type: node
+        id: compare-kernel-architectures
+        title: 比较内核组织方式
+        description: 从地址空间、模块边界、故障隔离和通信成本比较宏内核、微内核与混合内核的设计取舍。
+        tags: [宏内核, 微内核, 架构]
+        status: planned
+      - type: node
+        id: separate-mechanism-and-policy
+        title: 区分机制与策略
+        description: 在调度、内存分配和访问控制中分别指出系统提供的能力与决定如何使用能力的规则。
+        tags: [机制, 策略, 设计]
+        status: planned
+      - type: node
+        id: create-isolated-os-lab
+        title: 创建可重置的系统实验环境
+        description: 使用虚拟机或 QEMU 准备 Linux 与教学内核环境，保存构建步骤和恢复点，并避免在重要主机上进行内核实验。
+        tags: [QEMU, 虚拟机, 实验]
+        status: planned
+        link: https://www.qemu.org/docs/master/system/index.html
+
+  - type: node
+    id: cross-kernel-boundary
+    title: 追踪用户态与内核态的切换
+    description: 从一次系统调用追踪特权级、陷阱、参数校验和返回路径，解释应用为何不能直接操作受保护资源。
+    tags: [系统调用, 特权级, Trap]
+    status: planned
+    link: https://man7.org/linux/man-pages/man2/syscalls.2.html
+    children:
+      - type: node
+        id: explain-privilege-modes
+        title: 解释处理器特权级与保护边界
+        description: 区分用户态和内核态可执行的操作，并说明页表和特权指令如何限制应用访问。
+        tags: [用户态, 内核态, 特权指令]
+        status: planned
+      - type: node
+        id: trace-system-call-path
+        title: 追踪一次系统调用的完整路径
+        description: 从库函数、调用约定和陷阱入口追踪到内核分派、参数复制、错误返回与用户态恢复。
+        tags: [ABI, Trap, 系统调用]
+        status: planned
+      - type: node
+        id: distinguish-traps-interrupts-exceptions
+        title: 区分陷阱、中断与异常
+        description: 根据同步性和来源判断系统调用、页故障、定时器与设备事件如何打断当前控制流。
+        tags: [中断, 异常, Trap]
+        status: planned
+      - type: node
+        id: inspect-calls-with-tracing
+        title: 使用跟踪工具观察内核接口
+        description: 对一个小程序执行系统调用跟踪，将 open、read、write、mmap、clone 或 exec 等事件关联到源代码行为。
+        tags: [strace, 跟踪, 实践]
+        status: planned
+      - type: node
+        id: reason-about-api-abi
+        title: 区分 API、ABI 与系统调用接口
+        description: 说明源代码接口、二进制调用约定和内核入口各自提供的兼容边界，避免把库函数等同于系统调用。
+        tags: [API, ABI, 兼容性]
+        status: planned
+
+  - type: node
+    id: manage-processes-and-threads
+    title: 管理进程、线程与进程间通信
+    description: 使用生命周期、执行上下文和资源所有权解释程序如何创建、运行、通信、等待与退出。
+    tags: [进程, 线程, IPC]
+    status: planned
+    children:
+      - type: node
+        id: model-process-state
+        title: 建模进程状态与上下文
+        description: 区分程序与进程，解释地址空间、寄存器、内核栈、打开文件和进程状态如何组成执行上下文。
+        tags: [PCB, 进程状态, 上下文]
+        status: planned
+      - type: node
+        id: trace-process-creation
+        title: 追踪进程创建与程序替换
+        description: 使用 fork、exec、wait 和 exit 解释父子关系、资源继承、写时复制、僵尸进程与退出状态。
+        tags: [fork, exec, wait]
+        status: planned
+      - type: node
+        id: compare-processes-and-threads
+        title: 比较进程与线程的隔离成本
+        description: 根据地址空间、共享资源、切换成本和故障影响选择进程或线程，并明确线程私有与共享状态。
+        tags: [线程, 隔离, 共享状态]
+        status: planned
+      - type: node
+        id: explain-context-switches
+        title: 解释上下文切换
+        description: 追踪保存与恢复寄存器、切换地址空间和调度状态的过程，并区分模式切换与进程切换。
+        tags: [上下文切换, 寄存器]
+        status: planned
+      - type: node
+        id: choose-ipc-mechanism
+        title: 按通信需求选择 IPC
+        description: 比较管道、信号、消息队列、共享内存与本地套接字的消息边界、同步、复制和生命周期成本。
+        tags: [IPC, 管道, 共享内存]
+        status: planned
+
+  - type: node
+    id: schedule-cpu-time
+    title: 设计并评估 CPU 调度
+    description: 根据响应时间、周转时间、吞吐量、公平性和截止期比较调度策略，并用工作负载验证取舍。
+    tags: [调度, CPU, 性能]
+    status: planned
+    link: https://docs.kernel.org/scheduler/index.html
+    children:
+      - type: node
+        id: define-scheduling-metrics
+        title: 定义可测量的调度目标
+        description: 对批处理、交互和实时工作负载分别计算响应、等待、周转与吞吐指标，并识别相互冲突的目标。
+        tags: [响应时间, 周转时间, 吞吐量]
+        status: planned
+      - type: node
+        id: simulate-basic-schedulers
+        title: 模拟基础调度算法
+        description: 对相同任务序列手工或编程比较 FIFO、SJF、STCF 和 Round Robin，解释抢占与时间片的影响。
+        tags: [FIFO, Round Robin, 抢占]
+        status: planned
+      - type: node
+        id: prevent-starvation
+        title: 使用优先级与反馈避免饥饿
+        description: 解释多级反馈队列如何响应任务行为，并通过优先级提升、配额或老化控制饥饿风险。
+        tags: [MLFQ, 优先级, 饥饿]
+        status: planned
+      - type: node
+        id: reason-about-multicore-scheduling
+        title: 分析多核调度与负载均衡
+        description: 说明运行队列、CPU 亲和性、迁移和缓存局部性如何影响多核利用率与尾延迟。
+        tags: [多核, CPU Affinity, 负载均衡]
+        status: planned
+      - type: node
+        id: explore-realtime-scheduling
+        title: 探索实时调度约束
+        description: 区分硬实时与软实时目标，分析周期任务、截止期、优先级反转和准入控制。
+        tags: [实时系统, Deadline]
+        status: optional
+
+  - type: node
+    id: synchronize-concurrent-execution
+    title: 保证并发执行的正确性
+    description: 从交错执行识别竞态，使用原子操作和同步原语维护不变量，并通过压力测试暴露时序缺陷。
+    tags: [并发, 同步, 竞态]
+    status: planned
+    link: https://docs.kernel.org/locking/index.html
+    children:
+      - type: node
+        id: expose-race-conditions
+        title: 用执行交错复现竞态条件
+        description: 为共享状态列出可能的读写顺序，构造能够重复放大错误的并发测试，并区分竞态与数据竞争。
+        tags: [竞态, 数据竞争, 测试]
+        status: planned
+      - type: node
+        id: build-from-atomic-primitives
+        title: 从原子指令构建互斥
+        description: 解释 compare-and-swap、test-and-set、内存可见性和自旋的作用，并说明为何普通读写不足以实现锁。
+        tags: [原子操作, CAS, 自旋锁]
+        status: planned
+      - type: node
+        id: use-locks-and-condition-variables
+        title: 使用锁与条件变量维护不变量
+        description: 明确锁保护的数据和条件谓词，在循环中等待状态变化，并处理唤醒、丢失通知和锁粒度问题。
+        tags: [Mutex, Condition Variable]
+        status: planned
+      - type: node
+        id: coordinate-with-semaphores
+        title: 使用信号量协调资源与顺序
+        description: 用计数信号量表达有限资源，用二值信号量建立执行顺序，并验证初值与每次增减的含义。
+        tags: [Semaphore, 同步]
+        status: planned
+      - type: node
+        id: prevent-and-recover-deadlocks
+        title: 分析并控制死锁
+        description: 用资源分配关系检查死锁必要条件，并按系统约束选择预防、避免、检测或恢复策略。
+        tags: [死锁, 资源分配]
+        status: planned
+      - type: node
+        id: reason-about-memory-ordering
+        title: 探索内存顺序与无锁算法
+        description: 在确有性能需求时学习编译器和处理器重排、内存屏障与线性化点，并使用专业工具验证实现。
+        tags: [内存模型, Lock-free]
+        status: optional
+
+  - type: node
+    id: virtualize-and-manage-memory
+    title: 理解并验证虚拟内存
+    description: 从地址转换、页表和按需分页解释隔离、共享与超额使用，并测量分配和访问模式的实际成本。
+    tags: [虚拟内存, 页表, TLB]
+    status: planned
+    link: https://docs.kernel.org/mm/index.html
+    children:
+      - type: node
+        id: map-process-address-space
+        title: 绘制进程地址空间
+        description: 区分代码、静态数据、堆、映射区和栈，观察分配、动态链接与线程创建如何改变映射。
+        tags: [地址空间, 堆, 栈]
+        status: planned
+      - type: node
+        id: translate-virtual-addresses
+        title: 使用页表转换虚拟地址
+        description: 将虚拟地址拆成页号和偏移，沿多级页表得到物理地址，并解释页大小与页表开销的取舍。
+        tags: [分页, PTE, 地址转换]
+        status: planned
+      - type: node
+        id: explain-tlb-behavior
+        title: 分析 TLB 与地址转换性能
+        description: 说明 TLB 命中、未命中、上下文切换和大页如何影响访问成本，并用访问模式实验验证局部性。
+        tags: [TLB, 大页, 局部性]
+        status: planned
+      - type: node
+        id: handle-page-faults
+        title: 追踪缺页与按需分配
+        description: 区分合法缺页与保护错误，解释匿名页、文件映射、写时复制和换页如何在故障路径中处理。
+        tags: [Page Fault, 写时复制, Swap]
+        status: planned
+      - type: node
+        id: compare-page-replacement
+        title: 比较页面置换策略
+        description: 对给定引用序列比较 OPT、FIFO、LRU 近似与工作集思路，并分析抖动和内存压力。
+        tags: [页面置换, LRU, 抖动]
+        status: planned
+      - type: node
+        id: distinguish-memory-allocators
+        title: 区分用户态与内核内存分配
+        description: 比较堆分配器、页分配器与对象缓存管理的粒度、碎片和并发成本，并观察分配失败路径。
+        tags: [Allocator, 碎片, Slab]
+        status: planned
+
+  - type: node
+    id: persist-data-with-filesystems
+    title: 通过文件系统可靠持久化数据
+    description: 从文件描述符和目录命名追踪到缓存、块分配与崩溃恢复，解释一次写入何时才真正持久。
+    tags: [文件系统, 存储, 崩溃一致性]
+    status: planned
+    link: https://docs.kernel.org/filesystems/vfs.html
+    children:
+      - type: node
+        id: use-file-descriptor-model
+        title: 使用文件描述符统一 I/O
+        description: 解释描述符表、打开文件状态、偏移和引用关系，并追踪 open、dup、fork 与 close 的资源生命周期。
+        tags: [文件描述符, open, close]
+        status: planned
+      - type: node
+        id: resolve-pathnames-and-links
+        title: 解析目录、路径与链接
+        description: 从根目录逐级解析路径，区分 inode、目录项、硬链接与符号链接，并预测重命名和删除的结果。
+        tags: [inode, 目录, 链接]
+        status: planned
+      - type: node
+        id: map-vfs-to-storage
+        title: 从 VFS 追踪到磁盘布局
+        description: 将通用文件接口映射到具体文件系统的 inode、数据块、空闲空间和挂载边界。
+        tags: [VFS, Block, Mount]
+        status: planned
+      - type: node
+        id: explain-buffered-and-mapped-io
+        title: 比较缓冲 I/O 与内存映射
+        description: 说明页缓存、预读、写回和 mmap 的数据路径，区分应用完成写入与存储设备持久化。
+        tags: [Page Cache, mmap, Writeback]
+        status: planned
+      - type: node
+        id: preserve-crash-consistency
+        title: 维护崩溃后的一致性
+        description: 列出多步更新中断后的非法状态，比较 fsck、日志和写时复制策略，并用故障实验验证恢复保证。
+        tags: [Journaling, fsck, Crash Consistency]
+        status: planned
+      - type: node
+        id: explore-storage-hardware
+        title: 探索磁盘、SSD 与冗余存储
+        description: 根据寻道、闪存擦写、队列和故障模型比较设备特性，并评估 RAID 对性能、容量与故障恢复的影响。
+        tags: [SSD, RAID, 存储]
+        status: optional
+
+  - type: node
+    id: coordinate-devices-and-io
+    title: 协调设备、中断与 I/O
+    description: 从设备寄存器到驱动接口解释内核如何发现、控制和复用设备，并根据工作负载选择合适的 I/O 模型。
+    tags: [设备驱动, 中断, DMA]
+    status: planned
+    link: https://docs.kernel.org/driver-api/index.html
+    children:
+      - type: node
+        id: trace-device-io-path
+        title: 追踪一次设备 I/O 路径
+        description: 从用户请求经过系统调用、驱动、控制器与设备，再沿完成通知返回应用，标出每次复制和排队。
+        tags: [驱动, 控制器, I/O Path]
+        status: planned
+      - type: node
+        id: compare-polling-and-interrupts
+        title: 比较轮询与中断
+        description: 根据事件频率、响应要求和 CPU 成本选择轮询、中断或混合方式，并解释中断合并的影响。
+        tags: [Polling, Interrupt]
+        status: planned
+      - type: node
+        id: explain-dma
+        title: 解释 DMA 与内存交互
+        description: 说明设备如何在 CPU 不逐字节搬运的情况下访问内存，并识别缓冲区生命周期、映射和一致性约束。
+        tags: [DMA, 缓冲区]
+        status: planned
+      - type: node
+        id: choose-io-execution-model
+        title: 选择阻塞、非阻塞与事件驱动 I/O
+        description: 区分等待语义、就绪通知和完成通知，根据连接规模与工作负载比较线程、select、epoll 或异步 I/O。
+        tags: [阻塞 I/O, epoll, 异步 I/O]
+        status: planned
+      - type: node
+        id: handle-device-failures
+        title: 处理设备超时与失败
+        description: 为超时、部分完成、重试、热拔插和永久故障定义恢复边界，避免无限等待或重复破坏性操作。
+        tags: [超时, 错误处理, 恢复]
+        status: planned
+
+  - type: node
+    id: enforce-os-protection
+    title: 用操作系统机制实施保护
+    description: 围绕身份、权限和隔离边界限制进程能力，并验证资源控制既能阻止越权又保留必要功能。
+    tags: [安全, 隔离, 访问控制]
+    status: planned
+    link: https://docs.kernel.org/security/index.html
+    children:
+      - type: node
+        id: define-protection-model
+        title: 建立主体、客体与权限模型
+        description: 将用户和进程视为主体，将文件、内存和设备视为客体，用访问矩阵表达允许的操作。
+        tags: [主体, 客体, 访问矩阵]
+        status: planned
+      - type: node
+        id: apply-least-privilege-os
+        title: 使用最小权限限制进程
+        description: 比较用户与组、访问控制列表、Capabilities 和特权分离，为程序授予完成任务所需的最小能力。
+        tags: [最小权限, Capabilities, ACL]
+        status: planned
+      - type: node
+        id: isolate-resource-views
+        title: 隔离进程看到的资源视图
+        description: 说明地址空间、命名空间和资源控制如何限制进程的可见对象与使用额度，并指出共享内核的边界。
+        tags: [Namespace, cgroup, 容器]
+        status: planned
+      - type: node
+        id: defend-kernel-boundaries
+        title: 防御不可信的内核入口
+        description: 对系统调用和驱动输入执行复制、长度检查、权限检查与错误处理，识别 TOCTOU 和内存安全风险。
+        tags: [输入校验, TOCTOU, 内存安全]
+        status: planned
+      - type: node
+        id: explore-secure-boot-chain
+        title: 探索可信启动与内核完整性
+        description: 追踪固件、引导程序和内核的验证链，理解签名模块、度量启动与恢复密钥解决的威胁。
+        tags: [Secure Boot, 完整性]
+        status: optional
+
+  - type: node
+    id: observe-and-explain-system-behavior
+    title: 用证据解释系统性能与故障
+    description: 联合系统调用、调度、内存、I/O 和硬件计数器建立时间线，以受控实验验证根因而非只观察表面指标。
+    tags: [性能分析, 调试, 可观测性]
+    status: planned
+    link: https://man7.org/linux/man-pages/man1/perf-stat.1.html
+    children:
+      - type: node
+        id: form-testable-systems-hypotheses
+        title: 将系统症状转成可验证假设
+        description: 明确预期、实际行为、工作负载和最近变化，一次只改变一个因素并保存可重复的测量条件。
+        tags: [方法论, 实验, 基线]
+        status: planned
+      - type: node
+        id: inspect-process-kernel-state
+        title: 关联进程与内核状态
+        description: 结合进程状态、/proc、系统调用和内核日志判断任务是在运行、等待资源、阻塞 I/O 还是处理故障。
+        tags: [procfs, strace, 内核日志]
+        status: planned
+      - type: node
+        id: measure-cpu-memory-io
+        title: 测量 CPU、内存与 I/O 成本
+        description: 区分利用率、饱和度、等待、缺页、缓存命中与吞吐指标，将资源瓶颈定位到具体执行路径。
+        tags: [perf, Page Fault, I/O]
+        status: planned
+      - type: node
+        id: debug-kernel-in-emulator
+        title: 在模拟器中调试教学内核
+        description: 使用符号、断点、单步、寄存器和内存检查还原异常路径，并避免用调试器改变并发时序后误判根因。
+        tags: [GDB, QEMU, 内核调试]
+        status: planned
+        link: https://www.qemu.org/docs/master/system/gdb.html
+      - type: node
+        id: validate-fixes-under-load
+        title: 在负载与故障下验证修复
+        description: 覆盖正常、边界、并发、资源耗尽和重启路径，比较修复前后正确性与性能并检查新的退化。
+        tags: [压力测试, 故障注入, 回归]
+        status: planned
+      - type: node
+        id: explore-kernel-tracing
+        title: 探索动态内核跟踪
+        description: 在掌握基础证据链后使用 ftrace、perf 或 eBPF 观察低开销事件，并评估采样、权限和观测偏差。
+        tags: [ftrace, eBPF, Tracing]
+        status: optional
+        link: https://docs.kernel.org/trace/index.html
+
+  - type: node
+    id: extend-teaching-operating-system
+    title: 完成教学操作系统综合项目
+    description: 在 QEMU 中阅读并扩展 xv6，组合系统调用、进程、并发和内存知识，使用自动测试、调试证据与设计说明验收实现。
+    tags: [xv6, 综合实践, 内核开发]
+    status: planned
+    link: https://pdos.csail.mit.edu/6.1810/2025/overview.html
+    children:
+      - type: node
+        id: build-and-map-xv6
+        title: 构建并绘制 xv6 执行路径
+        description: 在 QEMU 启动 xv6，定位启动、进程、陷阱、页表和文件系统代码，并从一个用户命令追踪到内核返回。
+        tags: [xv6, 源码阅读, QEMU]
+        status: planned
+        link: https://pdos.csail.mit.edu/6.1810/2025/xv6/book-riscv-rev5.pdf
+      - type: node
+        id: add-observable-system-call
+        title: 新增可观测的系统调用
+        description: 完成用户态封装、陷阱分派、参数验证和内核实现，为成功、非法参数与权限失败编写测试。
+        tags: [系统调用, ABI, 测试]
+        status: planned
+      - type: node
+        id: implement-scheduling-or-sync-change
+        title: 实现一项调度或同步改进
+        description: 选择调度指标、优先级机制或并发数据结构进行修改，用对抗工作负载证明正确性、公平性与无死锁。
+        tags: [调度, 同步, 并发测试]
+        status: planned
+      - type: node
+        id: implement-memory-feature
+        title: 实现一项虚拟内存功能
+        description: 选择页表打印、惰性分配、写时复制或共享映射，处理缺页、权限、释放和并发边界并通过压力测试。
+        tags: [页表, Page Fault, 内存]
+        status: planned
+        link: https://pdos.csail.mit.edu/6.1810/2025/labs/pgtbl.html
+      - type: node
+        id: verify-kernel-project
+        title: 自动验证并解释内核改动
+        description: 运行原有与新增测试，检查资源泄漏和多核时序，用跟踪或调试证据解释关键路径并记录已知限制。
+        tags: [自动测试, 调试, 验收]
+        status: planned
+      - type: node
+        id: document-kernel-design
+        title: 编写可复现的设计与实验报告
+        description: 记录环境、接口、关键不变量、锁与资源所有权、失败路径、性能数据和复现实验步骤，使他人能审查取舍。
+        tags: [设计文档, 不变量, 复现]
+        status: planned
+
+  - type: node
+    id: choose-os-specialization
+    title: 选择操作系统深化方向
+    description: 在完成教学内核和性能分析闭环后，按目标进入生产系统管理、内核开发、网络栈、容器或专用系统方向。
+    tags: [进阶, 系统方向]
+    status: optional
+    children:
+      - type: roadmap
+        roadmapId: linux
+        title: 将原理用于 Linux 系统管理
+        description: 学习软件、服务、存储、网络、安全、自动化和主机故障恢复的生产实践。
+      - type: roadmap
+        roadmapId: computer-networking
+        title: 深入网络协议与网络栈
+        description: 从链路、IP、传输和应用协议理解网络 I/O，并训练抓包与端到端排错能力。
+      - type: roadmap
+        roadmapId: rust
+        title: 使用 Rust 开展系统编程
+        description: 通过所有权、并发、异步 I/O、unsafe 与 FFI 构建内存安全的系统组件。
+      - type: roadmap
+        roadmapId: docker
+        title: 深入容器隔离与交付
+        description: 将 Namespace、cgroup、文件系统和网络隔离知识应用到容器镜像与运行时。
+      - type: node
+        id: explore-virtualization-hypervisors
+        title: 深入虚拟化与 Hypervisor
+        description: 学习硬件辅助虚拟化、二级地址转换、虚拟设备与直通，并测量隔离和性能开销。
+        tags: [虚拟化, Hypervisor, KVM]
+        status: optional
+      - type: node
+        id: explore-embedded-realtime-os
+        title: 深入嵌入式与实时操作系统
+        description: 围绕确定性、内存上限、中断延迟、功耗和硬件约束设计任务与驱动，并验证最坏情况行为。
+        tags: [RTOS, 嵌入式, 实时]
+        status: optional
+      - type: node
+        id: contribute-to-production-kernel
+        title: 准备参与生产内核开发
+        description: 选择一个子系统阅读维护文档和补丁历史，构建测试内核、运行专项测试，并按社区流程提交最小改动。
+        tags: [Linux Kernel, 贡献, 补丁]
+        status: optional
+        link: https://docs.kernel.org/process/howto.html

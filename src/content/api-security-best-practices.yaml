@@ -1,0 +1,404 @@
+id: api-security-best-practices
+title: API 安全最佳实践
+description: 面向能够构建 HTTP API 的开发者，从认证、令牌、授权和输入处理出发，建立可测试、可观测、可持续交付的 API 安全基线。
+tags: [API 安全, OWASP, 认证授权, DevSecOps]
+nodes:
+  - type: node
+    id: authentication-baseline
+    title: 建立 API 认证基线
+    description: 盘点接口与调用主体，选择经过评审的认证协议，并让所有非公开端点在默认情况下拒绝匿名访问。
+    tags: [认证, 身份, 默认拒绝]
+    status: planned
+    link: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
+    children:
+      - type: node
+        id: choose-standard-authentication
+        title: 选择与调用场景匹配的标准认证机制
+        description: 根据浏览器会话、移动端、服务间调用或第三方委托选择会话、OAuth 2.0 或短期令牌，不自创认证协议，也不把 JWT 当作唯一答案。
+        tags: [OAuth 2.0, Session, Token]
+        status: planned
+      - type: node
+        id: avoid-basic-for-user-login
+        title: 避免用长期 Basic 凭据承担用户登录
+        description: 不在每次请求中重复传输长期用户名与密码；仅在受控兼容场景使用 Basic，并始终置于 TLS 之上。
+        tags: [Basic Auth, 凭据]
+        status: planned
+        link: https://www.rfc-editor.org/rfc/rfc7617
+      - type: node
+        id: protect-all-private-endpoints
+        title: 验证所有非公开端点都受认证保护
+        description: 从路由、OpenAPI 契约和运行测试生成接口清单，明确公开例外并确认新增端点默认继承认证策略。
+        tags: [Attack Surface, OpenAPI]
+        status: planned
+      - type: node
+        id: resist-login-abuse
+        title: 限制登录重试并处理自动化滥用
+        description: 组合按账号与来源的节流、渐进延迟、风险信号和告警，在降低撞库与暴力破解风险的同时避免简单锁定造成拒绝服务。
+        tags: [Rate Limiting, Brute Force]
+        status: planned
+      - type: node
+        id: protect-authentication-secrets
+        title: 安全存储并轮换认证密钥
+        description: 将签名密钥、客户端密钥和密码散列材料保存在专用秘密系统中，限制访问并演练泄露后的撤销与轮换。
+        tags: [Secrets, Key Rotation]
+        status: planned
+
+  - type: node
+    id: jwt-hardening
+    title: 安全签发与验证 JWT
+    description: 把 JWT 视为承载声明的令牌格式，固定可接受的算法、密钥、签发者、受众和生命周期，并拒绝不满足上下文约束的令牌。
+    tags: [JWT, JOSE, Token]
+    status: planned
+    link: https://www.rfc-editor.org/rfc/rfc8725
+    children:
+      - type: node
+        id: use-strong-jwt-keys
+        title: 使用足够强度且用途隔离的 JWT 密钥
+        description: 按算法生成高熵密钥或密钥对，不使用可猜测口令充当 HMAC 密钥，并避免在不同环境、租户或用途间复用。
+        tags: [JWS, 密钥管理]
+        status: planned
+      - type: node
+        id: pin-jwt-algorithms
+        title: 在服务端固定允许的 JWT 算法
+        description: 不依据令牌头部动态选择任意验证算法，显式限制算法与密钥类型并拒绝 none、算法混淆和不符合策略的令牌。
+        tags: [Algorithm Confusion, Validation]
+        status: planned
+      - type: node
+        id: validate-jwt-claims
+        title: 校验 JWT 的上下文声明
+        description: 验证签名以及 exp、nbf、iss、aud 等声明，并在需要时检查令牌类型、主体、权限和唯一标识。
+        tags: [Claims, Audience, Issuer]
+        status: planned
+      - type: node
+        id: shorten-token-lifetime
+        title: 缩短访问令牌并控制刷新令牌生命周期
+        description: 根据风险设置较短的访问令牌有效期，对刷新令牌实施轮换、重放检测、撤销和绝对过期策略。
+        tags: [TTL, Refresh Token, Revocation]
+        status: planned
+      - type: node
+        id: keep-sensitive-data-out-of-jwt
+        title: 避免在 JWT 载荷中放入敏感数据
+        description: 认识到签名不会隐藏载荷，只保留授权所需的最少声明；确需机密性时使用合适的加密令牌或服务端状态。
+        tags: [Data Minimization, JWE]
+        status: planned
+      - type: node
+        id: keep-jwt-small
+        title: 控制 JWT 载荷与请求开销
+        description: 删除重复、易变化或可在服务端查询的声明，测量标头与代理限制，并避免令牌膨胀造成带宽和解析压力。
+        tags: [Payload, 性能]
+        status: planned
+
+  - type: node
+    id: oauth-security
+    title: 按安全最佳实践实现 OAuth 2.0
+    description: 对授权码流程、重定向、状态绑定、客户端和权限范围进行严格验证，降低令牌泄露、授权码注入与 CSRF 风险。
+    tags: [OAuth 2.0, PKCE, CSRF]
+    status: planned
+    link: https://www.rfc-editor.org/rfc/rfc9700
+    children:
+      - type: node
+        id: validate-redirect-uri
+        title: 在授权服务器精确验证 redirect_uri
+        description: 预注册完整重定向 URI 并执行精确匹配，不接受开放重定向、通配主机或仅校验前缀的实现。
+        tags: [Redirect URI, Open Redirect]
+        status: planned
+      - type: node
+        id: prefer-authorization-code
+        title: 使用授权码流程替代隐式令牌响应
+        description: 对公共客户端使用授权码加 PKCE，使令牌通过后端通道兑换，并避免在前端 URL 中直接返回访问令牌。
+        tags: [Authorization Code, PKCE]
+        status: planned
+      - type: node
+        id: bind-oauth-request
+        title: 绑定 OAuth 请求与回调
+        description: 使用不可预测且与用户代理会话绑定的 state，结合 PKCE 或 nonce 验证回调，阻止登录 CSRF 和授权码注入。
+        tags: [State, Nonce]
+        status: planned
+      - type: node
+        id: constrain-oauth-scopes
+        title: 为客户端设置最小默认 scope
+        description: 注册客户端允许的权限集合，默认授予最小权限，并在授权与资源服务器两端验证令牌的 scope、受众和操作上下文。
+        tags: [Scope, Least Privilege]
+        status: planned
+
+  - type: node
+    id: access-control-and-transport
+    title: 强制执行授权、流量与传输边界
+    description: 在每次请求上验证主体对目标对象和操作的权限，并用 TLS、配额和网络策略缩小可利用面。
+    tags: [授权, TLS, Rate Limiting]
+    status: planned
+    link: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+    children:
+      - type: node
+        id: authorize-every-object-and-action
+        title: 对每个对象与操作执行服务端授权
+        description: 不依赖对象 ID 的不可猜测性，在读取、修改和函数调用前验证当前主体、租户、对象关系与所需权限。
+        tags: [BOLA, BFLA, IDOR]
+        status: planned
+      - type: node
+        id: use-opaque-resource-identifiers
+        title: 避免在 URL 中暴露不必要的个人标识
+        description: 对外使用不携带个人含义且难以枚举的资源标识；UUID 可降低顺序枚举，但不能替代对象级授权。
+        tags: [UUID, Privacy, Enumeration]
+        status: planned
+      - type: node
+        id: throttle-expensive-operations
+        title: 限制请求速率与资源消耗
+        description: 按主体、客户端、来源和操作设置速率、并发、载荷、分页及成本上限，并对登录、导出和复杂查询采用更严格策略。
+        tags: [DoS, Quota, Resource Consumption]
+        status: planned
+      - type: node
+        id: enforce-modern-tls
+        title: 使用 HTTPS 与安全 TLS 配置保护传输
+        description: 对外部和服务间 API 强制 TLS，禁用过时协议与弱密码套件，正确验证证书并自动更新证书材料。
+        tags: [HTTPS, TLS]
+        status: planned
+        link: https://www.rfc-editor.org/rfc/rfc9325
+      - type: node
+        id: apply-hsts-for-browser-apis
+        title: 为浏览器可达域名部署 HSTS
+        description: 在确认所有子域的 HTTPS 覆盖后逐步启用 Strict-Transport-Security，防止用户代理被降级到明文 HTTP。
+        tags: [HSTS, Browser]
+        status: planned
+      - type: node
+        id: restrict-private-api-network-access
+        title: 限制私有 API 的网络可达性
+        description: 使用私有网络、网关、身份感知代理和细粒度网络策略约束来源；IP 允许列表只作为纵深防御而非身份替代品。
+        tags: [Network Policy, Allowlist]
+        status: planned
+
+  - type: node
+    id: safe-input-processing
+    title: 安全处理请求与上传内容
+    description: 在信任边界验证方法、媒体类型、结构、值域和资源成本，并隔离复杂解析器与大文件处理路径。
+    tags: [输入校验, XXE, File Upload]
+    status: planned
+    link: https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
+    children:
+      - type: node
+        id: enforce-http-method-semantics
+        title: 让 HTTP 方法与操作语义一致
+        description: 按安全性和幂等性选择 GET、POST、PUT、PATCH、DELETE，拒绝未声明的方法，且不让 GET 等安全方法产生业务副作用。
+        tags: [HTTP, Idempotency]
+        status: planned
+        link: https://www.rfc-editor.org/rfc/rfc9110
+      - type: node
+        id: validate-request-content-type
+        title: 验证请求 Content-Type 与实际格式
+        description: 仅接受端点声明的媒体类型、字符集和编码，在解析前检查载荷与声明一致并拒绝模糊或不支持的格式。
+        tags: [Content-Type, MIME]
+        status: planned
+      - type: node
+        id: validate-all-untrusted-input
+        title: 按契约验证所有不可信输入
+        description: 对路径、查询、标头和请求体执行类型、长度、范围、格式及业务约束校验，并在下游解释器处使用参数化接口或上下文编码。
+        tags: [Schema Validation, Injection]
+        status: planned
+      - type: node
+        id: harden-xml-and-structured-parsers
+        title: 禁用 XML 外部实体与危险实体扩展
+        description: 关闭 DTD、外部实体和不受限实体展开，并为 XML、YAML 等复杂解析器设置深度、别名、大小与时间限制。
+        tags: [XXE, XML, YAML]
+        status: planned
+        link: https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html
+      - type: node
+        id: use-authorization-header
+        title: 通过标准 Authorization 标头传递凭据
+        description: 不把访问令牌放入 URL、查询参数或日志易捕获位置，使用已注册的认证方案并配置代理避免转发到错误上游。
+        tags: [Authorization Header, Bearer Token]
+        status: planned
+      - type: node
+        id: encrypt-sensitive-data-server-side
+        title: 在服务端执行敏感数据加密与密钥控制
+        description: 根据威胁模型加密存储数据，让受控服务管理密钥、访问、轮换与审计，不依赖客户端可绕过的加密声明。
+        tags: [Encryption at Rest, KMS]
+        status: planned
+      - type: node
+        id: isolate-file-uploads
+        title: 隔离并验证文件上传流程
+        description: 限制扩展名、实际类型、大小和权限，重命名后存入不可执行的独立存储，并在交付前执行恶意内容检测；需要规模化分发时再使用 CDN。
+        tags: [File Upload, CDN, Malware Scan]
+        status: planned
+        link: https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
+      - type: node
+        id: process-large-workloads-asynchronously
+        title: 异步处理超大或耗时请求
+        description: 对大批量导入、导出和计算任务使用有界队列、作业状态、超时与取消机制，避免同步阻塞耗尽工作线程。
+        tags: [Async Job, Backpressure]
+        status: planned
+      - type: node
+        id: harden-production-runtime
+        title: 关闭调试功能并加固生产运行时
+        description: 禁用调试端点、目录列表和详细错误页，最小化运行权限，并启用平台提供的不可执行内存、只读文件系统和进程隔离能力。
+        tags: [Hardening, Debug, NX]
+        status: planned
+      - type: node
+        id: enforce-gateway-policies
+        title: 用 API Gateway 统一执行边缘策略
+        description: 在网关集中实施认证前置检查、请求大小限制、节流、路由和安全日志，同时保留后端服务的业务授权校验。
+        tags: [API Gateway, Policy]
+        status: optional
+
+  - type: node
+    id: safe-api-responses
+    title: 最小化 API 响应暴露
+    description: 让响应类型、状态码、数据字段和浏览器安全标头符合契约，避免泄露凭据、内部实现与可用于指纹识别的信息。
+    tags: [响应安全, Security Headers, Data Minimization]
+    status: planned
+    link: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html
+    children:
+      - type: node
+        id: force-response-content-type
+        title: 显式设置正确的响应 Content-Type
+        description: "为每种响应固定媒体类型和字符集，并发送 X-Content-Type-Options: nosniff，避免浏览器猜测并以其他类型解释内容。"
+        tags: [Content-Type, nosniff]
+        status: planned
+      - type: node
+        id: deny-framing-when-unneeded
+        title: 在无需嵌入时禁止页面被框架加载
+        description: "对会在浏览器呈现的 API 文档、认证页或管理页使用 CSP frame-ancestors 'none'，必要时兼容发送 X-Frame-Options: DENY。"
+        tags: [Clickjacking, CSP, X-Frame-Options]
+        status: planned
+      - type: node
+        id: restrict-browser-content
+        title: 为浏览器可渲染响应设置严格 CSP
+        description: 对纯 API 响应和相关页面按实际加载需求配置 Content-Security-Policy，能完全禁止资源时使用 default-src 'none'。
+        tags: [CSP, Browser]
+        status: planned
+      - type: node
+        id: minimize-response-data
+        title: 从响应与错误中移除敏感数据
+        description: 使用允许字段清单和统一错误模型，避免返回凭据、令牌、密钥、个人数据、堆栈、查询语句或内部对象结构。
+        tags: [Sensitive Data, Error Handling]
+        status: planned
+      - type: node
+        id: use-correct-status-codes
+        title: 返回与操作结果一致的 HTTP 状态码
+        description: 区分认证失败、权限不足、资源不存在、输入无效、冲突、限流和服务故障，并避免用成功状态包装错误。
+        tags: [HTTP Status, Error Model]
+        status: planned
+      - type: node
+        id: reduce-server-fingerprinting
+        title: 移除不必要的实现指纹标头
+        description: 清理 X-Powered-By 等暴露框架与版本的信息，同时把依赖修补和配置加固作为主要防线。
+        tags: [Fingerprinting, Headers]
+        status: planned
+
+  - type: node
+    id: secure-delivery
+    title: 把 API 安全验证嵌入 CI/CD
+    description: 用测试、评审、静态与动态分析及依赖检查持续验证安全需求，并确保失败发布能够安全恢复。
+    tags: [CI/CD, Security Testing, Supply Chain]
+    status: planned
+    link: https://csrc.nist.gov/pubs/sp/800/218/final
+    children:
+      - type: node
+        id: test-security-requirements
+        title: 用单元与集成测试验证安全需求
+        description: 覆盖认证、逐对象授权、输入边界、限流、错误响应和敏感数据过滤，并为每个已修复缺陷保留回归测试。
+        tags: [Unit Test, Integration Test]
+        status: planned
+      - type: node
+        id: require-independent-review
+        title: 对安全敏感变更执行独立评审
+        description: 让提交者之外的合格评审者检查认证、授权、密码学、数据暴露和配置变更，不允许自我批准绕过保护规则。
+        tags: [Code Review, Separation of Duties]
+        status: planned
+      - type: node
+        id: automate-security-analysis
+        title: 持续运行分层安全分析
+        description: 组合 SAST、密钥扫描、SCA、API 契约检查和隔离环境中的动态测试，复现高置信度发现并控制误报。
+        tags: [SAST, SCA, DAST]
+        status: planned
+      - type: node
+        id: check-vulnerable-dependencies
+        title: 检测并处置已知依赖漏洞
+        description: 维护锁文件和组件清单，根据可达性、利用条件与业务影响分级修复，并验证升级不会破坏接口契约。
+        tags: [Dependency Scanning, SBOM]
+        status: planned
+      - type: node
+        id: rehearse-safe-rollback
+        title: 设计并演练安全的发布恢复方案
+        description: 为代码、配置、密钥和数据库变更定义回滚或前滚路径，验证恢复不会重新引入漏洞、旧密钥或不兼容数据。
+        tags: [Rollback, Recovery]
+        status: planned
+
+  - type: node
+    id: security-monitoring
+    title: 建立可行动的安全监控
+    description: 集中采集认证、授权、网关和应用事件，在保护隐私的前提下检测异常、触发告警并支持事件调查。
+    tags: [Logging, Detection, Incident Response]
+    status: planned
+    link: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+    children:
+      - type: node
+        id: centralize-security-logs
+        title: 集中并关联各服务的安全日志
+        description: 统一时间、请求 ID、主体、客户端、操作、结果和风险事件字段，使跨网关、服务与身份系统的调用链可以查询。
+        tags: [Centralized Logging, Correlation ID]
+        status: planned
+      - type: node
+        id: observe-requests-errors-and-abuse
+        title: 监测请求、响应结果与异常行为
+        description: 采集必要的元数据和错误分类，建立认证失败、越权尝试、枚举、限流触发、流量突增及高成本调用的基线与检测规则。
+        tags: [Anomaly Detection, Abuse]
+        status: planned
+      - type: node
+        id: redact-sensitive-log-data
+        title: 防止敏感数据进入日志
+        description: 默认过滤 Authorization、Cookie、令牌、密码、密钥、完整请求体和受保护个人数据，并测试异常路径同样执行脱敏。
+        tags: [Redaction, Privacy]
+        status: planned
+      - type: node
+        id: route-actionable-alerts
+        title: 将高置信度事件路由为可行动告警
+        description: 为告警定义阈值、负责人、严重度、上下文和处置手册，通过值班系统或协作渠道通知并抑制重复噪声。
+        tags: [Alerting, Runbook]
+        status: planned
+      - type: node
+        id: add-network-detection-where-valuable
+        title: 在高风险边界部署网络检测与防护
+        description: 根据加密流量可见性与威胁模型选择 WAF、IDS 或 IPS，调优规则并验证其不会替代应用内授权、校验和日志。
+        tags: [WAF, IDS, IPS]
+        status: optional
+
+  - type: node
+    id: api-security-capstone
+    title: 完成一次 API 安全基线验收
+    description: 为一个真实或练习 API 建立资产与端点清单，实施关键控制，并用自动化测试、日志证据和事件演练证明安全要求成立。
+    tags: [综合实践, ASVS, OWASP API Top 10]
+    status: planned
+    link: https://owasp.org/www-project-application-security-verification-standard/
+    children:
+      - type: node
+        id: model-api-threats
+        title: 建模 API 资产、数据流与滥用路径
+        description: 标出身份、对象、敏感数据、信任边界和第三方依赖，并将 OWASP API Top 10 风险映射到具体端点与安全需求。
+        tags: [Threat Modeling, API Top 10]
+        status: planned
+      - type: node
+        id: implement-api-security-controls
+        title: 实施并记录一套纵深安全控制
+        description: 完成认证、逐对象授权、输入约束、限流、安全响应、秘密管理和审计日志，并记录关键设计取舍。
+        tags: [Defense in Depth, Documentation]
+        status: planned
+      - type: node
+        id: verify-api-security-evidence
+        title: 用攻击用例和自动化检查生成验收证据
+        description: 对匿名访问、越权、令牌滥用、注入、资源耗尽和敏感信息泄露执行正反向测试，保存可复现结果并修复失败项。
+        tags: [Security Test, Evidence]
+        status: planned
+      - type: node
+        id: rehearse-api-incident
+        title: 演练令牌泄露或滥用事件
+        description: 从告警出发完成调查、令牌撤销、密钥轮换、流量限制、影响评估和复盘，并验证恢复时间与日志完整性。
+        tags: [Incident Response, Tabletop]
+        status: planned
+      - type: roadmap
+        roadmapId: backend
+        title: 衔接后端开发主线
+        description: 补齐 HTTP、API 设计、数据库、测试、可观测性与生产交付能力。
+      - type: roadmap
+        roadmapId: devsecops
+        title: 深化 DevSecOps 安全交付
+        description: 将 API 安全控制扩展到威胁建模、供应链、CI/CD、运行时检测和漏洞响应闭环。

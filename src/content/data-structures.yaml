@@ -1,0 +1,457 @@
+id: data-structures
+title: 数据结构
+description: 面向具备基础编程能力的学习者，从抽象数据类型与复杂度分析出发，逐步实现并选择序列、集合、树、堆和图结构，最终交付一个经过测试与性能验证的可用组件。
+tags: [数据结构, 算法, 编程基础, 性能]
+nodes:
+  - type: node
+    id: model-abstract-data-types
+    title: 用抽象数据类型描述问题
+    description: 先定义操作、约束与不变量，再选择表示方式，使数据结构的接口与实现细节保持可替换。
+    tags: [ADT, 接口, 不变量]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/
+    children:
+      - type: node
+        id: distinguish-adt-and-representation
+        title: 区分 ADT、接口与具体表示
+        description: 用序列、集合和映射说明“支持哪些操作”与“如何存储并实现操作”是两个不同问题。
+        tags: [ADT, 抽象]
+        status: planned
+      - type: node
+        id: define-invariants-and-operations
+        title: 为结构定义不变量与操作契约
+        description: 写清空结构、边界索引、重复键、失败行为和修改操作的前后条件，使实现可被独立测试。
+        tags: [不变量, 契约, 边界条件]
+        status: planned
+      - type: node
+        id: use-asymptotic-complexity
+        title: 用渐近复杂度比较实现
+        description: 使用 O、Ω 与 Θ 描述时间和空间增长，区分最坏、平均、摊销成本及输入规模的含义。
+        tags: [复杂度, Big-O, 摊销分析]
+        status: planned
+      - type: node
+        id: account-for-memory-layout
+        title: 把内存布局纳入取舍
+        description: 比较连续存储、指针跳转、对象开销、缓存局部性和扩容复制对真实性能的影响。
+        tags: [内存布局, 缓存局部性]
+        status: planned
+      - type: node
+        id: build-reusable-implementation-harness
+        title: 建立可复用的实现与测试框架
+        description: 选择一种熟悉语言，为后续结构统一安排接口、随机数据、参考模型、断言和基准测试入口。
+        tags: [工程化, 测试框架]
+        status: planned
+
+  - type: node
+    id: implement-sequences
+    title: 实现连续序列与动态数组
+    description: 掌握按索引访问和扩容策略，解释动态数组为何能在摊销意义下高效追加。
+    tags: [数组, 动态数组, 序列]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/851ae1c98f7a73382b76732f977bb92f_CHhwJjR0mZA.pdf
+    children:
+      - type: node
+        id: implement-static-array
+        title: 使用数组表示固定长度序列
+        description: 实现按索引读取和更新，处理越界、空槽与容量边界，并说明连续地址带来的访问成本。
+        tags: [数组, 索引]
+        status: planned
+      - type: node
+        id: implement-dynamic-array
+        title: 实现可扩容的动态数组
+        description: 设计容量、扩容因子、缩容阈值和元素搬迁流程，避免扩容时丢失数据或产生无效引用。
+        tags: [动态数组, 扩容]
+        status: planned
+      - type: node
+        id: analyze-amortized-append
+        title: 证明追加操作的摊销成本
+        description: 用聚合、记账或势能方法解释偶发扩容为何不会让一系列追加退化为平方级成本。
+        tags: [摊销分析, Append]
+        status: planned
+      - type: node
+        id: compare-array-views
+        title: 比较切片、视图与复制
+        description: 说明子数组、切片和共享缓冲区在时间、空间、可变性与生命周期方面的差异。
+        tags: [切片, 视图, 复制]
+        status: planned
+      - type: node
+        id: benchmark-sequential-access
+        title: 测量连续访问的局部性收益
+        description: 用相同数据量比较顺序扫描、随机访问和不同元素布局的吞吐量，记录缓存与分配开销。
+        tags: [基准测试, 局部性]
+        status: planned
+
+  - type: node
+    id: implement-linked-linear-structures
+    title: 实现链式线性结构
+    description: 用节点和链接表达动态序列，掌握插入删除、哨兵节点和迭代器的边界处理。
+    tags: [链表, 节点, 迭代器]
+    status: planned
+    link: https://opendatastructures.org/
+    children:
+      - type: node
+        id: implement-singly-linked-list
+        title: 实现单向链表
+        description: 支持头尾插入、按节点删除和遍历，维护空表、单节点与尾指针不变量。
+        tags: [单链表, 指针]
+        status: planned
+      - type: node
+        id: implement-doubly-linked-list
+        title: 实现双向链表与哨兵
+        description: 用前驱和后继链接在常数时间内拼接节点，并通过哨兵节点简化首尾边界分支。
+        tags: [双链表, 哨兵]
+        status: planned
+      - type: node
+        id: compare-array-and-list-operations
+        title: 按操作模式比较数组与链表
+        description: 根据索引访问、已知位置插入、遍历、内存占用和缓存局部性选择表示，而非凭结构名称决策。
+        tags: [数组, 链表, 取舍]
+        status: planned
+      - type: node
+        id: implement-iterators-safely
+        title: 设计不会失效的遍历器
+        description: 明确修改集合时迭代器的行为，处理删除当前节点、嵌套遍历和资源释放等边界。
+        tags: [Iterator, 失效规则]
+        status: planned
+      - type: node
+        id: test-pointer-structure-invariants
+        title: 用不变量测试链式结构
+        description: 在每次修改后验证可达节点数、前后链接、头尾关系和无环约束，定位断链与泄漏。
+        tags: [不变量, 链表测试]
+        status: planned
+
+  - type: node
+    id: build-stacks-queues-and-deques
+    title: 构建栈、队列与双端队列
+    description: 从序列接口抽取受限访问规则，使用数组或链表实现先进先出、后进先出和双端操作。
+    tags: [栈, 队列, Deque]
+    status: planned
+    children:
+      - type: node
+        id: implement-stack
+        title: 实现并验证栈
+        description: 提供 push、pop、peek 和 empty 操作，明确空栈行为并用括号匹配或撤销历史验证接口。
+        tags: [Stack, LIFO]
+        status: planned
+      - type: node
+        id: implement-queue
+        title: 用环形缓冲区实现队列
+        description: 使用头尾索引和容量处理入队、出队、空满判断，避免频繁移动整段元素。
+        tags: [Queue, FIFO, 环形缓冲区]
+        status: planned
+      - type: node
+        id: implement-deque
+        title: 实现支持两端操作的 Deque
+        description: 在两端提供一致的插入、删除和查看操作，并比较动态数组与链式实现的成本。
+        tags: [Deque, 双端]
+        status: planned
+      - type: node
+        id: apply-linear-structures
+        title: 用线性结构解决实际任务
+        description: 使用栈处理表达式或回溯，使用队列模拟调度或缓冲，说明接口限制如何简化正确性证明。
+        tags: [应用, 模拟]
+        status: planned
+      - type: node
+        id: compare-standard-library-collections
+        title: 对照语言标准库的线性容器
+        description: 阅读所选语言的 list、deque 或 queue 文档，核对复杂度、迭代器失效和线程安全承诺。
+        tags: [标准库, 容器]
+        status: optional
+        link: https://docs.python.org/3/library/collections.html
+
+  - type: node
+    id: implement-hash-based-dictionaries
+    title: 实现哈希表与字典
+    description: 用哈希函数把键映射到桶，处理冲突、扩容和删除，并根据负载与键分布验证平均性能假设。
+    tags: [哈希表, 字典, 集合]
+    status: planned
+    link: https://opendatastructures.org/
+    children:
+      - type: node
+        id: define-key-equality-and-hash
+        title: 定义键相等性与哈希契约
+        description: 保证相等键产生一致哈希，区分可变键风险、碰撞与密码学哈希的不同目标。
+        tags: [Hash, Equality, 键]
+        status: planned
+      - type: node
+        id: resolve-collisions
+        title: 比较冲突解决策略
+        description: 实现分离链接与开放寻址，解释线性探测、聚集、墓碑和扩容对查询成本的影响。
+        tags: [冲突, 开放寻址, Chaining]
+        status: planned
+      - type: node
+        id: resize-by-load-factor
+        title: 按负载因子扩容哈希表
+        description: 选择容量、负载阈值和重新哈希时机，确保扩容过程中键值不丢失并控制摊销成本。
+        tags: [负载因子, Rehash]
+        status: planned
+      - type: node
+        id: implement-set-operations
+        title: 用哈希表实现集合运算
+        description: 支持成员判断、插入、删除、并集、交集与差集，并根据输入规模选择遍历较小集合的策略。
+        tags: [Set, 集合运算]
+        status: planned
+      - type: node
+        id: test-adversarial-hash-inputs
+        title: 用对抗输入测试哈希结构
+        description: 构造碰撞密集、重复、删除后再插入和异常键输入，验证退化行为、内存上限与错误处理。
+        tags: [压力测试, 碰撞, 安全]
+        status: planned
+
+  - type: node
+    id: maintain-ordered-trees
+    title: 维护有序树与范围查询
+    description: 利用树的递归结构维护排序关系，支持查找、更新、前驱后继和范围遍历，并控制树高。
+    tags: [树, BST, 有序集合]
+    status: planned
+    link: https://opendatastructures.org/
+    children:
+      - type: node
+        id: traverse-binary-trees
+        title: 实现二叉树遍历
+        description: 用递归和显式栈实现前序、中序、后序与层序遍历，并说明遍历顺序对应的语义。
+        tags: [二叉树, DFS, BFS]
+        status: planned
+      - type: node
+        id: implement-binary-search-tree
+        title: 实现二叉搜索树
+        description: 维护左小右大的不变量，支持查找、插入、删除、最小最大值与前驱后继。
+        tags: [BST, 查找, 删除]
+        status: planned
+      - type: node
+        id: analyze-tree-height
+        title: 分析树高与退化
+        description: 证明平衡树操作依赖树高，构造有序输入使普通搜索树退化，并比较随机输入的行为。
+        tags: [树高, 退化, 复杂度]
+        status: planned
+      - type: node
+        id: implement-balanced-search-tree
+        title: 实现一种平衡搜索树
+        description: 选择 AVL 或红黑树，正确实现旋转、颜色或高度维护，并用随机操作检查排序与高度约束。
+        tags: [AVL, 红黑树, 旋转]
+        status: planned
+      - type: node
+        id: support-range-and-order-statistics
+        title: 扩展树以支持范围与顺序统计
+        description: 在节点维护子树大小或聚合值，支持第 k 个元素、排名、区间查询或区间更新。
+        tags: [增强数据结构, Range Query]
+        status: optional
+      - type: node
+        id: choose-b-tree-for-storage
+        title: 选择 B-tree 处理外部存储
+        description: 解释高扇出、节点分裂和磁盘页如何减少 I/O，并比较 B-tree 与内存二叉树的适用边界。
+        tags: [B-tree, 外部存储]
+        status: optional
+
+  - type: node
+    id: schedule-with-heaps-and-union-find
+    title: 使用堆与并查集维护优先关系
+    description: 为最小/最大元素、优先级变化和连通分量选择专用结构，并通过操作序列验证复杂度。
+    tags: [堆, 优先队列, 并查集]
+    status: planned
+    link: https://docs.python.org/3/library/heapq.html
+    children:
+      - type: node
+        id: represent-binary-heap
+        title: 用数组表示二叉堆
+        description: 使用父子索引关系实现 sift-up 与 sift-down，维护堆序并区分最小堆和最大堆。
+        tags: [Heap, 数组, Sift]
+        status: planned
+      - type: node
+        id: implement-priority-queue
+        title: 实现可更新的优先队列
+        description: 支持插入、查看最优元素和删除最优元素，并处理优先级更新、重复任务与稳定性要求。
+        tags: [Priority Queue, 优先级]
+        status: planned
+      - type: node
+        id: compare-heap-build-and-sort
+        title: 比较建堆、堆排序与选择操作
+        description: 分析逐个插入建堆与自底向上建堆的成本，并判断何时只维护前 k 个元素更划算。
+        tags: [建堆, 堆排序, Top-K]
+        status: planned
+      - type: node
+        id: implement-disjoint-set-union
+        title: 实现带路径压缩的并查集
+        description: 使用按秩或按大小合并与路径压缩支持连接、查询代表元和连通分量统计。
+        tags: [并查集, Union-Find]
+        status: planned
+      - type: node
+        id: apply-priority-and-connectivity
+        title: 用堆和并查集解决组合问题
+        description: 将优先队列用于事件调度或合并流，将并查集用于网络连通性或最小生成树中的组件维护。
+        tags: [应用, 连通性]
+        status: planned
+
+  - type: node
+    id: represent-and-query-graphs
+    title: 表示图并处理关系查询
+    description: 选择邻接矩阵、邻接表或边列表表达关系，区分有向/无向和带权图，并在规模变化时保持可验证。
+    tags: [图, 邻接表, 图遍历]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/video_galleries/lecture-videos/
+    children:
+      - type: node
+        id: choose-graph-representation
+        title: 按密度与操作选择图表示
+        description: 比较邻接矩阵、邻接表和边列表在空间、判断相邻、枚举邻居和更新边方面的成本。
+        tags: [邻接矩阵, 邻接表, 稀疏图]
+        status: planned
+      - type: node
+        id: model-graph-variants
+        title: 建模不同类型的图
+        description: 区分有向、无向、带权、多重和动态变化的图，明确自环、平行边和不可达节点的表示规则。
+        tags: [有向图, 带权图, 图建模]
+        status: planned
+      - type: node
+        id: implement-graph-traversal
+        title: 实现 BFS 与 DFS 遍历
+        description: 用队列或栈访问图，记录已访问集合、父节点和层级，并处理非连通图与重复边。
+        tags: [BFS, DFS, 遍历]
+        status: planned
+      - type: node
+        id: maintain-connectivity-and-components
+        title: 查询连通分量与路径证据
+        description: 输出连通分量、可达路径或拓扑约束的证据，避免把“找到一个节点”误当成完整图分析。
+        tags: [连通分量, 路径, 拓扑]
+        status: planned
+      - type: node
+        id: compare-graph-algorithm-costs
+        title: 按图规模和密度评估成本
+        description: 将顶点数、边数、表示方式与遍历复杂度关联，使用稀疏、稠密和动态更新工作负载做基准。
+        tags: [复杂度, 稀疏性, 基准]
+        status: planned
+      - type: node
+        id: explore-specialized-graph-structures
+        title: 探索 Trie、压缩图与空间索引
+        description: 根据前缀查询、字符串共享、地理范围或高维邻近需求评估 Trie、压缩表示和空间索引。
+        tags: [Trie, 空间索引, 专题]
+        status: optional
+
+  - type: node
+    id: engineer-and-validate-structures
+    title: 用工程实践验证数据结构
+    description: 将不变量、随机测试、基准、序列化和资源边界纳入实现生命周期，确保结构在真实输入下可靠。
+    tags: [测试, 性能工程, 可靠性]
+    status: planned
+    children:
+      - type: node
+        id: test-with-reference-models
+        title: 用参考模型进行差分测试
+        description: 将自定义结构与简单但可信的列表、集合或映射对照，随机生成操作并逐步比较结果与异常。
+        tags: [差分测试, 随机测试]
+        status: planned
+      - type: node
+        id: use-property-and-fuzz-testing
+        title: 用性质测试和模糊测试发现边界缺陷
+        description: 生成空、重复、极端规模、随机删除和非法输入，验证排序、大小、成员关系与遍历性质始终成立。
+        tags: [Property Testing, Fuzzing]
+        status: planned
+      - type: node
+        id: benchmark-realistic-workloads
+        title: 用真实工作负载建立基准
+        description: 记录预热、输入分布、重复次数、内存使用和版本环境，比较结构在查询、更新与混合负载下的表现。
+        tags: [Benchmark, 工作负载]
+        status: planned
+      - type: node
+        id: handle-memory-and-resource-limits
+        title: 处理内存、递归与资源边界
+        description: 为超大输入、深树、分配失败和清理中断定义行为，避免只在理想内存条件下验证正确性。
+        tags: [资源限制, 栈溢出, 内存]
+        status: planned
+      - type: node
+        id: serialize-and-version-structure-data
+        title: 设计可演进的持久化表示
+        description: 为需要保存的数据定义序列化格式、版本字段、校验和迁移策略，并测试截断、损坏和旧版本输入。
+        tags: [序列化, 版本迁移, 数据完整性]
+        status: planned
+      - type: node
+        id: compare-standard-library-tradeoffs
+        title: 评估标准库与自定义实现的边界
+        description: 以可维护性、性能、审计、生态兼容和安全更新为依据决定复用标准库还是保留专用结构。
+        tags: [标准库, 取舍, 维护成本]
+        status: planned
+
+  - type: node
+    id: deliver-data-structure-capstone
+    title: 交付一个可验证的数据结构组件
+    description: 将多种结构组合到一个真实场景中，提供清晰接口、正确性证据、性能基线和可复现文档。
+    tags: [综合实践, 组件, 验收]
+    status: planned
+    children:
+      - type: node
+        id: choose-capstone-domain
+        title: 从访问模式选择数据结构
+        description: 为日志索引、任务调度、自动补全、路线查询或内存缓存写出操作频率、数据规模和一致性约束。
+        tags: [需求分析, 访问模式]
+        status: planned
+      - type: node
+        id: design-capstone-interfaces
+        title: 设计稳定接口与不变量
+        description: 明确键和值的语义、重复和删除规则、错误模型、迭代顺序与线程边界，并记录不采用的替代方案。
+        tags: [API, 不变量, 设计]
+        status: planned
+      - type: node
+        id: implement-capstone-structures
+        title: 实现并组合核心结构
+        description: 至少组合两种结构，例如哈希索引与堆、Trie 与动态数组或图表示与并查集，保持模块可独立测试。
+        tags: [组合, 模块化, 实现]
+        status: planned
+      - type: node
+        id: verify-capstone-correctness
+        title: 用测试矩阵证明关键行为
+        description: 覆盖空数据、重复、删除、极端规模、随机操作、序列化恢复和失败路径，并与参考模型逐步比对。
+        tags: [测试矩阵, 正确性, 回归]
+        status: planned
+      - type: node
+        id: measure-capstone-performance
+        title: 建立基准并解释性能取舍
+        description: 对代表性与对抗性负载测量时间、空间和吞吐，解释复杂度预测与实际缓存、分配和输入分布的差异。
+        tags: [性能, 基准, 分析]
+        status: planned
+      - type: node
+        id: document-capstone-release
+        title: 发布可复现的组件与报告
+        description: 提供构建、测试、基准、接口示例和设计说明，使他人能重现结果并判断何时应换用其他结构。
+        tags: [文档, 发布, 复现]
+        status: planned
+
+  - type: node
+    id: choose-advanced-data-structure-direction
+    title: 选择数据结构深化方向
+    description: 完成基础结构和综合项目后，再按应用规模、硬件约束或研究兴趣进入高级结构与算法方向。
+    tags: [进阶, 专题]
+    status: optional
+    children:
+      - type: node
+        id: explore-advanced-search-structures
+        title: 深入跳表、Treap 与高级平衡树
+        description: 比较随机化平衡、分层索引和多种旋转策略在实现复杂度、期望性能与并发扩展上的取舍。
+        tags: [Skip List, Treap, 高级树]
+        status: optional
+        link: https://opendatastructures.org/
+      - type: node
+        id: explore-integer-and-cache-oblivious-structures
+        title: 探索整数与 Cache-oblivious 结构
+        description: 在键域受限或多级缓存显著影响时评估 Trie、van Emde Boas 和 Cache-oblivious 布局的适用性。
+        tags: [整数结构, Cache-oblivious]
+        status: optional
+      - type: node
+        id: explore-external-memory-and-streaming
+        title: 面向外部存储与流式数据设计
+        description: 根据块 I/O、写放大、顺序扫描和内存上限选择 B-tree、LSM-tree、Bloom filter 或流式摘要。
+        tags: [外部存储, LSM-tree, Bloom Filter]
+        status: optional
+      - type: node
+        id: explore-concurrent-data-structures
+        title: 研究并发数据结构
+        description: 在明确内存模型和线性化点后比较细粒度锁、分段、无锁和等待自由结构的正确性与性能。
+        tags: [并发结构, Lock-free, 线性化]
+        status: optional
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 将数据结构用于系统编程
+        description: 在操作系统路线中把树、队列、哈希和图用于调度、内存管理、文件系统与内核数据结构。
+      - type: roadmap
+        roadmapId: backend
+        title: 将数据结构用于后端工程
+        description: 在 API、缓存、数据库和消息系统中依据访问模式与容量约束选择实现。

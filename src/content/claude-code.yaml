@@ -1,0 +1,495 @@
+id: claude-code
+title: Claude Code
+description: 从理解编码 Agent 与安装 Claude Code 开始，逐步掌握交互式开发、上下文管理、CLAUDE.md、Skills、Subagents、Hooks、MCP、自动化与安全实践，并完成一个可验证的真实仓库任务。
+tags: [Claude Code, AI Agent, CLI, AI 编程]
+nodes:
+  - type: node
+    id: understand-agentic-coding
+    title: 理解 Claude Code 的 Agentic 工作方式
+    description: 区分对话式代码补全、Vibe Coding 与编码 Agent，并能解释 Claude Code 如何在观察、行动和验证之间循环。
+    tags: [基础, Agent]
+    status: planned
+    link: https://code.claude.com/docs/en/how-claude-code-works
+    children:
+      - type: node
+        id: distinguish-vibe-coding
+        title: 区分 Vibe Coding 与受控工程
+        description: 说明自然语言驱动开发的速度优势与审查风险，并为原型和生产变更选择不同的人机协作强度。
+        tags: [Vibe Coding]
+        status: planned
+      - type: node
+        id: explain-coding-agent
+        title: 解释编码 Agent 的能力边界
+        description: 识别读取文件、修改代码、运行命令和调用外部工具等能力，同时明确模型不会自动理解未提供的环境与目标。
+        tags: [Agent]
+        status: planned
+      - type: node
+        id: trace-agentic-loop
+        title: 跟踪一次 Agentic Loop
+        description: 从用户目标开始，观察 Claude 收集上下文、调用工具、检查结果并迭代，直到满足完成条件或请求人工决策。
+        tags: [Agent Loop]
+        status: planned
+
+  - type: node
+    id: install-and-access-claude-code
+    title: 安装并接入 Claude Code
+    description: 选择受支持的安装、认证与使用界面，在一个练习仓库中完成首次安全会话。
+    tags: [安装, 认证]
+    status: planned
+    link: https://code.claude.com/docs/en/quickstart
+    children:
+      - type: node
+        id: install-and-diagnose-cli
+        title: 安装 CLI 并诊断环境
+        description: 使用官方安装方式配置 Claude Code，运行 doctor 检查安装、更新、网络与终端兼容性。
+        tags: [CLI]
+        status: planned
+      - type: node
+        id: choose-authentication-plan
+        title: 选择订阅或 API 认证
+        description: 比较 Claude 订阅、Anthropic Console 按量计费与企业平台的访问边界，并为练习设置可控预算。
+        tags: [订阅, API]
+        status: planned
+        link: https://code.claude.com/docs/en/costs
+      - type: node
+        id: choose-working-interface
+        title: 选择 CLI、桌面或编辑器界面
+        description: 根据终端自动化、可视化差异审查和远程任务需求，在 CLI、Desktop、VS Code 或 JetBrains 集成之间选择入口。
+        tags: [CLI, IDE]
+        status: planned
+        link: https://code.claude.com/docs/en/overview#use-claude-code-everywhere
+      - type: node
+        id: evaluate-mobile-and-community-tools
+        title: 评估移动端与社区工具
+        description: 只在理解数据访问、权限和维护状态后选用移动渠道或第三方工具，不把敏感仓库交给未经评估的扩展。
+        tags: [扩展]
+        status: optional
+
+  - type: node
+    id: operate-interactive-session
+    title: 熟练操作交互式会话
+    description: 使用快捷键、输入模式和内置命令快速提供上下文、控制执行并检查会话状态。
+    tags: [交互, CLI]
+    status: planned
+    link: https://code.claude.com/docs/en/interactive-mode
+    children:
+      - type: node
+        id: control-running-turn
+        title: 中断、回退与切换交互模式
+        description: 使用 Ctrl+C、Esc、Esc+Esc、Shift+Tab 和历史搜索控制当前回合，并在执行方向错误时及时停止或回退。
+        tags: [快捷键]
+        status: planned
+      - type: node
+        id: provide-files-and-shell-input
+        title: 用文件引用和 Shell 模式提供上下文
+        description: 使用 @ 精确引用文件、反斜杠输入多行指令，并在明确副作用时用感叹号直接执行本地命令。
+        tags: [上下文, Shell]
+        status: planned
+      - type: node
+        id: inspect-session-health
+        title: 检查帮助、状态、用量与成本
+        description: 使用 /help、/status、/usage 与 /cost 确认能力、账户、额度和当前会话成本，再决定是否继续大型任务。
+        tags: [诊断, 成本]
+        status: planned
+      - type: node
+        id: reset-export-and-rewind
+        title: 清理、导出并回退会话
+        description: 使用 /clear、/export、/rewind 与 /exit 管理历史和结果，避免无关上下文继续影响新任务。
+        tags: [会话]
+        status: planned
+      - type: node
+        id: configure-session-capabilities
+        title: 在会话中配置模型与扩展
+        description: 使用 /config、/permissions、/model、/agents、/mcp 与 /hooks 检查配置入口，并只启用当前任务需要的能力。
+        tags: [配置]
+        status: planned
+      - type: node
+        id: customize-status-line
+        title: 自定义状态栏呈现关键指标
+        description: 配置 statusline 持续显示模型、目录、上下文占用或会话成本，并确保脚本快速、可靠且不泄露敏感信息。
+        tags: [Status Line, 可观测性]
+        status: optional
+        link: https://code.claude.com/docs/en/statusline
+
+  - type: node
+    id: use-cli-workflows
+    title: 用 CLI 组织可恢复的工作流
+    description: 在交互、一次性打印和历史恢复模式之间切换，并让探索、计划、实现和验证形成闭环。
+    tags: [工作流, CLI]
+    status: planned
+    link: https://code.claude.com/docs/en/cli-reference
+    children:
+      - type: node
+        id: start-interactive-task
+        title: 启动交互任务并给出初始目标
+        description: 使用 claude 或带初始 query 的方式进入仓库，提供目标、边界、验收标准与禁止触碰的范围。
+        tags: [提示]
+        status: planned
+      - type: node
+        id: automate-with-print-mode
+        title: 用 Print Mode 执行一次性任务
+        description: 使用 claude -p 处理可脚本化的输入与结构化输出，并为自动化设置最大回合、超时和失败处理。
+        tags: [自动化]
+        status: planned
+        link: https://code.claude.com/docs/en/headless
+      - type: node
+        id: resume-specific-session
+        title: 继续或恢复指定会话
+        description: 使用 -c 延续最近会话或用 -r 恢复指定历史，在继续前核对分支、文件状态与剩余目标。
+        tags: [会话]
+        status: planned
+      - type: node
+        id: include-additional-directories
+        title: 显式加入额外工作目录
+        description: 仅在跨仓库任务确实需要时使用 --add-dir，并为新增目录确认读写权限与版本控制边界。
+        tags: [多仓库, 权限]
+        status: planned
+      - type: node
+        id: execute-claude-workflow
+        title: 执行探索、计划、实现与验证循环
+        description: 先让 Claude 定位相关代码和约束，再审查计划、实施小步变更并运行测试或静态检查验证结果。
+        tags: [工程实践]
+        status: planned
+        link: https://code.claude.com/docs/en/common-workflows
+
+  - type: node
+    id: configure-permissions-and-sessions
+    title: 控制权限、模型与会话状态
+    description: 让每个任务在合适的权限模式、模型和上下文中运行，并能从错误方向安全恢复。
+    tags: [权限, 会话]
+    status: planned
+    link: https://code.claude.com/docs/en/permissions
+    children:
+      - type: node
+        id: choose-permission-mode
+        title: 按风险选择权限模式
+        description: 区分默认、接受编辑、计划和其他可用模式，对命令、文件写入及外部访问保留必要的人工审批。
+        tags: [最小权限]
+        status: planned
+      - type: node
+        id: plan-before-high-risk-change
+        title: 用 Plan Mode 审查高风险变更
+        description: 在跨模块重构、迁移或安全敏感任务中先完成只读分析和计划评审，再授权进入实现阶段。
+        tags: [Plan Mode]
+        status: planned
+      - type: node
+        id: select-model-and-effort
+        title: 按任务选择模型与思考强度
+        description: 根据难度、延迟和预算选择模型别名、opusplan 与 effort 设置，并用会话命令、启动参数或项目配置表达选择。
+        tags: [模型, 成本]
+        status: planned
+        link: https://code.claude.com/docs/en/model-config
+      - type: node
+        id: choose-output-style
+        title: 按协作目标选择输出样式
+        description: 在默认、解释型、学习型或自定义 Output Style 之间选择，让响应深度和人机分工符合当前任务而不覆盖项目安全约束。
+        tags: [Output Styles, 交互]
+        status: optional
+        link: https://code.claude.com/docs/en/output-styles
+      - type: node
+        id: manage-and-rewind-sessions
+        title: 管理、分叉并回退会话
+        description: 为不同目标使用独立会话，在恢复或分叉历史后核对工作树，并用 rewind 撤回错误的对话或代码状态。
+        tags: [恢复]
+        status: planned
+
+  - type: node
+    id: engineer-project-memory
+    title: 用 CLAUDE.md 管理项目记忆
+    description: 将稳定、可执行且团队共享的项目约束写入正确作用域，避免让陈旧或冗长说明污染每次会话。
+    tags: [CLAUDE.md, 上下文]
+    status: planned
+    link: https://code.claude.com/docs/en/memory
+    children:
+      - type: node
+        id: choose-memory-location
+        title: 选择用户、项目或目录级作用域
+        description: 根据指令适用范围把个人偏好、仓库规范和子目录规则放到对应位置，并理解继承与覆盖关系。
+        tags: [作用域]
+        status: planned
+      - type: node
+        id: structure-effective-claude-md
+        title: 编写简短可执行的 CLAUDE.md
+        description: 记录构建测试命令、架构边界、代码规范和常见陷阱，用具体指令替代大段背景材料。
+        tags: [项目规范]
+        status: planned
+        link: https://code.claude.com/docs/en/best-practices#write-an-effective-claude-md
+      - type: node
+        id: import-modular-instructions
+        title: 按需导入模块化说明
+        description: 用导入拆分稳定知识，确保路径可用、内容无冲突，并避免把密钥或敏感个人信息提交到仓库。
+        tags: [模块化]
+        status: planned
+      - type: node
+        id: maintain-project-memory
+        title: 随项目变化维护记忆
+        description: 在命令、架构或约束变化时更新并评审 CLAUDE.md，删除模型可从代码直接推断的冗余说明。
+        tags: [维护]
+        status: planned
+
+  - type: node
+    id: build-reusable-skills
+    title: 创建可发现的 Skills
+    description: 把重复工作流封装为按需加载的 Skill，用明确触发条件、渐进式披露和可验证步骤提升复用可靠性。
+    tags: [Skills, 自动化]
+    status: planned
+    link: https://code.claude.com/docs/en/skills
+    children:
+      - type: node
+        id: identify-skill-worthy-workflow
+        title: 识别值得封装的重复流程
+        description: 选择边界清晰、反复出现且有稳定验收方式的任务，避免为一次性提示或简单知识创建 Skill。
+        tags: [设计]
+        status: planned
+      - type: node
+        id: author-skill-package
+        title: 编写 SKILL.md 与配套资源
+        description: 用准确的名称和描述定义触发条件，将详细参考、脚本和模板拆入按需读取的文件。
+        tags: [SKILL.md]
+        status: planned
+      - type: node
+        id: scope-and-share-skills
+        title: 设置 Skill 作用域并团队共享
+        description: 在个人、项目或插件作用域之间选择存放位置，对项目 Skill 进行版本控制和代码评审。
+        tags: [协作]
+        status: planned
+      - type: node
+        id: test-skill-triggering
+        title: 测试 Skill 的触发与执行结果
+        description: 用应触发和不应触发的提示检查发现逻辑，并验证脚本、副作用、错误处理与最终产物。
+        tags: [测试]
+        status: planned
+
+  - type: node
+    id: delegate-with-subagents
+    title: 用 Subagents 隔离并委派工作
+    description: 为上下文密集或需要专门工具的子任务创建独立 Agent，并由主会话核验和整合结果。
+    tags: [Subagents, 委派]
+    status: planned
+    link: https://code.claude.com/docs/en/sub-agents
+    children:
+      - type: node
+        id: choose-delegation-boundary
+        title: 划分可独立验收的子任务
+        description: 根据上下文体积、专业角色和并行价值选择委派边界，避免为微小步骤引入协调成本。
+        tags: [任务分解]
+        status: planned
+      - type: node
+        id: create-specialized-subagent
+        title: 创建专门化 Subagent
+        description: 为 Subagent 定义清晰职责、系统提示、模型和最小工具集，并约束其输出格式与完成标准。
+        tags: [Agent 配置]
+        status: planned
+      - type: node
+        id: verify-subagent-output
+        title: 核验并整合委派结果
+        description: 要求 Subagent 返回证据、文件或结构化结论，由主会话处理冲突、遗漏和失败重试。
+        tags: [质量保障]
+        status: planned
+      - type: node
+        id: experiment-with-agent-teams
+        title: 评估 Agent Teams 并行协作
+        description: 仅为可并行且能清晰划分所有权的大型任务试用 Agent Teams，并衡量协调成本、冲突和总用量。
+        tags: [多 Agent, 实验]
+        status: optional
+        link: https://code.claude.com/docs/en/agent-teams
+
+  - type: node
+    id: automate-with-hooks
+    title: 用 Hooks 建立确定性自动化
+    description: 在 Claude Code 生命周期的明确事件上运行可审计脚本，为格式化、校验、通知和安全策略提供确定性保障。
+    tags: [Hooks, 自动化]
+    status: planned
+    link: https://code.claude.com/docs/en/hooks-guide
+    children:
+      - type: node
+        id: select-hook-events
+        title: 选择 Hook 事件与匹配器
+        description: 根据 SessionStart、UserPromptSubmit、PreToolUse、PostToolUse、Stop 和 SessionEnd 等时机选择最小触发范围。
+        tags: [生命周期]
+        status: planned
+      - type: node
+        id: define-hook-contracts
+        title: 处理 Hook 输入、输出与退出码
+        description: 按官方数据契约解析输入、返回明确结果并区分允许、阻止和非阻塞失败，避免模糊脚本行为。
+        tags: [契约]
+        status: planned
+        link: https://code.claude.com/docs/en/hooks
+      - type: node
+        id: protect-pretooluse-actions
+        title: 在工具执行前实施安全策略
+        description: 用 PreToolUse 检查高风险命令、敏感路径与网络目标，但不把 Hook 当作替代沙箱和最小权限的唯一防线。
+        tags: [安全]
+        status: planned
+      - type: node
+        id: validate-posttooluse-results
+        title: 在工具执行后自动校验结果
+        description: 用 PostToolUse 触发格式化、静态检查或结果记录，并控制运行时间与递归触发风险。
+        tags: [质量门禁]
+        status: planned
+      - type: node
+        id: test-hooks-in-isolation
+        title: 隔离测试并观测 Hooks
+        description: 为事件样例、失败退出和超时编写测试，记录触发原因且确保 Hook 故障不会破坏仓库状态。
+        tags: [测试, 调试]
+        status: planned
+
+  - type: node
+    id: manage-context-and-cost
+    title: 管理上下文、成本与输出质量
+    description: 主动控制会话长度、扩展数量和模型开销，使 Claude 在长任务中保留关键决策而不过载上下文。
+    tags: [上下文, 成本]
+    status: planned
+    link: https://code.claude.com/docs/en/costs
+    children:
+      - type: node
+        id: inspect-context-usage
+        title: 检查上下文组成与增长
+        description: 使用 /context 识别历史、文件、工具定义和扩展占用，删除与当前任务无关的输入。
+        tags: [诊断]
+        status: planned
+      - type: node
+        id: compact-or-clear-context
+        title: 正确选择 /compact 与 /clear
+        description: 在同一任务过长时压缩关键状态，在切换无关目标时清空历史，并在操作后复述剩余验收标准。
+        tags: [会话]
+        status: planned
+      - type: node
+        id: limit-extension-context
+        title: 限制 MCP、Skills 与 Subagents 的上下文占用
+        description: 只启用当前任务需要的扩展，定期审查工具描述和持久指令，避免能力堆叠降低判断质量。
+        tags: [扩展管理]
+        status: planned
+      - type: node
+        id: optimize-model-and-caching
+        title: 平衡模型、Effort 与 Prompt Caching
+        description: 根据任务难度调整模型和思考强度，复用稳定提示前缀，并用实际质量与用量数据验证优化。
+        tags: [性能, Prompt Caching]
+        status: planned
+
+  - type: node
+    id: extend-and-scale-claude-code
+    title: 连接工具并扩展规模
+    description: 在核心工作流稳定后接入 MCP、插件、代码智能、定时任务和并行工作树，并保持清晰的信任边界。
+    tags: [MCP, Plugins, 扩展]
+    status: planned
+    children:
+      - type: node
+        id: connect-tools-with-mcp
+        title: 通过 MCP 连接外部工具
+        description: 配置可信 MCP Server，检查传输、认证、工具作用域和数据去向，再用最小权限完成一次外部查询或更新。
+        tags: [MCP]
+        status: planned
+        link: https://code.claude.com/docs/en/mcp
+      - type: node
+        id: package-capabilities-as-plugin
+        title: 用 Plugins 分发能力
+        description: 将可复用命令、Agents、Skills、Hooks 或 MCP 配置组织为插件，并对来源、版本和更新进行审查。
+        tags: [Plugins]
+        status: optional
+        link: https://code.claude.com/docs/en/plugins
+      - type: node
+        id: add-code-intelligence
+        title: 接入代码智能能力
+        description: 在需要符号级导航时配置受信任的 LSP 或代码智能插件，并验证其索引范围和资源消耗。
+        tags: [LSP]
+        status: optional
+        link: https://code.claude.com/docs/en/discover-plugins#code-intelligence
+      - type: node
+        id: schedule-repeatable-jobs
+        title: 用 Loops 与计划任务调度工作
+        description: 用 /loop 在当前会话周期执行提示，需持久运行时改用 Cloud 或 Desktop 计划任务，并为任务设置预算、超时和失败通知。
+        tags: [调度, 自动化]
+        status: optional
+        link: https://code.claude.com/docs/en/scheduled-tasks
+      - type: node
+        id: receive-events-through-channels
+        title: 通过 Channels 接收外部事件
+        description: 将消息或 webhook 推送到正在运行的会话，验证插件来源、账户配对、凭据存储和可响应事件的权限边界。
+        tags: [Channels, MCP]
+        status: optional
+        link: https://code.claude.com/docs/en/channels
+      - type: node
+        id: connect-private-mcp-with-tunnels
+        title: 用 MCP Tunnels 连接私有服务
+        description: 通过仅出站的加密连接访问内网 MCP Server，并限制可暴露的工具、数据、身份与网络范围。
+        tags: [MCP Tunnels, 网络, 安全]
+        status: optional
+        link: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview
+      - type: node
+        id: parallelize-with-worktrees
+        title: 用 Git Worktrees 隔离并行任务
+        description: 为独立任务创建工作树和分支，避免多个 Agent 修改同一文件集，并在合并前统一运行质量门禁。
+        tags: [Git, 并行]
+        status: optional
+        link: https://code.claude.com/docs/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees
+      - type: node
+        id: coordinate-parallel-agent-sessions
+        title: 用 Agent View 协调并行会话
+        description: 只为相互独立且可单独验收的任务启动后台会话，集中监控进度、处理阻塞并在整合前检查每个结果。
+        tags: [Agent View, 并行]
+        status: optional
+        link: https://code.claude.com/docs/en/agent-view
+      - type: roadmap
+        roadmapId: git
+        title: 补齐 Git 与分支协作基础
+        description: 在使用 Worktrees、自动提交或并行 Agent 前，先掌握可恢复的版本控制流程。
+
+  - type: node
+    id: deliver-secure-capstone
+    title: 交付安全且可验证的真实仓库任务
+    description: 在受版本控制的仓库中组合计划、记忆、Skill、Subagent、Hook 与 MCP，完成一项有测试、有审查记录且可回退的工程变更。
+    tags: [实践, 安全, 项目]
+    status: planned
+    link: https://code.claude.com/docs/en/security
+    children:
+      - type: node
+        id: define-capstone-contract
+        title: 定义任务契约与风险边界
+        description: 选择一个跨多个文件但范围可控的缺陷或功能，写明验收标准、允许的工具、禁止路径、预算和回退方式。
+        tags: [需求, 威胁模型]
+        status: planned
+      - type: node
+        id: prepare-capstone-context
+        title: 准备项目记忆与可复用流程
+        description: 精简 CLAUDE.md，为重复检查创建一个 Skill，并为敏感命令或格式校验配置最小 Hook。
+        tags: [CLAUDE.md, Skills]
+        status: planned
+      - type: node
+        id: implement-with-review-gates
+        title: 通过计划与审批门禁实施变更
+        description: 先在 Plan Mode 审查方案，再分阶段授权修改；只把独立研究委派给 Subagent，并检查每轮差异。
+        tags: [Plan Mode, 审查]
+        status: planned
+      - type: node
+        id: defend-against-untrusted-context
+        title: 防御提示注入与越权操作
+        description: 用含恶意指令的文档或工具输出测试权限、Hook 和人工审批，确认 Claude 不会泄露凭据或执行越界操作。
+        tags: [提示注入, 最小权限]
+        status: planned
+      - type: node
+        id: sandbox-untrusted-commands
+        title: 在沙箱中限制不可信命令
+        description: 为文件和网络访问设置明确边界，在隔离环境中运行高风险命令，并验证绕过权限提示也无法触达敏感资源。
+        tags: [Sandbox, 安全]
+        status: planned
+        link: https://code.claude.com/docs/en/sandboxing
+      - type: node
+        id: verify-capstone-result
+        title: 运行测试并核验最终差异
+        description: 执行项目测试、静态检查和安全检查，人工审阅变更、日志与外部操作，并确认结果满足任务契约。
+        tags: [测试, 验收]
+        status: planned
+      - type: node
+        id: document-cost-and-recovery
+        title: 记录成本、恢复与改进项
+        description: 汇总模型与工具用量、失败路径、会话恢复步骤和可复用经验，为下一次任务调整记忆、Skill 与 Hook。
+        tags: [复盘, 成本]
+        status: planned
+      - type: node
+        id: evaluate-claude-code-security
+        title: 评估 Claude Code Security
+        description: 在组织具备相应访问资格时试用安全扫描能力，人工验证发现和修复建议，不把预览功能当作唯一安全审计。
+        tags: [安全扫描, 预览]
+        status: optional
+        link: https://www.anthropic.com/news/claude-code-security

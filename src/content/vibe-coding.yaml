@@ -1,0 +1,420 @@
+id: vibe-coding
+title: Vibe Coding
+description: 从自然语言驱动开发的基本心智出发，学会规划、约束、审查和验证 AI 生成的代码，并交付一个可回滚、可测试、可安全维护的应用。
+tags: [AI 编程, Vibe Coding, 工程实践, Agent]
+nodes:
+  - type: node
+    id: understand-vibe-coding
+    title: 建立 Vibe Coding 的正确心智
+    description: 理解由人定义目标和验收标准、由 AI 承担大量实现工作的协作方式，并始终对最终代码和产品结果负责。
+    tags: [基础, 心智模型]
+    status: planned
+    link: https://roadmap.sh/vibe-coding/tutorial
+    children:
+      - type: node
+        id: distinguish-ai-assisted-work
+        title: 区分辅助编程与结果驱动开发
+        description: 说明补全、问答、代理执行和应用生成器的差异，并根据任务风险决定交给 AI 的范围。
+        tags: [协作模式]
+        status: planned
+      - type: node
+        id: supervise-generated-code
+        title: 承担 AI 生成代码的监督责任
+        description: 把模型输出视为待验证的草稿，能够质疑假设、检查差异并拒绝无法解释或证明正确的改动。
+        tags: [审查, 责任]
+        status: planned
+        link: https://roadmap.sh/vibe-coding/best-practices
+
+  - type: node
+    id: choose-ai-coding-tool
+    title: 按工作方式选择 AI 编程工具
+    description: 比较终端代理、编辑器助手和前端应用生成器的控制粒度、上下文能力与部署边界，选择一种工具完成主线练习。
+    tags: [工具, 选型]
+    status: optional
+    link: https://roadmap.sh/vibe-coding/best-tools
+    children:
+      - type: node
+        id: try-claude-code
+        title: 使用 Claude Code 驱动终端开发
+        description: 在项目目录中让终端代理读取代码、制定计划、修改文件和执行验证，并审查每次授权范围。
+        tags: [Claude Code, CLI]
+        status: optional
+        link: https://code.claude.com/docs/en/overview
+      - type: node
+        id: try-gemini
+        title: 使用 Gemini 辅助规划与编码
+        description: 用 Gemini 完成需求澄清、代码生成和解释，并验证它获得的上下文与工具权限。
+        tags: [Gemini]
+        status: optional
+        link: https://gemini.google.com/
+      - type: node
+        id: try-codex
+        title: 使用 Codex 委派编码任务
+        description: 让 Codex 在代码库中实施边界明确的任务、运行检查并总结结果，同时保留人工审查和决策环节。
+        tags: [Codex, Agent]
+        status: optional
+        link: https://developers.openai.com/codex/
+      - type: node
+        id: try-cursor
+        title: 使用 Cursor 在编辑器中协作
+        description: 通过编辑器上下文、规则和代理模式完成小步修改，并在接受前检查生成的差异。
+        tags: [Cursor, IDE]
+        status: optional
+        link: https://cursor.com/docs
+      - type: node
+        id: try-windsurf
+        title: 使用 Windsurf 进行代理式开发
+        description: 在 IDE 中提供项目上下文并执行多文件任务，确认每轮改动、命令和验证结果符合预期。
+        tags: [Windsurf, IDE]
+        status: optional
+        link: https://docs.windsurf.com/windsurf/getting-started
+      - type: node
+        id: try-github-copilot
+        title: 使用 GitHub Copilot 辅助编码
+        description: 组合补全、聊天和代理能力处理局部任务，并用仓库规范约束生成结果。
+        tags: [GitHub Copilot]
+        status: optional
+        link: https://docs.github.com/en/copilot
+      - type: node
+        id: try-v0
+        title: 使用 v0 生成前端界面
+        description: 从界面需求或参考图生成可运行组件，再检查交互、响应式布局、可访问性和技术栈兼容性。
+        tags: [v0, 前端]
+        status: optional
+        link: https://v0.app/
+      - type: node
+        id: try-lovable
+        title: 使用 Lovable 构建应用原型
+        description: 用自然语言生成可交互应用，核对数据、认证、依赖和部署配置后再决定是否继续演进。
+        tags: [Lovable, 应用生成器]
+        status: optional
+        link: https://lovable.dev/
+
+  - type: node
+    id: plan-before-coding
+    title: 在生成代码前完成规划
+    description: 先把想法收敛为范围明确、可分阶段交付且带有验收标准的计划，再允许 AI 修改代码。
+    tags: [规划, MVP, 规格]
+    status: planned
+    link: https://roadmap.sh/vibe-coding/best-practices
+    children:
+      - type: node
+        id: define-mvp-and-phases
+        title: 定义 MVP 与后续阶段
+        description: 列出目标用户、核心场景、非目标和每阶段交付物，使首个版本只包含验证价值所需的最小范围。
+        tags: [MVP, 范围]
+        status: planned
+      - type: node
+        id: build-one-step-at-a-time
+        title: 一次实现一个可验证步骤
+        description: 将大功能拆成能独立运行和验收的小任务，每步通过检查后再进入下一步。
+        tags: [迭代, 任务拆分]
+        status: planned
+      - type: node
+        id: provide-concrete-references
+        title: 用实例和参考材料消除歧义
+        description: 向 AI 提供 mockup、示例文件、代码样例和预期输入输出，让结果对齐现有产品与代码库。
+        tags: [上下文, 示例]
+        status: planned
+        link: https://code.visualstudio.com/docs/copilot/best-practices
+      - type: node
+        id: practice-spec-driven-development
+        title: 用规格驱动复杂功能开发
+        description: 为跨文件或高风险功能编写需求、设计、任务和验收标准，并让实现始终可追溯到已确认规格。
+        tags: [SDD, 规格]
+        status: optional
+        link: https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html
+
+  - type: node
+    id: establish-stack-and-standards
+    title: 确立技术栈与编码标准
+    description: 选择资料充足且模型熟悉的技术栈，把架构、风格和模块边界写成 AI 与人都能遵循的项目约束。
+    tags: [技术选型, 代码质量, 重构]
+    status: planned
+    link: https://github.blog/news-insights/octoverse/typescript-python-and-the-ai-feedback-loop-changing-software-development/
+    children:
+      - type: node
+        id: choose-mainstream-stack
+        title: 优先选择成熟的主流技术栈
+        description: 根据团队能力、生态维护、托管条件和 AI 训练覆盖选择技术，而不是为新奇程度引入小众依赖。
+        tags: [选型, 生态]
+        status: planned
+      - type: roadmap
+        roadmapId: web-development
+        title: 补齐 Web 应用开发基础
+        description: 若项目是 Web 应用，先掌握浏览器、前后端、数据与部署的基本边界，才能有效审查 AI 的技术决策。
+      - type: node
+        id: document-coding-preferences
+        title: 记录代码风格和项目约定
+        description: 在仓库上下文文件中写明目录结构、命名、依赖政策、禁止修改区域和验证命令，并保持内容简短且最新。
+        tags: [规范, Context File]
+        status: planned
+      - type: node
+        id: require-small-modules
+        title: 要求 AI 保持模块小而内聚
+        description: 限制文件和函数承担的职责，优先复用稳定接口，避免模型沿最省事路径持续堆叠代码。
+        tags: [模块化, 架构]
+        status: planned
+        link: https://best-practice-and-impact.github.io/qa-of-code-guidance/modular_code.html
+      - type: node
+        id: schedule-refactoring
+        title: 定期安排审查与重构
+        description: 在测试保护下删除死代码、拆分膨胀模块、统一重复逻辑并复查性能，而不是等到项目无法理解时再清理。
+        tags: [重构, 技术债]
+        status: planned
+        link: https://refactoring.guru/refactoring/what-is-refactoring
+      - type: node
+        id: reuse-agent-skills
+        title: 复用经过审查的 Agent Skills
+        description: 对重复工作选择来源可信、指令透明且权限匹配的 Skill，并在使用前检查其脚本、依赖和副作用。
+        tags: [Agent Skills, 自动化]
+        status: optional
+        link: https://agentskills.io/home
+
+  - type: node
+    id: secure-ai-generated-application
+    title: 保护 AI 生成的应用
+    description: 假设生成代码可能包含不安全默认值、过宽权限和敏感信息泄露，在合并与部署前执行针对性安全检查。
+    tags: [安全, 密钥, 审计]
+    status: planned
+    link: https://best.openssf.org/Security-Focused-Guide-for-AI-Code-Assistant-Instructions.html
+    children:
+      - type: node
+        id: request-security-audit
+        title: 要求 AI 执行安全审计并人工复核
+        description: 围绕认证、授权、输入处理、数据暴露、依赖和配置生成风险清单，再用安全标准和工具验证高风险结论。
+        tags: [安全审查, 威胁]
+        status: planned
+      - type: node
+        id: keep-secrets-out-of-code
+        title: 用环境和密钥服务隔离凭据
+        description: 禁止在代码、提示词、日志和版本历史中硬编码密码、API Key 或 token，并在泄露时立即撤销轮换。
+        tags: [Secrets, 环境变量]
+        status: planned
+        link: https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html
+      - type: roadmap
+        roadmapId: devsecops
+        title: 深化安全交付能力
+        description: 对需要生产部署的项目，继续学习威胁建模、依赖治理、安全验证和漏洞响应。
+
+  - type: node
+    id: write-effective-prompts
+    title: 编写范围明确、可验收的提示词
+    description: 在每轮提示中交代单一目标、必要上下文、约束、禁止项和完成标准，使输出便于检查与回退。
+    tags: [提示词, 约束, 评审]
+    status: planned
+    link: https://roadmap.sh/vibe-coding/best-practices
+    children:
+      - type: node
+        id: request-one-task
+        title: 每轮只委派一个聚焦任务
+        description: 把多个独立需求拆开处理，避免模型跨越不同目标生成难以审查的大型差异。
+        tags: [任务拆分]
+        status: planned
+      - type: node
+        id: state-specific-outcome
+        title: 明确描述结果而非给出模糊指令
+        description: 指定需要改变的行为、涉及范围、边界输入和验证方式，让模型不必猜测真正意图。
+        tags: [具体性, 验收]
+        status: planned
+      - type: node
+        id: declare-prohibited-changes
+        title: 明确说明不可做的改动
+        description: 根据以往偏差列出不可触碰的文件、API、依赖或行为，并要求模型在发现冲突时停止说明。
+        tags: [负向约束, 边界]
+        status: planned
+      - type: node
+        id: attach-relevant-material
+        title: 提供相关文件与参考材料
+        description: 只附上完成任务所需的代码、设计和示例，指出哪些材料是规范、哪些只是参考。
+        tags: [上下文, 参考]
+        status: planned
+      - type: node
+        id: use-role-framing
+        title: 在有帮助时指定评审角色
+        description: 为 UX、性能或安全评审指定角色、证据范围和输出格式，而不是用角色扮演替代专业标准。
+        tags: [角色提示]
+        status: optional
+      - type: node
+        id: request-plan-for-complex-work
+        title: 复杂任务先要求分析与计划
+        description: 让 AI 在修改前列出假设、可选方案、影响范围和验证步骤，并由人确认关键取舍。
+        tags: [计划, 推理]
+        status: planned
+
+  - type: node
+    id: manage-agent-context
+    title: 主动管理会话与项目上下文
+    description: 让每个会话只承载当前功能所需信息，并将长期有效的约定沉淀到精简、可维护的上下文文档中。
+    tags: [上下文工程, 会话, 成本]
+    status: planned
+    link: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+    children:
+      - type: node
+        id: use-long-context-selectively
+        title: 只在必要时使用长上下文
+        description: 根据任务依赖选择最小相关材料，避免把整个仓库或无关历史塞入会话造成成本上升与注意力稀释。
+        tags: [Context Window, Token]
+        status: planned
+      - type: node
+        id: restart-after-repeated-failure
+        title: 连续偏离后重建干净会话
+        description: 当多轮纠正仍沿错误假设推进时，保留已确认事实并开启新会话，而不是继续累积混乱上下文。
+        tags: [恢复, Context Rot]
+        status: planned
+      - type: node
+        id: separate-unrelated-sessions
+        title: 为无关任务主动开启新会话
+        description: 每个功能或问题使用独立上下文，防止旧约束和中间结论污染新的工作目标。
+        tags: [会话隔离]
+        status: planned
+      - type: node
+        id: maintain-context-document
+        title: 持续维护项目上下文文档
+        description: 将反复出现且长期有效的构建命令、规范和教训写入上下文文件，并及时删除过时内容。
+        tags: [Context File, 维护]
+        status: planned
+        link: https://code.visualstudio.com/docs/copilot/guides/context-engineering-guide
+      - type: node
+        id: delegate-independent-subtasks
+        title: 用子 Agent 隔离独立子任务
+        description: 只把可并行、可独立验收且上下文边界清晰的研究或实现委派给子 Agent，再由主流程汇总验证结果。
+        tags: [子 Agent, 委派]
+        status: optional
+        link: https://code.claude.com/docs/en/sub-agents
+
+  - type: node
+    id: debug-with-ai
+    title: 借助 AI 定位故障并理解根因
+    description: 向 AI 提供可复现步骤、完整错误和相关代码，用假设与证据逐步缩小范围，并在接受修复前解释根因。
+    tags: [调试, 日志, 根因]
+    status: planned
+    link: https://www.developerway.com/posts/debugging-with-ai
+    children:
+      - type: node
+        id: provide-reproducible-error
+        title: 提供完整且可复现的错误
+        description: 交代期望行为、实际行为、复现步骤、环境和原始错误信息，避免让模型根据一句现象猜测。
+        tags: [复现, 错误信息]
+        status: planned
+      - type: node
+        id: enumerate-root-causes
+        title: 为持续故障列出并验证可能原因
+        description: 要求 AI 按可能性和验证成本排列假设，每次用一个实验排除原因并记录证据。
+        tags: [假设, 根因分析]
+        status: planned
+      - type: node
+        id: add-focused-observability
+        title: 添加聚焦的日志与诊断信息
+        description: 在关键边界加入不泄露敏感数据的结构化日志或断言，定位问题后删除临时噪声或转为长期监控。
+        tags: [日志, 可观测性]
+        status: planned
+      - type: node
+        id: connect-diagnostic-tools
+        title: 通过 MCP 接入诊断工具
+        description: 在明确权限和数据边界后，让 AI 使用浏览器、测试器或其他外部工具直接观察问题，而不是仅凭文本推断。
+        tags: [MCP, 工具]
+        status: optional
+        link: https://modelcontextprotocol.io/docs/getting-started/intro
+
+  - type: node
+    id: control-changes-with-git
+    title: 用 Git 控制每一次 AI 改动
+    description: 把干净工作区、小步提交和可靠恢复作为代理开发的安全边界，确保任何错误改动都能被检查和撤销。
+    tags: [Git, 版本控制, 回滚]
+    status: planned
+    link: https://git-scm.com/book/zh/v2
+    children:
+      - type: roadmap
+        roadmapId: git
+        title: 掌握 Git 版本控制
+        description: 补齐差异审查、原子提交、分支隔离和安全恢复能力，再让 AI 代为执行 Git 操作。
+      - type: node
+        id: commit-after-successful-task
+        title: 每个成功任务后创建清晰提交
+        description: 在验证通过后提交单一逻辑变更，用消息说明改变了什么以及为什么改变。
+        tags: [提交, 检查点]
+        status: planned
+      - type: node
+        id: start-feature-from-clean-state
+        title: 从干净工作区开始新功能
+        description: 在委派前确认现有修改已提交或安全保存，使新任务的差异和回滚边界清晰可见。
+        tags: [工作区, 分支]
+        status: planned
+      - type: node
+        id: revert-with-git
+        title: 使用 Git 可靠撤销失败改动
+        description: 根据变更是否共享选择 restore、revert 或其他安全恢复方式，不依赖 AI 工具不透明的内部撤销记录。
+        tags: [恢复, revert]
+        status: planned
+      - type: node
+        id: delegate-git-commands-carefully
+        title: 让 AI 执行 Git 操作但保留审核
+        description: 可让 AI 整理状态、建议提交消息或操作 GitHub CLI，但在重写历史、推送和合并前人工核对目标与影响。
+        tags: [GitHub CLI, 审核]
+        status: planned
+
+  - type: node
+    id: test-generated-code
+    title: 用自动化测试约束生成代码
+    description: 把测试、类型检查和静态分析设为每轮改动的完成条件，让 AI 用可重复证据证明功能而不只是声称完成。
+    tags: [测试, TDD, 回归]
+    status: planned
+    link: https://roadmap.sh/vibe-coding/best-practices
+    children:
+      - type: node
+        id: require-tests-for-features
+        title: 为每项功能同步编写测试
+        description: 覆盖关键业务规则、边界输入和失败路径，并为核心用户流程补充少量端到端测试。
+        tags: [单元测试, E2E]
+        status: planned
+      - type: node
+        id: practice-tdd-with-ai
+        title: 用 TDD 引导高风险实现
+        description: 先让失败测试表达预期行为，再生成最小实现使其通过，最后在测试保护下重构。
+        tags: [TDD, Red-Green-Refactor]
+        status: optional
+      - type: node
+        id: reproduce-bugs-with-tests
+        title: 先用失败测试复现缺陷
+        description: 修复前创建能稳定暴露问题的回归测试，确认它先失败、修复后通过且不会破坏相邻行为。
+        tags: [回归测试, 缺陷]
+        status: planned
+      - type: node
+        id: refactor-under-test-coverage
+        title: 在测试保护下持续重构
+        description: 每轮重构后运行完整质量门槛并检查行为不变，让结构改进与功能变化保持独立。
+        tags: [重构, 质量门槛]
+        status: planned
+
+  - type: node
+    id: ship-vibe-coded-project
+    title: 交付一个可验证的 Vibe Coding 项目
+    description: 用所选 AI 工具从规格到部署完成一个小型应用，并留下足以复现决策、验证质量和安全回滚的工程证据。
+    tags: [综合实践, 项目, 交付]
+    status: planned
+    children:
+      - type: node
+        id: define-project-contract
+        title: 编写项目规格与验收清单
+        description: 明确用户场景、非目标、技术栈、数据边界、阶段计划和可执行验收步骤，再开始生成代码。
+        tags: [规格, 验收]
+        status: planned
+      - type: node
+        id: implement-project-in-slices
+        title: 以小步切片实现并提交项目
+        description: 每次只委派一个垂直切片，审查差异、运行验证并创建 Git 检查点后再继续。
+        tags: [迭代, Git]
+        status: planned
+      - type: node
+        id: pass-project-quality-gates
+        title: 通过功能、安全与质量门槛
+        description: 运行测试、类型检查、静态分析和依赖审查，执行核心流程与安全检查，并修复所有阻断问题。
+        tags: [测试, 安全, 质量]
+        status: planned
+      - type: node
+        id: document-project-operation
+        title: 记录运行、部署和恢复方法
+        description: 编写从干净环境启动项目、配置密钥、部署、查看日志和回滚版本的步骤，并由他人或新会话复验。
+        tags: [文档, 部署, 回滚]
+        status: planned

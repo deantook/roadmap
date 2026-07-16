@@ -61,12 +61,25 @@ function ThemeButton() {
 
   return (
     <button
-      className="icon-button"
+      className="theme-toggle"
+      data-theme={theme}
       onClick={toggleTheme}
       aria-label={`切换为${theme === 'light' ? '深色' : '浅色'}主题`}
+      aria-pressed={theme === 'dark'}
       title={`切换为${theme === 'light' ? '深色' : '浅色'}主题`}
     >
-      {theme === 'light' ? '◐' : '☀'}
+      <span className="theme-toggle-thumb" aria-hidden="true" />
+      <span className="theme-toggle-icon theme-toggle-sun" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+        </svg>
+      </span>
+      <span className="theme-toggle-icon theme-toggle-moon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M20.1 15.4A8.5 8.5 0 0 1 8.6 3.9 8.5 8.5 0 1 0 20.1 15.4Z" />
+        </svg>
+      </span>
     </button>
   )
 }

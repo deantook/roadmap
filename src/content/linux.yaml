@@ -1,0 +1,458 @@
+id: linux
+title: Linux
+description: 从安全的实验环境与命令行基础出发，掌握 Linux 主机的文件、权限、软件、服务、存储、网络、安全、自动化和系统排障，并完成一次可恢复的小型服务器交付。
+tags: [Linux, 操作系统, 系统管理, 运维]
+nodes:
+  - type: node
+    id: build-linux-lab
+    title: 建立可重复的 Linux 实验环境
+    description: 在不影响重要数据的前提下安装一台可重置的 Linux 主机，并建立内核、用户空间、Shell 与发行版之间的基本心智模型。
+    tags: [入门, 实验环境, 操作系统]
+    status: planned
+    link: https://www.kernel.org/doc/html/latest/admin-guide/README.html
+    children:
+      - type: node
+        id: choose-and-install-distribution
+        title: 选择并安装一个主流发行版
+        description: 根据桌面、服务器或开发用途选择仍受支持的发行版，在虚拟机或备用设备中完成安装、更新和重启验证。
+        tags: [发行版, 安装, 虚拟机]
+        status: planned
+      - type: node
+        id: distinguish-system-layers
+        title: 区分内核、用户空间与 Shell
+        description: 能说明硬件、Linux 内核、系统调用、系统服务、命令行工具和应用程序如何协作完成一次操作。
+        tags: [内核, 用户空间, Shell]
+        status: planned
+      - type: node
+        id: inspect-host-context
+        title: 识别当前主机与会话环境
+        description: 使用 uname、os-release、hostnamectl、whoami 和环境变量确认系统版本、硬件架构、身份及会话上下文。
+        tags: [系统信息, 环境]
+        status: planned
+      - type: node
+        id: create-recovery-point
+        title: 为破坏性练习准备恢复点
+        description: 创建虚拟机快照或可验证的备份，记录恢复步骤，并实际演练一次回滚后再修改磁盘、网络或启动配置。
+        tags: [快照, 恢复, 安全实践]
+        status: planned
+
+  - type: node
+    id: work-effectively-in-shell
+    title: 在命令行中高效完成日常任务
+    description: 能查询帮助、操作文件、组合文本工具并理解命令退出结果，为后续系统管理建立稳定的操作习惯。
+    tags: [命令行, GNU, Shell]
+    status: planned
+    link: https://www.gnu.org/software/coreutils/manual/
+    children:
+      - type: node
+        id: navigate-and-manage-files
+        title: 导航并安全管理文件
+        description: 使用 pwd、cd、ls、mkdir、cp、mv、rm 和通配符完成文件操作，并在覆盖或递归删除前核对作用范围。
+        tags: [文件, 目录, Coreutils]
+        status: planned
+      - type: node
+        id: read-local-documentation
+        title: 从本机文档确定命令用法
+        description: 使用 man、info、help、apropos 和 --help 查找命令、配置格式与系统管理工具，并能区分手册章节。
+        tags: [man, 帮助, 自学]
+        status: planned
+        link: https://man7.org/linux/man-pages/man7/man-pages.7.html
+      - type: node
+        id: compose-stream-pipelines
+        title: 用重定向和管道组合数据流
+        description: 区分标准输入、标准输出与标准错误，使用重定向、管道和 tee 构建可检查的命令链。
+        tags: [管道, 重定向, 数据流]
+        status: planned
+      - type: node
+        id: search-and-transform-text
+        title: 搜索、筛选并转换文本
+        description: 使用 grep、find、sort、uniq、cut、tr、sed 或 awk 从日志和结构化文本中提取需要的信息。
+        tags: [文本处理, grep, find]
+        status: planned
+      - type: node
+        id: archive-and-verify-files
+        title: 归档、压缩并校验文件
+        description: 使用 tar 和常见压缩工具打包数据，以校验和验证传输结果，并在临时目录测试解包内容。
+        tags: [归档, 压缩, 校验]
+        status: planned
+        link: https://www.gnu.org/software/tar/manual/
+
+  - type: node
+    id: manage-filesystem-and-access
+    title: 管理文件系统布局、身份与访问权限
+    description: 理解 Linux 如何组织持久数据、运行时状态和设备，并以用户、组和最小权限控制本地与远程访问。
+    tags: [文件系统, 权限, 用户]
+    status: planned
+    link: https://specifications.freedesktop.org/fhs/latest/
+    children:
+      - type: node
+        id: interpret-filesystem-layout
+        title: 解释关键目录的职责
+        description: 区分 /etc、/home、/run、/tmp、/usr、/var、/proc、/sys 与 /dev 中配置、状态、接口和设备文件的用途。
+        tags: [FHS, 目录结构]
+        status: planned
+      - type: node
+        id: work-with-links-and-metadata
+        title: 使用链接、inode 与文件元数据
+        description: 区分硬链接和符号链接，使用 stat 检查 inode、时间戳、所有者与文件类型，并预测移动或删除目标的影响。
+        tags: [inode, 链接, 元数据]
+        status: planned
+      - type: node
+        id: administer-users-and-groups
+        title: 管理用户、组与登录环境
+        description: 创建和停用账号，维护主组与附加组、家目录和登录 Shell，并检查账号数据库与当前登录会话。
+        tags: [用户, 用户组, 账号]
+        status: planned
+      - type: node
+        id: enforce-file-permissions
+        title: 用所有权和权限保护文件
+        description: 使用 chmod、chown、umask 和必要的 ACL 实现明确访问策略，并通过不同身份验证读、写和执行结果。
+        tags: [chmod, ACL, 最小权限]
+        status: planned
+        link: https://man7.org/linux/man-pages/man7/inode.7.html
+      - type: node
+        id: delegate-and-audit-privilege
+        title: 通过 sudo 委派可审计的管理权限
+        description: 为管理任务授予最小必要命令范围，使用安全编辑流程验证配置，并避免共享 root 凭据或长期 root 会话。
+        tags: [sudo, root, 审计]
+        status: planned
+
+  - type: node
+    id: maintain-software-and-configuration
+    title: 维护软件包与系统配置
+    description: 能通过发行版支持的渠道安装、更新和移除软件，安全修改配置，并保留可追踪、可回退的变更记录。
+    tags: [包管理, 配置, 更新]
+    status: planned
+    children:
+      - type: node
+        id: operate-native-package-manager
+        title: 使用发行版原生包管理器
+        description: 在所选发行版中查询、安装、升级、移除和验证软件包，理解仓库、包元数据、依赖与签名的作用。
+        tags: [APT, DNF, 软件仓库]
+        status: planned
+        link: https://www.debian.org/doc/manuals/debian-handbook/sect.apt-get.en.html
+      - type: node
+        id: choose-trusted-software-sources
+        title: 评估并限制软件来源
+        description: 优先使用发行版仓库，核对第三方仓库的维护者、签名密钥和支持范围，避免直接执行来源不明的安装脚本。
+        tags: [供应链, 签名, 仓库]
+        status: planned
+      - type: node
+        id: edit-configurations-safely
+        title: 安全编辑并验证配置文件
+        description: 修改前备份或纳入版本控制，保持权限和语法正确，使用程序提供的检查命令验证后再重载服务。
+        tags: [配置管理, 验证, 回滚]
+        status: planned
+      - type: node
+        id: plan-system-updates
+        title: 规划并验证系统更新
+        description: 阅读更新范围和发行说明，在维护窗口内升级，重启需要更新的组件，并用健康检查确认服务与访问仍正常。
+        tags: [补丁, 升级, 维护窗口]
+        status: planned
+      - type: roadmap
+        roadmapId: git
+        title: 用 Git 追踪脚本与非敏感配置
+        description: 将主机配置模板、自动化脚本和操作文档纳入可审查的版本历史，敏感信息继续使用独立安全存储。
+
+  - type: node
+    id: operate-processes-and-services
+    title: 操作进程、服务与计划任务
+    description: 能观察程序运行状态、控制进程生命周期，并在采用 systemd 的主机上管理服务、日志与开机行为。
+    tags: [进程, systemd, 服务]
+    status: planned
+    link: https://systemd.io/
+    children:
+      - type: node
+        id: inspect-process-lifecycle
+        title: 检查进程层级与运行状态
+        description: 使用 ps、pgrep、top 和 /proc 识别 PID、父子关系、状态、打开资源和命令参数，并区分程序、进程与线程。
+        tags: [进程, PID, procfs]
+        status: planned
+        link: https://www.kernel.org/doc/html/latest/filesystems/proc.html
+      - type: node
+        id: control-jobs-and-signals
+        title: 用作业控制和信号管理进程
+        description: 在前台与后台之间切换任务，使用适当信号请求重载、终止或强制结束进程，并检查退出状态与遗留资源。
+        tags: [信号, 作业控制, 退出码]
+        status: planned
+      - type: node
+        id: manage-systemd-units
+        title: 管理并诊断 systemd 单元
+        description: 使用 systemctl 查询依赖和状态，启动、停止、重启、重载及启停开机自启，并从失败原因定位配置问题。
+        tags: [systemctl, Unit, 启动]
+        status: planned
+        link: https://www.freedesktop.org/software/systemd/man/latest/systemctl.html
+      - type: node
+        id: investigate-journal-logs
+        title: 用系统日志还原服务事件
+        description: 使用 journalctl 按单元、时间、启动轮次和优先级筛选记录，将日志与配置变更和服务状态关联起来。
+        tags: [journalctl, 日志, 排障]
+        status: planned
+        link: https://www.freedesktop.org/software/systemd/man/latest/journalctl.html
+      - type: node
+        id: schedule-recurring-work
+        title: 可靠调度周期性任务
+        description: 根据环境选择 cron 或 systemd timer，显式设置身份、工作目录、环境、超时和日志，并验证错过执行后的行为。
+        tags: [cron, Timer, 调度]
+        status: planned
+
+  - type: node
+    id: administer-storage-and-recovery
+    title: 管理存储、文件系统与数据恢复
+    description: 能识别块设备和挂载关系，安全扩展可用空间，并通过经过演练的备份恢复保护重要数据。
+    tags: [存储, 挂载, 备份]
+    status: planned
+    children:
+      - type: node
+        id: map-storage-stack
+        title: 映射设备到文件系统的存储栈
+        description: 使用 lsblk、blkid、findmnt 和 df 识别磁盘、分区、文件系统、UUID 与挂载点之间的关系。
+        tags: [块设备, 分区, 文件系统]
+        status: planned
+      - type: node
+        id: mount-filesystems-safely
+        title: 临时和持久地挂载文件系统
+        description: 在实验设备上执行挂载与卸载，使用 UUID 和合适选项配置持久挂载，并在重启前验证配置不会阻断启动。
+        tags: [mount, fstab, UUID]
+        status: planned
+        link: https://man7.org/linux/man-pages/man8/mount.8.html
+      - type: node
+        id: diagnose-capacity-pressure
+        title: 区分容量、inode 与占用异常
+        description: 结合 df、du、lsof 和 inode 统计定位空间耗尽、已删除但仍打开的文件及目录增长来源。
+        tags: [容量, inode, lsof]
+        status: planned
+      - type: node
+        id: back-up-and-restore-data
+        title: 设计并演练备份恢复
+        description: 为重要数据定义恢复点与恢复时间目标，保留独立副本，校验备份完整性并在干净目录完成一次恢复验收。
+        tags: [备份, 恢复, 验证]
+        status: planned
+      - type: node
+        id: explore-volume-management
+        title: 使用卷管理扩展存储布局
+        description: 在快照保护的实验环境中理解物理卷、卷组和逻辑卷，完成一次扩容并验证文件系统和数据状态。
+        tags: [LVM, 扩容, 快照]
+        status: optional
+
+  - type: node
+    id: configure-and-troubleshoot-networking
+    title: 配置并排查主机网络
+    description: 从接口、地址、路由、名称解析和端口逐层验证连通性，并安全提供远程管理访问。
+    tags: [网络, DNS, SSH]
+    status: planned
+    children:
+      - type: node
+        id: explain-network-path
+        title: 解释数据包离开主机的路径
+        description: 能结合链路、IP 地址、子网、默认路由、DNS、TCP 或 UDP 端口说明客户端访问服务所依赖的各层条件。
+        tags: [TCP/IP, 路由, 端口]
+        status: planned
+      - type: node
+        id: inspect-addresses-routes-sockets
+        title: 检查接口、地址、路由与套接字
+        description: 使用 ip 和 ss 查看当前网络状态，识别监听地址、默认路由和连接端点，并把端口映射到对应进程。
+        tags: [iproute2, ss, 套接字]
+        status: planned
+        link: https://man7.org/linux/man-pages/man8/ip.8.html
+      - type: node
+        id: diagnose-connectivity-layers
+        title: 分层诊断连接与名称解析
+        description: 使用 ping、tracepath、dig 或 resolvectl、curl 和 nc 验证链路到应用协议的假设，明确故障发生在哪一层。
+        tags: [诊断, DNS, HTTP]
+        status: planned
+      - type: node
+        id: secure-remote-access
+        title: 使用 SSH 安全管理远程主机
+        description: 使用密钥认证和主机密钥校验建立连接，限制高权限与不必要的认证方式，并能安全复制文件和转发端口。
+        tags: [OpenSSH, 密钥, 远程访问]
+        status: planned
+        link: https://man.openbsd.org/ssh
+      - type: node
+        id: enforce-host-firewall-policy
+        title: 用主机防火墙实现最小暴露
+        description: 先盘点必需服务，再通过发行版前端或 nftables 只允许预期流量，并从本地控制台验证规则和恢复路径。
+        tags: [nftables, 防火墙, 最小暴露]
+        status: planned
+        link: https://wiki.nftables.org/wiki-nftables/index.php/Main_Page
+
+  - type: node
+    id: harden-and-audit-host
+    title: 加固并审计 Linux 主机
+    description: 围绕补丁、身份、服务、日志和强制访问控制降低攻击面，同时保留可验证的运维入口与恢复能力。
+    tags: [安全, 加固, 审计]
+    status: planned
+    children:
+      - type: node
+        id: inventory-and-reduce-attack-surface
+        title: 盘点并减少攻击面
+        description: 列出软件包、监听端口、启用服务和特权账号，移除不需要的组件并确认业务和管理访问不受影响。
+        tags: [攻击面, 服务, 端口]
+        status: planned
+      - type: node
+        id: apply-least-privilege
+        title: 对人和服务实施最小权限
+        description: 分离日常账号与管理权限，为服务使用独立身份和受限文件访问，并定期复查组成员、sudo 与 SSH 授权。
+        tags: [最小权限, 身份, 服务账号]
+        status: planned
+      - type: node
+        id: protect-secrets-and-keys
+        title: 保护密钥与敏感配置
+        description: 限制凭据文件的所有者和权限，避免在命令历史、脚本、日志或版本库中泄露，并建立轮换和撤销方式。
+        tags: [密钥, 凭据, 权限]
+        status: planned
+      - type: node
+        id: preserve-security-evidence
+        title: 保留可用于调查的系统证据
+        description: 配置合理的日志持久化、时间同步和轮转，记录重要认证与权限事件，并验证磁盘压力下的日志行为。
+        tags: [日志, 时间同步, 审计]
+        status: planned
+      - type: node
+        id: apply-mandatory-access-control
+        title: 按发行版应用强制访问控制
+        description: 在不盲目关闭保护的前提下阅读 SELinux 或 AppArmor 拒绝记录，调整策略或配置并验证服务所需的最小访问。
+        tags: [SELinux, AppArmor, LSM]
+        status: optional
+        link: https://www.kernel.org/doc/html/latest/admin-guide/LSM/index.html
+
+  - type: node
+    id: automate-repeatable-operations
+    title: 编写安全且可重复的运维自动化
+    description: 将已经理解并手工验证的操作封装成可检查、可失败、可重复执行的 Shell 脚本和配置流程。
+    tags: [Bash, 自动化, Shell]
+    status: planned
+    link: https://www.gnu.org/software/bash/manual/bash.html
+    children:
+      - type: node
+        id: write-structured-shell-scripts
+        title: 编写结构清晰的 Bash 脚本
+        description: 使用参数、变量、引用、条件、循环和函数组织任务，通过明确输入输出让脚本可以被他人阅读和调用。
+        tags: [Bash, 脚本, 函数]
+        status: planned
+      - type: node
+        id: handle-failures-explicitly
+        title: 显式处理失败与清理
+        description: 检查退出状态，捕获需要的信号，使用临时目录和清理逻辑，并在失败时输出足以定位步骤的错误信息。
+        tags: [错误处理, trap, 退出码]
+        status: planned
+      - type: node
+        id: design-idempotent-automation
+        title: 让自动化可以安全重复执行
+        description: 执行前检查当前状态，只修改偏离目标的部分，并在部分失败后允许从已知状态重试而不重复破坏数据。
+        tags: [幂等, 状态, 重试]
+        status: planned
+      - type: node
+        id: validate-and-review-scripts
+        title: 测试并审查运维脚本
+        description: 使用静态检查、受控输入和临时实验环境覆盖成功、失败与边界路径，再通过代码评审确认权限和破坏性操作范围。
+        tags: [测试, ShellCheck, 代码评审]
+        status: planned
+      - type: node
+        id: adopt-configuration-management
+        title: 评估配置管理工具
+        description: 当主机数量或配置复杂度增长时，选择 Ansible 或同类工具声明目标状态，并比较其与自编 Shell 脚本的维护边界。
+        tags: [Ansible, 配置管理, 声明式]
+        status: optional
+
+  - type: node
+    id: troubleshoot-systematically
+    title: 系统化诊断启动、资源与服务故障
+    description: 从症状和时间线出发收集证据、提出可证伪假设、实施最小变更，并在恢复后记录根因和预防措施。
+    tags: [排障, 性能, 可靠性]
+    status: planned
+    children:
+      - type: node
+        id: follow-evidence-driven-workflow
+        title: 用证据驱动排障流程
+        description: 明确预期与实际行为、影响范围和最近变更，保存关键输出，逐层验证假设并避免同时修改多个变量。
+        tags: [方法论, 证据, 变更]
+        status: planned
+      - type: node
+        id: recover-boot-and-service-failures
+        title: 恢复启动与服务失败
+        description: 从引导阶段、失败单元和前次启动日志定位问题，使用救援环境或已知可用配置恢复，并验证下次正常启动。
+        tags: [启动, systemd, 恢复]
+        status: planned
+      - type: node
+        id: diagnose-resource-bottlenecks
+        title: 定位 CPU、内存、磁盘与 I/O 瓶颈
+        description: 结合负载、利用率、等待、交换和进程级指标区分资源饱和与应用等待，再用可重复负载验证结论。
+        tags: [CPU, 内存, I/O]
+        status: planned
+      - type: node
+        id: correlate-logs-metrics-events
+        title: 关联日志、指标与变更事件
+        description: 对齐时间范围，将内核、服务、认证和应用记录与资源曲线及最近变更组合成一条可解释的故障时间线。
+        tags: [日志, 指标, 时间线]
+        status: planned
+      - type: node
+        id: document-and-prevent-recurrence
+        title: 记录根因并验证预防措施
+        description: 编写可复现步骤、影响、根因、修复与回滚说明，把有效检查加入监控、测试或运行手册并验证其能提前发现问题。
+        tags: [复盘, Runbook, 预防]
+        status: planned
+
+  - type: node
+    id: capstone-secure-linux-service
+    title: 交付一台可恢复的 Linux 小型服务器
+    description: 在全新虚拟机中部署一个静态站点或简单服务，形成从安装、加固、运行、观测到备份恢复的完整可验证交付。
+    tags: [综合实践, 服务器, 验收]
+    status: planned
+    children:
+      - type: node
+        id: provision-service-host
+        title: 从基线配置并启动服务
+        description: 创建非特权服务身份，安装可信软件包，配置 systemd 服务与最小网络暴露，并记录每项变更和回滚方法。
+        tags: [部署, systemd, 最小权限]
+        status: planned
+      - type: node
+        id: add-operations-and-recovery
+        title: 补齐监控、日志、更新与恢复
+        description: 加入健康检查、日志查询、资源检查、补丁流程和数据备份，在另一位置完成恢复并记录恢复耗时。
+        tags: [监控, 备份, 更新]
+        status: planned
+      - type: node
+        id: run-failure-drills
+        title: 执行并复盘故障演练
+        description: 模拟服务退出、端口阻断、磁盘占满和错误配置，使用运行手册恢复并根据证据改进自动化与保护措施。
+        tags: [故障演练, 排障, 复盘]
+        status: planned
+      - type: node
+        id: rebuild-from-documentation
+        title: 仅凭版本化资料重建主机
+        description: 在干净虚拟机中依据脚本、配置模板和文档重新交付服务，验证没有依赖原主机的隐式状态或未记录凭据。
+        tags: [可重复性, 文档, 验收]
+        status: planned
+
+  - type: node
+    id: choose-linux-specialization
+    title: 按目标选择 Linux 深化方向
+    description: 完成主机管理与排障闭环后，再根据岗位和系统规模进入交付平台、容器编排、内核或桌面等专业方向。
+    tags: [进阶, 职业方向]
+    status: optional
+    children:
+      - type: roadmap
+        roadmapId: devops
+        title: 进入自动化交付与可靠性工程
+        description: 将 Linux 主机能力扩展到持续集成、基础设施即代码、可观测性和可回滚交付。
+      - type: roadmap
+        roadmapId: docker
+        title: 学习 Linux 容器交付
+        description: 使用镜像、命名空间和资源边界把应用交付为可复现的容器运行环境。
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 管理集群化容器工作负载
+        description: 在掌握单机 Linux 与容器后学习声明式编排、服务发现、存储和集群运维。
+      - type: node
+        id: study-kernel-and-systems-programming
+        title: 深入内核与系统编程
+        description: 学习系统调用、进程、虚拟内存、VFS、网络栈、eBPF 或内核模块，并通过跟踪工具验证用户空间与内核行为。
+        tags: [内核, 系统编程, eBPF]
+        status: optional
+        link: https://www.kernel.org/doc/html/latest/
+      - type: node
+        id: specialize-desktop-and-devices
+        title: 深化桌面与设备管理
+        description: 按使用场景学习图形会话、音频、打印、电源管理、驱动与硬件诊断，形成适合个人工作站的维护流程。
+        tags: [桌面, 硬件, 驱动]
+        status: optional

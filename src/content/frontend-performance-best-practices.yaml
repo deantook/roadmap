@@ -1,0 +1,432 @@
+id: frontend-performance-best-practices
+title: 前端性能最佳实践
+description: 以 roadmap.sh 前端性能清单为覆盖基线，从指标与预算、资源交付和关键渲染路径出发，完成一次可测量、可回归的真实页面性能优化。
+tags: [前端, Web 性能, Core Web Vitals, 最佳实践]
+nodes:
+  - type: roadmap
+    roadmapId: frontend
+    title: 先补齐现代前端开发基础
+    description: 在开始专项优化前，具备 HTML、CSS、JavaScript、浏览器工具和应用发布的基本能力。
+  - type: roadmap
+    roadmapId: javascript
+    title: 补充 JavaScript 执行模型
+    description: 需要深入分析主线程、长任务和内存问题时，回到 JavaScript 路线补齐语言与运行时基础。
+
+  - type: node
+    id: define-performance-targets
+    title: 用用户指标和性能预算定义目标
+    description: 先建立可重复的实验室与真实用户基线，再把页面体积、加载、响应和稳定性目标写成可验证预算。
+    tags: [性能预算, Core Web Vitals, RUM]
+    status: planned
+    link: https://web.dev/learn/performance/general-html-performance
+    children:
+      - type: node
+        id: measure-core-web-vitals
+        title: 测量 LCP、INP 与 CLS
+        description: 分别衡量主要内容呈现、交互响应和视觉稳定性，并以真实访问第 75 百分位判断用户体验是否达标。
+        tags: [LCP, INP, CLS]
+        status: planned
+        link: https://web.dev/articles/defining-core-web-vitals-thresholds
+      - type: node
+        id: set-page-weight-budget
+        title: 为页面和资源类型设置体积预算
+        description: 将原清单的 1500 KB 与理想 500 KB 作为讨论起点，按目标设备、网络和用户任务为 HTML、CSS、JavaScript、图片与字体分配预算。
+        tags: [页面体积, Budget]
+        status: planned
+        link: https://web.dev/articles/performance-budgets-101
+      - type: node
+        id: set-loading-time-budget
+        title: 为关键页面设置加载时间预算
+        description: 用原清单的 3 秒目标建立初始基线，再以 LCP 和关键内容可用时间在代表性设备与网络上验收。
+        tags: [加载性能, LCP]
+        status: planned
+      - type: node
+        id: diagnose-ttfb
+        title: 测量并分解 TTFB
+        description: 将原清单的 1.3 秒作为排查信号，并把重定向、DNS、连接、服务器处理与网络往返分别归因后再优化。
+        tags: [TTFB, 服务端, 网络]
+        status: planned
+        link: https://web.dev/articles/ttfb
+      - type: node
+        id: combine-lab-and-field-data
+        title: 结合实验室数据与真实用户数据
+        description: 用受控测试复现瓶颈，用 CrUX 或自有 RUM 验证真实设备、网络与用户路径上的影响，避免只追逐单次评分。
+        tags: [Lab, Field, CrUX]
+        status: planned
+        link: https://web.dev/articles/vitals-tools
+
+  - type: node
+    id: optimize-network-delivery
+    title: 优化网络连接与资源交付
+    description: 减少无效传输和每次请求的开销，并通过压缩、缓存和边缘分发缩短资源到达浏览器的时间。
+    tags: [HTTP, 缓存, CDN, 压缩]
+    status: planned
+    link: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Understanding_latency
+    children:
+      - type: node
+        id: serve-everything-over-https
+        title: 通过 HTTPS 一致地交付资源
+        description: 页面及其子资源统一使用 HTTPS，消除混合内容、额外协议跳转和连接安全降级。
+        tags: [HTTPS, Mixed Content]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content
+      - type: node
+        id: remove-failed-resource-requests
+        title: 消除 404 与不可达资源请求
+        description: 在 Network 面板和日志中定位失效 URL、重定向链与重复请求，修复引用或删除不再需要的资源。
+        tags: ['404', Network]
+        status: planned
+      - type: node
+        id: reduce-request-overhead
+        title: 减少不必要的 HTTP 请求
+        description: 删除未使用资源并合并重复数据获取；是否打包资源应依据 HTTP 版本、缓存粒度和实际瀑布图决定。
+        tags: [请求瀑布, HTTP]
+        status: planned
+      - type: node
+        id: enable-transfer-compression
+        title: 为文本资源启用 Brotli 或 Gzip
+        description: 对 HTML、CSS、JavaScript、JSON 和 SVG 协商内容编码，并避免重复压缩已压缩的图片、视频或字体格式。
+        tags: [Brotli, Gzip]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression
+      - type: node
+        id: use-cdn-for-static-assets
+        title: 用 CDN 就近交付可缓存资源
+        description: 将适合公开缓存的静态资源分发到边缘节点，并验证缓存键、回源、失效和跨域配置。
+        tags: [CDN, Edge]
+        status: planned
+      - type: node
+        id: configure-http-caching
+        title: 正确设置 HTTP 缓存标头
+        description: 为带内容哈希的静态资源设置长期缓存，为可变内容选择验证或短期缓存，并检查 Cache-Control、ETag 与 Vary 的组合。
+        tags: [Cache-Control, ETag]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching
+      - type: node
+        id: minimize-cookie-overhead
+        title: 限制 Cookie 数量和体积
+        description: 删除不需要随请求发送的 Cookie，收窄 Domain 与 Path，并以原清单单项 4096 字节、总数 20 个作为风险检查而非跨浏览器保证。
+        tags: [Cookie, 请求头]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies
+
+  - type: node
+    id: prioritize-critical-resources
+    title: 缩短关键资源发现与渲染路径
+    description: 让浏览器尽早发现首屏必需资源，延后非关键内容，并减少 HTML 与第三方嵌入带来的阻塞工作。
+    tags: [关键渲染路径, Resource Hints, HTML]
+    status: planned
+    link: https://web.dev/learn/performance/optimize-resource-loading
+    children:
+      - type: node
+        id: minify-production-html
+        title: 压缩生产 HTML
+        description: 在保留必要语义和许可信息的前提下移除注释与冗余空白，并确认压缩不会改变预格式化内容。
+        tags: [HTML, Minify]
+        status: planned
+      - type: node
+        id: limit-iframe-cost
+        title: 限制 iframe 数量与启动成本
+        description: 只嵌入产品必需的外部页面，对非首屏 iframe 使用懒加载，并测量其脚本、连接和内存开销。
+        tags: [iframe, 第三方内容]
+        status: planned
+        link: https://web.dev/articles/iframe-lazy-loading
+      - type: node
+        id: use-resource-hints-selectively
+        title: 有选择地使用 preconnect 与 preload
+        description: 只为确定会使用的关键跨源连接和晚发现资源添加提示，检查优先级是否改善且没有抢占更重要的下载。
+        tags: [preconnect, preload]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload
+      - type: node
+        id: manage-third-party-code
+        title: 控制第三方代码的加载成本
+        description: 盘点标签、嵌入和 SDK 的业务价值，延后非关键脚本并为第三方故障、长任务和数据传输设置预算。
+        tags: [第三方脚本, Tag Manager]
+        status: planned
+        link: https://web.dev/articles/third-party-javascript
+
+  - type: node
+    id: optimize-css-delivery
+    title: 优化 CSS 交付与样式计算
+    description: 缩小阻塞样式体积，优先提供首屏所需规则，并通过测量控制未使用样式与复杂选择器造成的成本。
+    tags: [CSS, 渲染阻塞, Coverage]
+    status: planned
+    link: https://web.dev/learn/performance/optimize-resource-loading#css
+    children:
+      - type: node
+        id: minify-production-css
+        title: 压缩生产 CSS
+        description: 在构建中移除注释、空白和可安全合并的声明，并用源映射保留生产问题的可诊断性。
+        tags: [CSS, Minify]
+        status: planned
+      - type: node
+        id: remove-unused-css
+        title: 删除未使用 CSS
+        description: 结合 Coverage、路由和动态状态识别不可达规则，避免误删运行时类名或只在少数流程出现的样式。
+        tags: [Coverage, Tree Shaking]
+        status: planned
+      - type: node
+        id: deliver-critical-css-first
+        title: 优先交付关键 CSS
+        description: 保持首屏阻塞样式精简，必要时内联少量关键 CSS，并确保其余样式可及时加载且不会产生无样式闪烁。
+        tags: [Critical CSS, 首屏]
+        status: planned
+        link: https://web.dev/articles/extract-critical-css
+      - type: node
+        id: avoid-unmanaged-inline-css
+        title: 避免散落且不可缓存的内联 CSS
+        description: 将常规样式留在可复用、可缓存的样式资源中，只把经过测量的少量关键 CSS 作为受控例外。
+        tags: [内联样式, 缓存]
+        status: planned
+      - type: node
+        id: choose-css-bundling-by-measurement
+        title: 按协议与缓存需求决定 CSS 分包
+        description: 保留原清单“合并单个文件”的优化意图，但在 HTTP/2 或 HTTP/3 下依据关键路径、并行下载和缓存失效选择分包策略。
+        tags: [Bundling, HTTP/2, HTTP/3]
+        status: optional
+      - type: node
+        id: profile-style-complexity
+        title: 分析样式表与选择器复杂度
+        description: 在真实交互的 Recalculate Style 事件中检查匹配成本、DOM 规模与强制布局，只优化能在 Profile 中观察到的热点。
+        tags: [选择器, Recalculate Style]
+        status: planned
+        link: https://developer.chrome.com/docs/devtools/performance/selector-stats
+
+  - type: node
+    id: optimize-images
+    title: 为显示场景优化图片
+    description: 用合适的格式、尺寸、压缩和加载优先级减少图片字节，同时保护首屏速度与页面视觉稳定性。
+    tags: [图片, 响应式图片, LCP, CLS]
+    status: planned
+    link: https://web.dev/learn/performance/image-performance
+    children:
+      - type: node
+        id: choose-image-format
+        title: 按内容选择图片格式
+        description: 照片、透明图、动画和矢量图分别比较 AVIF、WebP、JPEG、PNG、SVG 等格式的质量、体积和目标浏览器支持。
+        tags: [AVIF, WebP, SVG]
+        status: planned
+      - type: node
+        id: compress-image-assets
+        title: 压缩图片并控制数量
+        description: 以可接受的视觉质量导出图片，删除重复或装饰性资源，并用构建或媒体管线稳定复现压缩结果。
+        tags: [压缩, 图片管线]
+        status: planned
+      - type: node
+        id: prefer-vector-for-scalable-artwork
+        title: 为可缩放图形优先使用矢量资源
+        description: 图标、徽标和简单插画优先评估 SVG，同时控制路径复杂度、字体依赖和不受信任内容的安全边界。
+        tags: [SVG, 矢量图]
+        status: planned
+      - type: node
+        id: serve-responsive-images
+        title: 提供接近显示尺寸的响应式图片
+        description: 使用 srcset、sizes 或图片服务让浏览器按视口与像素密度选择候选，避免下载远大于渲染尺寸的位图。
+        tags: [srcset, sizes]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images
+      - type: node
+        id: reserve-image-space
+        title: 为图片预留稳定的宽高比
+        description: 提供 width 与 height 或 CSS aspect-ratio，使浏览器在资源到达前即可分配空间并减少 CLS。
+        tags: [width, height, CLS]
+        status: planned
+        link: https://web.dev/articles/optimize-cls#images-without-dimensions
+      - type: node
+        id: lazy-load-offscreen-images
+        title: 懒加载非首屏图片
+        description: 对视口外图片使用原生懒加载，但让 LCP 图片保持可立即发现并给予适当优先级。
+        tags: [lazy loading, LCP]
+        status: planned
+        link: https://web.dev/articles/browser-level-image-lazy-loading
+      - type: node
+        id: avoid-routine-base64-images
+        title: 避免把常规图片内联为 Base64
+        description: 只有测量证明能减少关键路径延迟时才内联极小资源，权衡体积膨胀、缓存粒度和 HTML 或 CSS 解析成本。
+        tags: [Base64, Data URL]
+        status: planned
+
+  - type: node
+    id: optimize-javascript
+    title: 减少 JavaScript 下载与主线程工作
+    description: 只交付当前页面需要的代码，让非关键脚本不阻塞解析，并用性能记录定位执行、渲染和内存热点。
+    tags: [JavaScript, 主线程, Bundle]
+    status: planned
+    link: https://web.dev/learn/performance/code-split-javascript
+    children:
+      - type: node
+        id: minify-production-javascript
+        title: 压缩生产 JavaScript
+        description: 在生产构建中压缩和消除死代码，保留可控源映射，并比较传输体积与解析执行成本。
+        tags: [Minify, Tree Shaking]
+        status: planned
+      - type: node
+        id: load-scripts-without-parser-blocking
+        title: 避免脚本阻塞 HTML 解析
+        description: 根据依赖与执行顺序选择 module、defer 或 async，并把多个零散内联脚本纳入可审计的加载策略。
+        tags: [async, defer, module]
+        status: planned
+        link: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script
+      - type: node
+        id: split-code-by-user-need
+        title: 按路由和用户需求拆分代码
+        description: 延迟加载低频功能并预取高概率的下一步资源，同时避免产生过多小块、重复依赖或加载瀑布。
+        tags: [Code Splitting, 动态导入]
+        status: planned
+      - type: node
+        id: control-dependency-cost
+        title: 控制依赖体积并保持可维护更新
+        description: 引入前检查依赖的下载、解析、执行、重复代码与替代方案，并持续更新以获得修复而不盲目追新。
+        tags: [依赖, Bundle Size]
+        status: planned
+      - type: node
+        id: profile-javascript-hotspots
+        title: 用 Profile 定位 JavaScript 性能问题
+        description: 记录真实用户操作，沿调用栈定位长任务、频繁布局、过量事件与内存增长，再以优化前后记录验证收益。
+        tags: [Profile, Long Task, Memory]
+        status: planned
+        link: https://developer.chrome.com/docs/devtools/performance
+      - type: node
+        id: add-service-worker-caching
+        title: 为重复访问设计 Service Worker 缓存
+        description: 仅在离线或重复访问收益明确时选择缓存策略，并处理版本升级、失效资源、回退和存储限制。
+        tags: [Service Worker, Cache API]
+        status: optional
+        link: https://web.dev/learn/pwa/serving
+
+  - type: node
+    id: optimize-web-fonts
+    title: 优化 Web Font 加载与文本呈现
+    description: 缩小字体资源并控制连接、发现和替换时机，使文本尽早可读且字体切换不会破坏布局。
+    tags: [Web Font, WOFF2, font-display]
+    status: planned
+    link: https://web.dev/articles/optimize-webfont-loading
+    children:
+      - type: node
+        id: serve-woff2-fonts
+        title: 优先交付 WOFF2 字体
+        description: 为目标浏览器使用高效的 WOFF2，并只保留确需兼容的回退格式。
+        tags: [WOFF2]
+        status: planned
+      - type: node
+        id: subset-and-budget-fonts
+        title: 子集化字体并设置体积预算
+        description: 只交付需要的字形、字重与样式，将原清单 300 KB 作为风险线，并按实际语言覆盖和页面目标收紧预算。
+        tags: [Subset, 字重, Budget]
+        status: planned
+      - type: node
+        id: connect-and-preload-fonts
+        title: 提前连接并预加载关键字体
+        description: 对确定使用的跨源字体建立 preconnect，必要时预加载首屏字体，并正确设置 crossorigin 以避免重复下载。
+        tags: [preconnect, preload]
+        status: planned
+      - type: node
+        id: prevent-invisible-or-shifting-text
+        title: 避免不可见文本与字体布局偏移
+        description: 选择合适的 font-display 和指标兼容回退字体，让内容尽早可读并降低字体交换造成的 CLS。
+        tags: [font-display, FOUT, CLS]
+        status: planned
+        link: https://web.dev/articles/font-best-practices
+
+  - type: node
+    id: use-performance-tools
+    title: 用性能工具从评分追到根因
+    description: 先用自动审计发现线索，再用瀑布图、性能记录和包分析器解释资源、主线程与运行时瓶颈。
+    tags: [Lighthouse, DevTools, WebPageTest]
+    status: planned
+    link: https://web.dev/articles/vitals-tools
+    children:
+      - type: node
+        id: audit-with-pagespeed-insights
+        title: 用 PageSpeed Insights 对照现场与实验室数据
+        description: 区分 CrUX 现场数据和 Lighthouse 实验室诊断，按指标与页面类型追踪问题而非只比较总分。
+        tags: [PageSpeed Insights, CrUX]
+        status: planned
+        link: https://pagespeed.web.dev/
+      - type: node
+        id: reproduce-with-lighthouse
+        title: 用 Lighthouse 建立可重复审计
+        description: 固定页面、设备、网络和运行条件，保存报告并把机会项作为进一步诊断入口。
+        tags: [Lighthouse, Lab]
+        status: planned
+        link: https://developer.chrome.com/docs/lighthouse/overview
+      - type: node
+        id: inspect-waterfalls-with-webpagetest
+        title: 用 WebPageTest 检查请求瀑布
+        description: 从不同地点和设备运行多次测试，分析首访、重复访问、连接、缓存、渲染和关键请求链。
+        tags: [WebPageTest, Waterfall]
+        status: planned
+        link: https://www.webpagetest.org/
+      - type: node
+        id: profile-with-chrome-devtools
+        title: 用 Chrome DevTools 定位运行时瓶颈
+        description: 在 Network、Performance、Coverage 和 Memory 面板中关联下载、长任务、样式计算、布局、绘制与内存行为。
+        tags: [Chrome DevTools, Profile]
+        status: planned
+        link: https://developer.chrome.com/docs/devtools/performance/overview
+      - type: node
+        id: inspect-bundles-and-packages
+        title: 检查产物组成与依赖成本
+        description: 使用项目构建分析器和包体积查询工具识别大模块、重复依赖、未消除代码及拆包边界。
+        tags: [Bundle Analyzer, Bundlephobia]
+        status: planned
+        link: https://bundlephobia.com/
+      - type: node
+        id: optimize-images-with-squoosh
+        title: 用 Squoosh 比较图片编码结果
+        description: 在相同视觉质量下比较格式、尺寸和压缩参数，并把验证过的设置迁移到可重复的资源管线。
+        tags: [Squoosh, 图片压缩]
+        status: optional
+        link: https://squoosh.app/
+
+  - type: node
+    id: complete-performance-audit
+    title: 完成一次可回归的页面性能审计
+    description: 选择真实关键页面，从基线、归因和优化到现场验证形成完整证据，并把预算接入日常交付流程。
+    tags: [综合实践, 性能审计, CI]
+    status: planned
+    link: https://roadmap.sh/frontend-performance-best-practices
+    children:
+      - type: node
+        id: select-representative-pages
+        title: 选择代表性页面与用户流程
+        description: 覆盖首次访问、重复访问和关键交互，记录目标设备、网络、地域、登录状态与第三方依赖。
+        tags: [测试场景, 用户流程]
+        status: planned
+      - type: node
+        id: build-bottleneck-hypotheses
+        title: 从证据提出并验证瓶颈假设
+        description: 为每项改动保存前后瀑布图、Trace、指标和视觉结果，只保留对目标用户体验确有收益的优化。
+        tags: [Profile, 对比实验]
+        status: planned
+      - type: node
+        id: verify-functional-quality
+        title: 验证优化没有破坏产品质量
+        description: 回归功能、可访问性、SEO、视觉效果、缓存更新和弱网恢复，避免以正确性或可维护性换取分数。
+        tags: [回归测试, 可访问性, SEO]
+        status: planned
+      - type: node
+        id: automate-performance-budgets
+        title: 在 CI 与监测中执行性能预算
+        description: 为稳定指标设置告警或合并门槛，保留趋势和构建产物，并为受环境噪声影响的检查设置合理容差。
+        tags: [CI, Budget, Regression]
+        status: planned
+        link: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/getting-started.md
+      - type: node
+        id: apply-framework-guidance
+        title: 按所用框架补充专项优化
+        description: 在通用瓶颈已经量化后，再应用框架官方关于渲染、数据获取、代码分割和资源组件的性能指南。
+        tags: [框架, 渲染]
+        status: optional
+      - type: node
+        id: maintain-performance-review
+        title: 持续复查性能与依赖变化
+        description: 在重要发布、依赖升级、页面改版和现场指标退化时重新审计，并更新预算、例外与技术决策记录。
+        tags: [持续改进, RUM]
+        status: planned
+
+  - type: roadmap
+    roadmapId: backend
+    title: 继续优化服务端与数据链路
+    description: 当前端证据指向 TTFB、API、数据库或缓存瓶颈时，沿后端路线继续定位端到端延迟。
