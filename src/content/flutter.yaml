@@ -1,0 +1,316 @@
+id: flutter
+title: Flutter 开发路线图
+description: 从 Widget 与布局到状态管理、网络、测试与多端发布。
+nodes:
+  - type: node
+    id: dart-foundation
+    title: Dart 语言基础
+    description: 扎实掌握 Dart 语法、空安全与异步，再进入 Flutter 界面开发。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: dart
+        title: 进入 Dart 路线图
+        description: 系统学习 Dart 语言、异步、Isolates 与工具链。
+
+  - type: node
+    id: flutter-fundamentals
+    title: Flutter 基础
+    description: 理解 Widget 树、构建流程与跨平台渲染的基本模型。
+    status: planned
+    link: https://docs.flutter.dev/get-started/learn-more
+    children:
+      - type: node
+        id: widget-tree
+        title: Widget 与 Element
+        description: StatelessWidget、StatefulWidget 与 build 方法职责划分。
+        status: planned
+        link: https://docs.flutter.dev/ui/widgets
+      - type: node
+        id: material-cupertino
+        title: Material 与 Cupertino
+        description: 选用设计语言组件，并理解主题与平台风格差异。
+        status: planned
+      - type: node
+        id: dev-workflow
+        title: 开发工作流
+        description: flutter create、Hot Reload、调试面板与常用 CLI 命令。
+        status: planned
+
+  - type: node
+    id: layout
+    title: 布局与约束
+    description: 用 Flex、Stack 等组合界面，并理解 Flutter 的约束传递规则。
+    status: planned
+    link: https://docs.flutter.dev/ui/layout
+    children:
+      - type: node
+        id: flex-stack
+        title: Row、Column 与 Stack
+        description: Expanded、Flexible、Positioned 等常用布局模式。
+        status: planned
+      - type: node
+        id: constraints
+        title: 约束模型
+        description: BoxConstraints、无限宽度陷阱与 LayoutBuilder 用法。
+        status: planned
+      - type: node
+        id: responsive-adaptive
+        title: 响应式与自适应
+        description: MediaQuery、断点布局与横竖屏/多尺寸适配思路。
+        status: planned
+
+  - type: node
+    id: interaction
+    title: 交互与滚动
+    description: 处理用户输入、列表滚动与常见交互组件。
+    status: planned
+    children:
+      - type: node
+        id: forms-input
+        title: 表单与输入
+        description: TextField、Form、校验与焦点管理基础。
+        status: planned
+      - type: node
+        id: gestures
+        title: 手势
+        description: GestureDetector、InkWell 与拖拽/点击反馈。
+        status: planned
+      - type: node
+        id: scrolling
+        title: 滚动与列表
+        description: ListView、GridView、Sliver 与 ListView.builder 性能要点。
+        status: planned
+
+  - type: node
+    id: state-basics
+    title: 状态管理入门
+    description: 在组件内与组件间传递状态，建立可维护的数据流直觉。
+    status: planned
+    children:
+      - type: node
+        id: setstate
+        title: setState
+        description: 局部状态更新、重建范围与何时不够用。
+        status: planned
+      - type: node
+        id: lifting-state
+        title: 状态提升
+        description: 将共享状态上移到共同父组件，并通过回调下发变更。
+        status: planned
+      - type: node
+        id: inherited-widget
+        title: InheritedWidget
+        description: 依赖查找机制与手动实现跨树共享状态的模式。
+        status: planned
+
+  - type: node
+    id: navigation
+    title: 导航与路由
+    description: 管理页面栈、深链接与模块化路由结构。
+    status: planned
+    children:
+      - type: node
+        id: navigator
+        title: Navigator 基础
+        description: push/pop、命名路由与路由参数传递。
+        status: planned
+        link: https://docs.flutter.dev/ui/navigation
+      - type: node
+        id: go-router
+        title: go_router
+        description: 声明式路由、嵌套路由与 Web URL 同步入门。
+        status: planned
+        link: https://pub.dev/packages/go_router
+
+  - type: node
+    id: networking-storage
+    title: 网络与本地存储
+    description: 拉取远程数据、解析 JSON，并缓存到设备端。
+    status: planned
+    children:
+      - type: node
+        id: http-dio
+        title: http 或 dio
+        description: REST 请求、错误处理、拦截器与超时重试基础。
+        status: planned
+      - type: node
+        id: json-serialization
+        title: JSON 序列化
+        description: fromJson/toJson、json_serializable 或 freezed 代码生成。
+        status: planned
+      - type: node
+        id: local-storage
+        title: 本地存储
+        description: shared_preferences、path_provider 与轻量持久化方案选型。
+        status: planned
+
+  - type: node
+    id: state-advanced
+    title: 状态管理进阶
+    description: 在复杂应用中选用成熟方案，分离 UI 与业务逻辑。
+    status: planned
+    children:
+      - type: node
+        id: riverpod
+        title: Riverpod
+        description: Provider 家族、异步状态与依赖注入式数据访问。
+        status: planned
+        link: https://riverpod.dev/
+      - type: node
+        id: bloc
+        title: BLoC
+        description: 事件驱动状态机、Bloc/Cubit 与 UI 解耦模式。
+        status: planned
+        link: https://bloclibrary.dev/
+
+  - type: node
+    id: architecture
+    title: 架构与项目组织
+    description: 用清晰分层与目录结构支撑功能增长与团队协作。
+    status: planned
+    children:
+      - type: node
+        id: layering
+        title: 分层结构
+        description: UI / 领域 / 数据层职责划分与 repository 模式。
+        status: planned
+      - type: node
+        id: dependency-injection
+        title: 依赖注入
+        description: 用 get_it 或 Riverpod 管理单例、作用域与可测试性。
+        status: planned
+      - type: node
+        id: feature-modules
+        title: 按功能模块化
+        description: feature-first 目录、共享组件包与边界约定。
+        status: planned
+
+  - type: node
+    id: ui-polish
+    title: 样式与动画
+    description: 统一视觉语言，并为关键交互添加流畅动效。
+    status: planned
+    children:
+      - type: node
+        id: theming
+        title: 主题与设计系统
+        description: ThemeData、TextTheme、ColorScheme 与暗色模式。
+        status: planned
+      - type: node
+        id: animations
+        title: 动画基础
+        description: AnimationController、Tween、Hero 与隐式动画组件。
+        status: planned
+        link: https://docs.flutter.dev/ui/animations
+      - type: node
+        id: custom-paint
+        title: CustomPaint 入门
+        description: 自定义绘制与 Canvas 基础，按需深入。
+        status: optional
+
+  - type: node
+    id: platform-integration
+    title: 平台集成
+    description: 调用原生能力、处理权限与平台差异。
+    status: planned
+    children:
+      - type: node
+        id: plugins
+        title: 插件生态
+        description: 选用 pub.dev 插件，并理解版本兼容与平台支持范围。
+        status: planned
+      - type: node
+        id: permissions
+        title: 权限与系统 API
+        description: 相机、定位、通知等权限申请与生命周期注意点。
+        status: planned
+      - type: node
+        id: platform-channels
+        title: Platform Channel 入门
+        description: MethodChannel 与原生代码互调的基本流程。
+        status: planned
+        link: https://docs.flutter.dev/platform-integration/platform-channels
+
+  - type: node
+    id: testing
+    title: 测试
+    description: 用自动化测试守住 Widget 行为与关键用户流程。
+    status: planned
+    link: https://docs.flutter.dev/testing
+    children:
+      - type: node
+        id: widget-tests
+        title: Widget 测试
+        description: find/pump/tap、mock 依赖与 golden 测试入门。
+        status: planned
+      - type: node
+        id: integration-tests
+        title: 集成测试
+        description: integration_test 驱动端到端流程与 CI 接入。
+        status: planned
+
+  - type: node
+    id: performance-debugging
+    title: 性能与调试
+    description: 定位卡顿、过度重建与内存问题，保持流畅体验。
+    status: planned
+    children:
+      - type: node
+        id: rebuild-optimization
+        title: 重建优化
+        description: const 构造、Key 使用、RepaintBoundary 与懒加载列表。
+        status: planned
+      - type: node
+        id: flutter-devtools
+        title: Flutter DevTools
+        description: Timeline、CPU Profiler、内存快照与网络面板。
+        status: planned
+        link: https://docs.flutter.dev/tools/devtools
+
+  - type: node
+    id: release
+    title: 构建与发布
+    description: 为 Android 与 iOS 打包签名，并建立可重复的发布流程。
+    status: planned
+    children:
+      - type: node
+        id: android-release
+        title: Android 发布
+        description: 签名配置、App Bundle 与 Play Console 上架流程。
+        status: planned
+        link: https://docs.flutter.dev/deployment/android
+      - type: node
+        id: ios-release
+        title: iOS 发布
+        description: 证书与描述文件、Archive 与 App Store Connect 基础。
+        status: planned
+        link: https://docs.flutter.dev/deployment/ios
+      - type: node
+        id: ci-cd
+        title: CI/CD
+        description: 自动化测试、构建产物与版本号管理。
+        status: planned
+
+  - type: node
+    id: flutter-extras
+    title: 扩展能力
+    description: 按产品需要选学国际化、无障碍或多端目标。
+    status: optional
+    children:
+      - type: node
+        id: i18n
+        title: 国际化
+        description: intl、ARB 文件与 locale 切换。
+        status: optional
+      - type: node
+        id: accessibility
+        title: 无障碍
+        description: Semantics、对比度与屏幕阅读器友好实践。
+        status: optional
+      - type: node
+        id: web-desktop
+        title: Web 与桌面端
+        description: 了解 Flutter Web/Desktop 的渲染差异与适配注意点。
+        status: optional
+        link: https://docs.flutter.dev/platform-integration/web

@@ -1,0 +1,213 @@
+id: dart
+title: Dart 语言路线图
+description: 从语法与空安全到泛型、异步、Isolates 与 Flutter / 服务端入门。
+nodes:
+  - type: node
+    id: dart-basics
+    title: 语言基础
+    description: 掌握语法、静态类型、控制流与 Dart 的表达式风格。
+    status: planned
+    link: https://dart.dev/language
+    children:
+      - type: node
+        id: syntax-types
+        title: 语法与类型
+        description: 变量、final/const、基本类型、var 推断与 late 关键字。
+        status: planned
+        link: https://dart.dev/language/variables
+      - type: node
+        id: control-flow
+        title: 控制流
+        description: if、for、while、switch 与 Dart 3 模式匹配入门。
+        status: planned
+      - type: node
+        id: null-safety
+        title: 空安全
+        description: 可空类型 ?、!、?? 与空感知运算符，避免运行时空引用。
+        status: planned
+        link: https://dart.dev/null-safety
+
+  - type: node
+    id: functions-collections
+    title: 函数与集合
+    description: 用函数与内置集合处理数据，理解 Dart 的集合字面量与遍历。
+    status: planned
+    children:
+      - type: node
+        id: functions
+        title: 函数
+        description: 命名/可选/位置参数、箭头函数、闭包与高阶函数。
+        status: planned
+      - type: node
+        id: lists-sets-maps
+        title: List、Set 与 Map
+        description: 可变/不可变集合、常用方法与集合 if/for 语法。
+        status: planned
+      - type: node
+        id: records-collections
+        title: Record 与集合工具
+        description: 匿名记录类型、解构与 collection 包常用扩展。
+        status: planned
+
+  - type: node
+    id: oop
+    title: 面向对象
+    description: 用类、混入与扩展组织代码，理解 Dart 的 OOP 与组合风格。
+    status: planned
+    children:
+      - type: node
+        id: classes-constructors
+        title: 类与构造函数
+        description: 实例/静态成员、命名构造、工厂构造与初始化列表。
+        status: planned
+      - type: node
+        id: inheritance-mixins
+        title: 继承与 Mixin
+        description: extends、implements、with 混入与接口式多实现。
+        status: planned
+      - type: node
+        id: extensions-enums
+        title: 扩展与枚举
+        description: extension 为既有类型添加方法，增强型 enum 表达状态。
+        status: planned
+
+  - type: node
+    id: generics-types
+    title: 泛型与类型系统
+    description: 写出类型安全、可复用的 API，并理解类型推断边界。
+    status: planned
+    children:
+      - type: node
+        id: generics
+        title: 泛型
+        description: 类型参数、约束与泛型函数/类的常见模式。
+        status: planned
+        link: https://dart.dev/language/generics
+      - type: node
+        id: typedefs
+        title: typedef 与函数类型
+        description: 用 typedef 简化复杂函数签名与回调类型。
+        status: planned
+
+  - type: node
+    id: async-programming
+    title: 异步编程
+    description: 用 Future 与 Stream 处理延迟结果与事件流。
+    status: planned
+    link: https://dart.dev/libraries/async/async-await
+    children:
+      - type: node
+        id: future-async-await
+        title: Future 与 async/await
+        description: 异步函数、错误处理与 Future.wait 等组合方式。
+        status: planned
+      - type: node
+        id: streams
+        title: Stream
+        description: 单订阅/广播流、map/where、listen 与 StreamController。
+        status: planned
+      - type: node
+        id: event-loop
+        title: 事件循环直觉
+        description: 微任务/事件队列顺序，避免阻塞 UI 或 async 陷阱。
+        status: planned
+
+  - type: node
+    id: concurrency
+    title: 并发与 Isolates
+    description: 用 Isolate 在独立内存空间执行 CPU 密集任务。
+    status: planned
+    children:
+      - type: node
+        id: isolates
+        title: Isolate 基础
+        description: spawn、消息传递与 compute 封装常见模式。
+        status: planned
+        link: https://dart.dev/language/concurrency
+      - type: node
+        id: isolate-patterns
+        title: 并发模式
+        description: 何时用 Isolate 而非 async，以及与主 Isolate 的协作。
+        status: planned
+
+  - type: node
+    id: modules-tooling
+    title: 包管理与工具链
+    description: 用 pub 管理依赖，并用官方工具保证质量与一致性。
+    status: planned
+    children:
+      - type: node
+        id: pub-packages
+        title: pub 与包结构
+        description: pubspec.yaml、依赖版本、导入规则与项目布局。
+        status: planned
+        link: https://dart.dev/tools/pub/cmd
+      - type: node
+        id: analyze-format
+        title: 分析与格式化
+        description: dart analyze、dart format 与 linter 规则配置。
+        status: planned
+      - type: node
+        id: testing
+        title: 测试
+        description: test 包、mock、分组测试与 golden test 入门。
+        status: planned
+        link: https://dart.dev/tools/testing
+
+  - type: node
+    id: stdlib
+    title: 常用标准库
+    description: 掌握核心库与高频第三方包，完成 I/O 与序列化等任务。
+    status: planned
+    children:
+      - type: node
+        id: dart-io
+        title: dart:io
+        description: 文件、目录、Process 与平台相关 API 的使用边界。
+        status: planned
+      - type: node
+        id: dart-convert
+        title: dart:convert
+        description: JSON 编解码、Utf8Codec 与自定义转换器。
+        status: planned
+      - type: node
+        id: http-package
+        title: http 包
+        description: 发起 HTTP 请求、处理响应与错误重试基础。
+        status: planned
+        link: https://pub.dev/packages/http
+
+  - type: node
+    id: runtime-basics
+    title: 运行时基础
+    description: 理解 Dart VM 执行模型，便于排查性能与内存问题。
+    status: optional
+    children:
+      - type: node
+        id: memory-gc
+        title: 内存与 GC
+        description: 对象生命周期、弱引用直觉与常见泄漏场景。
+        status: optional
+      - type: node
+        id: devtools
+        title: Dart DevTools
+        description: CPU、内存与网络分析，定位热点与异常。
+        status: optional
+        link: https://dart.dev/tools/dart-devtools
+
+  - type: node
+    id: dart-ecosystem
+    title: 进入应用生态
+    description: 语言扎实后，按方向进入 Flutter 跨端开发或服务端应用。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: flutter
+        title: 进入 Flutter 路线图
+        description: 系统学习 Widget、布局、状态管理、测试与多端发布。
+      - type: node
+        id: shelf-intro
+        title: Shelf 服务端入门
+        description: 用 Shelf 搭建简单 HTTP 服务，理解中间件与路由组合。
+        status: planned
+        link: https://pub.dev/packages/shelf
