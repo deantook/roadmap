@@ -1,0 +1,321 @@
+id: rust
+title: Rust
+description: 面向具备基础编程经验的学习者，从所有权与类型系统出发，逐步构建、测试并交付可靠的命令行和网络应用。
+tags: [语言, Rust, 系统编程, 后端]
+nodes:
+  - type: node
+    id: setup-and-language-basics
+    title: 配置工具链并掌握语言基础
+    description: 使用 rustup、rustc 和 Cargo 建立开发环境，并能用变量、类型、函数、控制流与模式匹配编写小程序。
+    tags: [Rust, 入门, Cargo]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch01-00-getting-started.html
+    children:
+      - type: node
+        id: install-and-manage-toolchains
+        title: 安装并管理 Rust 工具链
+        description: 用 rustup 安装 stable 工具链、切换 toolchain，并确认 rustc、Cargo 与本地文档可用。
+        tags: [rustup, 工具链]
+        status: planned
+        link: https://www.rust-lang.org/tools/install
+      - type: node
+        id: syntax-types-and-control-flow
+        title: 使用基础语法表达程序逻辑
+        description: 正确使用变量与可变性、标量和复合类型、函数、表达式、分支及循环完成基础练习。
+        tags: [语法, 类型]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html
+      - type: node
+        id: pattern-matching
+        title: 用模式匹配拆解数据
+        description: 使用 match、if let、while let 与解构处理枚举、元组和结构体，并保证分支覆盖完整。
+        tags: [模式匹配]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch19-00-patterns.html
+
+  - type: node
+    id: ownership-and-borrowing
+    title: 用所有权与借用保证内存安全
+    description: 能预测值的移动、复制和析构时机，并通过引用、借用与生命周期解决常见编译错误。
+    tags: [所有权, 借用, 生命周期]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html
+    children:
+      - type: node
+        id: moves-copy-and-clone
+        title: 区分移动、复制与显式克隆
+        description: 根据栈、堆和 Drop 的行为解释所有权转移，并只在确有需要时承担 Clone 的成本。
+        tags: [Move, Copy, Clone]
+        status: planned
+      - type: node
+        id: references-and-borrowing
+        title: 使用共享借用与可变借用
+        description: 设计引用作用域以满足别名规则，并根据编译器诊断消除悬垂引用和借用冲突。
+        tags: [引用, 借用检查器]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
+      - type: node
+        id: lifetimes-in-interfaces
+        title: 在接口边界标注生命周期
+        description: 理解生命周期省略规则，并在函数和结构体确有多引用关系时写出必要的生命周期参数。
+        tags: [生命周期]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html
+
+  - type: node
+    id: model-data-with-types
+    title: 使用类型系统建立清晰的数据模型
+    description: 用结构体、枚举、泛型和 trait 表达有效状态、共享行为与抽象边界，减少无效输入进入业务逻辑。
+    tags: [类型系统, Trait, 泛型]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch10-00-generics.html
+    children:
+      - type: node
+        id: structs-enums-and-methods
+        title: 用结构体、枚举与方法组织领域代码
+        description: 根据数据形态选择 struct 或 enum，并用 impl、关联函数和方法维护类型不变量。
+        tags: [Struct, Enum, impl]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch05-00-structs.html
+      - type: node
+        id: traits-and-generics
+        title: 用 trait 与泛型复用行为
+        description: 通过 trait bound、关联类型和静态分发定义可组合接口，并判断何时使用 trait object。
+        tags: [Trait, 泛型]
+        status: planned
+      - type: node
+        id: option-and-result-modeling
+        title: 用 Option 与 Result 显式建模缺失和失败
+        description: 让函数签名体现可选值与失败原因，并使用组合子或模式匹配处理各条路径。
+        tags: [Option, Result]
+        status: planned
+
+  - type: node
+    id: collections-iterators-and-closures
+    title: 熟练处理集合、字符串与迭代流程
+    description: 根据所有权需求选择集合与字符串表示，并用迭代器和闭包写出惰性、可组合的数据处理代码。
+    tags: [集合, 迭代器, 闭包]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch08-00-common-collections.html
+    children:
+      - type: node
+        id: collections-and-utf8-strings
+        title: 正确使用常用集合与 UTF-8 字符串
+        description: 掌握 Vec、HashMap、String 与 str 的所有权差异，并避免用字节索引误解 Unicode 文本。
+        tags: [Vec, HashMap, String]
+        status: planned
+      - type: node
+        id: iterators-and-closures
+        title: 用迭代器与闭包构建数据管道
+        description: 组合 map、filter、fold 和 collect，并解释闭包捕获及 Iterator 的惰性求值行为。
+        tags: [Iterator, Closure]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch13-00-functional-features.html
+      - type: node
+        id: smart-pointers
+        title: 按所有权关系选择智能指针
+        description: 区分 Box、Rc、Arc、Cell 与 RefCell 的使用场景，并识别引用循环和运行时借用风险。
+        tags: [智能指针]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch15-00-smart-pointers.html
+
+  - type: node
+    id: errors-modules-and-io
+    title: 构建可维护的模块与失败路径
+    description: 划分 crate 和模块边界，设计可传播的错误，并通过标准库可靠地处理文件、环境与命令行输入。
+    tags: [错误处理, 模块, I/O]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch09-00-error-handling.html
+    children:
+      - type: node
+        id: recoverable-and-unrecoverable-errors
+        title: 区分可恢复错误与程序缺陷
+        description: 使用 Result、错误传播和自定义错误传递上下文，并将 panic 保留给无法维持不变量的情况。
+        tags: [Result, panic]
+        status: planned
+      - type: node
+        id: crates-modules-and-visibility
+        title: 用 crate、模块与可见性建立边界
+        description: 组织 library 和 binary target，使用 mod、use 与 pub 暴露最小且稳定的公共接口。
+        tags: [Crate, Module, API]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html
+      - type: node
+        id: cli-io-practice
+        title: 完成一个可测试的命令行工具
+        description: 读取参数、文件和环境变量，将 I/O 与核心逻辑分离，并为错误输入返回清晰的退出结果。
+        tags: [CLI, 实践]
+        status: planned
+        link: https://doc.rust-lang.org/book/ch12-00-an-io-project.html
+
+  - type: node
+    id: cargo-and-project-engineering
+    title: 使用 Cargo 管理可复现的工程
+    description: 管理依赖、features、构建配置和 workspace，并通过文档与版本约束交付可复用的 crate。
+    tags: [Cargo, 依赖管理, 工程化]
+    status: planned
+    link: https://doc.rust-lang.org/cargo/guide/
+    children:
+      - type: node
+        id: packages-dependencies-and-lockfiles
+        title: 管理包、依赖与锁文件
+        description: 读写 Cargo.toml，理解 package、crate 和 target 的关系，并根据应用或库的交付方式管理 Cargo.lock。
+        tags: [Cargo.toml, Cargo.lock]
+        status: planned
+      - type: node
+        id: features-and-build-profiles
+        title: 控制 features 与构建配置
+        description: 设计可加和的 feature，检查不同 feature 组合，并按调试或发布目标选择合适的构建 profile。
+        tags: [Features, Profile]
+        status: planned
+        link: https://doc.rust-lang.org/cargo/reference/features.html
+      - type: node
+        id: workspaces-and-api-docs
+        title: 用 workspace 和 rustdoc 维护多 crate 项目
+        description: 共享依赖与 lint 配置，明确 crate 间边界，并为公共 API 编写可执行的文档示例。
+        tags: [Workspace, rustdoc]
+        status: planned
+        link: https://doc.rust-lang.org/cargo/reference/workspaces.html
+
+  - type: node
+    id: testing-quality-and-debugging
+    title: 用自动化检查保障代码质量
+    description: 组合单元、集成和文档测试，并将格式化、lint、依赖审查与调试步骤纳入日常开发和 CI。
+    tags: [测试, Clippy, CI]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch11-00-testing.html
+    children:
+      - type: node
+        id: unit-integration-and-doc-tests
+        title: 分层编写自动化测试
+        description: 用单元测试覆盖内部逻辑、集成测试验证公共接口，并让文档示例随代码一起执行。
+        tags: [单元测试, 集成测试]
+        status: planned
+      - type: node
+        id: formatting-lints-and-ci
+        title: 自动执行格式化、lint 与构建检查
+        description: 在本地和 CI 中运行 cargo fmt、cargo clippy、cargo test 与 cargo doc，并把警告策略配置为团队可接受的门槛。
+        tags: [rustfmt, Clippy, CI]
+        status: planned
+        link: https://doc.rust-lang.org/clippy/
+      - type: node
+        id: debug-and-explain-compiler-errors
+        title: 借助诊断信息定位编译与运行问题
+        description: 阅读错误代码和借用检查器提示，使用 rustc --explain、回溯与调试器缩小故障范围。
+        tags: [调试, 编译器诊断]
+        status: planned
+        link: https://doc.rust-lang.org/error_codes/error-index.html
+      - type: node
+        id: dependency-supply-chain
+        title: 检查依赖与供应链风险
+        description: 评估 crate 的维护状态、许可证和功能开关，并在 CI 中审查已知漏洞及不必要依赖。
+        tags: [依赖, 安全]
+        status: planned
+        link: https://doc.rust-lang.org/cargo/commands/cargo-tree.html
+
+  - type: node
+    id: concurrency-and-async
+    title: 安全地实现并发与异步流程
+    description: 根据 CPU 或 I/O 工作负载选择线程、消息传递、共享状态或 async，并明确任务取消、错误和资源边界。
+    tags: [并发, Async, 线程]
+    status: planned
+    link: https://doc.rust-lang.org/book/ch16-00-concurrency.html
+    children:
+      - type: node
+        id: threads-channels-and-shared-state
+        title: 使用线程、通道与同步原语
+        description: 用线程处理并行工作，通过 channel 传递所有权，并以 Arc、Mutex 和原子类型保护必要的共享状态。
+        tags: [Thread, Channel, Mutex]
+        status: planned
+      - type: node
+        id: send-sync-and-concurrency-design
+        title: 用 Send 与 Sync 审视并发边界
+        description: 理解类型为何能在线程间移动或共享，并通过缩小锁范围和所有权转移降低竞争与死锁风险。
+        tags: [Send, Sync]
+        status: planned
+      - type: node
+        id: futures-and-async-await
+        title: 理解 Future 与 async/await 的执行模型
+        description: 区分 Future、任务和运行时，处理阻塞代码、超时、取消与并发组合，并避免在异步任务中长期持锁。
+        tags: [Future, async/await]
+        status: planned
+        link: https://rust-lang.github.io/async-book/
+
+  - type: node
+    id: capstone-network-application
+    title: 交付一个可靠的网络应用
+    description: 将类型建模、异步 I/O、错误处理、测试和工程工具组合成可配置、可诊断并可重复构建的客户端或服务端程序。
+    tags: [综合实践, 网络, 工程化]
+    status: planned
+    children:
+      - type: node
+        id: capstone-architecture
+        title: 划分领域逻辑与基础设施边界
+        description: 将协议适配、配置、存储和核心规则拆为可独立测试的模块，并用明确类型约束跨层数据。
+        tags: [架构, 模块化]
+        status: planned
+      - type: node
+        id: capstone-reliability
+        title: 处理超时、取消与优雅退出
+        description: 为外部调用设置超时，在任务失败和进程终止时传播取消，并确保资源得到有序释放。
+        tags: [可靠性, 取消]
+        status: planned
+      - type: node
+        id: capstone-observability-and-tests
+        title: 用日志与测试验证关键行为
+        description: 输出带上下文的结构化日志，并用单元、集成和失败场景测试验证协议、并发与错误处理。
+        tags: [可观测性, 测试]
+        status: planned
+      - type: node
+        id: capstone-release
+        title: 生成并验证发布构建
+        description: 固定工具链和依赖，完成格式化、lint、测试与 release 构建，并在干净环境核验启动和配置说明。
+        tags: [发布, 验收]
+        status: planned
+
+  - type: node
+    id: advanced-and-specialized-rust
+    title: 按项目需求深入 Rust 专题
+    description: 在安全 Rust 和完整工程实践稳定后，再根据性能、互操作或目标平台选择进阶方向。
+    tags: [进阶, 系统编程]
+    status: optional
+    children:
+      - type: node
+        id: performance-and-benchmarking
+        title: 基于测量优化性能
+        description: 用 release profile、基准与性能分析定位真实热点，再评估分配、复制、缓存和并行策略的收益。
+        tags: [性能, Benchmark]
+        status: optional
+        link: https://doc.rust-lang.org/cargo/reference/profiles.html
+      - type: node
+        id: unsafe-rust-and-ffi
+        title: 审计 unsafe Rust 与 FFI 边界
+        description: 明确 unsafe 操作需要维护的不变量，用最小安全封装隔离原始指针、外部函数和平台资源。
+        tags: [unsafe, FFI]
+        status: optional
+        link: https://doc.rust-lang.org/nomicon/
+      - type: node
+        id: macros-and-metaprogramming
+        title: 使用宏消除结构性重复
+        description: 先掌握声明宏，再按维护收益评估过程宏，并为生成代码提供清晰诊断和测试。
+        tags: [Macro, 元编程]
+        status: optional
+        link: https://doc.rust-lang.org/book/ch20-05-macros.html
+      - type: node
+        id: webassembly-targets
+        title: 将 Rust 编译到 WebAssembly
+        description: 理解浏览器或其他 Wasm 宿主的边界，设计数据交换接口，并控制产物体积与调试成本。
+        tags: [WebAssembly, Wasm]
+        status: optional
+        link: https://rustwasm.github.io/docs/book/
+      - type: node
+        id: embedded-and-no-std
+        title: 开发 embedded 与 no_std 程序
+        description: 根据硬件目标配置交叉编译、内存布局和外设访问，并在缺少标准库的环境中管理资源。
+        tags: [Embedded, no_std]
+        status: optional
+        link: https://docs.rust-embedded.org/book/
+      - type: roadmap
+        roadmapId: backend
+        title: 衔接后端工程路线图
+        description: 若目标是生产级服务，继续学习 API、数据库、缓存、部署和可观测性等通用后端能力。

@@ -37,6 +37,10 @@ nodes:
     status: planned
     link: https://www.postgresql.org/docs/current/tutorial-sql.html
     children:
+      - type: roadmap
+        roadmapId: sql
+        title: 系统补足 SQL 语言能力
+        description: 学习跨关系数据库的查询、聚合、窗口分析、DDL 与可移植性实践。
       - type: node
         id: select-filter-and-sort
         title: 编写筛选、排序与分页查询

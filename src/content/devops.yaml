@@ -1,0 +1,387 @@
+id: devops
+title: DevOps
+description: 从 Linux、网络与 Git 基础出发，建立可审计的自动化交付、基础设施管理、可观测性和可靠性实践，并完成一个可回滚的小型服务交付闭环。
+tags: [DevOps, 自动化, CI/CD, 可靠性]
+nodes:
+  - type: node
+    id: systems-and-automation-foundations
+    title: 建立系统运行与自动化基础
+    description: 能在 Linux 环境中操作服务、分析网络连接并编写可重复执行的脚本，为后续交付和排错建立共同语言。
+    tags: [Linux, 网络, Shell]
+    status: planned
+    children:
+      - type: node
+        id: operate-linux-services
+        title: 操作 Linux 文件、进程与服务
+        description: 使用命令行检查文件系统、进程、资源、服务状态和日志，并能从退出码与系统状态定位常见故障。
+        tags: [Linux, 运维]
+        status: planned
+      - type: node
+        id: manage-access-and-permissions
+        title: 管理用户、权限与远程访问
+        description: 使用用户组、文件权限、sudo 和 SSH 提供可追踪的最小必要访问，避免共享高权限账号。
+        tags: [权限, SSH, 安全]
+        status: planned
+        link: https://www.ssh.com/academy/ssh
+      - type: node
+        id: troubleshoot-network-paths
+        title: 沿网络路径排查连接问题
+        description: 结合 IP、路由、端口、DNS、HTTP 和 TLS 判断请求在哪一层失败，并用命令行验证假设。
+        tags: [DNS, HTTP, TLS]
+        status: planned
+        link: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Guides/Overview
+      - type: node
+        id: write-safe-shell-automation
+        title: 编写安全且可重复的 Shell 自动化
+        description: 用参数、条件、管道、退出码和错误处理封装重复任务，并让脚本在失败时给出明确结果。
+        tags: [Bash, 自动化]
+        status: planned
+        link: https://www.gnu.org/software/bash/manual/bash.html
+
+  - type: node
+    id: versioned-collaboration
+    title: 建立可审计的协作与变更流程
+    description: 让应用、配置、基础设施和操作文档的每次变化都可评审、可追踪并能关联交付结果。
+    tags: [Git, 协作, 变更管理]
+    status: planned
+    link: https://git-scm.com/book/en/v2.html
+    children:
+      - type: node
+        id: manage-git-changes
+        title: 用 Git 管理和恢复变更
+        description: 熟练完成提交、分支、合并、标签和历史检查，并能安全撤销尚未发布或已经发布的错误变更。
+        tags: [Git, 版本控制]
+        status: planned
+      - type: node
+        id: integrate-small-reviewed-changes
+        title: 以小批量评审变更持续集成
+        description: 使用短生命周期分支或主干开发、代码评审和自动检查，降低合并冲突与发布批次风险。
+        tags: [代码评审, 主干开发]
+        status: planned
+        link: https://dora.dev/capabilities/trunk-based-development/
+      - type: node
+        id: version-operational-knowledge
+        title: 将运行知识与配置纳入版本控制
+        description: 共同维护配置模板、流水线、基础设施定义、运行手册和架构决策，使变更原因与操作方式可被团队复现。
+        tags: [文档, 配置即代码]
+        status: planned
+
+  - type: node
+    id: continuous-integration
+    title: 构建快速可信的持续集成流水线
+    description: 让每个候选变更在隔离环境中完成一致的构建、测试和安全检查，并产出可诊断的结果。
+    tags: [CI, 测试, 流水线]
+    status: planned
+    link: https://dora.dev/capabilities/continuous-integration/
+    children:
+      - type: node
+        id: define-pipeline-workflows
+        title: 声明流水线触发条件与作业依赖
+        description: 在一种 CI 平台中配置提交、合并请求和标签触发规则，组织串行或并行作业并明确失败传播方式。
+        tags: [Workflow, Runner]
+        status: planned
+        link: https://docs.github.com/en/actions/get-started/continuous-integration
+      - type: node
+        id: enforce-quality-gates
+        title: 用自动化质量门禁阻止缺陷流入主线
+        description: 按反馈速度组织格式检查、静态分析、单元测试、集成测试与安全检查，并将失败结果反馈到变更评审。
+        tags: [质量门禁, 自动化测试]
+        status: planned
+      - type: node
+        id: produce-reproducible-builds
+        title: 在干净环境中复现构建
+        description: 固定依赖输入、隔离构建环境并避免依赖开发机隐式状态，使同一提交可以稳定生成相同类型的产物。
+        tags: [构建, 可复现性]
+        status: planned
+      - type: node
+        id: optimize-ci-feedback
+        title: 在不牺牲正确性的前提下缩短反馈时间
+        description: 使用依赖缓存、测试拆分、并行作业和失败重试边界提升速度，并用数据确认优化没有隐藏不稳定测试。
+        tags: [缓存, 并行, 性能]
+        status: planned
+      - type: node
+        id: secure-ci-execution
+        title: 限制流水线凭据与执行权限
+        description: 为作业授予最小权限，保护密钥，固定第三方依赖，并隔离不可信变更与高权限部署步骤。
+        tags: [CI 安全, 最小权限]
+        status: planned
+        link: https://docs.github.com/en/actions/how-tos/secure-your-work
+
+  - type: node
+    id: artifact-delivery
+    title: 交付不可变且可追溯的制品
+    description: 将通过验证的提交打包成带唯一身份的制品，并在不同环境间晋级同一份构建结果。
+    tags: [制品, Registry, 版本]
+    status: planned
+    children:
+      - type: node
+        id: version-and-publish-artifacts
+        title: 版本化并发布构建制品
+        description: 使用提交标识和发布版本标记制品，将其推送到受控仓库，并保留来源、依赖和构建记录。
+        tags: [版本, 制品仓库]
+        status: planned
+      - type: node
+        id: promote-identical-artifacts
+        title: 在环境间晋级同一制品
+        description: 将环境配置与二进制制品分离，避免为测试和生产重复构建导致未经验证的差异。
+        tags: [环境晋级, 不可变制品]
+        status: planned
+      - type: roadmap
+        roadmapId: docker
+        title: 使用 Docker 构建和交付容器制品
+        description: 学习镜像构建、Registry、Compose 与容器安全，把服务打包成可移植的交付单元。
+
+  - type: node
+    id: infrastructure-as-code
+    title: 以代码管理基础设施与环境配置
+    description: 通过声明式定义、评审和自动化执行获得可重复环境，同时保护状态、配置与密钥。
+    tags: [IaC, 配置管理, 基础设施]
+    status: planned
+    children:
+      - type: node
+        id: provision-with-declarative-code
+        title: 用声明式代码创建练习环境
+        description: 选择 Terraform、OpenTofu 或同类工具定义计算、网络和存储资源，并通过 write、plan、apply 流程完成一次可审查变更。
+        tags: [Terraform, OpenTofu, 声明式]
+        status: planned
+        link: https://developer.hashicorp.com/terraform/intro/core-workflow
+      - type: node
+        id: protect-infrastructure-state
+        title: 保护共享状态并控制并发变更
+        description: 使用支持访问控制、加密、备份和锁定的远程状态方案，避免提交状态文件或直接手工编辑状态。
+        tags: [State, 并发控制]
+        status: planned
+        link: https://developer.hashicorp.com/terraform/language/state
+      - type: node
+        id: review-infrastructure-changes
+        title: 在应用前评审基础设施变更计划
+        description: 在流水线中执行格式、验证、策略和计划检查，对破坏性操作设置明确审批与可追溯记录。
+        tags: [Plan, 策略, 评审]
+        status: planned
+      - type: node
+        id: separate-config-and-secrets
+        title: 分离环境配置与敏感信息
+        description: 将非敏感配置外置，将密钥存入专用系统并在运行时注入，避免写入源码、制品、日志或状态输出。
+        tags: [配置, 密钥管理]
+        status: planned
+        link: https://12factor.net/config
+      - type: node
+        id: detect-and-reconcile-drift
+        title: 检测并处理实际状态漂移
+        description: 定期比较声明状态与实际环境，调查漂移来源后通过受控代码变更修正，而不是长期依赖控制台热修。
+        tags: [Drift, 变更控制]
+        status: planned
+
+  - type: node
+    id: continuous-delivery
+    title: 自动化可回滚的持续交付
+    description: 将经过验证的制品以一致流程部署到目标环境，用渐进发布、验证和回滚控制变更风险。
+    tags: [CD, 发布, 回滚]
+    status: planned
+    link: https://dora.dev/capabilities/continuous-delivery/
+    children:
+      - type: node
+        id: automate-environment-deployments
+        title: 自动化环境部署与晋级
+        description: 将部署步骤写入流水线，为测试、预发布和生产定义一致入口、环境保护规则及必要审批。
+        tags: [部署自动化, 环境]
+        status: planned
+        link: https://docs.github.com/en/actions/get-started/continuous-deployment
+      - type: node
+        id: choose-release-strategies
+        title: 按风险选择发布策略
+        description: 根据服务架构和可用性要求选择滚动、蓝绿或金丝雀发布，并定义流量切换与停止条件。
+        tags: [蓝绿发布, 金丝雀发布]
+        status: planned
+      - type: node
+        id: verify-releases-automatically
+        title: 自动验证发布后的服务状态
+        description: 在部署后执行健康检查、冒烟测试和关键指标检查，只有满足验收条件才继续扩大发布范围。
+        tags: [发布验证, 健康检查]
+        status: planned
+      - type: node
+        id: design-rollback-and-migrations
+        title: 设计应用与数据变更的回退路径
+        description: 保留上一可用制品，采用向后兼容的数据迁移，并在发布前演练回滚、前滚和失败恢复。
+        tags: [回滚, 数据迁移]
+        status: planned
+      - type: node
+        id: evaluate-gitops
+        title: 评估使用 GitOps 持续协调环境状态
+        description: 当平台支持声明式资源时，理解版本化期望状态、自动拉取与持续协调的边界和审计收益。
+        tags: [GitOps, 声明式交付]
+        status: optional
+        link: https://opengitops.dev/
+
+  - type: node
+    id: observability-and-service-levels
+    title: 用可观测信号管理服务目标
+    description: 从用户体验出发定义服务目标，关联指标、日志、追踪和发布事件，使告警能够驱动有效行动。
+    tags: [可观测性, SLO, 告警]
+    status: planned
+    children:
+      - type: node
+        id: instrument-observability-signals
+        title: 采集并关联指标、日志与追踪
+        description: 为应用和基础设施生成结构化遥测，使用一致的时间、服务、环境和请求标识串联一次故障路径。
+        tags: [Metrics, Logs, Traces]
+        status: planned
+        link: https://opentelemetry.io/docs/concepts/signals/
+      - type: node
+        id: build-operational-views
+        title: 构建面向服务状态的仪表盘
+        description: 展示流量、错误、延迟、饱和度和关键依赖状态，并叠加发布事件以支持趋势分析和变更定位。
+        tags: [Dashboard, 监控]
+        status: planned
+      - type: node
+        id: define-slis-and-slos
+        title: 定义可测量的 SLI 与 SLO
+        description: 选择少量反映用户体验的可用性、延迟、正确性或持久性指标，明确测量窗口和目标值。
+        tags: [SLI, SLO, 错误预算]
+        status: planned
+        link: https://sre.google/sre-book/service-level-objectives/
+      - type: node
+        id: create-actionable-alerts
+        title: 为需要人工行动的症状配置告警
+        description: 基于用户影响和错误预算设置告警阈值、去重与路由，并为每条告警提供责任人和处置入口。
+        tags: [Alerting, On-call]
+        status: planned
+        link: https://sre.google/sre-book/practical-alerting/
+
+  - type: node
+    id: devsecops-controls
+    title: 将安全控制嵌入交付链路
+    description: 在代码、依赖、制品、基础设施和运行权限各层实施风险匹配的自动检查与可验证保护。
+    tags: [DevSecOps, 供应链安全, 合规]
+    status: planned
+    link: https://csrc.nist.gov/projects/ssdf
+    children:
+      - type: node
+        id: scan-delivery-inputs
+        title: 扫描代码、依赖、制品与 IaC
+        description: 将密钥检测、静态分析、依赖漏洞、镜像和基础设施配置检查接入流水线，并为例外设置期限与责任人。
+        tags: [SAST, 依赖扫描, IaC 安全]
+        status: planned
+      - type: node
+        id: generate-sbom-and-provenance
+        title: 为发布制品生成 SBOM 与来源证明
+        description: 记录制品所含组件及其构建来源，使团队能够追踪受影响版本并验证产物来自受控流水线。
+        tags: [SBOM, Provenance, SLSA]
+        status: planned
+        link: https://slsa.dev/spec/
+      - type: node
+        id: use-short-lived-identities
+        title: 使用短期身份访问部署环境
+        description: 优先让流水线通过工作负载身份获取短期凭据，限制环境、操作和有效期并记录访问审计。
+        tags: [OIDC, 身份, 最小权限]
+        status: planned
+      - type: node
+        id: respond-to-vulnerabilities
+        title: 建立漏洞修复与补丁发布流程
+        description: 根据可利用性和业务影响确定优先级，更新依赖或基础镜像，重新验证并追踪修复版本的部署范围。
+        tags: [漏洞管理, 补丁]
+        status: planned
+
+  - type: node
+    id: reliable-operations
+    title: 运行、恢复并持续改进服务
+    description: 通过运行手册、恢复演练和结构化事件响应缩短故障时间，并将经验转化为可验证的系统改进。
+    tags: [SRE, 事件响应, 灾难恢复]
+    status: planned
+    children:
+      - type: node
+        id: create-runbooks-and-troubleshoot
+        title: 编写运行手册并系统化排错
+        description: 为高频告警和关键操作记录前置条件、诊断步骤、风险与升级路径，使用证据逐层缩小故障范围。
+        tags: [Runbook, 排错]
+        status: planned
+        link: https://sre.google/sre-book/effective-troubleshooting/
+      - type: node
+        id: test-backup-and-restore
+        title: 验证备份、恢复与灾难恢复目标
+        description: 为关键数据定义 RPO 和 RTO，自动执行备份并定期在隔离环境中恢复，记录实际耗时和完整性结果。
+        tags: [备份, 恢复, RPO, RTO]
+        status: planned
+      - type: node
+        id: plan-capacity-and-cost
+        title: 根据负载规划容量与成本
+        description: 使用趋势、压测和资源利用率估算容量边界，为扩缩容、性能优化和成本异常设置可验证依据。
+        tags: [容量规划, 性能, FinOps]
+        status: planned
+      - type: node
+        id: coordinate-incident-response
+        title: 用明确角色协调事件响应
+        description: 定义事件等级、指挥、操作、沟通和升级职责，在处置时优先减轻用户影响并维护实时事件记录。
+        tags: [Incident, On-call, 沟通]
+        status: planned
+        link: https://sre.google/sre-book/managing-incidents/
+      - type: node
+        id: run-blameless-postmortems
+        title: 用无责复盘推动可跟踪改进
+        description: 记录影响、时间线、促成因素和恢复过程，将预防与缓解措施分配负责人、期限和验证方式。
+        tags: [Postmortem, 持续改进]
+        status: planned
+        link: https://sre.google/sre-book/postmortem-culture/
+
+  - type: node
+    id: capstone-devops-delivery
+    title: 交付一套可运行的 DevOps 闭环
+    description: 为一个小型 Web 服务建立从提交到受控环境的自动化交付，并用运行证据证明它可追踪、可观测、可回滚和可恢复。
+    tags: [综合实践, CI/CD, IaC]
+    status: planned
+    children:
+      - type: node
+        id: capstone-build-infrastructure
+        title: 用代码创建隔离的交付环境
+        description: 通过 IaC 创建所需计算、网络和存储资源，安全注入配置，并让团队成员能按文档重建环境。
+        tags: [IaC, 环境]
+        status: planned
+      - type: node
+        id: capstone-pipeline
+        title: 实现提交到部署的自动化流水线
+        description: 在变更评审后运行测试与安全门禁，发布唯一版本制品，部署同一制品并自动执行发布验证。
+        tags: [Pipeline, 制品, 部署]
+        status: planned
+      - type: node
+        id: capstone-operational-evidence
+        title: 提供可观测性与运行文档
+        description: 交付仪表盘、关键告警、SLI/SLO、运行手册和变更记录，使另一位学习者可以判断服务健康并完成排错。
+        tags: [可观测性, 文档, SLO]
+        status: planned
+      - type: node
+        id: capstone-failure-drill
+        title: 完成发布失败与恢复演练
+        description: 注入一次可控故障，触发告警并按流程回滚或恢复数据，随后完成复盘和至少一项已验证的改进。
+        tags: [故障演练, 回滚, 复盘]
+        status: planned
+
+  - type: node
+    id: advanced-devops-directions
+    title: 按岗位与系统规模选择深化方向
+    description: 完成交付闭环后，再根据实际职责进入容器编排、云平台、配置管理或内部开发平台等专题。
+    tags: [进阶, 职业方向]
+    status: optional
+    children:
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 进入 Kubernetes 路线图
+        description: 当服务需要多节点调度、弹性和声明式集群运维时，系统学习容器编排与工作负载治理。
+      - type: node
+        id: cloud-platform-operations
+        title: 深入一个云平台的生产运维
+        description: 选择实际使用的平台，学习身份、网络、计算、存储、托管服务、成本和组织级治理边界。
+        tags: [Cloud, IAM, FinOps]
+        status: optional
+      - type: node
+        id: configuration-management-at-scale
+        title: 自动化大规模主机配置管理
+        description: 当职责包含虚拟机或物理机群时，使用 Ansible 或同类工具实现幂等配置、分批变更和结果审计。
+        tags: [Ansible, 配置管理]
+        status: optional
+        link: https://docs.ansible.com/ansible/latest/getting_started/index.html
+      - type: node
+        id: platform-engineering
+        title: 构建带护栏的内部开发平台
+        description: 以开发者需求为输入，提供自助式黄金路径、标准接口和可观测反馈，并用采用率与交付效果验证平台价值。
+        tags: [平台工程, Developer Experience]
+        status: optional

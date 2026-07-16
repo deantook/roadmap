@@ -1,0 +1,370 @@
+id: sql
+title: SQL
+description: 从关系数据与基础查询出发，逐步编写可读、正确且可移植的 SQL，并独立完成一个经过验证的数据分析项目。
+tags: [SQL, 数据库, 数据分析, 后端]
+nodes:
+  - type: node
+    id: relational-and-sql-foundations
+    title: 用关系思维理解 SQL
+    description: 将数据视为具有行、列、键和关系的集合，理解 SQL 的声明式特点以及标准语法与产品方言的边界。
+    tags: [关系模型, SQL 标准, 基础]
+    status: planned
+    link: https://www.iso.org/standard/76583.html
+    children:
+      - type: node
+        id: tables-rows-and-columns
+        title: 用表、行和列描述业务数据
+        description: 从一个小型业务场景识别实体、属性、候选键和表之间的关系，并用样例行验证含义。
+        tags: [表, 关系模型]
+        status: planned
+      - type: node
+        id: declarative-query-thinking
+        title: 从结果集合推导查询
+        description: 先描述所需结果的粒度、列与过滤条件，再用 SQL 表达结果，避免把查询写成逐行处理流程。
+        tags: [声明式编程, 集合]
+        status: planned
+      - type: node
+        id: choose-a-practice-dialect
+        title: 选择一种 SQL 方言建立练习环境
+        description: 使用 PostgreSQL、SQLite 或其他关系数据库执行脚本，并记录该产品与标准 SQL 的语法差异。
+        tags: [方言, 实践环境]
+        status: planned
+        children:
+          - type: roadmap
+            roadmapId: postgresql
+            title: 使用 PostgreSQL 深化实践
+            description: 继续学习 PostgreSQL 的客户端、事务实现、性能诊断、安全和生产运维。
+
+  - type: node
+    id: select-and-expressions
+    title: 使用 SELECT 构造准确的结果集
+    description: 选择、计算、过滤、去重与排序数据，并正确处理数据类型、NULL 和逻辑表达式。
+    tags: [SELECT, 表达式, "NULL"]
+    status: planned
+    link: https://www.postgresql.org/docs/current/tutorial-select.html
+    children:
+      - type: node
+        id: project-columns-and-aliases
+        title: 选择列并为表达式命名
+        description: 使用列、字面量、算术与字符串表达式生成所需字段，并用明确别名稳定结果结构。
+        tags: [投影, Alias]
+        status: planned
+      - type: node
+        id: filter-with-predicates
+        title: 用谓词组合筛选条件
+        description: 使用比较、范围、集合和模式匹配谓词，通过括号明确 AND、OR 与 NOT 的求值意图。
+        tags: [WHERE, 谓词]
+        status: planned
+      - type: node
+        id: reason-about-null
+        title: 正确推理 NULL 与三值逻辑
+        description: 区分未知值、空字符串和零，使用 IS NULL 等谓词并验证 NULL 对比较、排序和聚合的影响。
+        tags: ["NULL", 三值逻辑]
+        status: planned
+      - type: node
+        id: distinct-order-and-limit
+        title: 确定性地去重、排序和限制结果
+        description: 仅在需要时使用 DISTINCT，并为 Top-N 与分页查询提供能打破并列的稳定排序键。
+        tags: [DISTINCT, ORDER BY, 分页]
+        status: planned
+
+  - type: node
+    id: combine-relations
+    title: 组合多个关系的数据
+    description: 依据键和结果保留规则选择连接或集合运算，避免意外产生重复、丢行或笛卡尔积。
+    tags: [JOIN, 集合运算]
+    status: planned
+    link: https://www.postgresql.org/docs/current/queries-table-expressions.html
+    children:
+      - type: node
+        id: inner-and-outer-joins
+        title: 按保留规则选择内连接与外连接
+        description: 根据匹配行、未匹配行和 NULL 补齐需求选择 INNER、LEFT、RIGHT 或 FULL JOIN，并解释结果基数。
+        tags: [INNER JOIN, OUTER JOIN]
+        status: planned
+      - type: node
+        id: join-on-multiple-keys
+        title: 使用完整连接条件维护结果粒度
+        description: 从主外键或业务键推导多列连接条件，连接前后核对行数和唯一性以发现重复放大。
+        tags: [连接条件, 基数]
+        status: planned
+      - type: node
+        id: self-and-cross-joins
+        title: 在明确场景使用自连接与交叉连接
+        description: 用自连接表达同表关系，用交叉连接生成有界组合，并预估结果规模防止意外爆炸。
+        tags: [SELF JOIN, CROSS JOIN]
+        status: planned
+      - type: node
+        id: union-intersect-and-except
+        title: 用集合运算合并兼容结果
+        description: 使用 UNION、INTERSECT 与 EXCEPT 表达集合关系，并明确重复行处理和列类型兼容要求。
+        tags: [UNION, INTERSECT, EXCEPT]
+        status: planned
+        link: https://www.postgresql.org/docs/current/queries-union.html
+
+  - type: node
+    id: summarize-with-aggregates
+    title: 使用聚合回答统计问题
+    description: 先确定分组粒度，再通过聚合、条件聚合与 HAVING 生成可以用样例数据核对的指标。
+    tags: [聚合, GROUP BY]
+    status: planned
+    link: https://www.postgresql.org/docs/current/functions-aggregate.html
+    children:
+      - type: node
+        id: group-and-aggregate
+        title: 按业务维度分组计算指标
+        description: 使用 COUNT、SUM、AVG、MIN 和 MAX 计算每组指标，并解释聚合函数对 NULL 的处理方式。
+        tags: [COUNT, SUM, AVG]
+        status: planned
+      - type: node
+        id: filter-groups-with-having
+        title: 区分行过滤与组过滤
+        description: 在聚合前使用 WHERE 限制输入行，在聚合后使用 HAVING 限制分组结果，并比较两者语义。
+        tags: [WHERE, HAVING]
+        status: planned
+      - type: node
+        id: conditional-aggregation
+        title: 用条件聚合生成多项指标
+        description: 通过 CASE 和聚合函数在一次分组中计算分渠道、分状态或分时间段的指标。
+        tags: [CASE, 条件聚合]
+        status: planned
+      - type: node
+        id: validate-aggregate-grain
+        title: 验证聚合粒度与口径
+        description: 用总数对账、边界样例和分组唯一性检查发现重复计算、漏算及分母口径错误。
+        tags: [数据验证, 指标口径]
+        status: planned
+
+  - type: node
+    id: subqueries-and-cte
+    title: 用子查询与 CTE 分解复杂问题
+    description: 将查询拆为具有明确输入、输出和粒度的步骤，并依据相关性和可读性选择子查询、EXISTS 或 CTE。
+    tags: [子查询, CTE]
+    status: planned
+    link: https://www.postgresql.org/docs/current/queries-with.html
+    children:
+      - type: node
+        id: scalar-and-table-subqueries
+        title: 在表达式与 FROM 中使用子查询
+        description: 区分标量、单列和表子查询的返回约束，避免多行标量结果和不必要的重复计算。
+        tags: [Subquery, Derived Table]
+        status: planned
+      - type: node
+        id: exists-and-membership
+        title: 用 EXISTS 表达存在性判断
+        description: 在只关心是否存在匹配行时使用 EXISTS 或 NOT EXISTS，并正确处理 NOT IN 遇到 NULL 的差异。
+        tags: [EXISTS, NOT EXISTS]
+        status: planned
+      - type: node
+        id: readable-cte-pipelines
+        title: 用 CTE 建立可检查的查询步骤
+        description: 为每个中间结果命名并单独验证粒度，使复杂报表查询易于阅读、测试和修改。
+        tags: [WITH, 可读性]
+        status: planned
+      - type: node
+        id: recursive-cte
+        title: 用递归 CTE 查询层级结构
+        description: 设计锚点、递归项与终止条件，查询组织树或路径并防止循环数据导致无界递归。
+        tags: [递归 CTE, 层级数据]
+        status: optional
+
+  - type: node
+    id: analytical-window-functions
+    title: 使用窗口函数完成分析计算
+    description: 在保留明细行的同时完成排名、累计、移动计算和行间比较，并正确设置分区、排序与窗口框架。
+    tags: [窗口函数, 分析 SQL]
+    status: planned
+    link: https://www.postgresql.org/docs/current/tutorial-window.html
+    children:
+      - type: node
+        id: partition-and-order-windows
+        title: 定义窗口分区与行序
+        description: 使用 OVER、PARTITION BY 和 ORDER BY 明确每行参与计算的数据范围与顺序。
+        tags: [OVER, PARTITION BY]
+        status: planned
+      - type: node
+        id: ranking-functions
+        title: 根据并列规则选择排名函数
+        description: 使用 ROW_NUMBER、RANK、DENSE_RANK 和 NTILE 实现组内 Top-N、分位分桶与去重选择。
+        tags: [ROW_NUMBER, RANK]
+        status: planned
+      - type: node
+        id: lag-lead-and-running-values
+        title: 计算行间变化与累计值
+        description: 使用 LAG、LEAD 和聚合窗口比较相邻周期、计算累计值，并处理首尾行缺失。
+        tags: [LAG, LEAD, 累计]
+        status: planned
+      - type: node
+        id: explicit-window-frames
+        title: 显式控制窗口框架
+        description: 区分 ROWS、RANGE 与 GROUPS 的边界语义，避免默认框架在并列排序值上产生意外结果。
+        tags: [Window Frame, ROWS]
+        status: planned
+        link: https://www.postgresql.org/docs/current/functions-window.html
+
+  - type: node
+    id: modify-data-safely
+    title: 安全地修改关系数据
+    description: 使用数据修改语句表达新增、修正、删除与合并，并通过事务、约束和影响行数保护数据正确性。
+    tags: [DML, 事务, 数据安全]
+    status: planned
+    link: https://www.postgresql.org/docs/current/dml.html
+    children:
+      - type: node
+        id: insert-update-and-delete
+        title: 编写范围明确的数据修改语句
+        description: 使用 INSERT、UPDATE 和 DELETE 修改目标行，在执行前用等价 SELECT 核对筛选范围并检查影响行数。
+        tags: [INSERT, UPDATE, DELETE]
+        status: planned
+      - type: node
+        id: upsert-and-merge-portability
+        title: 依据方言处理插入冲突与合并
+        description: 比较标准 MERGE 与各产品 Upsert 语法，在并发环境验证唯一约束和预期写入结果。
+        tags: [MERGE, Upsert, 方言]
+        status: planned
+      - type: node
+        id: transaction-control
+        title: 用事务提交或撤销一组变更
+        description: 使用 BEGIN、COMMIT、ROLLBACK 和保存点建立原子变更边界，并在错误路径验证不会留下部分结果。
+        tags: [COMMIT, ROLLBACK, Savepoint]
+        status: planned
+        link: https://www.postgresql.org/docs/current/tutorial-transactions.html
+      - type: node
+        id: concurrency-awareness
+        title: 识别并发写入的事务风险
+        description: 理解隔离级别、锁等待和死锁会影响语句结果，把产品特定的并发控制交给所选数据库继续深化。
+        tags: [隔离级别, 并发]
+        status: planned
+
+  - type: node
+    id: define-relational-structures
+    title: 使用 DDL 定义可靠的数据结构
+    description: 从业务规则推导表、类型、键和约束，并用失败用例证明数据库能拒绝无效状态。
+    tags: [DDL, 数据建模, 约束]
+    status: planned
+    link: https://www.postgresql.org/docs/current/ddl.html
+    children:
+      - type: node
+        id: create-and-alter-tables
+        title: 创建并演进表结构
+        description: 使用 CREATE、ALTER 和 DROP 定义对象，理解破坏性变更风险并通过版本化迁移保存演进历史。
+        tags: [CREATE TABLE, ALTER TABLE]
+        status: planned
+      - type: node
+        id: portable-data-types
+        title: 选择语义准确且可移植的数据类型
+        description: 根据范围、精度、长度和时区选择数值、字符、布尔与日期时间类型，并记录方言特有类型的依赖。
+        tags: [数据类型, 可移植性]
+        status: planned
+        link: https://www.postgresql.org/docs/current/datatype.html
+      - type: node
+        id: keys-and-constraints
+        title: 用键与约束表达业务不变量
+        description: 使用 NOT NULL、CHECK、UNIQUE、PRIMARY KEY 和 FOREIGN KEY 维护实体、域与引用完整性。
+        tags: [主键, 外键, 约束]
+        status: planned
+        link: https://www.postgresql.org/docs/current/ddl-constraints.html
+      - type: node
+        id: normalization-practice
+        title: 通过规范化减少更新异常
+        description: 识别函数依赖并将重复事实拆分到适当关系，再以真实查询需求评估是否需要受控冗余。
+        tags: [范式, 函数依赖]
+        status: planned
+
+  - type: node
+    id: write-production-quality-sql
+    title: 编写可维护且可验证的 SQL
+    description: 将格式、参数化、测试、执行计划和方言检查纳入查询交付流程，使正确性、安全性和性能可以持续验证。
+    tags: [工程质量, 测试, 性能]
+    status: planned
+    children:
+      - type: node
+        id: readable-query-structure
+        title: 用一致结构提升查询可读性
+        description: 使用明确列名、稳定别名、一致缩进和表达意图的 CTE，避免 SELECT * 与含义不清的隐式转换。
+        tags: [可读性, SQL 风格]
+        status: planned
+      - type: node
+        id: parameterized-sql
+        title: 使用参数化 SQL 处理外部输入
+        description: 通过驱动参数绑定分离代码与数据，避免拼接输入造成 SQL 注入和类型转换错误。
+        tags: [参数化查询, SQL 注入]
+        status: planned
+      - type: node
+        id: test-query-results
+        title: 用边界数据测试查询结果
+        description: 为零行、NULL、重复键、并列值、时间边界和多对多连接准备小型数据集并断言结果。
+        tags: [SQL 测试, 边界条件]
+        status: planned
+      - type: node
+        id: inspect-execution-plans
+        title: 用执行计划解释查询成本
+        description: 识别全表扫描、索引访问、排序和连接策略，以实测计划与数据分布指导重写或索引选择。
+        tags: [EXPLAIN, 查询优化]
+        status: planned
+        link: https://www.postgresql.org/docs/current/sql-explain.html
+      - type: node
+        id: verify-dialect-portability
+        title: 显式管理 SQL 方言差异
+        description: 在目标数据库执行兼容性测试，记录标识符、分页、日期、字符串、布尔和 Upsert 语法的产品差异。
+        tags: [SQL 方言, 兼容性]
+        status: planned
+
+  - type: node
+    id: capstone-sql-analysis
+    title: 交付一个可复现的 SQL 分析项目
+    description: 从原始业务问题设计关系模式和验证数据，提交由基础查询到分析报表的脚本、测试与结果说明。
+    tags: [综合实践, 数据分析]
+    status: planned
+    children:
+      - type: node
+        id: capstone-schema-and-data
+        title: 建立可验证的关系数据集
+        description: 设计包含至少一种一对多关系的模式，以约束保护数据质量，并提供可重复加载的边界样例数据。
+        tags: [Schema, 测试数据]
+        status: planned
+      - type: node
+        id: capstone-query-pack
+        title: 编写分层查询与分析报表
+        description: 提交覆盖连接、聚合、CTE 和窗口函数的查询集，每条查询注明输入粒度、结果粒度和业务口径。
+        tags: [查询集, 报表]
+        status: planned
+      - type: node
+        id: capstone-acceptance
+        title: 完成正确性、性能与可移植性验收
+        description: 用断言和人工对账验证关键结果，检查执行计划，并在第二种数据库方言运行核心查询或记录必要改写。
+        tags: [验收, 执行计划, 可移植性]
+        status: planned
+
+  - type: node
+    id: advanced-sql-directions
+    title: 按数据问题选择 SQL 进阶方向
+    description: 在核心查询与数据质量能力稳定后，再依据分析、层级、半结构化或数据库编程需求选择专门语法。
+    tags: [进阶]
+    status: optional
+    children:
+      - type: node
+        id: grouping-sets-and-pivots
+        title: 构建多层级汇总与透视结果
+        description: 使用 GROUPING SETS、ROLLUP、CUBE 或方言特有透视语法生成多层汇总，并验证总计不会重复计算。
+        tags: [ROLLUP, CUBE, Pivot]
+        status: optional
+      - type: node
+        id: temporal-and-interval-sql
+        title: 深化时间、时区与区间查询
+        description: 正确处理时间点、时区、半开区间和日历周期，避免本地时间及边界包含规则造成统计偏差。
+        tags: [时间, 时区, Interval]
+        status: optional
+      - type: node
+        id: json-spatial-and-graph-sql
+        title: 探索半结构化、空间与图查询
+        description: 当关系模型不能自然表达查询时，评估目标产品的 JSON、空间或 SQL/PGQ 能力及其可移植性成本。
+        tags: [JSON, Spatial, SQL/PGQ]
+        status: optional
+        link: https://www.iso.org/standard/79473.html
+      - type: node
+        id: views-routines-and-triggers
+        title: 评估视图、存储过程与触发器
+        description: 仅在封装查询、权限边界或强一致规则确有收益时使用数据库端对象，并记录迁移、测试和方言成本。
+        tags: [View, Procedure, Trigger]
+        status: optional

@@ -1,0 +1,331 @@
+id: ruby
+title: Ruby
+description: 面向具备基础编程经验的学习者，从对象模型与惯用表达出发，逐步构建、测试并打包可靠的 Ruby 库和命令行应用。
+tags: [语言, Ruby, 后端, 脚本]
+nodes:
+  - type: node
+    id: setup-and-language-basics
+    title: 配置环境并掌握 Ruby 基础
+    description: 安装可切换的 Ruby 运行环境，并能用对象、变量、方法、控制流和模式匹配完成小型脚本。
+    tags: [Ruby, 入门, IRB]
+    status: planned
+    link: https://www.ruby-lang.org/en/documentation/quickstart/
+    children:
+      - type: node
+        id: install-and-select-ruby
+        title: 安装并选择项目使用的 Ruby
+        description: 根据操作系统选择合适的安装或版本管理方式，并用 ruby、gem 和 irb 验证环境及项目版本。
+        tags: [安装, 版本管理]
+        status: planned
+        link: https://www.ruby-lang.org/en/documentation/installation/
+      - type: node
+        id: expressions-variables-and-control-flow
+        title: 用表达式与控制流编写脚本
+        description: 掌握局部变量、常量、真值规则、条件、循环和 case 表达式，并理解 Ruby 方法通常返回最后一个表达式。
+        tags: [语法, 控制流]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/syntax/control_expressions_rdoc.html
+      - type: node
+        id: methods-arguments-and-keywords
+        title: 设计清晰的方法参数
+        description: 正确使用位置参数、关键字参数、默认值、可变参数和返回值，并避免模糊的调用约定。
+        tags: [方法, 参数]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/syntax/methods_rdoc.html
+
+  - type: node
+    id: objects-and-core-data
+    title: 使用对象模型与核心数据类型
+    description: 理解值都是对象以及变量保存引用的语义，并根据可变性、相等性和查找需求选择合适的数据结构。
+    tags: [对象模型, 数据类型]
+    status: planned
+    link: https://docs.ruby-lang.org/en/master/syntax/literals_rdoc.html
+    children:
+      - type: node
+        id: strings-symbols-and-numbers
+        title: 正确处理字符串、Symbol 与数值
+        description: 区分可变 String 和用于稳定标识的 Symbol，掌握插值、编码与常用数值操作的行为边界。
+        tags: [String, Symbol, 编码]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/String.html
+      - type: node
+        id: arrays-hashes-and-ranges
+        title: 使用 Array、Hash 与 Range 建模集合
+        description: 根据顺序、键值映射和区间语义选择集合，并熟练执行访问、更新、切片与嵌套遍历。
+        tags: [Array, Hash, Range]
+        status: planned
+      - type: node
+        id: nil-truthiness-and-equality
+        title: 显式处理 nil、真值与相等性
+        description: 区分 nil 与 false，理解 ==、eql?、equal? 和 hash 的职责，并避免安全导航掩盖必要的输入验证。
+        tags: [nil, 相等性]
+        status: planned
+
+  - type: node
+    id: blocks-enumerables-and-patterns
+    title: 用 Block 与 Enumerable 组织数据流程
+    description: 利用块、迭代器和模式匹配表达集合转换与资源操作，减少手写循环和临时状态。
+    tags: [Block, Enumerable, 模式匹配]
+    status: planned
+    link: https://docs.ruby-lang.org/en/master/Enumerable.html
+    children:
+      - type: node
+        id: blocks-yield-and-proc
+        title: 理解 Block、yield、Proc 与 lambda
+        description: 根据调用和返回语义选择隐式块、Proc 或 lambda，并使用 block_given? 和 &block 设计可扩展接口。
+        tags: [Block, Proc, lambda]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html
+      - type: node
+        id: enumerable-pipelines
+        title: 组合 Enumerable 数据处理管道
+        description: 使用 each、map、select、reduce 和惰性枚举完成转换，并在大数据量场景控制中间集合。
+        tags: [Enumerable, Enumerator]
+        status: planned
+      - type: node
+        id: destructuring-and-pattern-matching
+        title: 用解构和模式匹配验证数据形状
+        description: 使用数组、Hash 和对象模式提取结构化数据，并通过分支覆盖处理不匹配输入。
+        tags: [Pattern Matching, 解构]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/syntax/pattern_matching_rdoc.html
+
+  - type: node
+    id: classes-modules-and-design
+    title: 使用类与模块建立可维护边界
+    description: 用封装、组合、继承和 mixin 组织对象协作，并让公开接口与状态不变量保持清晰。
+    tags: [类, Module, 面向对象]
+    status: planned
+    link: https://docs.ruby-lang.org/en/master/syntax/modules_and_classes_rdoc.html
+    children:
+      - type: node
+        id: classes-state-and-visibility
+        title: 封装对象状态与方法可见性
+        description: 使用 initialize、实例变量、访问器和 public、protected、private 控制合法状态转换与调用边界。
+        tags: [Class, 封装]
+        status: planned
+      - type: node
+        id: modules-namespaces-and-mixins
+        title: 用 Module 提供命名空间与可组合行为
+        description: 区分 include、prepend 和 extend 的方法查找效果，并以小型 mixin 复用具有明确契约的行为。
+        tags: [Module, Mixin]
+        status: planned
+      - type: node
+        id: composition-and-inheritance
+        title: 在组合与继承之间做出取舍
+        description: 优先通过对象协作分离职责，只在子类型关系稳定且替换语义成立时使用继承。
+        tags: [设计, 组合, 继承]
+        status: planned
+      - type: node
+        id: duck-typing-and-protocols
+        title: 用鸭子类型设计最小协议
+        description: 围绕对象能响应的消息定义依赖，通过测试或显式检查保护边界，而非依赖具体类名。
+        tags: [鸭子类型, 接口设计]
+        status: planned
+
+  - type: node
+    id: errors-io-and-boundaries
+    title: 可靠地处理异常、I/O 与外部输入
+    description: 只捕获能够处理的异常，确保资源释放，并在文件、JSON、网络或进程边界验证不可信数据。
+    tags: [异常, I/O, 输入验证]
+    status: planned
+    link: https://docs.ruby-lang.org/en/master/language/exceptions_md.html
+    children:
+      - type: node
+        id: exception-design-and-cleanup
+        title: 设计可诊断的异常路径
+        description: 使用 raise、rescue、else 和 ensure 表达失败与清理，保留异常上下文，并避免无差别捕获 Exception。
+        tags: [Exception, 错误处理]
+        status: planned
+      - type: node
+        id: files-paths-and-serialization
+        title: 安全读写文件与结构化数据
+        description: 使用块自动关闭文件，以 Pathname 组织路径，并在解析或生成 JSON 时验证字段、编码和数据规模。
+        tags: [File, JSON, Pathname]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/File.html
+      - type: node
+        id: command-process-and-environment
+        title: 控制命令、进程与环境变量边界
+        description: 区分参数数组与 shell 字符串，检查退出状态和超时，并避免把不可信输入拼接进命令。
+        tags: [进程, 安全, ENV]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/Process.html
+
+  - type: node
+    id: gems-bundler-and-projects
+    title: 用 RubyGems 与 Bundler 管理项目
+    description: 建立可复现的依赖环境，组织可加载的代码与可执行文件，并为库定义清晰的版本和发布元数据。
+    tags: [RubyGems, Bundler, Gem]
+    status: planned
+    link: https://bundler.io/guides/getting_started.html
+    children:
+      - type: node
+        id: gemfile-lockfile-and-dependencies
+        title: 管理 Gemfile、gemspec 与锁文件
+        description: 区分应用和库的依赖约束，理解 Gemfile.lock 的交付策略，并使用 bundle exec 保持命令环境一致。
+        tags: [Gemfile, gemspec, 依赖]
+        status: planned
+      - type: node
+        id: require-load-path-and-layout
+        title: 建立可预测的加载路径与项目布局
+        description: 使用 require 和 require_relative 加载代码，按 lib、exe、test 等职责组织目录，并避免隐式修改全局加载路径。
+        tags: [require, 项目结构]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/Kernel.html#method-i-require
+      - type: node
+        id: semantic-versioning-and-gem-metadata
+        title: 维护版本约束与 Gem 元数据
+        description: 根据兼容性变化更新版本，声明运行时和开发依赖，并在构建前核验许可证、文件清单与说明文档。
+        tags: [版本, 发布]
+        status: planned
+        link: https://guides.rubygems.org/specification-reference/
+
+  - type: node
+    id: testing-quality-and-debugging
+    title: 建立测试、质量检查与调试闭环
+    description: 用自动化测试保护公共行为，通过风格检查和 CI 降低回归风险，并利用运行时诊断快速定位问题。
+    tags: [测试, 调试, CI]
+    status: planned
+    link: https://docs.ruby-lang.org/en/master/stdlibs/minitest/Minitest.html
+    children:
+      - type: node
+        id: unit-and-integration-tests
+        title: 分层编写单元与集成测试
+        description: 隔离测试纯业务对象，在文件、进程和网络边界编写集成测试，并覆盖成功、失败和边界输入。
+        tags: [Minitest, 单元测试, 集成测试]
+        status: planned
+      - type: node
+        id: test-doubles-and-contracts
+        title: 克制地使用测试替身
+        description: 只在昂贵或不稳定边界使用 stub 和 mock，并让替身验证真实协作协议而非内部实现步骤。
+        tags: [Stub, Mock, 契约]
+        status: planned
+      - type: node
+        id: style-static-analysis-and-ci
+        title: 自动执行语法、风格与测试检查
+        description: 在本地和 CI 中运行语法检查、测试及团队选定的 lint 工具，并固定工具版本和失败门槛。
+        tags: [Lint, CI, 代码质量]
+        status: planned
+      - type: node
+        id: debug-with-irb-and-backtraces
+        title: 使用 IRB、回溯与调试器定位问题
+        description: 复现最小失败案例，阅读完整 backtrace，并通过交互式检查、断点和日志验证对象状态与控制流。
+        tags: [IRB, Backtrace, 调试]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/stdlibs/debug/DEBUGGER__.html
+
+  - type: node
+    id: concurrency-and-runtime
+    title: 理解并发模型与运行时成本
+    description: 根据工作负载选择 Thread、Fiber、进程或 Ractor，并通过测量判断分配、GC 和 I/O 等真实瓶颈。
+    tags: [并发, Thread, Fiber, 性能]
+    status: planned
+    link: https://docs.ruby-lang.org/en/master/Thread.html
+    children:
+      - type: node
+        id: threads-and-synchronization
+        title: 用线程与同步原语协调共享状态
+        description: 使用 Thread、Queue 和 Mutex 处理并发任务，传播异常并通过受控锁顺序降低竞争和死锁风险。
+        tags: [Thread, Mutex, Queue]
+        status: planned
+      - type: node
+        id: fibers-and-cooperative-scheduling
+        title: 用 Fiber 理解协作式并发
+        description: 区分 Fiber 与系统线程，并在支持的 I/O 场景评估调度器、阻塞操作和取消边界。
+        tags: [Fiber, Scheduler]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/Fiber.html
+      - type: node
+        id: processes-and-ractors
+        title: 按隔离需求评估进程与 Ractor
+        description: 比较进程隔离、进程间通信与 Ractor 的可共享对象约束，并在采用前验证库兼容性和维护状态。
+        tags: [Process, Ractor]
+        status: optional
+        link: https://docs.ruby-lang.org/en/master/Ractor.html
+      - type: node
+        id: profile-before-optimizing
+        title: 基于分析结果优化性能
+        description: 先使用基准和 profiler 定位时间与分配热点，再评估算法、对象创建、缓存和并行策略。
+        tags: [Benchmark, Profiling, GC]
+        status: planned
+        link: https://docs.ruby-lang.org/en/master/stdlibs/benchmark/Benchmark.html
+
+  - type: node
+    id: capstone-gem-and-cli
+    title: 交付一个可安装的 Gem 与 CLI
+    description: 将领域逻辑、外部输入、依赖管理和质量工具组合成具有库接口与命令行入口的可复现项目。
+    tags: [综合实践, Gem, CLI]
+    status: planned
+    children:
+      - type: node
+        id: capstone-public-api
+        title: 设计稳定的库接口与配置模型
+        description: 用少量公开对象表达核心能力，验证配置和输入，并将文件、网络或进程适配器隔离在边界层。
+        tags: [API, 模块化]
+        status: planned
+      - type: node
+        id: capstone-cli-behavior
+        title: 提供可预测的命令行体验
+        description: 实现参数和帮助信息，为正常结果与错误选择合适的标准输出、标准错误及退出码。
+        tags: [CLI, UX]
+        status: planned
+      - type: node
+        id: capstone-tests-and-diagnostics
+        title: 验证行为并提供故障线索
+        description: 用单元和端到端测试覆盖公共 API、CLI 及异常路径，并输出足够定位问题且不泄露敏感数据的日志。
+        tags: [测试, 日志, 安全]
+        status: planned
+      - type: node
+        id: capstone-package-validation
+        title: 构建并检查 Gem 产物
+        description: 核验 gemspec、版本、文档和打包文件，在干净环境安装并执行 CLI，发布前先完成本地构建验证。
+        tags: [打包, 验收]
+        status: planned
+        link: https://guides.rubygems.org/make-your-own-gem/
+
+  - type: node
+    id: advanced-and-specialized-ruby
+    title: 按项目目标深入 Ruby 生态
+    description: 在核心语言和工程实践稳定后，再根据 Web 开发、DSL、系统互操作或运行平台选择深化方向。
+    tags: [进阶, 生态]
+    status: optional
+    children:
+      - type: node
+        id: metaprogramming-and-dsls
+        title: 有边界地使用元编程构建 DSL
+        description: 理解方法查找、开放类、define_method 和 method_missing 的代价，并为动态接口提供文档、测试和可诊断错误。
+        tags: [元编程, DSL]
+        status: optional
+        link: https://docs.ruby-lang.org/en/master/Module.html
+      - type: node
+        id: rails-web-applications
+        title: 使用 Rails 构建 Web 应用
+        description: 学习约定、路由、MVC、Active Record、测试和安全机制，并以官方指南为准选择当前支持的实践。
+        tags: [Rails, Web]
+        status: optional
+        link: https://guides.rubyonrails.org/getting_started.html
+      - type: node
+        id: network-services-and-rack
+        title: 理解 Rack 与 Ruby Web 服务边界
+        description: 掌握请求环境、响应三元组和中间件组合，再根据项目约束评估具体服务器或轻量框架。
+        tags: [Rack, HTTP, Web]
+        status: optional
+        link: https://github.com/rack/rack
+      - type: node
+        id: native-extensions
+        title: 在必要时开发原生扩展
+        description: 仅在性能或系统库互操作确有收益时使用 C 扩展，并管理内存、异常、构建和跨平台兼容风险。
+        tags: [C Extension, FFI]
+        status: optional
+        link: https://docs.ruby-lang.org/en/master/extension_rdoc.html
+      - type: node
+        id: alternative-ruby-implementations
+        title: 评估替代 Ruby 实现
+        description: 根据部署平台、启动时间、吞吐和 Gem 兼容性，用真实工作负载比较目标运行时而非仅看微基准。
+        tags: [运行时, 兼容性]
+        status: optional
+      - type: roadmap
+        roadmapId: backend
+        title: 衔接后端工程路线图
+        description: 若目标是生产级 Ruby 服务，继续学习 API、数据库、缓存、部署和可观测性等通用后端能力。

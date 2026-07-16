@@ -19,6 +19,14 @@ nodes:
         title: 进入 Go 路线图
         description: 系统学习 Go 语言、并发、模块、标准库与 Web 入门。
       - type: roadmap
+        roadmapId: rust
+        title: 进入 Rust 路线图
+        description: 系统学习 Rust 的所有权、类型系统、并发、Cargo 工程与网络应用实践。
+      - type: roadmap
+        roadmapId: ruby
+        title: 进入 Ruby 路线图
+        description: 系统学习 Ruby 的对象模型、惯用表达、依赖管理、测试与应用交付实践。
+      - type: roadmap
         roadmapId: nodejs
         title: 进入 Node.js 路线图
         description: 用 JavaScript/TypeScript 构建、测试、观测并交付 Node.js 后端服务。
@@ -86,6 +94,10 @@ nodes:
         status: planned
         link: https://www.postgresql.org/docs/current/
         children:
+          - type: roadmap
+            roadmapId: sql
+            title: 进入 SQL 路线图
+            description: 系统学习跨关系数据库的查询、数据修改、建模和查询质量实践。
           - type: roadmap
             roadmapId: postgresql
             title: 进入 PostgreSQL 路线图
