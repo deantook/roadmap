@@ -241,23 +241,69 @@ function NodeCard({ node, roadmapId }: { node: RoadmapNode; roadmapId: string })
   )
 }
 
-function TreeChildren({ children, catalog, basePath, roadmapId, depth = 0 }: { children: RoadmapChild[]; catalog: RoadmapCatalog; basePath: string; roadmapId: string; depth?: number }) {
+function containsNode(children: RoadmapChild[], targetNodeId: string): boolean {
+  return children.some((child) => child.type === 'node' && (
+    child.id === targetNodeId || containsNode(child.children, targetNodeId)
+  ))
+}
+
+function TreeItem({ child, index, catalog, basePath, roadmapId, depth, targetNodeId }: {
+  child: RoadmapChild
+  index: number
+  catalog: RoadmapCatalog
+  basePath: string
+  roadmapId: string
+  depth: number
+  targetNodeId?: string
+}) {
+  const hasChildren = child.type === 'node' && child.children.length > 0
+  const shouldRevealTarget = hasChildren && Boolean(targetNodeId && containsNode(child.children, targetNodeId))
+  const [expanded, setExpanded] = useState(shouldRevealTarget)
+
+  useEffect(() => {
+    if (shouldRevealTarget) setExpanded(true)
+  }, [shouldRevealTarget])
+
+  const key = child.type === 'node' ? child.id : `ref-${child.roadmapId}-${index}`
+  return (
+    <li key={key} role="treeitem" aria-expanded={hasChildren ? expanded : undefined}>
+      {hasChildren ? (
+        <button
+          type="button"
+          className="tree-dot tree-toggle"
+          onClick={() => setExpanded((value) => !value)}
+          aria-expanded={expanded}
+          aria-controls={`children-${roadmapId}-${child.id}`}
+          aria-label={`${expanded ? '折叠' : '展开'} ${child.title} 的子节点`}
+        />
+      ) : <div className="tree-dot" aria-hidden="true" />}
+      {child.type === 'node'
+        ? <NodeCard node={child} roadmapId={roadmapId} />
+        : <RoadmapReferenceCard reference={child} target={catalog.roadmaps.get(child.roadmapId)!} basePath={basePath} />}
+      {hasChildren && expanded && (
+        <div id={`children-${roadmapId}-${child.id}`}>
+          <TreeChildren children={child.children} catalog={catalog} basePath={basePath} roadmapId={roadmapId} depth={depth + 1} targetNodeId={targetNodeId} />
+        </div>
+      )}
+    </li>
+  )
+}
+
+function TreeChildren({ children, catalog, basePath, roadmapId, depth = 0, targetNodeId }: { children: RoadmapChild[]; catalog: RoadmapCatalog; basePath: string; roadmapId: string; depth?: number; targetNodeId?: string }) {
   return (
     <ul className={`tree tree-depth-${Math.min(depth, 3)}`} role={depth === 0 ? 'tree' : 'group'}>
-      {children.map((child, index) => {
-        const key = child.type === 'node' ? child.id : `ref-${child.roadmapId}-${index}`
-        return (
-          <li key={key} role="treeitem" aria-expanded={child.type === 'node' && child.children.length ? true : undefined}>
-            <div className="tree-dot" aria-hidden="true" />
-            {child.type === 'node'
-              ? <NodeCard node={child} roadmapId={roadmapId} />
-              : <RoadmapReferenceCard reference={child} target={catalog.roadmaps.get(child.roadmapId)!} basePath={basePath} />}
-            {child.type === 'node' && child.children.length > 0 && (
-              <TreeChildren children={child.children} catalog={catalog} basePath={basePath} roadmapId={roadmapId} depth={depth + 1} />
-            )}
-          </li>
-        )
-      })}
+      {children.map((child, index) => (
+        <TreeItem
+          key={child.type === 'node' ? child.id : `ref-${child.roadmapId}-${index}`}
+          child={child}
+          index={index}
+          catalog={catalog}
+          basePath={basePath}
+          roadmapId={roadmapId}
+          depth={depth}
+          targetNodeId={targetNodeId}
+        />
+      ))}
     </ul>
   )
 }
@@ -298,6 +344,7 @@ function RoadmapPage({ catalog }: { catalog: RoadmapCatalog }) {
   if (!path) return <NotFound />
   const roadmap = path[path.length - 1]!
   const basePath = `/roadmaps/${path.map(({ id }) => id).join('/')}`
+  const targetNodeId = location.hash.startsWith('#node-') ? decodeURIComponent(location.hash.slice(6)) : undefined
   return (
     <div className="roadmap-page page-enter">
       <Breadcrumbs path={path} catalog={catalog} />
@@ -308,7 +355,7 @@ function RoadmapPage({ catalog }: { catalog: RoadmapCatalog }) {
       </header>
       <div className="journey-label"><span>开始旅程</span><i /></div>
       {roadmap.nodes.length
-        ? <TreeChildren children={roadmap.nodes} catalog={catalog} basePath={basePath} roadmapId={roadmap.id} />
+        ? <TreeChildren children={roadmap.nodes} catalog={catalog} basePath={basePath} roadmapId={roadmap.id} targetNodeId={targetNodeId} />
         : <div className="empty-state">这条路线图还没有节点。</div>}
       <div className="journey-end"><i />继续前进</div>
     </div>

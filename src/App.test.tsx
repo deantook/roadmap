@@ -24,11 +24,32 @@ describe('App', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Web 开发路线图' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '互联网基础' })).toBeInTheDocument()
     expect(screen.getAllByText('已完成').length).toBeGreaterThan(0)
+    fireEvent.click(screen.getByRole('button', { name: '展开 选择深入方向 的子节点' }))
     expect(screen.getByRole('link', { name: /进入前端路线图/ })).toBeInTheDocument()
+  })
+
+  it('collapses nodes with children by default and lets users expand them', () => {
+    render(<MemoryRouter initialEntries={['/roadmaps/frontend']}><App /></MemoryRouter>)
+    const toggle = screen.getByRole('button', { name: '展开 现代 CSS 的子节点' })
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByRole('heading', { name: 'Flexbox 与 Grid' })).not.toBeInTheDocument()
+
+    fireEvent.click(toggle)
+    expect(screen.getByRole('button', { name: '折叠 现代 CSS 的子节点' })).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByRole('heading', { name: 'Flexbox 与 Grid' })).toBeInTheDocument()
+  })
+
+  it('reveals a nested node when navigating directly to its hash', async () => {
+    render(<MemoryRouter initialEntries={['/roadmaps/frontend#node-flexbox-grid']}><App /></MemoryRouter>)
+
+    expect(await screen.findByRole('heading', { name: 'Flexbox 与 Grid' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '折叠 现代 CSS 的子节点' })).toHaveAttribute('aria-expanded', 'true')
   })
 
   it('navigates into a referenced roadmap with breadcrumbs', async () => {
     render(<MemoryRouter initialEntries={['/roadmaps/web-development']}><App /></MemoryRouter>)
+    fireEvent.click(screen.getByRole('button', { name: '展开 选择深入方向 的子节点' }))
     fireEvent.click(screen.getByRole('link', { name: /进入前端路线图/ }))
     expect(await screen.findByRole('heading', { level: 1, name: '前端开发路线图' })).toBeInTheDocument()
     const breadcrumb = screen.getByRole('navigation', { name: '面包屑导航' })
