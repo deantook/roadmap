@@ -1,0 +1,683 @@
+id: computer-organization
+title: 计算机组成原理
+description: 面向具备基础编程能力的学习者，从数据表示与数字逻辑出发，逐步理解指令执行、处理器、存储层次、I/O 和多核系统，并实现可验证的教学 CPU。
+tags: [计算机组成, 计算机体系结构, RISC-V, 处理器, 存储层次]
+nodes:
+  - type: node
+    id: establish-computer-organization-model
+    title: 建立从程序到硬件的分层模型
+    description: 能沿高级语言、汇编、指令集、微体系结构、数字逻辑和物理器件解释一个计算步骤如何被机器执行。
+    tags: [抽象层次, 硬件软件接口, 前置]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/
+    children:
+      - type: node
+        id: distinguish-architecture-organization-implementation
+        title: 区分 ISA、组成与物理实现
+        description: 分别说明软件可见接口、实现该接口的数据通路和控制，以及电路工艺与封装解决的问题。
+        tags: [ISA, Microarchitecture, Implementation]
+        status: planned
+      - type: node
+        id: trace-abstraction-stack
+        title: 追踪一条语句穿过抽象层
+        description: 将表达式或函数调用关联到编译结果、机器指令、寄存器传送、逻辑操作和存储访问。
+        tags: [编译, 指令, 寄存器传送]
+        status: planned
+      - type: node
+        id: prepare-digital-lab
+        title: 准备可重复的数字系统实验环境
+        description: 选择 HDL 或逻辑模拟器，建立组合与时序电路测试入口，并记录时钟、复位和波形查看方法。
+        tags: [HDL, 逻辑模拟器, 波形]
+        status: planned
+      - type: roadmap
+        roadmapId: algorithms-and-complexity
+        title: 补齐算法与复杂度分析
+        description: 使用渐近分析和实验方法理解硬件结构如何改变程序成本。
+
+  - type: node
+    id: represent-data-with-bits
+    title: 用位模式表示数据与指令
+    description: 在有限位宽下解释整数、浮点、字符和地址的编码、运算及异常边界。
+    tags: [二进制, 数据表示, 位运算]
+    status: planned
+    children:
+      - type: node
+        id: convert-positional-representations
+        title: 转换二进制、十六进制与十进制
+        description: 使用位权和分组完成整数转换，估算 n 位无符号数的范围并检查前导零不改变数值。
+        tags: [二进制, 十六进制, 位权]
+        status: planned
+      - type: node
+        id: represent-signed-integers
+        title: 使用 Two's Complement 表示有符号整数
+        description: 推导 n 位取值范围，解释取负、符号扩展、截断以及同一位模式的有符号与无符号解释。
+        tags: [Two's Complement, 符号扩展]
+        status: planned
+      - type: node
+        id: detect-integer-overflow
+        title: 判断整数进位与溢出
+        description: 区分无符号进位和有符号溢出，分析加减、移位与类型转换对结果位模式的影响。
+        tags: [Overflow, Carry, 移位]
+        status: planned
+      - type: node
+        id: explain-byte-order-and-alignment
+        title: 解释字节序、对齐与内存布局
+        description: 在内存转储中还原多字节值，区分 Little-endian 与 Big-endian，并说明未对齐访问的接口和性能影响。
+        tags: [Endianness, Alignment, 内存布局]
+        status: planned
+      - type: node
+        id: reason-about-floating-point
+        title: 分析 IEEE 754 浮点表示
+        description: 拆解符号、指数和有效数，解释舍入、非规格化数、无穷、NaN、精度损失及非结合性。
+        tags: [IEEE 754, Floating Point, 舍入]
+        status: planned
+        link: https://standards.ieee.org/ieee/754/6210/
+      - type: node
+        id: encode-text-and-instructions
+        title: 区分字符编码与机器编码
+        description: 说明字节序列如何按字符集、数据格式或指令格式获得不同含义，并避免把文本、数值和原始字节混用。
+        tags: [字符编码, 指令编码, 字节]
+        status: planned
+
+  - type: node
+    id: build-combinational-logic
+    title: 用组合逻辑构造计算部件
+    description: 从 Boolean Algebra 和真值表设计无内部状态的电路，并分析功能正确性、门延迟与扇出。
+    tags: [组合逻辑, Boolean Algebra, 门电路]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/
+    children:
+      - type: node
+        id: manipulate-boolean-expressions
+        title: 化简并验证布尔表达式
+        description: 使用 De Morgan、对偶和代数规则在表达式、真值表与逻辑门之间转换，并验证等价性。
+        tags: [Boolean Algebra, 真值表, De Morgan]
+        status: planned
+      - type: node
+        id: compose-universal-gates
+        title: 从基本门构造组合网络
+        description: 使用 NAND 或 NOR 构造 NOT、AND、OR 与 XOR，并区分逻辑功能与具体晶体管实现。
+        tags: [NAND, NOR, XOR]
+        status: planned
+      - type: node
+        id: route-with-multiplexers
+        title: 使用 Multiplexer 与 Decoder 选择数据
+        description: 根据控制位实现多路选择、译码和使能，分析选择线宽度与输入数量的关系。
+        tags: [MUX, Decoder, Enable]
+        status: planned
+      - type: node
+        id: build-adders-and-alu
+        title: 构造加法器与基础 ALU
+        description: 从半加器、全加器和进位链构造多位加法，组合算术、逻辑和比较功能并产生状态标志。
+        tags: [Adder, ALU, Carry]
+        status: planned
+      - type: node
+        id: compare-combinational-delays
+        title: 分析关键路径与传播延迟
+        description: 找出从输入到输出的最长门延迟路径，比较 Ripple Carry 与更快进位结构的面积和时延取舍。
+        tags: [Critical Path, Propagation Delay, Carry Lookahead]
+        status: planned
+      - type: node
+        id: verify-combinational-circuits
+        title: 自动验证组合电路
+        description: 穷举小位宽输入或使用参考模型比较所有输出，检查未定义输入、位宽和符号扩展错误。
+        tags: [电路测试, 参考模型, 穷举]
+        status: planned
+
+  - type: node
+    id: build-sequential-systems
+    title: 用时序逻辑保存状态
+    description: 通过锁存器、触发器、寄存器和有限状态机建模跨时钟周期的计算，并满足时序约束。
+    tags: [时序逻辑, 寄存器, FSM, 时钟]
+    status: planned
+    children:
+      - type: node
+        id: distinguish-latches-flipflops
+        title: 区分 Latch 与 Flip-Flop
+        description: 解释电平敏感和边沿触发存储，追踪使能、时钟与反馈如何保持一位状态。
+        tags: [Latch, Flip-Flop, 反馈]
+        status: planned
+      - type: node
+        id: build-registers-and-counters
+        title: 构造寄存器、计数器与移位寄存器
+        description: 组合多位存储与更新控制，验证复位、保持、装载、递增和移位行为。
+        tags: [Register, Counter, Shift Register]
+        status: planned
+      - type: node
+        id: design-finite-state-machines
+        title: 从状态图实现有限状态机
+        description: 定义状态、输入、转换和输出，选择 Moore 或 Mealy 模型并编码为寄存器加组合逻辑。
+        tags: [FSM, Moore, Mealy]
+        status: planned
+      - type: node
+        id: meet-setup-hold-timing
+        title: 分析 Setup、Hold 与时钟周期
+        description: 根据寄存器和组合路径延迟推导最小时钟周期，解释时钟偏斜与违反时序约束的后果。
+        tags: [Setup Time, Hold Time, Clock Skew]
+        status: planned
+      - type: node
+        id: synchronize-asynchronous-inputs
+        title: 安全处理异步输入与跨时钟域
+        description: 理解 Metastability 风险，使用同步器、握手或异步 FIFO，并明确同步不能消除所有失败概率。
+        tags: [Metastability, CDC, Synchronizer]
+        status: optional
+      - type: node
+        id: inspect-waveforms
+        title: 用波形调试时序电路
+        description: 在周期边界检查状态、控制与数据变化，定位复位、延迟、竞争和差一周期错误。
+        tags: [Waveform, 时序调试, 仿真]
+        status: planned
+
+  - type: node
+    id: understand-instruction-set-architecture
+    title: 使用 RISC-V 理解指令集接口
+    description: 把 ISA 视为软硬件契约，读写基础整数汇编，并追踪指令编码、寄存器、内存和控制流。
+    tags: [RISC-V, ISA, 汇编]
+    status: planned
+    link: https://docs.riscv.org/reference/home/index.html
+    children:
+      - type: node
+        id: distinguish-risc-cisc
+        title: 比较 RISC 与 CISC 设计取舍
+        description: 从指令复杂度、编码、访存、解码和微体系结构说明设计谱系，避免把现代实现简单归为两类。
+        tags: [RISC, CISC, ISA Design]
+        status: planned
+      - type: node
+        id: use-riscv-registers
+        title: 使用 RV32I 寄存器与基本指令
+        description: 编写算术、逻辑、移位和比较指令序列，区分常量零寄存器、通用寄存器及位宽语义。
+        tags: [RV32I, Register, Integer ISA]
+        status: planned
+      - type: node
+        id: encode-riscv-instructions
+        title: 解码 RISC-V 指令格式
+        description: 在 R、I、S、B、U 和 J 格式中定位 Opcode、寄存器与立即数，正确拼接和符号扩展分散字段。
+        tags: [Instruction Encoding, Opcode, Immediate]
+        status: planned
+      - type: node
+        id: load-store-addressing
+        title: 解释 Load/Store 与地址计算
+        description: 使用基址加偏移访问字节、半字和字，处理对齐、符号扩展和越界访问。
+        tags: [Load Store, Addressing, Alignment]
+        status: planned
+      - type: node
+        id: implement-control-flow
+        title: 使用分支、跳转与调用
+        description: 编写条件、循环和函数调用，解释 PC-relative 目标、返回地址及间接跳转。
+        tags: [Branch, Jump, PC-relative]
+        status: planned
+      - type: node
+        id: follow-calling-convention
+        title: 遵循调用约定与栈帧
+        description: 区分参数、返回值、Caller-saved 与 Callee-saved 寄存器，维护栈对齐并支持嵌套调用。
+        tags: [ABI, Calling Convention, Stack Frame]
+        status: planned
+        link: https://docs.riscv.org/reference/abi/_attachments/riscv-abi.pdf
+      - type: node
+        id: inspect-compiler-output
+        title: 编译并反汇编小程序
+        description: 比较不同优化级别下的汇编、符号和机器码，将循环、数组、结构体及函数调用映射回源代码。
+        tags: [Compiler, Disassembly, Object Code]
+        status: planned
+
+  - type: node
+    id: build-single-cycle-processor
+    title: 构造单周期处理器数据通路
+    description: 让取指、译码、执行、访存和写回在一个时钟周期完成，并由控制逻辑选择正确的数据路径。
+    tags: [数据通路, 单周期 CPU, 控制器]
+    status: planned
+    link: https://www.nand2tetris.org/course
+    children:
+      - type: node
+        id: route-program-counter
+        title: 设计 PC 与取指路径
+        description: 根据顺序执行、分支和跳转选择下一 PC，从指令存储器读取对齐指令并处理复位入口。
+        tags: [Program Counter, Fetch, Next PC]
+        status: planned
+      - type: node
+        id: build-register-file
+        title: 构造多端口 Register File
+        description: 支持同时读取两个源寄存器和写入一个目标寄存器，维护零寄存器与时钟写入语义。
+        tags: [Register File, Read Port, Write Port]
+        status: planned
+      - type: node
+        id: generate-immediates
+        title: 生成并扩展不同格式立即数
+        description: 根据指令类型拼接位段、符号扩展到数据宽度，并验证分支和跳转低位约束。
+        tags: [Immediate Generator, Sign Extension]
+        status: planned
+      - type: node
+        id: connect-alu-and-memory
+        title: 连接 ALU、数据存储器与写回
+        description: 选择寄存器或立即数作为操作数，执行地址或算术计算，并在 ALU、Load 与 PC 结果间选择写回值。
+        tags: [ALU, Data Memory, Writeback]
+        status: planned
+      - type: node
+        id: design-main-control
+        title: 从 Opcode 生成控制信号
+        description: 为不同指令产生寄存器写入、存储器读写、ALU、分支和选择信号，并为非法编码定义行为。
+        tags: [Control Unit, Decoder, Illegal Instruction]
+        status: planned
+      - type: node
+        id: calculate-single-cycle-period
+        title: 计算单周期关键路径
+        description: 汇总最慢指令经过的存储器、寄存器和组合逻辑延迟，说明简单控制为何牺牲最高时钟频率。
+        tags: [Critical Path, Clock Period, Latency]
+        status: planned
+
+  - type: node
+    id: sequence-multicycle-control
+    title: 用多周期控制复用硬件
+    description: 将指令执行拆成多个状态，在周期之间保存中间结果，比较面积、周期数和时钟频率的取舍。
+    tags: [多周期 CPU, 控制状态机, CPI]
+    status: planned
+    children:
+      - type: node
+        id: partition-instruction-steps
+        title: 按资源与依赖划分执行步骤
+        description: 将取指、译码、执行、访存和写回映射到周期，避免同一周期重复占用单端口资源。
+        tags: [Instruction Cycle, Resource Sharing]
+        status: planned
+      - type: node
+        id: store-intermediate-values
+        title: 保存跨周期中间状态
+        description: 为指令、操作数、ALU 结果和存储器数据设置内部寄存器，并定义每个状态的更新条件。
+        tags: [Internal Register, Datapath State]
+        status: planned
+      - type: node
+        id: implement-multicycle-fsm
+        title: 实现多周期控制状态机
+        description: 根据 Opcode 和条件标志驱动状态转换及控制输出，验证所有路径最终完成或报告异常。
+        tags: [Control FSM, Micro-operation]
+        status: planned
+      - type: node
+        id: compare-hardwired-microcoded-control
+        title: 比较硬布线与微程序控制
+        description: 从控制复杂度、修改成本、存储开销和性能比较组合逻辑、状态机与控制存储器。
+        tags: [Hardwired Control, Microcode]
+        status: planned
+      - type: node
+        id: compute-instruction-cpi
+        title: 按指令组合计算平均 CPI
+        description: 根据各类指令周期数和动态比例计算平均 CPI，并与单周期 CPU 的时钟周期共同比较性能。
+        tags: [CPI, Instruction Mix, 性能]
+        status: planned
+
+  - type: node
+    id: pipeline-instruction-execution
+    title: 用流水线提高指令吞吐
+    description: 将指令执行重叠到多个阶段，通过转发、停顿和清空保证依赖与控制变化下的正确性。
+    tags: [流水线, Hazard, Forwarding]
+    status: planned
+    children:
+      - type: node
+        id: insert-pipeline-registers
+        title: 划分经典五级流水线
+        description: 在 IF、ID、EX、MEM 与 WB 之间放置流水寄存器，携带数据、控制和指令身份。
+        tags: [IF, ID, EX, MEM, WB]
+        status: planned
+      - type: node
+        id: identify-pipeline-hazards
+        title: 区分结构、数据与控制冒险
+        description: 根据资源冲突、读写依赖和未知下一 PC 判断冒险类型，避免只按相邻指令记忆规则。
+        tags: [Structural Hazard, Data Hazard, Control Hazard]
+        status: planned
+      - type: node
+        id: forward-dependent-results
+        title: 使用 Forwarding 解决可旁路依赖
+        description: 比较源寄存器与流水阶段目标寄存器，选择最新结果并证明不会转发尚未产生的数据。
+        tags: [Forwarding, Bypassing, RAW]
+        status: planned
+      - type: node
+        id: stall-load-use
+        title: 对 Load-use 依赖插入停顿
+        description: 检测下一条指令需要尚未从存储器返回的值，冻结前级并向后级注入 Bubble。
+        tags: [Stall, Load-use, Bubble]
+        status: planned
+      - type: node
+        id: handle-branches
+        title: 处理分支并评估预测
+        description: 在分支结果确定后清除错误路径，计算分支罚时，并比较静态和动态预测的收益与状态成本。
+        tags: [Branch Prediction, Flush, Penalty]
+        status: planned
+      - type: node
+        id: preserve-precise-exceptions
+        title: 保持精确异常与中断语义
+        description: 携带异常原因和故障 PC，阻止年轻指令提交，并让架构状态看起来停在一条明确指令边界。
+        tags: [Precise Exception, Pipeline Flush, Trap]
+        status: planned
+      - type: node
+        id: measure-pipeline-speedup
+        title: 计算流水线加速与限制
+        description: 结合阶段延迟、流水寄存器开销、冒险停顿和指令组合计算实际 CPI 与吞吐。
+        tags: [Pipeline Speedup, Throughput, CPI]
+        status: planned
+
+  - type: node
+    id: design-memory-hierarchy
+    title: 利用局部性构建存储层次
+    description: 通过 Cache、主存和持久存储在容量、延迟、带宽和成本之间折中，并量化未命中的影响。
+    tags: [存储层次, Cache, Locality, DRAM]
+    status: planned
+    children:
+      - type: node
+        id: distinguish-locality
+        title: 识别时间与空间局部性
+        description: 从循环、数组、结构体和指令流预测访问重用，解释为什么相同复杂度的程序可能有不同缓存表现。
+        tags: [Temporal Locality, Spatial Locality]
+        status: planned
+      - type: node
+        id: map-cache-addresses
+        title: 拆分 Tag、Index 与 Offset
+        description: 根据容量、块大小和组相联度计算地址字段，判断一次访问映射到哪个 Set 和 Cache Line。
+        tags: [Tag, Index, Offset, Cache Line]
+        status: planned
+      - type: node
+        id: compare-cache-organizations
+        title: 比较直接映射、组相联与全相联
+        description: 分析命中延迟、比较器成本和 Conflict Miss，使用 LRU 或近似策略选择替换项。
+        tags: [Direct-mapped, Set-associative, Replacement]
+        status: planned
+      - type: node
+        id: choose-cache-write-policy
+        title: 选择 Cache 写入策略
+        description: 比较 Write-through、Write-back、Write-allocate 与 No-write-allocate 对带宽、一致性和故障的影响。
+        tags: [Write-back, Write-through, Dirty Bit]
+        status: planned
+      - type: node
+        id: calculate-amat
+        title: 计算 Average Memory Access Time
+        description: 组合命中时间、各级未命中率和罚时，识别局部未命中率与全局未命中率的区别。
+        tags: [AMAT, Miss Rate, Miss Penalty]
+        status: planned
+      - type: node
+        id: explain-dram-organization
+        title: 解释 DRAM 行、Bank 与刷新
+        description: 追踪地址如何选择 Channel、Rank、Bank、Row 和 Column，理解 Row Buffer 命中、并行和刷新成本。
+        tags: [DRAM, Row Buffer, Bank]
+        status: planned
+      - type: node
+        id: connect-tlb-and-page-tables
+        title: 连接 TLB、页表与 Cache
+        description: 追踪虚拟地址转换、TLB Miss、Page Walk 和 Page Fault，并区分处理器与操作系统职责。
+        tags: [TLB, Page Table, Virtual Memory]
+        status: planned
+
+  - type: node
+    id: connect-devices-and-io
+    title: 连接设备、总线与 I/O
+    description: 解释处理器如何发现、配置并与设备交换数据，以及轮询、中断和 DMA 如何改变控制与数据路径。
+    tags: [I/O, 总线, 中断, DMA]
+    status: planned
+    children:
+      - type: node
+        id: compare-bus-interconnects
+        title: 理解总线与互连事务
+        description: 区分地址、数据和控制传输，解释仲裁、带宽、延迟及共享总线扩展限制。
+        tags: [Bus, Interconnect, Arbitration]
+        status: planned
+      - type: node
+        id: use-memory-mapped-io
+        title: 通过 Memory-mapped I/O 访问设备
+        description: 将设备寄存器映射到地址空间，正确处理 Volatile、访问宽度、顺序和副作用。
+        tags: [MMIO, Device Register, Volatile]
+        status: planned
+      - type: node
+        id: compare-polling-interrupts
+        title: 比较轮询与中断
+        description: 根据事件频率、响应时间和 CPU 占用选择机制，追踪中断请求、优先级、保存现场与返回。
+        tags: [Polling, Interrupt, Latency]
+        status: planned
+      - type: node
+        id: trace-dma-transfers
+        title: 追踪 DMA 数据传输
+        description: 说明 CPU 如何配置缓冲区和描述符、设备如何直接访问内存，以及完成通知与缓存一致性要求。
+        tags: [DMA, Descriptor, Buffer]
+        status: planned
+      - type: node
+        id: understand-storage-devices
+        title: 比较块存储与持久介质
+        description: 从访问粒度、队列、寻址、延迟、并行度、耐久性和掉电行为比较 HDD、SSD 与持久存储接口。
+        tags: [Block Device, SSD, Queue]
+        status: planned
+      - type: node
+        id: distinguish-device-os-responsibilities
+        title: 划分硬件、固件与驱动职责
+        description: 说明设备控制器、固件、驱动和操作系统分别维护哪些状态及错误边界。
+        tags: [Firmware, Driver, Device Controller]
+        status: planned
+
+  - type: node
+    id: exploit-parallelism
+    title: 理解指令、数据与线程级并行
+    description: 比较处理器提高并行度的不同方式，并分析依赖、同步、功耗和存储系统带来的限制。
+    tags: [并行体系结构, SIMD, 多核, 一致性]
+    status: planned
+    children:
+      - type: node
+        id: expose-instruction-level-parallelism
+        title: 识别 Instruction-level Parallelism
+        description: 从数据、控制和内存依赖判断可重叠指令，理解多发射、乱序执行和提交的基本目标。
+        tags: [ILP, Superscalar, Out-of-order]
+        status: planned
+      - type: node
+        id: separate-renaming-from-scheduling
+        title: 理解寄存器重命名与动态调度
+        description: 区分真实 RAW 依赖与 WAR、WAW 名称依赖，解释重命名和保留站如何扩大执行窗口。
+        tags: [Register Renaming, Tomasulo, Dependency]
+        status: optional
+      - type: node
+        id: use-simd-and-vector
+        title: 使用 SIMD 与向量执行模型
+        description: 将相同操作应用于多数据元素，分析向量长度、Mask、内存步长和尾部处理。
+        tags: [SIMD, Vector, Data Parallelism]
+        status: planned
+        link: https://docs.riscv.org/reference/isa/unpriv/v-st-ext
+      - type: node
+        id: coordinate-multicore-caches
+        title: 维护多核 Cache Coherence
+        description: 解释写失效、Snooping 或 Directory 如何维护单地址一致性，并追踪典型 MESI 状态转换。
+        tags: [Cache Coherence, MESI, Directory]
+        status: planned
+      - type: node
+        id: distinguish-coherence-consistency
+        title: 区分缓存一致性与内存一致性模型
+        description: 分别说明单地址写入传播和跨地址操作顺序，理解 Fence 与原子操作为何仍然必要。
+        tags: [Memory Consistency, Coherence, Fence]
+        status: planned
+      - type: node
+        id: implement-atomic-primitives
+        title: 理解原子读改写与同步原语
+        description: 追踪 Compare-and-Swap、Load-Reserved/Store-Conditional 或 AMO 如何支持锁，并分析争用与缓存流量。
+        tags: [Atomic, CAS, LR/SC]
+        status: planned
+      - type: node
+        id: apply-amdahls-law
+        title: 用 Amdahl's Law 评估并行收益
+        description: 根据可加速比例和加速倍数计算上限，识别串行部分、通信和负载不均衡造成的实际损失。
+        tags: [Amdahl's Law, Speedup, Scalability]
+        status: planned
+
+  - type: node
+    id: evaluate-performance-and-energy
+    title: 用指标评估性能与能耗
+    description: 将执行时间分解为指令数、CPI 和时钟周期，使用代表负载和硬件计数器定位真正瓶颈。
+    tags: [性能分析, CPI, Benchmark, 能耗]
+    status: planned
+    children:
+      - type: node
+        id: apply-cpu-performance-equation
+        title: 使用 CPU Performance Equation
+        description: 用 Instruction Count、CPI 和 Clock Cycle Time 分解执行时间，避免用频率或单一微基准代表整体性能。
+        tags: [CPU Time, Instruction Count, CPI]
+        status: planned
+      - type: node
+        id: distinguish-latency-throughput
+        title: 区分延迟、吞吐与响应时间
+        description: 分析流水线、批处理和并行化如何分别影响单任务完成时间与单位时间处理量。
+        tags: [Latency, Throughput, Response Time]
+        status: planned
+      - type: node
+        id: benchmark-representative-workloads
+        title: 选择代表性且可复现的工作负载
+        description: 记录输入、编译器、优化、频率、预热和系统噪声，比较端到端任务而非只选择有利微基准。
+        tags: [Benchmark, Workload, Reproducibility]
+        status: planned
+      - type: node
+        id: interpret-hardware-counters
+        title: 解释硬件性能计数器
+        description: 关联周期、退休指令、分支误预测、Cache/TLB Miss 和停顿，注意复用、采样与事件定义误差。
+        tags: [PMU, Hardware Counter, IPC]
+        status: planned
+      - type: node
+        id: explain-power-energy-thermal
+        title: 区分功率、能量与热约束
+        description: 说明动态和静态功耗来源，分析频率、电压、利用率、散热及 Energy-delay 之间的取舍。
+        tags: [Power, Energy, Thermal, DVFS]
+        status: planned
+      - type: node
+        id: optimize-with-roofline
+        title: 使用 Roofline 判断计算或带宽瓶颈
+        description: 根据 Operational Intensity 与机器峰值估算性能上限，选择减少数据移动或提高计算利用率。
+        tags: [Roofline, Memory Bandwidth, FLOPS]
+        status: optional
+
+  - type: node
+    id: verify-protect-recover-hardware
+    title: 验证并保护硬件行为
+    description: 使用分层仿真、断言与故障实验验证设计，在可靠性和安全边界中考虑位翻转、越权与推测执行副作用。
+    tags: [硬件验证, 可靠性, 硬件安全]
+    status: planned
+    children:
+      - type: node
+        id: build-reference-models
+        title: 为部件建立可执行参考模型
+        description: 用简单软件模型定义 ALU、译码、状态机和处理器的期望行为，逐周期比较架构状态。
+        tags: [Reference Model, Co-simulation, Golden Model]
+        status: planned
+      - type: node
+        id: test-at-multiple-levels
+        title: 分层测试模块、子系统与程序
+        description: 对组合部件穷举、对时序部件检查序列、对 CPU 执行指令与程序测试，保持失败范围可诊断。
+        tags: [Unit Test, Integration Test, ISA Test]
+        status: planned
+      - type: node
+        id: use-assertions-and-formal-checks
+        title: 使用断言与形式化检查
+        description: 表达握手、互斥、进展和 ISA 不变量，在有限状态空间中证明性质或生成反例波形。
+        tags: [Assertion, Formal Verification, Model Checking]
+        status: optional
+      - type: node
+        id: detect-correct-memory-errors
+        title: 检测并纠正存储位错误
+        description: 比较 Parity、SECDED ECC、Chipkill 与重试，计算冗余并区分可纠正、可检测和静默错误。
+        tags: [Parity, ECC, SECDED]
+        status: planned
+      - type: node
+        id: enforce-privilege-and-memory-protection
+        title: 用特权与内存保护隔离软件
+        description: 解释模式、CSR、页权限、PMP 或同类机制如何限制代码、数据与设备访问，并处理非法操作。
+        tags: [Privilege, PMP, Access Control]
+        status: planned
+      - type: node
+        id: reason-about-microarchitectural-leakage
+        title: 识别微体系结构侧信道
+        description: 分析 Cache、分支预测和推测执行如何泄露架构不可见状态，区分功能正确与安全隔离。
+        tags: [Side Channel, Speculation, Cache Timing]
+        status: planned
+      - type: node
+        id: inject-hardware-faults
+        title: 注入故障并验证恢复路径
+        description: 模拟非法指令、存储错误、总线超时和设备中断，确认异常原因、架构状态与复位恢复符合规格。
+        tags: [Fault Injection, Reset, Recovery]
+        status: planned
+
+  - type: node
+    id: deliver-teaching-cpu
+    title: 交付一个可运行的教学 RISC-V CPU
+    description: 实现 RV32I 核心指令子集，使其能运行汇编测试和小程序，并用波形、参考模型与性能报告证明正确性。
+    tags: [综合实践, RISC-V, CPU, HDL]
+    status: planned
+    children:
+      - type: node
+        id: specify-cpu-subset
+        title: 定义支持的 ISA 与系统边界
+        description: 列出指令、位宽、存储接口、复位地址、对齐、非法指令和 I/O 行为，并记录暂不支持能力。
+        tags: [ISA Subset, Specification, RV32I]
+        status: planned
+      - type: node
+        id: implement-cpu-modules
+        title: 模块化实现数据通路与控制
+        description: 分离 PC、Register File、ALU、Immediate、存储接口和控制器，为每个模块提供独立测试。
+        tags: [Datapath, Control, Modular Design]
+        status: planned
+      - type: node
+        id: verify-instruction-semantics
+        title: 验证每条指令的架构效果
+        description: 对正常、边界和非法编码比较寄存器、PC、内存及异常结果，并运行随机指令序列差分测试。
+        tags: [ISA Test, Differential Testing, Random Testing]
+        status: planned
+      - type: node
+        id: run-compiled-program
+        title: 运行编译生成的小程序
+        description: 使用交叉工具链构建算术、数组、函数和控制流程序，加载映像并验证最终输出与内存状态。
+        tags: [Toolchain, Program Image, Simulation]
+        status: planned
+      - type: node
+        id: add-pipeline-or-cache
+        title: 增加流水线或 Cache 扩展
+        description: 选择一项扩展，先写正确性和性能目标，再实现 Hazard 或命中未命中控制并回归基础指令。
+        tags: [Pipeline, Cache, 扩展]
+        status: planned
+      - type: node
+        id: report-cpu-evidence
+        title: 发布设计与验证报告
+        description: 提供结构图、时序、测试矩阵、波形、程序结果、关键路径、CPI 和已知限制，使他人能够复现。
+        tags: [设计文档, Verification, Performance]
+        status: planned
+
+  - type: node
+    id: choose-architecture-specialization
+    title: 按目标选择体系结构深化方向
+    description: 完成处理器、存储、I/O 与综合 CPU 后，再进入需要专门工具、数学或应用背景的方向。
+    tags: [进阶, 体系结构方向]
+    status: optional
+    children:
+      - type: node
+        id: study-out-of-order-processors
+        title: 深入乱序与推测执行
+        description: 研究动态调度、Reorder Buffer、Load/Store Queue、分支预测和精确提交。
+        tags: [Out-of-order, ROB, Speculation]
+        status: optional
+      - type: node
+        id: study-gpu-accelerators
+        title: 深入 GPU 与领域加速器
+        description: 比较 SIMT、向量、Systolic Array 和专用数据通路在并行度、存储访问与可编程性上的取舍。
+        tags: [GPU, SIMT, Accelerator]
+        status: optional
+      - type: node
+        id: study-fpga-asic-flow
+        title: 深入 FPGA 与 ASIC 实现流程
+        description: 学习综合、时序分析、约束、布局布线、面积功耗评估和板级验证。
+        tags: [FPGA, ASIC, Synthesis]
+        status: optional
+      - type: node
+        id: study-embedded-systems
+        title: 深入嵌入式与实时硬件
+        description: 研究启动、片上外设、总线、低功耗、中断延迟和资源受限系统的最坏情况行为。
+        tags: [Embedded, SoC, Real-time]
+        status: optional
+      - type: node
+        id: study-memory-systems
+        title: 深入高级存储系统
+        description: 研究 Prefetch、Non-blocking Cache、NUMA、持久内存和内存控制器调度。
+        tags: [Prefetch, NUMA, Memory Controller]
+        status: optional
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 衔接操作系统原理
+        description: 将特权、中断、页表、TLB、DMA 和多核同步应用到资源管理与内核实现。
+      - type: roadmap
+        roadmapId: c
+        title: 深入贴近机器的 C 编程
+        description: 使用指针、位运算、内存布局、ABI 和系统接口编写可移植的底层程序。

@@ -1,0 +1,315 @@
+id: react-native
+title: React Native 开发路线图
+description: 在 React 基础上掌握原生组件、导航、数据与平台能力，最终能测试、发布并持续运营一款双平台移动应用。
+tags: [移动端, React Native, 跨平台, React]
+nodes:
+  - type: node
+    id: verify-react-prerequisites
+    title: 补齐 React 与 TypeScript 前置基础
+    description: 确认能熟练使用组件、Hooks 与状态管理，再用类型约束后续的组件 props 与数据契约。
+    tags: [React, TypeScript, 前置]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: react
+        title: 先完成 React 路线图
+        description: 掌握组件、Hooks、状态与测试后，再迁移到原生组件和移动平台工具链。
+      - type: node
+        id: type-components-props
+        title: 用 TypeScript 约束组件与数据
+        description: 为 props、状态与 API 响应声明类型，利用泛型与判别联合让非法界面状态无法通过编译。
+        tags: [TypeScript]
+        status: planned
+
+  - type: node
+    id: setup-cross-platform-workflow
+    title: 搭建双平台开发工作流
+    description: 安装工具链并在 Android 与 iOS 模拟器及真机上运行首个应用，建立高效的日常开发循环。
+    tags: [环境, 工具链]
+    status: planned
+    link: https://reactnative.dev/docs/environment-setup
+    children:
+      - type: node
+        id: choose-expo-or-bare
+        title: 选择 Expo 或裸 React Native 工作流
+        description: 理解 Expo 托管与裸工作流在原生代码控制、构建方式和依赖接入上的差异，并按项目需要做出选择。
+        tags: [Expo]
+        status: planned
+        link: https://docs.expo.dev/
+      - type: node
+        id: run-on-emulators-and-devices
+        title: 在模拟器与真机上运行应用
+        description: 配置 Android SDK 与 Xcode，使用开发构建或 Expo Go 在两类平台上启动并热更新应用。
+        tags: [模拟器, 真机]
+        status: planned
+      - type: node
+        id: debug-with-dev-tools
+        title: 用 Fast Refresh 与调试工具定位问题
+        description: 使用 Fast Refresh、日志断点、元素检查器与网络检查复现界面与数据问题。
+        tags: [调试]
+        status: planned
+        link: https://reactnative.dev/docs/debugging
+
+  - type: node
+    id: build-native-ui
+    title: 用核心组件构建原生界面
+    description: 使用内置组件、Flexbox 与平台适配能力实现符合双平台尺寸与输入特点的可访问界面。
+    tags: [UI, 布局]
+    status: planned
+    link: https://reactnative.dev/docs/components-and-apis
+    children:
+      - type: node
+        id: compose-core-components
+        title: 组合 View、Text 与 Image 等核心组件
+        description: 理解核心组件到原生视图的映射关系，并用样式表组织可复用的视觉规则。
+        status: planned
+      - type: node
+        id: layout-with-flexbox
+        title: 用 Flexbox 完成自适应布局
+        description: 使用主轴/交叉轴、弹性比例与安全区适配不同屏幕尺寸、方向与刘海区域。
+        status: planned
+        link: https://reactnative.dev/docs/flexbox
+      - type: node
+        id: handle-text-input-keyboard
+        title: 处理文本输入与键盘行为
+        description: 管理受控输入、校验反馈与键盘避让，避免键盘遮挡输入焦点或误触提交。
+        tags: [表单, 键盘]
+        status: planned
+      - type: node
+        id: render-long-lists
+        title: 高效渲染长列表
+        description: 使用 FlatList/SectionList 的窗口化、key 与回收策略处理大数据列表，并在需要时评估 FlashList。
+        tags: [列表, 性能]
+        status: planned
+        link: https://reactnative.dev/docs/optimizing-flatlist-configuration
+      - type: node
+        id: provide-accessible-semantics
+        title: 为界面提供无障碍语义
+        description: 设置角色、标签、状态与焦点顺序，并用 TalkBack 与 VoiceOver 走查核心流程。
+        tags: [无障碍]
+        status: planned
+        link: https://reactnative.dev/docs/accessibility
+
+  - type: node
+    id: implement-navigation
+    title: 实现导航与信息架构
+    description: 组织栈、标签页与模态流程，处理深链接与返回行为，保持导航状态可预期。
+    tags: [导航]
+    status: planned
+    link: https://reactnavigation.org/docs/getting-started/
+    children:
+      - type: node
+        id: organize-stack-tab-flows
+        title: 组织栈与标签页导航
+        description: 用 React Navigation 组合堆栈、底部标签与抽屉，为页面传递类型安全的参数。
+        status: planned
+      - type: node
+        id: respect-platform-navigation
+        title: 尊重平台返回与转场惯例
+        description: 处理 Android 硬件返回键与 iOS 手势返回，在编辑中等场景拦截退出并保护未保存数据。
+        tags: [平台差异]
+        status: planned
+      - type: node
+        id: handle-deep-links
+        title: 接入深链接与冷启动路由
+        description: 配置链接映射，验证冷启动、登录前后与无效参数下的落地页行为。
+        tags: [Deep Link]
+        status: planned
+
+  - type: node
+    id: manage-state-and-data
+    title: 管理状态与远端、本地数据
+    description: 区分界面状态与服务端状态，处理不可靠网络，并按数据形态选择设备端存储。
+    tags: [状态, 网络, 存储]
+    status: planned
+    children:
+      - type: node
+        id: separate-ui-server-state
+        title: 分离界面状态与服务端状态
+        description: 用组件状态与全局状态管理界面表达，用缓存与失效策略管理远端数据，避免双份真相。
+        status: planned
+      - type: node
+        id: fetch-network-data
+        title: 可靠地请求与解析网络数据
+        description: 使用 fetch 或请求库处理超时、取消、分页与序列化失败，不把未校验数据直接渲染。
+        tags: [HTTP]
+        status: planned
+        link: https://reactnative.dev/docs/network
+      - type: node
+        id: persist-local-data
+        title: 按数据形态选择本地存储
+        description: 区分偏好、缓存、结构化数据与凭据，使用 AsyncStorage、数据库或安全存储并规划迁移。
+        tags: [持久化]
+        status: planned
+        link: https://github.com/react-native-async-storage/async-storage
+      - type: node
+        id: protect-secrets-transport
+        title: 保护凭据与传输安全
+        description: 使用系统安全存储保存令牌、启用 TLS，不把秘密写入源码、日志或 AsyncStorage 明文。
+        tags: [安全]
+        status: planned
+        link: https://reactnative.dev/docs/security
+
+  - type: node
+    id: create-smooth-interactions
+    title: 打造流畅的手势与动画
+    description: 用合适的动画驱动与手势处理实现 60fps 交互，不把重计算留在 JS 线程。
+    tags: [动画, 手势, 性能]
+    status: planned
+    children:
+      - type: node
+        id: animate-with-animated
+        title: 用 Animated 实现基础动效
+        description: 使用插值、时序与原生驱动完成透明度、位移与转场动画，理解其能力边界。
+        status: planned
+      - type: node
+        id: handle-gestures-reanimated
+        title: 用 Reanimated 与手势库实现复杂交互
+        description: 在 UI 线程运行手势与动画工作，实现拖拽、跟手滚动与共享元素过渡。
+        tags: [Reanimated]
+        status: planned
+        link: https://docs.swmansion.com/react-native-reanimated/
+
+  - type: node
+    id: access-platform-capabilities
+    title: 接入设备能力与平台差异
+    description: 在最小权限与清晰降级路径下使用相机、定位、通知等能力，并显式处理双平台差异。
+    tags: [系统 API, 权限]
+    status: planned
+    children:
+      - type: node
+        id: request-permissions-contextually
+        title: 在使用场景中申请权限
+        description: 先解释价值再请求相机、相册或定位权限，并为拒绝与受限状态提供完整降级路径。
+        tags: [权限]
+        status: planned
+      - type: node
+        id: write-platform-specific-code
+        title: 显式隔离平台差异代码
+        description: 使用 Platform 模块与 .ios/.android 文件后缀组织差异实现，避免分散的条件判断。
+        status: planned
+        link: https://reactnative.dev/docs/platform-specific-code
+      - type: node
+        id: integrate-push-notifications
+        title: 按需接入推送通知
+        description: 配置双平台推送通道与权限，验证点击通知后的冷启动导航与无效数据处理。
+        tags: [Push]
+        status: optional
+
+  - type: node
+    id: bridge-native-boundary
+    title: 理解架构并跨越原生边界
+    description: 理解新架构与 JS 引擎如何影响启动与互操作，在生态缺失时自行桥接原生能力。
+    tags: [新架构, 原生模块]
+    status: planned
+    link: https://reactnative.dev/architecture/landing-page
+    children:
+      - type: node
+        id: understand-new-architecture
+        title: 理解新架构与 Hermes
+        description: 理解 JSI、Fabric 与 Turbo Modules 的协作方式，以及 Hermes 对启动与内存的影响。
+        tags: [JSI, Hermes]
+        status: planned
+        link: https://reactnative.dev/docs/hermes
+      - type: node
+        id: evaluate-third-party-native-libs
+        title: 评估与维护第三方原生依赖
+        description: 核查库的平台支持、新架构兼容与维护活跃度，并处理升级时的原生构建冲突。
+        tags: [依赖管理]
+        status: planned
+      - type: node
+        id: write-turbo-native-module
+        title: 编写 Turbo 原生模块
+        description: 用 Kotlin/Swift 实现类型安全的原生模块，处理线程、错误与异步回调边界。
+        tags: [Turbo Modules]
+        status: optional
+        link: https://reactnative.dev/docs/turbo-native-modules-introduction
+
+  - type: node
+    id: verify-app-quality
+    title: 用测试与测量守住质量
+    description: 建立从逻辑测试到端到端流程的反馈链，并在真机上用数据定位性能问题。
+    tags: [测试, 性能]
+    status: planned
+    link: https://reactnative.dev/docs/testing-overview
+    children:
+      - type: node
+        id: test-logic-and-components
+        title: 用 Jest 测试逻辑与组件
+        description: 测试状态转换、数据解析与组件渲染输出，用 mock 隔离网络与原生模块。
+        tags: [Jest]
+        status: planned
+      - type: node
+        id: run-e2e-flows
+        title: 用端到端测试覆盖关键流程
+        description: 使用 Maestro 等工具在模拟器上自动走查注册、核心任务与支付等不可回归流程。
+        tags: [E2E]
+        status: optional
+        link: https://maestro.mobile.dev/
+      - type: node
+        id: profile-on-real-devices
+        title: 在真机上测量与优化性能
+        description: 测量启动时间、掉帧、内存与包体积，定位 JS 线程阻塞与桥接热点并验证优化收益。
+        tags: [性能分析]
+        status: planned
+        link: https://reactnative.dev/docs/performance
+
+  - type: node
+    id: release-and-operate
+    title: 构建、发布并持续运营
+    description: 管理签名与版本，完成双平台上架与灰度发布，并依据线上质量信号安全迭代。
+    tags: [发布, 运营]
+    status: planned
+    children:
+      - type: node
+        id: sign-and-release-android
+        title: 签名并发布 Android 应用
+        description: 配置签名密钥、生成 App Bundle，并通过 Google Play 测试轨道逐步放量。
+        tags: [Android, Google Play]
+        status: planned
+        link: https://reactnative.dev/docs/signed-apk-android
+      - type: node
+        id: publish-to-app-store
+        title: 打包并上架 App Store
+        description: 管理证书与描述文件，提交 Archive、准备审核材料并处理常见驳回原因。
+        tags: [iOS, App Store]
+        status: planned
+        link: https://reactnative.dev/docs/publishing-to-app-store
+      - type: node
+        id: ship-ota-updates
+        title: 用 OTA 更新加速修复分发
+        description: 使用 EAS Update 等渠道推送 JS 层修复，理解其不能覆盖原生变更的边界与回滚策略。
+        tags: [OTA, EAS]
+        status: optional
+        link: https://docs.expo.dev/eas/
+      - type: node
+        id: monitor-crashes-and-metrics
+        title: 监控崩溃与关键指标
+        description: 接入崩溃与性能监控，跟踪崩溃率、无响应率与版本采用率，在恶化时暂停或回退发布。
+        tags: [可观测性]
+        status: planned
+
+  - type: node
+    id: ship-capstone-app
+    title: 交付一款双平台应用
+    description: 综合运用界面、导航、数据、平台能力与质量保障，交付可供真实用户试用的完整应用。
+    tags: [综合实践, 项目]
+    status: planned
+    children:
+      - type: node
+        id: slice-core-flows
+        title: 按垂直切片实现核心流程
+        description: 为内容收藏或习惯追踪场景逐条打通界面、状态、网络与错误恢复，每个切片可运行可演示。
+        status: planned
+      - type: node
+        id: validate-on-device-matrix
+        title: 在设备矩阵上验收发布候选
+        description: 覆盖弱网、权限拒绝、深色模式、大字体、屏幕阅读器与低性能设备并修复阻断问题。
+        tags: [验收]
+        status: planned
+      - type: node
+        id: distribute-and-document
+        title: 分发测试版本并沉淀项目文档
+        description: 通过内测渠道收集反馈，提供可复现构建步骤、架构边界与已知限制说明。
+        tags: [作品集]
+        status: planned

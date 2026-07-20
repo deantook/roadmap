@@ -1,0 +1,254 @@
+id: kotlin
+title: Kotlin
+description: 从语法、空安全与集合起步，掌握协程与 Java 互操作，最终能独立构建、测试并交付一个运行在 JVM 上的 Kotlin 项目。
+tags: [语言, Kotlin, JVM]
+nodes:
+  - type: node
+    id: setup-kotlin-environment
+    title: 搭建 Kotlin 开发环境
+    description: 安装 JDK 与 IntelliJ IDEA，运行第一个 Kotlin 程序，并用练习建立对语言的整体印象。
+    tags: [入门, 工具]
+    status: planned
+    link: https://kotlinlang.org/docs/getting-started.html
+    children:
+      - type: node
+        id: install-jdk-and-ide
+        title: 安装 JDK 与 IntelliJ IDEA
+        description: 选择受支持的 JDK 版本完成安装，在 IntelliJ IDEA 中创建 JVM 项目并运行 main 函数。
+        status: planned
+      - type: node
+        id: tour-language-basics
+        title: 通过 Kotlin Tour 建立整体印象
+        description: 在浏览器中完成官方入门教程，识别变量、控制流、函数与类的基本写法。
+        status: planned
+        link: https://kotlinlang.org/docs/kotlin-tour-hello-world.html
+      - type: node
+        id: practice-with-koans
+        title: 完成 Kotlin Koans 语法练习
+        description: 让一组失败的单元测试逐一通过，熟悉 Kotlin 惯用写法并对照官方解答修正实现。
+        status: planned
+        link: https://kotlinlang.org/docs/koans.html
+
+  - type: node
+    id: master-language-core
+    title: 掌握语言核心
+    description: 使用类型、控制流、函数与空安全写出可读且不易出错的 Kotlin 代码。
+    tags: [语法, 空安全]
+    status: planned
+    link: https://kotlinlang.org/docs/basic-syntax.html
+    children:
+      - type: node
+        id: values-types-control-flow
+        title: 用类型与控制流表达逻辑
+        description: 正确使用 val/var、基本类型、区间、if/when 表达式与智能类型转换表达业务状态与分支。
+        status: planned
+      - type: node
+        id: handle-null-safety
+        title: 用类型系统处理可空数据
+        description: 使用安全调用、Elvis 与明确分支表达缺失值，消除不必要的非空断言。
+        status: planned
+        link: https://kotlinlang.org/docs/null-safety.html
+      - type: node
+        id: compose-functions-lambdas
+        title: 用函数与 Lambda 组合行为
+        description: 设计清晰的参数与返回值，使用高阶函数、扩展函数与函数引用减少重复控制流。
+        status: planned
+        link: https://kotlinlang.org/docs/lambdas.html
+      - type: node
+        id: use-scope-functions
+        title: 合理使用作用域函数
+        description: 区分 let、run、apply、also、with 的返回值与接收者语义，避免嵌套滥用。
+        status: planned
+        link: https://kotlinlang.org/docs/scope-functions.html
+
+  - type: node
+    id: model-with-type-system
+    title: 用类型系统建模
+    description: 使用类、接口、数据类、密封类型与泛型表达领域模型，并让编译器帮忙排除非法状态。
+    tags: [面向对象, 泛型]
+    status: planned
+    children:
+      - type: node
+        id: design-classes-interfaces
+        title: 用类与接口设计行为契约
+        description: 掌握主/次构造函数、属性、继承与可见性，在抽象类与接口之间做出合理选择。
+        status: planned
+      - type: node
+        id: use-data-enum-classes
+        title: 用数据类与枚举表达值
+        description: 使用 data class、copy 与解构表达不可变值对象，用枚举表达固定取值集合。
+        status: planned
+      - type: node
+        id: model-states-with-sealed
+        title: 用密封类型建模有限状态
+        description: 使用 sealed class/interface 配合 when 穷举状态分支，让新增状态在编译期暴露遗漏。
+        status: planned
+        link: https://kotlinlang.org/docs/sealed-classes.html
+      - type: node
+        id: use-object-companion
+        title: 使用 object 与伴生对象
+        description: 用 object 声明单例与匿名对象，用伴生对象承载工厂方法与常量。
+        status: planned
+      - type: node
+        id: apply-generics-variance
+        title: 应用泛型与型变
+        description: 声明泛型类型与函数，使用 out/in 与星投影表达安全的子类型关系。
+        status: planned
+        link: https://kotlinlang.org/docs/generics.html
+
+  - type: node
+    id: use-collections-stdlib
+    title: 熟练使用集合与标准库
+    description: 选择合适的集合类型，用标准库变换操作替代手写循环，并理解惰性求值的适用场景。
+    tags: [集合, 标准库]
+    status: planned
+    link: https://kotlinlang.org/docs/collections-overview.html
+    children:
+      - type: node
+        id: choose-collection-types
+        title: 选择 List、Set 与 Map
+        description: 区分只读与可变集合接口，根据有序性、唯一性与查找需求选择实现。
+        status: planned
+      - type: node
+        id: transform-collections
+        title: 用变换操作处理集合
+        description: 组合 filter、map、groupBy、fold 等操作完成筛选、聚合与分组，避免中间集合的过度创建。
+        status: planned
+      - type: node
+        id: use-sequences-lazily
+        title: 用 Sequence 处理大数据链
+        description: 理解 Sequence 的惰性求值与终止操作，在长变换链或无限序列场景下降低开销。
+        status: planned
+
+  - type: node
+    id: write-async-with-coroutines
+    title: 使用协程编写异步代码
+    description: 用挂起函数、结构化并发与 Flow 构建可取消、异常路径清晰的异步流程。
+    tags: [协程, 异步]
+    status: planned
+    link: https://kotlinlang.org/docs/coroutines-overview.html
+    children:
+      - type: node
+        id: structure-suspending-functions
+        title: 用挂起函数组织异步工作
+        description: 使用 launch/async/runBlocking 启动协程，选择合适的 Dispatcher 区分顺序与并发执行。
+        status: planned
+      - type: node
+        id: manage-structured-concurrency
+        title: 用结构化并发管理生命周期
+        description: 通过 CoroutineScope 与 Job 传播取消，并用 supervisorScope 隔离失败、集中处理异常。
+        status: planned
+      - type: node
+        id: handle-streams-with-flow
+        title: 用 Flow 表达持续变化的数据
+        description: 构建与变换冷流，使用 StateFlow/SharedFlow 共享状态，并用缓冲与背压策略控制流速。
+        status: planned
+        link: https://kotlinlang.org/docs/flow.html
+      - type: node
+        id: coordinate-shared-state
+        title: 安全地协调共享状态
+        description: 用 Channel 在协程间传递数据，并用互斥与限定并行度避免竞态与资源过载。
+        status: planned
+
+  - type: node
+    id: interoperate-with-java
+    title: 与 Java 生态互操作
+    description: 在混合项目中自由调用 Java 代码，处理平台类型与空安全差异，并让 Kotlin 代码对 Java 友好。
+    tags: [Java, 互操作]
+    status: planned
+    link: https://kotlinlang.org/docs/java-interop.html
+    children:
+      - type: node
+        id: call-java-from-kotlin
+        title: 从 Kotlin 调用 Java
+        description: 处理平台类型、SAM 转换与映射类型，用可空注解或显式类型恢复空安全检查。
+        status: planned
+      - type: node
+        id: expose-kotlin-to-java
+        title: 让 Kotlin API 对 Java 友好
+        description: 使用 @JvmStatic、@JvmOverloads 与 @file:JvmName 控制生成的字节码签名。
+        status: planned
+      - type: node
+        id: migrate-java-gradually
+        title: 渐进迁移既有 Java 代码
+        description: 在同一模块中混编两种语言，按模型层优先的顺序迁移并回归测试行为一致性。
+        status: optional
+
+  - type: node
+    id: engineer-kotlin-project
+    title: 工程化 Kotlin 项目
+    description: 用构建工具管理依赖与任务，用测试和静态检查保障质量，并能独立排查运行时问题。
+    tags: [工程化, 质量]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: gradle
+        title: 进入 Gradle 路线图
+        description: 掌握 Kotlin DSL、任务图、依赖与多模块项目的日常构建能力。
+      - type: node
+        id: write-tests-with-kotlin-test
+        title: 用 kotlin.test 编写测试
+        description: 组织单元测试与参数化用例，并用 runTest 验证挂起函数与 Flow 的行为。
+        status: planned
+        link: https://kotlinlang.org/api/latest/kotlin.test/
+      - type: node
+        id: enforce-style-with-detekt
+        title: 用代码规范与静态检查守住质量
+        description: 遵循官方编码规范，接入 detekt 在构建期发现复杂度、命名与潜在缺陷问题。
+        status: planned
+        link: https://detekt.dev/
+      - type: node
+        id: debug-and-profile
+        title: 调试与诊断运行时问题
+        description: 使用 IDE 断点、条件断点与协程调试器定位逻辑错误与挂起泄漏，阅读堆栈与线程转储。
+        status: planned
+
+  - type: node
+    id: build-complete-project
+    title: 交付一个完整项目
+    description: 综合运用建模、集合、协程与测试能力，交付一个可运行、可验证的命令行应用。
+    tags: [实践, 项目]
+    status: planned
+    children:
+      - type: node
+        id: design-domain-model
+        title: 设计领域模型与错误路径
+        description: 用数据类与密封类型表达核心概念，明确区分业务错误与异常，并用测试覆盖边界输入。
+        status: planned
+      - type: node
+        id: implement-features-with-coroutines
+        title: 用协程实现批量与并发功能
+        description: 为记账、文件整理或订阅抓取等场景实现并发处理、进度反馈与取消支持。
+        status: planned
+      - type: node
+        id: package-and-release
+        title: 打包并验证交付产物
+        description: 用 Gradle 生成可执行产物，在干净环境中验证启动、参数与退出码行为。
+        status: planned
+
+  - type: node
+    id: choose-advanced-direction
+    title: 选择深入方向
+    description: 语言扎实后，按目标平台选择一条主线继续深入。
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: android
+        title: 进入 Android 开发路线图
+        description: 用 Kotlin、Jetpack Compose 与协程构建并发布原生 Android 应用。
+      - type: roadmap
+        roadmapId: spring-boot
+        title: 进入 Spring Boot 路线图
+        description: 用 Kotlin 构建 REST、数据访问与安全完善的可部署服务端应用。
+      - type: node
+        id: build-server-with-ktor
+        title: 用 Ktor 构建轻量服务端
+        description: 使用官方协程原生框架实现路由、序列化与鉴权，对比其与 Spring Boot 的取舍。
+        status: optional
+        link: https://ktor.io/learn/
+      - type: node
+        id: share-code-with-multiplatform
+        title: 用 Kotlin Multiplatform 共享代码
+        description: 使用 expect/actual 在 Android、iOS 与桌面间共享业务逻辑，并理解各平台的依赖接入方式。
+        status: optional
+        link: https://kotlinlang.org/docs/multiplatform.html

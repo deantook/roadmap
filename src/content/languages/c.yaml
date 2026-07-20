@@ -1,0 +1,316 @@
+id: c
+title: C
+description: 面向具备基础编程经验的学习者，从编译模型、指针和内存管理出发，逐步构建、测试并交付一个可移植的系统命令行工具。
+tags: [语言, C, 系统编程, 内存]
+nodes:
+  - type: node
+    id: setup-c-toolchain
+    title: 建立 C 编译与调试环境
+    description: 配置编译器、构建工具和调试器，理解从源文件到可执行程序的基本流程，并运行第一个带警告检查的程序。
+    tags: [入门, 编译器, 工具链]
+    status: planned
+    link: https://clang.llvm.org/docs/UsersManual.html
+    children:
+      - type: node
+        id: install-compiler-and-debugger
+        title: 安装编译器与调试器
+        description: 在目标平台配置 Clang 或 GCC 以及 LLDB 或 GDB，并确认编译、链接和调试命令可用。
+        tags: [Clang, GCC, 调试器]
+        status: planned
+      - type: node
+        id: compile-link-and-run
+        title: 完成编译、链接与运行
+        description: 将源文件编译成目标文件并链接为可执行程序，读懂最常见的编译期和链接期错误。
+        tags: [编译, 链接]
+        status: planned
+      - type: node
+        id: enable-diagnostics-from-start
+        title: 从第一天启用严格诊断
+        description: 选择明确的语言标准并开启常用警告，在不掩盖根因的前提下把新增警告消除。
+        tags: [警告, 质量]
+        status: planned
+
+  - type: node
+    id: master-c-language-core
+    title: 掌握 C 语言核心
+    description: 使用对象、类型、表达式、控制流与函数实现清晰的小程序，并能解释作用域、生命周期和隐式转换。
+    tags: [语法, 类型, 函数]
+    status: planned
+    link: https://www.open-std.org/jtc1/sc22/wg14/
+    children:
+      - type: node
+        id: use-types-and-conversions
+        title: 正确使用基本类型与转换
+        description: 根据范围和符号选择整数与浮点类型，区分隐式和显式转换，并避免有符号与无符号混算造成的错误。
+        tags: [类型, 转换]
+        status: planned
+      - type: node
+        id: express-control-flow
+        title: 用控制流表达完整分支
+        description: 使用 if、switch、循环与短路求值实现逻辑，并验证边界输入、终止条件和失败路径。
+        tags: [控制流]
+        status: planned
+      - type: node
+        id: design-c-functions
+        title: 设计职责清晰的函数
+        description: 用参数、返回值和输出参数表达契约，理解按值传递，并把副作用限制在明确边界。
+        tags: [函数, API]
+        status: planned
+      - type: node
+        id: understand-scope-storage-duration
+        title: 区分作用域、链接与存储期
+        description: 解释局部、文件作用域和外部链接对象的可见性，以及自动、静态和线程存储期对生命周期的影响。
+        tags: [作用域, 生命周期]
+        status: planned
+
+  - type: node
+    id: control-pointers-and-memory
+    title: 安全地控制指针与内存
+    description: 使用指针、数组和动态分配表达数据关系，明确所有权和长度，并系统避免越界、悬空与泄漏。
+    tags: [指针, 内存管理, 安全]
+    status: planned
+    children:
+      - type: node
+        id: reason-about-addresses-and-pointers
+        title: 推导地址与指针行为
+        description: 正确使用取址、解引用、指针算术和 const 限定，并能画出对象、地址与别名关系。
+        tags: [指针, const]
+        status: planned
+      - type: node
+        id: pass-arrays-with-bounds
+        title: 携带边界传递数组
+        description: 理解数组到指针的转换，在接口中同时传递缓冲区和有效长度，并验证所有索引范围。
+        tags: [数组, 边界]
+        status: planned
+      - type: node
+        id: allocate-and-release-memory
+        title: 配对分配与释放动态内存
+        description: 检查分配失败，处理大小计算溢出，并确保每条控制流路径都只释放一次所拥有的资源。
+        tags: [malloc, free, 所有权]
+        status: planned
+      - type: node
+        id: define-resource-ownership
+        title: 为资源建立所有权约定
+        description: 在 API 文档和命名中说明借用、转移与释放责任，使文件、内存和句柄的生命周期可审查。
+        tags: [所有权, 资源管理]
+        status: planned
+      - type: node
+        id: use-function-pointers
+        title: 用函数指针注入行为
+        description: 声明回调签名并传递上下文指针，为排序、遍历或事件处理实现类型匹配且生命周期安全的回调。
+        tags: [函数指针, 回调]
+        status: planned
+
+  - type: node
+    id: model-data-and-io
+    title: 建模数据并处理 I/O
+    description: 使用结构体、枚举、字符串和标准 I/O 建立明确的数据边界，并在解析、格式化和文件操作中完整处理错误。
+    tags: [结构体, 字符串, I/O]
+    status: planned
+    children:
+      - type: node
+        id: model-records-and-states
+        title: 用结构体与枚举表达记录和状态
+        description: 组合 struct、enum 与受控 union 表达数据布局，使用初始化函数维护字段之间的不变量。
+        tags: [Struct, Enum, Union]
+        status: planned
+      - type: node
+        id: handle-null-terminated-strings
+        title: 安全处理 C 字符串
+        description: 区分容量、长度和终止符，验证输入并使用有边界的复制、拼接与格式化策略避免缓冲区溢出。
+        tags: [字符串, 缓冲区]
+        status: planned
+      - type: node
+        id: parse-untrusted-input
+        title: 可靠解析不可信输入
+        description: 检查完整转换、范围、尾随字符和错误状态，拒绝截断、溢出及格式不完整的数据。
+        tags: [解析, 安全]
+        status: planned
+      - type: node
+        id: operate-files-and-streams
+        title: 操作文件与流
+        description: 正确处理打开模式、缓冲、部分读写、文件结束和关闭失败，并区分文本与二进制数据。
+        tags: [文件, Stream]
+        status: planned
+      - type: node
+        id: propagate-c-errors
+        title: 设计一致的错误协议
+        description: 组合返回码、errno 和输出参数传递失败原因，保留首次失败并为调用者提供足够上下文。
+        tags: [错误处理, errno]
+        status: planned
+
+  - type: node
+    id: organize-c-programs
+    title: 组织多文件 C 程序
+    description: 使用头文件、翻译单元和构建目标划分公共接口与私有实现，并生成可复现的静态库或可执行程序。
+    tags: [模块化, 预处理器, 构建]
+    status: planned
+    link: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+    children:
+      - type: node
+        id: design-header-boundaries
+        title: 设计稳定的头文件边界
+        description: 只暴露必要声明，使用 include guard，控制包含依赖，并让头文件可独立编译。
+        tags: [头文件, API]
+        status: planned
+      - type: node
+        id: use-preprocessor-narrowly
+        title: 克制使用预处理器
+        description: 用宏完成条件编译和简单常量替换，避免重复求值、隐式控制流及难以调试的复杂代码生成。
+        tags: [宏, 条件编译]
+        status: planned
+      - type: node
+        id: understand-linkage-and-libraries
+        title: 理解符号链接与库
+        description: 区分声明和定义、内部与外部链接，构建并消费静态库和共享库，定位重复或未定义符号。
+        tags: [链接, Library]
+        status: planned
+      - type: node
+        id: build-targets-with-cmake
+        title: 用 CMake 描述构建目标
+        description: 以 target 为中心声明源文件、头文件、编译特性和依赖，并在源码目录外完成构建和测试。
+        tags: [CMake, 构建]
+        status: planned
+
+  - type: node
+    id: write-portable-defined-c
+    title: 编写可移植且行为明确的 C
+    description: 识别未定义、未指定与实现定义行为，隔离平台假设，并通过编译器和目标平台矩阵验证代码。
+    tags: [可移植性, 未定义行为, 标准]
+    status: planned
+    children:
+      - type: node
+        id: classify-language-behavior
+        title: 分类语言标准中的行为
+        description: 对移位、溢出、别名、求值顺序和对象生命周期等代码判断其行为类别，并消除对未定义行为的依赖。
+        tags: [Undefined Behavior, 标准]
+        status: planned
+      - type: node
+        id: make-representation-assumptions-explicit
+        title: 显式管理数据表示假设
+        description: 使用固定宽度类型和静态断言验证大小、对齐与范围，按协议要求处理字节序和填充。
+        tags: [对齐, 字节序, ABI]
+        status: planned
+      - type: node
+        id: isolate-platform-interfaces
+        title: 隔离平台专属接口
+        description: 将 POSIX、Windows 或设备 API 包装在窄适配层中，使核心逻辑不依赖平台头文件和错误约定。
+        tags: [平台, 适配器]
+        status: planned
+      - type: node
+        id: test-multiple-compilers
+        title: 用多编译器验证可移植性
+        description: 在 CI 中至少使用两套编译器或两个目标平台，以严格标准模式构建并运行测试。
+        tags: [CI, 编译器]
+        status: planned
+
+  - type: node
+    id: verify-and-harden-c
+    title: 测试、调试并加固 C 程序
+    description: 组合自动测试、静态分析、调试器、Sanitizer 和模糊测试，持续发现逻辑、内存与输入处理缺陷。
+    tags: [测试, 调试, 安全]
+    status: planned
+    link: https://cmu-sei.github.io/secure-coding-standards/
+    children:
+      - type: node
+        id: build-unit-and-integration-tests
+        title: 建立单元与集成测试
+        description: 将纯逻辑与 I/O 分离，为正常、边界和错误路径建立独立测试目标，并通过 CTest 统一执行。
+        tags: [单元测试, CTest]
+        status: planned
+        link: https://cmake.org/cmake/help/latest/manual/ctest.1.html
+      - type: node
+        id: debug-with-stack-and-memory
+        title: 用调试器检查控制流与内存
+        description: 使用断点、单步、调用栈、监视点和内存检查定位崩溃，并从最小输入稳定复现根因。
+        tags: [GDB, LLDB]
+        status: planned
+        link: https://sourceware.org/gdb/current/onlinedocs/gdb
+      - type: node
+        id: run-static-analysis
+        title: 接入静态分析与格式检查
+        description: 启用编译器诊断和静态分析器，修复高置信度缺陷，并记录确有依据的例外。
+        tags: [静态分析, Clang]
+        status: planned
+        link: https://clang.llvm.org/docs/ClangStaticAnalyzer.html
+      - type: node
+        id: detect-runtime-undefined-behavior
+        title: 用 Sanitizer 检测运行时缺陷
+        description: 在测试构建中启用地址和未定义行为检测，根据首个报告修复越界、释放后使用和非法运算。
+        tags: [AddressSanitizer, UBSan]
+        status: planned
+        link: https://clang.llvm.org/docs/AddressSanitizer.html
+      - type: node
+        id: fuzz-parsers-and-protocols
+        title: 模糊测试解析器与协议边界
+        description: 为无状态解析入口编写测试桩，保留触发崩溃或超时的最小语料，并加入回归测试。
+        tags: [Fuzzing, 输入安全]
+        status: planned
+        link: https://llvm.org/docs/LibFuzzer.html
+
+  - type: node
+    id: deliver-c-system-utility
+    title: 交付一个可靠的系统命令行工具
+    description: 综合内存、文件、模块化与质量保障能力，交付一个可移植、可诊断且能安全处理中断和错误输入的实用工具。
+    tags: [综合实践, CLI, 系统编程]
+    status: planned
+    children:
+      - type: node
+        id: define-utility-contract
+        title: 定义工具契约与资源上限
+        description: 明确参数、输入格式、输出、退出码、最大数据规模和失败行为，并准备可执行验收样例。
+        tags: [需求, 验收]
+        status: planned
+      - type: node
+        id: implement-owned-components
+        title: 用明确所有权实现核心组件
+        description: 为缓冲区、文件和索引结构定义创建、使用与销毁协议，使异常路径也能完整清理资源。
+        tags: [所有权, 架构]
+        status: planned
+      - type: node
+        id: handle-partial-and-hostile-input
+        title: 处理部分输入与恶意数据
+        description: 验证长度和数值范围，处理短读写、截断与未知字段，并保证失败不会留下损坏输出。
+        tags: [鲁棒性, 安全]
+        status: planned
+      - type: node
+        id: automate-portable-release
+        title: 自动化跨平台发布验证
+        description: 在 CI 中运行严格构建、测试、静态分析和 Sanitizer，并从干净环境核验发布产物及说明。
+        tags: [CI, 发布]
+        status: planned
+
+  - type: node
+    id: choose-c-specialization
+    title: 选择 C 深化方向
+    description: 完成安全 C 和工程主线后，根据目标系统选择底层平台、性能或语言互操作方向。
+    tags: [进阶, 方向]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 深入操作系统原理
+        description: 理解进程、虚拟内存、文件系统与并发机制，为系统接口和性能分析建立模型。
+      - type: roadmap
+        roadmapId: cpp
+        title: 转向现代 C++ 工程
+        description: 在需要 RAII、泛型抽象和更丰富标准库时继续学习 C++。
+      - type: node
+        id: build-embedded-firmware
+        title: 开发嵌入式固件
+        description: 学习交叉编译、链接脚本、寄存器映射、中断与资源约束，并在目标硬件上验证时序和故障行为。
+        tags: [嵌入式, 裸机]
+        status: optional
+      - type: node
+        id: use-c-atomics-and-threads
+        title: 使用原子与线程接口
+        description: 根据平台支持选择标准线程或操作系统线程，建立内存顺序、同步与取消策略并用竞态检测验证。
+        tags: [并发, Atomics]
+        status: optional
+      - type: node
+        id: design-stable-c-abi
+        title: 设计稳定的 C ABI
+        description: 用不透明句柄、固定调用约定和显式生命周期构建供其他语言调用的窄接口，并验证版本兼容性。
+        tags: [ABI, FFI]
+        status: optional
+

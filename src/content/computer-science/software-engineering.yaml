@@ -1,0 +1,441 @@
+id: software-engineering
+title: 软件工程
+description: 面向已能用一门语言完成基本开发的学习者，覆盖需求、设计、构造、测试、交付、维护与开发过程的完整闭环，成长为能对软件全生命周期负责的工程师。
+tags:
+  - 软件工程
+  - 软件设计
+  - 测试
+  - 敏捷
+  - 工程实践
+nodes:
+  - type: node
+    id: engineering-perspective
+    title: 建立软件工程的工程视角
+    description: 理解软件工程为何是一门工程学科，并能用生命周期和质量属性描述一个软件项目的目标与约束。
+    tags:
+      - 工程思维
+      - 生命周期
+      - 质量属性
+    children:
+      - type: node
+        id: programming-vs-engineering
+        title: 区分编程活动与软件工程
+        description: 说明工程化相对个人编程新增了什么：长期维护、团队协作、变更管理与对质量、成本和进度的系统权衡。
+        tags:
+          - 软件工程
+          - 工程学科
+        status: planned
+        link: https://www.computer.org/education/bodies-of-knowledge/software-engineering
+      - type: node
+        id: software-lifecycle
+        title: 理解软件生命周期
+        description: 比较预测型、迭代增量型与适应型生命周期模型，并能依据需求稳定性和风险为项目选择合适的组织方式。
+        tags:
+          - SDLC
+          - 瀑布模型
+          - 迭代开发
+        status: planned
+      - type: node
+        id: quality-attributes
+        title: 用质量属性定义可验收的软件目标
+        description: 使用功能适用性、性能、可靠性、可维护性等质量特性把“好软件”转化为可度量、可验收的目标。
+        tags:
+          - ISO 25010
+          - 质量模型
+          - 非功能需求
+        status: planned
+        link: https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
+  - type: node
+    id: requirements
+    title: 分析并管理软件需求
+    description: 从干系人的真实目标出发定义系统行为，明确验收标准，并在变化中控制范围与优先级。
+    tags:
+      - 需求分析
+      - 用户故事
+      - 验收标准
+    children:
+      - type: node
+        id: elicit-stakeholder-needs
+        title: 从干系人目标中获取真实需求
+        description: 识别干系人并使用访谈、观察和原型澄清问题，区分用户陈述的诉求与背后的业务目标。
+        tags:
+          - 需求获取
+          - 干系人
+        status: planned
+      - type: node
+        id: express-behavior-with-stories
+        title: 用用户故事与用例表达行为需求
+        description: 以角色、目标和价值编写用户故事，用用例和场景覆盖正常流程、异常流程与边界条件。
+        tags:
+          - 用户故事
+          - 用例
+        status: planned
+      - type: node
+        id: specify-nfr-and-acceptance
+        title: 明确非功能需求与验收标准
+        description: 为性能、安全、可用性和兼容性给出量化目标，并为每条需求写出可判定的验收条件。
+        tags:
+          - 非功能需求
+          - 验收标准
+        status: planned
+      - type: node
+        id: manage-scope-priority-change
+        title: 管理范围、优先级与需求变更
+        description: 依据价值和成本排列需求优先级，建立变更评估流程，防止范围在无决策记录的情况下蔓延。
+        tags:
+          - 优先级
+          - 变更管理
+          - 范围控制
+        status: planned
+  - type: node
+    id: design
+    title: 设计软件系统
+    description: 把需求转化为模块结构与接口契约，用经过记录的取舍控制复杂度随规模的增长。
+    tags:
+      - 软件设计
+      - 架构
+      - 设计模式
+    children:
+      - type: node
+        id: module-boundaries
+        title: 划分模块与职责边界
+        description: 按业务能力和变化方向组织模块，控制依赖方向与耦合度，使每个模块可被独立理解和修改。
+        tags:
+          - 模块化
+          - 高内聚低耦合
+        status: planned
+      - type: node
+        id: design-principles
+        title: 应用核心设计原则
+        description: 在真实代码取舍中应用 SOLID、DRY、KISS 与 YAGNI，并能说明每条原则在何时应当让位于简单性。
+        tags:
+          - SOLID
+          - DRY
+          - KISS
+        status: planned
+      - type: node
+        id: design-patterns
+        title: 在重复出现的设计问题上使用模式
+        description: 识别创建型、结构型与行为型模式适用的问题场景，以共同词汇沟通方案，避免为使用模式而引入复杂度。
+        tags:
+          - 设计模式
+          - GoF
+        status: planned
+        link: https://refactoring.guru/design-patterns
+      - type: node
+        id: architecture-decision-records
+        title: 用架构决策记录固化关键取舍
+        description: 为重要决策记录上下文、备选方案、结论与后果，使后续维护者能够理解并安全地推翻历史决策。
+        tags:
+          - ADR
+          - 决策记录
+          - 文档
+        status: planned
+        link: https://adr.github.io/
+      - type: node
+        id: uml-communication
+        title: 用 UML 图沟通结构与行为
+        description: 在需要精确沟通时选择类图、时序图或状态图表达设计，保持图的粒度服务于当前讨论而非完整建模。
+        tags:
+          - UML
+          - 建模
+        status: optional
+        link: https://www.omg.org/uml/
+  - type: node
+    id: construction
+    title: 构造可维护的代码
+    description: 在日常编码中实践可读性、重构、调试与协作纪律，使代码库随修改次数增加仍保持健康。
+    tags:
+      - 编码实践
+      - 重构
+      - 代码评审
+    children:
+      - type: node
+        id: readable-code
+        title: 编写清晰、自解释的代码
+        description: 通过命名、小函数、单一抽象层次和显式错误处理降低阅读成本，用代码本身表达意图而非依赖注释解释。
+        tags:
+          - 可读性
+          - 命名
+          - 错误处理
+        status: planned
+      - type: node
+        id: refactoring
+        title: 通过重构持续改进既有设计
+        description: 在测试保护下识别坏味道并小步重构，把重构作为日常开发的一部分而非独立的大改工程。
+        tags:
+          - 重构
+          - 坏味道
+        status: planned
+        link: https://refactoring.guru/refactoring
+      - type: node
+        id: debugging
+        title: 系统化定位与修复缺陷
+        description: 先稳定复现并缩小范围，再借助断点、日志和二分定位根因，修复后用回归测试锁定缺陷。
+        tags:
+          - 调试
+          - 根因分析
+        status: planned
+      - type: node
+        id: version-control-collaboration
+        title: 使用版本控制进行可审查的协作
+        description: 创建聚焦的提交与分支，编写说明动机的提交信息，并通过合并请求管理变更的集成过程。
+        tags:
+          - Git
+          - 协作
+        status: planned
+        children:
+          - type: roadmap
+            roadmapId: git
+            title: 系统学习 Git
+            description: 掌握提交、分支、合并、冲突解决与历史维护。
+          - type: roadmap
+            roadmapId: github
+            title: 使用 GitHub 协作
+            description: 通过 Pull Request、评审与自动化检查组织团队开发。
+      - type: node
+        id: code-review
+        title: 通过代码评审保持质量与知识共享
+        description: 以可评审的小变更为单位提交代码，围绕设计、正确性和可读性给出建设性反馈，并约定评审响应时效。
+        tags:
+          - Code Review
+          - 质量
+        status: planned
+        link: https://google.github.io/eng-practices/review/
+  - type: node
+    id: testing
+    title: 建立测试与质量保障闭环
+    description: 按风险组织自动化测试与静态检查，让每次变更都能快速获得可靠的质量反馈。
+    tags:
+      - 测试
+      - 质量保障
+      - 持续集成
+    children:
+      - type: node
+        id: test-pyramid
+        title: 按测试金字塔组织自动化测试
+        description: 以快速单元测试为主体、集成测试验证边界、少量端到端测试覆盖关键路径，控制每层的成本与反馈速度。
+        tags:
+          - 测试金字塔
+          - 单元测试
+          - 集成测试
+        status: planned
+        link: https://martinfowler.com/articles/practical-test-pyramid.html
+      - type: node
+        id: test-driven-development
+        title: 用测试驱动开发牵引设计
+        description: 按红、绿、重构循环先写失败的测试再实现，观察测试先行对接口设计和可测试性的影响。
+        tags:
+          - TDD
+          - 测试先行
+        status: optional
+        link: https://martinfowler.com/bliki/TestDrivenDevelopment.html
+      - type: node
+        id: static-analysis-ci
+        title: 用静态分析与持续集成守住质量门槛
+        description: 将格式、Lint、类型检查、安全扫描与测试纳入每次提交的自动检查，阻止失败的变更进入主分支。
+        tags:
+          - 静态分析
+          - CI
+          - 质量门槛
+        status: planned
+      - type: node
+        id: exploratory-acceptance
+        title: 用探索性与验收测试覆盖人的判断
+        description: 针对易用性、异常交互和未知风险进行有章程的探索性测试，并与干系人共同执行验收确认。
+        tags:
+          - 探索性测试
+          - 验收测试
+        status: planned
+  - type: node
+    id: delivery-maintenance
+    title: 交付、运行并维护软件
+    description: 以可重复、可回滚的方式发布软件，在运行中观测行为，并控制长期演进中的技术债。
+    tags:
+      - 交付
+      - 维护
+      - 技术债
+    children:
+      - type: node
+        id: ci-cd-automation
+        title: 自动化构建、集成与发布
+        description: 用流水线构建不可变产物、执行质量门槛并按环境推广同一产物，使发布成为低风险的常规操作。
+        tags:
+          - CI/CD
+          - 发布自动化
+        status: planned
+        link: https://martinfowler.com/articles/continuousIntegration.html
+      - type: node
+        id: versioning-release
+        title: 用语义化版本与变更说明管理发布
+        description: 依据兼容性约定递增主、次、修订版本号，并为每次发布维护用户可读的变更记录。
+        tags:
+          - 语义化版本
+          - 发布管理
+        status: planned
+        link: https://semver.org/lang/zh-CN/
+      - type: node
+        id: observability-ops
+        title: 在生产环境观测并诊断运行行为
+        description: 用结构化日志、指标和追踪关联同一次请求，基于用户影响设置告警，并建立从告警到复盘的闭环。
+        tags:
+          - 可观测性
+          - 告警
+          - 故障响应
+        status: planned
+      - type: node
+        id: technical-debt
+        title: 识别并管理技术债
+        description: 区分审慎与非审慎的技术债，把债务及其代价显性化，并规划偿还节奏而非任其复利增长。
+        tags:
+          - 技术债
+          - 演进
+        status: planned
+        link: https://martinfowler.com/bliki/TechnicalDebt.html
+      - type: node
+        id: legacy-evolution
+        title: 安全演进既有系统与遗留代码
+        description: 先用特征测试锁定现有行为，再通过接缝和绞杀者模式逐步替换，避免无保护的大范围重写。
+        tags:
+          - 遗留系统
+          - 特征测试
+          - 绞杀者模式
+        status: planned
+      - type: roadmap
+        roadmapId: devops
+        title: 深入交付与基础设施实践
+        description: 补齐 Linux、容器、CI/CD、基础设施即代码与可靠性运维能力。
+  - type: node
+    id: process
+    title: 以迭代与协作方式组织开发过程
+    description: 理解敏捷经验主义的核心，用小步交付和持续反馈组织团队工作，而非机械执行流程仪式。
+    tags:
+      - 敏捷
+      - Scrum
+      - 协作
+    children:
+      - type: node
+        id: agile-values
+        title: 理解敏捷价值观与原则
+        description: 理解敏捷宣言的价值观与十二条原则，能判断团队实践是在响应变化还是只在套用流程形式。
+        tags:
+          - 敏捷宣言
+          - 敏捷原则
+        status: planned
+        link: https://agilemanifesto.org/iso/zhchs/manifesto.html
+      - type: node
+        id: scrum-iteration
+        title: 使用 Scrum 节奏迭代交付
+        description: 运行计划会、每日站会、评审会与回顾会，用产品目标、迭代目标和完成定义保持透明与可检查。
+        tags:
+          - Scrum
+          - Sprint
+          - 完成定义
+        status: planned
+        link: https://scrumguides.org/scrum-guide.html
+      - type: node
+        id: kanban-flow
+        title: 用看板可视化工作流并限制在制品
+        description: 将工作项流动显性化，通过限制在制品数量暴露瓶颈，用交付周期数据改进可预测性。
+        tags:
+          - 看板
+          - 在制品
+        status: optional
+      - type: node
+        id: estimation-planning
+        title: 进行估算并制定可调整的计划
+        description: 使用相对估算与历史速率预测交付，向干系人沟通不确定性，并依据反馈持续修正计划。
+        tags:
+          - 估算
+          - 规划
+        status: planned
+  - type: node
+    id: capstone
+    title: 完成一个端到端软件项目
+    description: 把需求、设计、构造、测试、交付与过程实践组合到一个真实项目中，产出可验证、可运行的成果。
+    tags:
+      - 综合项目
+      - 实践
+      - 作品集
+    children:
+      - type: node
+        id: define-problem-scope
+        title: 定义真实问题、干系人与验收目标
+        description: 选择一个有真实用户的问题，写明干系人、核心需求、非功能目标和最小可行范围。
+        tags:
+          - 需求
+          - 范围
+        status: planned
+      - type: node
+        id: design-and-increment
+        title: 设计架构并交付最小可用增量
+        description: 划分模块、记录关键决策，优先交付打通主流程的最小增量，再按反馈逐轮扩展功能。
+        tags:
+          - 架构
+          - 增量交付
+        status: planned
+      - type: node
+        id: verify-and-pipeline
+        title: 建立测试与交付流水线
+        description: 为项目配置自动化测试、静态检查和构建发布流水线，使每次合并都能产出可部署的版本。
+        tags:
+          - 测试
+          - CI/CD
+        status: planned
+      - type: node
+        id: release-feedback-retro
+        title: 发布、收集真实反馈并复盘迭代
+        description: 将项目交付给真实用户使用，收集行为与反馈数据，并基于复盘结论规划下一轮迭代。
+        tags:
+          - 发布
+          - 复盘
+          - 迭代
+        status: planned
+  - type: node
+    id: advanced-directions
+    title: 选择深化方向
+    description: 在完成主线后，依据兴趣向架构、领域交付或技术管理方向深入。
+    tags:
+      - 深化
+      - 职业发展
+    status: optional
+    children:
+      - type: node
+        id: software-architecture
+        title: 深入软件架构与系统设计
+        description: 学习架构视图、质量属性权衡与架构文档化方法，能对系统的结构性决策负责。
+        tags:
+          - 软件架构
+          - 系统设计
+        status: optional
+        link: https://arc42.org/
+      - type: node
+        id: domain-specialization
+        title: 深入一个交付领域
+        description: 选择后端、前端或移动端等领域路线，把工程实践落到具体技术栈中。
+        tags:
+          - 领域
+          - 技术栈
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: backend
+            title: 后端开发路线
+          - type: roadmap
+            roadmapId: frontend
+            title: 前端开发路线
+          - type: roadmap
+            roadmapId: mobile-development
+            title: 移动端开发路线
+      - type: node
+        id: technical-leadership
+        title: 走向技术管理
+        description: 在具备扎实工程实践后，学习带团队、定方向与培养工程师的管理能力。
+        tags:
+          - 技术管理
+          - 领导力
+        status: optional
+        children:
+          - type: roadmap
+            roadmapId: engineering-manager
+            title: 工程管理路线

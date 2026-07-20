@@ -1,0 +1,359 @@
+id: swift
+title: Swift
+description: 面向具备基础编程经验的学习者，从类型系统与值语义出发，掌握协议、泛型、并发与 SwiftPM，最终交付一个经过测试的跨平台命令行项目。
+tags: [语言, Swift, 类型系统, 跨平台]
+nodes:
+  - type: node
+    id: setup-swift-environment
+    title: 建立 Swift 开发环境
+    description: 安装并验证 Swift 工具链，使用 REPL、编译器与 SwiftPM 运行第一个程序，并能根据目标平台选择编辑器。
+    tags: [入门, 工具链, SwiftPM]
+    status: planned
+    link: https://www.swift.org/getting-started/
+    children:
+      - type: node
+        id: install-and-verify-toolchain
+        title: 安装并验证 Swift 工具链
+        description: 在 macOS、Linux 或 Windows 上完成安装，用 swift --version 确认工具链，并区分正式版与开发快照。
+        tags: [安装, 工具链]
+        status: planned
+      - type: node
+        id: run-repl-script-and-executable
+        title: 运行 REPL、脚本与可执行程序
+        description: 分别用交互环境、swift 命令和编译后的可执行文件完成输入、计算与输出练习。
+        tags: [REPL, 编译]
+        status: planned
+      - type: node
+        id: create-first-package
+        title: 创建第一个 Swift Package
+        description: 初始化可执行包，识别 Package.swift、Sources 与 Tests，并用 swift run 和 swift test 验证项目。
+        tags: [SwiftPM, 实践]
+        status: planned
+        link: https://docs.swift.org/swiftpm/documentation/packagemanagerdocs/gettingstarted/
+
+  - type: node
+    id: master-language-basics
+    title: 掌握语言基础与安全边界
+    description: 使用类型推断、控制流、函数、Optional 与错误处理表达完整逻辑，并让失败路径在接口中清晰可见。
+    tags: [语法, Optional, 错误处理]
+    status: planned
+    link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics/
+    children:
+      - type: node
+        id: express-values-and-control-flow
+        title: 用值、类型与控制流表达逻辑
+        description: 正确使用 let、var、基础类型、元组、区间、if、switch 与循环实现带边界条件的小程序。
+        tags: [类型, 控制流]
+        status: planned
+      - type: node
+        id: design-functions-and-closures
+        title: 用函数与闭包组合行为
+        description: 设计参数标签、默认值和返回类型，理解闭包捕获、逃逸与尾随闭包，并避免隐含副作用。
+        tags: [函数, 闭包]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/
+      - type: node
+        id: handle-optional-values
+        title: 用 Optional 显式处理缺失值
+        description: 使用可选绑定、guard、可选链与 nil 合并处理缺失数据，避免无依据的强制解包。
+        tags: [Optional, 安全]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics/#Optionals
+      - type: node
+        id: model-errors-with-throws
+        title: 设计可恢复的错误路径
+        description: 定义有意义的 Error 类型，使用 throws、do-catch、defer 与 Result 传播和处理预期失败。
+        tags: [Error, Result]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/errorhandling/
+
+  - type: node
+    id: model-with-swift-types
+    title: 用 Swift 类型系统建立领域模型
+    description: 根据值语义、引用语义与状态空间选择结构体、枚举或类，并通过访问控制和不变量约束合法状态。
+    tags: [值语义, 类型系统, 建模]
+    status: planned
+    children:
+      - type: node
+        id: choose-struct-enum-or-class
+        title: 选择结构体、枚举或类
+        description: 用 struct 表达独立值、用带关联值的 enum 表达有限状态，只在身份、继承或共享生命周期确有需要时使用 class。
+        tags: [Struct, Enum, Class]
+        status: planned
+        link: https://www.swift.org/documentation/articles/value-and-reference-types.html
+      - type: node
+        id: control-initialization-and-access
+        title: 维护初始化与访问边界
+        description: 使用初始化器、属性、方法、访问控制和模块边界保证对象创建后满足领域不变量。
+        tags: [初始化, 访问控制]
+        status: planned
+      - type: node
+        id: use-pattern-matching
+        title: 用模式匹配处理状态
+        description: 组合 switch、case、where、if case 与解构，完整处理枚举关联值和复杂输入分支。
+        tags: [模式匹配]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/patterns/
+      - type: node
+        id: manage-reference-lifetimes
+        title: 用 ARC 管理引用生命周期
+        description: 解释强引用计数的变化，按生命周期关系选择 weak 或 unowned，并定位闭包与对象之间的引用循环。
+        tags: [ARC, 内存]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/
+
+  - type: node
+    id: compose-protocols-and-generics
+    title: 用协议与泛型构建可复用抽象
+    description: 使用协议、扩展、泛型约束与关联类型表达能力边界，在静态多态和存在类型之间做出有依据的选择。
+    tags: [Protocol, 泛型, 抽象]
+    status: planned
+    link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols/
+    children:
+      - type: node
+        id: define-protocol-contracts
+        title: 用协议定义行为契约
+        description: 声明最小的属性和方法要求，通过扩展提供通用实现，并避免把不相关能力塞进同一协议。
+        tags: [Protocol, Extension]
+        status: planned
+      - type: node
+        id: apply-generics-and-constraints
+        title: 应用泛型与约束
+        description: 编写泛型函数和类型，使用 where 子句、关联类型与条件一致性保持类型安全和实现复用。
+        tags: [泛型, 关联类型]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/
+      - type: node
+        id: choose-some-and-any
+        title: 区分 some 与 any
+        description: 根据是否需要隐藏具体类型或容纳异构值，选择不透明类型或存在类型，并解释其能力和成本差异。
+        tags: [Opaque Type, Existential]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/opaquetypes/
+      - type: node
+        id: design-idiomatic-apis
+        title: 设计符合 Swift 习惯的 API
+        description: 以调用点清晰度为目标设计名称、参数标签、可变性和文档注释，并通过实际用例评审接口。
+        tags: [API 设计, 可读性]
+        status: planned
+        link: https://www.swift.org/documentation/api-design-guidelines/
+
+  - type: node
+    id: process-collections-and-text
+    title: 熟练处理集合、序列与文本
+    description: 根据顺序、唯一性和查找需求选择集合，使用高阶函数与惰性序列构建清晰的数据处理流程，并正确处理 Unicode 文本。
+    tags: [集合, Sequence, Unicode]
+    status: planned
+    link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/collectiontypes/
+    children:
+      - type: node
+        id: choose-array-set-dictionary
+        title: 选择 Array、Set 与 Dictionary
+        description: 根据索引、顺序、唯一性和键值查找需求选择集合，并理解值语义与写时复制的可见行为。
+        tags: [Array, Set, Dictionary]
+        status: planned
+      - type: node
+        id: build-sequence-pipelines
+        title: 用 Sequence 构建数据管道
+        description: 组合 map、filter、compactMap、reduce 与 lazy 完成变换和聚合，并在必要时评估中间分配。
+        tags: [Sequence, 高阶函数]
+        status: planned
+      - type: node
+        id: handle-string-indices
+        title: 正确处理 String 与 Unicode
+        description: 使用 String.Index 和 Character 遍历用户可见字符，明确字节、标量和字素簇之间的区别。
+        tags: [String, Unicode]
+        status: planned
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/stringsandcharacters/
+      - type: roadmap
+        roadmapId: data-structures
+        title: 补齐数据结构与算法基础
+        description: 在语言集合 API 之外，系统理解常见数据结构、复杂度与算法取舍。
+
+  - type: node
+    id: write-safe-concurrent-code
+    title: 编写数据竞争安全的并发代码
+    description: 使用 async/await、结构化任务和 actor 组织可取消的异步工作，并用隔离与 Sendable 约束共享状态。
+    tags: [Swift Concurrency, actor, Sendable]
+    status: planned
+    link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+    children:
+      - type: node
+        id: structure-async-functions
+        title: 用 async/await 组织异步流程
+        description: 设计异步函数，正确传播错误，并区分顺序等待、async let 与动态并发任务。
+        tags: [async-await]
+        status: planned
+      - type: node
+        id: manage-tasks-and-cancellation
+        title: 管理任务层级与取消
+        description: 使用结构化任务和任务组控制生命周期、优先级及协作式取消，避免无边界的非结构化任务。
+        tags: [Task, 取消]
+        status: planned
+      - type: node
+        id: isolate-state-with-actors
+        title: 用 actor 隔离可变状态
+        description: 识别并发域和跨 actor 调用，在可重入点重新验证状态，并用全局 actor 表达共享执行边界。
+        tags: [actor, 隔离]
+        status: planned
+      - type: node
+        id: enforce-sendable-boundaries
+        title: 用 Sendable 审查传递边界
+        description: 让跨并发域传递的值满足 Sendable，处理闭包捕获与遗留模块，并消除编译器报告的数据竞争风险。
+        tags: [Sendable, 数据竞争]
+        status: planned
+        link: https://www.swift.org/migration/
+
+  - type: node
+    id: engineer-swift-packages
+    title: 工程化 Swift Package
+    description: 使用 SwiftPM 组织模块、产品、依赖与资源，通过稳定的公共 API 和可复现构建交付库或可执行程序。
+    tags: [SwiftPM, 模块化, 依赖管理]
+    status: planned
+    link: https://docs.swift.org/swiftpm/documentation/packagemanagerdocs/
+    children:
+      - type: node
+        id: design-products-targets-modules
+        title: 划分 Product、Target 与 Module
+        description: 根据公共接口、编译边界和测试范围拆分库与可执行目标，避免循环依赖和无意义的碎片化。
+        tags: [模块, 架构]
+        status: planned
+      - type: node
+        id: manage-package-dependencies
+        title: 管理依赖与版本约束
+        description: 在 Package.swift 中声明来源和兼容范围，审查解析结果、许可证与传递依赖，并固定可复现版本。
+        tags: [依赖, 供应链]
+        status: planned
+        link: https://docs.swift.org/swiftpm/documentation/packagemanagerdocs/addingdependencies/
+      - type: node
+        id: expose-documented-public-api
+        title: 交付有文档的公共 API
+        description: 缩小 public 表面积，添加文档注释和示例，并生成文档以验证符号关系与使用入口。
+        tags: [DocC, API]
+        status: planned
+        link: https://www.swift.org/documentation/docc/
+      - type: node
+        id: verify-cross-platform-behavior
+        title: 验证跨平台行为
+        description: 隔离平台专属 API，在目标操作系统上构建和测试，并明确文件路径、进程、网络及条件编译差异。
+        tags: [跨平台, CI]
+        status: planned
+
+  - type: node
+    id: test-debug-and-optimize
+    title: 用测试、调试与测量保障质量
+    description: 建立自动测试和持续集成反馈，利用编译诊断、LLDB、Sanitizer 与性能测量定位正确性和资源问题。
+    tags: [测试, 调试, 性能]
+    status: planned
+    children:
+      - type: node
+        id: test-behavior-with-swift-testing
+        title: 用 Swift Testing 验证行为
+        description: 使用 @Test、#expect、参数化和异步测试覆盖正常、边界及失败路径，并保持测试彼此隔离。
+        tags: [Swift Testing, 单元测试]
+        status: planned
+        link: https://developer.apple.com/documentation/testing
+      - type: node
+        id: design-integration-tests
+        title: 验证模块与外部边界
+        description: 用临时文件、可控时钟和替身隔离不稳定依赖，测试模块组合、序列化与 I/O 失败恢复。
+        tags: [集成测试, 可测试性]
+        status: planned
+      - type: node
+        id: debug-with-compiler-and-lldb
+        title: 用编译诊断与 LLDB 定位缺陷
+        description: 从最早的编译错误开始缩小问题，使用断点、表达式、回溯和最小复现确认根因。
+        tags: [LLDB, 编译器诊断]
+        status: planned
+        link: https://www.swift.org/documentation/
+      - type: node
+        id: detect-memory-and-thread-errors
+        title: 检测内存与并发错误
+        description: 在测试构建中使用 Address Sanitizer 和 Thread Sanitizer，结合泄漏与竞态报告修复生命周期和同步问题。
+        tags: [Sanitizer, 内存, 并发]
+        status: planned
+        link: https://www.swift.org/documentation/server/guides/testing.html
+      - type: node
+        id: measure-before-optimizing
+        title: 基于测量优化性能
+        description: 建立基准输入并分析时间、内存和分配热点，在修改后用相同负载验证收益且保持行为不变。
+        tags: [性能, Benchmark]
+        status: planned
+
+  - type: node
+    id: deliver-cross-platform-cli
+    title: 交付一个跨平台命令行项目
+    description: 综合类型建模、并发、包管理与测试能力，交付一个可配置、可诊断并能在至少两个目标平台验证的实用工具。
+    tags: [综合实践, CLI, 跨平台]
+    status: planned
+    children:
+      - type: node
+        id: define-cli-contract
+        title: 定义命令行契约与验收样例
+        description: 明确参数、标准输入输出、退出码、配置优先级和错误文案，并先写出正常与失败场景样例。
+        tags: [需求, CLI]
+        status: planned
+      - type: node
+        id: separate-domain-and-io
+        title: 分离领域逻辑与 I/O
+        description: 将参数解析、文件或网络适配器与纯业务逻辑拆成独立模块，通过明确类型传递数据与错误。
+        tags: [架构, 模块化]
+        status: planned
+      - type: node
+        id: implement-bounded-concurrency
+        title: 实现有边界的并发处理
+        description: 为批量文件、内容抓取或数据转换实现限流、取消和部分失败处理，避免无上限创建任务。
+        tags: [并发, 可靠性]
+        status: planned
+      - type: node
+        id: automate-capstone-verification
+        title: 自动化项目质量检查
+        description: 在 CI 中执行构建、测试和目标平台验证，检查依赖、错误输出和关键性能样例。
+        tags: [CI, 验收]
+        status: planned
+      - type: node
+        id: document-and-release-cli
+        title: 文档化并发布可复现版本
+        description: 编写安装、用法和故障排查说明，生成发布构建，并从干净环境验证文档中的全部命令。
+        tags: [发布, 文档]
+        status: planned
+
+  - type: node
+    id: choose-swift-specialization
+    title: 选择 Swift 深化方向
+    description: 完成语言和工程主线后，根据目标平台、运行环境或底层集成需求选择后续路径。
+    tags: [进阶, 方向]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: ios
+        title: 进入 iOS 开发路线图
+        description: 使用 SwiftUI、Apple 平台框架和发布工具构建、测试并上架原生应用。
+      - type: node
+        id: build-server-side-swift
+        title: 构建服务端 Swift 应用
+        description: 在 Linux 上使用 SwiftPM 组织网络服务，补充日志、配置、数据库、优雅退出与生产部署能力。
+        tags: [服务端, Linux]
+        status: optional
+        link: https://www.swift.org/documentation/server/guides/
+      - type: node
+        id: interoperate-with-c-and-cpp
+        title: 与 C 和 C++ 互操作
+        description: 在模块边界映射类型、所有权与错误，包装不安全接口，并用集成测试验证双向调用约定。
+        tags: [C, C++, 互操作]
+        status: optional
+        link: https://www.swift.org/documentation/cxx-interop/
+      - type: node
+        id: create-swift-macros
+        title: 使用宏生成重复代码
+        description: 理解宏角色、展开与诊断，只为可测试且能显著减少样板的语法变换创建宏。
+        tags: [宏, 元编程]
+        status: optional
+        link: https://docs.swift.org/swift-book/documentation/the-swift-programming-language/macros/
+      - type: node
+        id: target-wasm-and-embedded
+        title: 探索受限运行环境
+        description: 按项目需求评估 WebAssembly 或嵌入式目标的 SDK、标准库能力、资源限制与宿主互操作。
+        tags: [WebAssembly, 嵌入式]
+        status: optional
+        link: https://www.swift.org/documentation/articles/wasm-getting-started.html

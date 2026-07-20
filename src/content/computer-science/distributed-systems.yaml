@@ -1,0 +1,448 @@
+id: distributed-systems
+title: 分布式系统
+description: 面向具备编程、网络与并发基础的学习者，从时间、故障和一致性模型出发，成长为能设计、实现、验证并运维可靠分布式服务的工程师。
+tags: [分布式系统, 一致性, 共识, 可靠性, 系统设计]
+nodes:
+  - type: node
+    id: establish-prerequisites
+    title: 建立分布式系统实验起点
+    description: 能编写并发网络程序、读懂基本存储操作，并在隔离环境中启动和观察多个进程。
+    tags: [前置, 网络, 并发]
+    status: planned
+    link: https://pdos.csail.mit.edu/6.824/
+    children:
+      - type: roadmap
+        roadmapId: computer-networking
+        title: 补齐端到端网络基础
+        description: 先理解 TCP/IP、DNS、HTTP、超时、抓包与常见网络故障。
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 补齐进程、线程与持久化基础
+        description: 掌握并发、同步、文件系统和资源管理，再分析跨机器协作。
+      - type: node
+        id: build-multiprocess-lab
+        title: 搭建可重复的多进程实验环境
+        description: 使用熟悉的语言启动至少三个节点，通过 RPC 或消息通信，并能注入延迟、断连、重启和磁盘故障。
+        tags: [实验, RPC, 故障注入]
+        status: planned
+      - type: node
+        id: define-safety-and-liveness
+        title: 用安全性与活性描述正确性
+        description: 把“坏事永不发生”和“好事最终发生”写成可检查性质，区分正确结果、可用性与性能目标。
+        tags: [安全性, 活性, 规格]
+        status: planned
+
+  - type: node
+    id: model-distributed-execution
+    title: 建立时间、顺序与故障模型
+    description: 在没有共享内存和可靠全局时钟的条件下，根据消息与事件关系推理系统可能发生的执行。
+    tags: [时间, 顺序, 故障模型]
+    status: planned
+    link: https://lamport.azurewebsites.net/pubs/time-clocks.pdf
+    children:
+      - type: node
+        id: accept-partial-failure
+        title: 识别部分失败与不确定结果
+        description: 区分进程崩溃、消息丢失、延迟、重复、乱序和网络分区，并说明超时无法证明远端已经失败。
+        tags: [部分失败, 超时, 网络分区]
+        status: planned
+      - type: node
+        id: order-events-logically
+        title: 使用逻辑时钟表达事件顺序
+        description: 用 happens-before、Lamport Clock 和 Vector Clock 区分因果关系、并发事件与任意全序。
+        tags: [逻辑时钟, 因果关系]
+        status: planned
+      - type: node
+        id: handle-physical-clock-limits
+        title: 控制物理时钟带来的错误
+        description: 说明时钟漂移、回拨和同步误差如何破坏租约、排序与过期判断，并优先使用单调时钟测量时长。
+        tags: [物理时钟, 时钟漂移, 租约]
+        status: planned
+      - type: node
+        id: choose-failure-assumptions
+        title: 明确算法依赖的故障假设
+        description: 区分同步、异步和部分同步模型，以及崩溃、遗漏和 Byzantine 故障，记录系统不覆盖的失败范围。
+        tags: [系统模型, Byzantine, 假设]
+        status: planned
+
+  - type: node
+    id: define-consistency-contracts
+    title: 为共享数据定义一致性契约
+    description: 从业务不变量和客户端可见历史选择足够强的一致性模型，并能构造反例验证实现。
+    tags: [一致性模型, 历史, 不变量]
+    status: planned
+    link: https://jepsen.io/consistency/models
+    children:
+      - type: node
+        id: distinguish-consistency-meanings
+        title: 区分副本一致性与事务隔离
+        description: 分别讨论单对象操作的 Linearizability、顺序与因果保证，以及多对象事务的 Serializability 和隔离级别。
+        tags: [Linearizability, Serializability]
+        status: planned
+      - type: node
+        id: read-operation-histories
+        title: 从操作历史判断可接受行为
+        description: 记录调用、完成、返回值和实时先后关系，判断一个并发历史是否满足所声明的一致性模型。
+        tags: [操作历史, 并发]
+        status: planned
+      - type: node
+        id: reason-about-cap-tradeoffs
+        title: 正确分析分区下的取舍
+        description: 在发生网络分区的前提下说明哪些操作必须拒绝、等待或返回旧值，避免把 CAP 简化为任意三选二。
+        tags: [CAP, 可用性, 网络分区]
+        status: planned
+      - type: node
+        id: derive-client-guarantees
+        title: 从用例推导客户端会话保证
+        description: 判断读己之写、单调读、单调写和因果一致性是否足以保护用户流程，避免无依据地追求最强模型。
+        tags: [会话保证, 因果一致性]
+        status: planned
+
+  - type: node
+    id: replicate-and-partition-data
+    title: 通过复制与分片扩展数据
+    description: 在吞吐、延迟、容错和一致性之间作出可解释取舍，并设计副本修复与数据再平衡流程。
+    tags: [复制, 分片, Quorum]
+    status: planned
+    children:
+      - type: node
+        id: compare-replication-topologies
+        title: 比较单主、多主与无主复制
+        description: 解释各拓扑的写入路径、故障切换、冲突来源和适用场景，并识别复制延迟的用户影响。
+        tags: [Leader, 多主, 无主复制]
+        status: planned
+      - type: node
+        id: calculate-quorum-behavior
+        title: 计算 Quorum 读写行为
+        description: 根据副本数和读写确认数分析交集、可用性与延迟，并说明 Sloppy Quorum 和版本冲突的额外成本。
+        tags: [Quorum, 副本]
+        status: planned
+      - type: node
+        id: repair-replica-divergence
+        title: 检测并修复副本分歧
+        description: 使用版本、读修复、反熵或日志追赶发现陈旧副本，处理删除标记并验证修复不会复活旧数据。
+        tags: [反熵, Read Repair, Tombstone]
+        status: planned
+      - type: node
+        id: partition-and-rebalance
+        title: 设计分区键与再平衡
+        description: 依据访问模式选择范围或哈希分片，识别热点与跨分片操作，并在扩缩容时安全迁移所有权。
+        tags: [分片, 一致性哈希, 再平衡]
+        status: planned
+      - type: node
+        id: resolve-concurrent-updates
+        title: 处理并发写入冲突
+        description: 根据数据语义选择拒绝、最后写入获胜、显式合并或 CRDT，并用并发更新验证收敛与数据保留。
+        tags: [冲突解决, CRDT, 收敛]
+        status: optional
+
+  - type: node
+    id: coordinate-with-consensus
+    title: 使用共识协调关键状态
+    description: 让多个节点对复制日志、领导者和成员关系达成一致，并理解多数派协议能保证什么。
+    tags: [共识, Raft, 复制状态机]
+    status: planned
+    link: https://raft.github.io/
+    children:
+      - type: node
+        id: build-replicated-state-machine
+        title: 建立复制状态机模型
+        description: 让确定性状态机按相同顺序应用已提交命令，区分日志复制、提交、应用和客户端响应。
+        tags: [状态机复制, 日志]
+        status: planned
+      - type: node
+        id: trace-raft-terms-and-elections
+        title: 追踪 Raft 任期与领导者选举
+        description: 模拟超时、投票和角色转换，验证同一任期至多选出一个领导者并分析分票后的恢复。
+        tags: [Raft, 选举, Term]
+        status: planned
+      - type: node
+        id: replicate-and-commit-log
+        title: 实现日志复制与提交规则
+        description: 处理日志不一致、重试、冲突回退和多数派确认，避免把尚未安全提交的条目暴露为最终结果。
+        tags: [日志复制, Commit Index]
+        status: planned
+      - type: node
+        id: change-cluster-membership
+        title: 安全变更集群成员关系
+        description: 使用协议支持的联合配置或等价机制增删节点，避免两个互不相交的多数派同时作出决定。
+        tags: [成员变更, Joint Consensus]
+        status: planned
+      - type: node
+        id: use-leases-and-fencing
+        title: 用租约和 Fencing Token 保护资源
+        description: 防止暂停或失联的旧领导者继续写入外部资源，并验证锁服务故障不会产生两个有效所有者。
+        tags: [租约, Fencing Token, 分布式锁]
+        status: planned
+
+  - type: node
+    id: preserve-cross-node-invariants
+    title: 维护跨节点业务不变量
+    description: 根据原子性需求选择事务、条件写入或显式工作流，并让未知结果、补偿和恢复路径可追踪。
+    tags: [分布式事务, 幂等性, 工作流]
+    status: planned
+    children:
+      - type: node
+        id: minimize-distributed-transactions
+        title: 先减少跨边界原子写入
+        description: 通过数据所有权、聚合边界和单写者设计让关键不变量尽量在一个事务域内完成。
+        tags: [数据所有权, 事务边界]
+        status: planned
+      - type: node
+        id: understand-two-phase-commit
+        title: 理解 Two-Phase Commit 的保证与阻塞
+        description: 追踪 Prepare、Commit、协调者日志和参与者恢复，说明 2PC 与共识解决的问题并不相同。
+        tags: [2PC, 原子提交]
+        status: planned
+      - type: node
+        id: design-saga-workflows
+        title: 将长流程建模为 Saga
+        description: 把跨服务步骤设计成持久化状态机，为每一步定义重试、补偿、人工介入和终止条件。
+        tags: [Saga, 补偿, 状态机]
+        status: planned
+      - type: node
+        id: publish-with-transactional-outbox
+        title: 使用 Outbox 协调状态与事件
+        description: 在本地事务中同时写入业务状态与待发布事件，通过可重试转发和幂等消费避免双写不一致。
+        tags: [Outbox, 双写, CDC]
+        status: planned
+      - type: node
+        id: handle-ambiguous-results
+        title: 让未知结果可查询且可安全重试
+        description: 为请求分配稳定标识，保存处理状态并提供查询接口，使客户端在超时后不会重复产生业务效果。
+        tags: [请求标识, 去重, 恢复]
+        status: planned
+
+  - type: node
+    id: build-reliable-messaging
+    title: 构建可靠的异步消息链路
+    description: 明确生产、存储、投递与确认边界，在重复、乱序、积压和消费者失败时保持业务正确。
+    tags: [消息队列, 事件驱动, 投递语义]
+    status: planned
+    children:
+      - type: node
+        id: state-delivery-semantics
+        title: 准确定义投递语义
+        description: 区分至多一次、至少一次与端到端业务效果，指出所谓 Exactly-Once 的事务边界和外部副作用限制。
+        tags: [At-Least-Once, Exactly-Once]
+        status: planned
+      - type: node
+        id: make-consumers-idempotent
+        title: 实现幂等消费者
+        description: 使用业务键、去重记录、条件更新或状态机，使同一消息被重复处理时不重复产生业务效果。
+        tags: [幂等, 去重]
+        status: planned
+      - type: node
+        id: control-ordering-and-parallelism
+        title: 控制消息顺序与并行度
+        description: 只为需要局部顺序的键选择分区，处理乱序与迟到事件，并说明全局顺序对吞吐和可用性的代价。
+        tags: [顺序, 分区, 并行消费]
+        status: planned
+      - type: node
+        id: recover-poison-messages
+        title: 隔离并恢复失败消息
+        description: 设置有限重试、退避、死信和人工重放流程，保留失败上下文并避免 Poison Message 阻塞分区。
+        tags: [重试, 死信, 重放]
+        status: planned
+      - type: node
+        id: manage-backpressure
+        title: 用背压管理生产与消费速率
+        description: 监测积压和处理时延，通过限流、批处理、扩容或降级避免队列把过载延后成更大故障。
+        tags: [背压, 积压, 流量控制]
+        status: planned
+
+  - type: node
+    id: contain-failure-and-overload
+    title: 阻止故障与过载级联
+    description: 使用截止时间、有限重试、隔离、限流和降级建立稳定边界，并通过容量数据校准策略。
+    tags: [韧性, 过载, 级联故障]
+    status: planned
+    link: https://sre.google/sre-book/addressing-cascading-failures/
+    children:
+      - type: node
+        id: budget-deadlines-and-timeouts
+        title: 传播截止时间并分配超时预算
+        description: 从端到端服务目标反推各跳预算，取消已无价值的工作，并区分连接、请求与队列等待超时。
+        tags: [Deadline, Timeout, 取消]
+        status: planned
+      - type: node
+        id: retry-with-bounded-backoff
+        title: 只对可重试操作执行有限重试
+        description: 结合幂等性、指数退避、抖动和重试预算，避免依赖故障时形成同步重试风暴。
+        tags: [重试, 退避, Jitter]
+        status: planned
+      - type: node
+        id: isolate-and-shed-load
+        title: 隔离资源并主动丢弃过载
+        description: 使用 Bulkhead、并发上限、队列上限和负载脱落保护关键路径，不让单个依赖耗尽共享资源。
+        tags: [Bulkhead, Load Shedding, 限流]
+        status: planned
+      - type: node
+        id: design-meaningful-degradation
+        title: 设计有边界的降级模式
+        description: 明确哪些功能可返回缓存、只读或延迟结果，保证降级不会绕过权限、破坏不变量或隐藏数据丢失。
+        tags: [降级, 缓存, 故障模式]
+        status: planned
+      - type: node
+        id: plan-capacity-and-hotspots
+        title: 用容量模型识别瓶颈和热点
+        description: 根据到达率、服务时间、并发、分片分布和放大系数建立基线，并验证扩容是否移动了瓶颈。
+        tags: [容量规划, 热点, 排队]
+        status: planned
+
+  - type: node
+    id: verify-and-debug-distributed-behavior
+    title: 验证并调试分布式行为
+    description: 用可关联遥测、可重复历史和主动故障注入发现只在并发、时序或部分失败下出现的缺陷。
+    tags: [测试, 可观测性, 故障注入]
+    status: planned
+    link: https://opentelemetry.io/docs/concepts/observability-primer/
+    children:
+      - type: node
+        id: propagate-correlation-context
+        title: 传播并关联请求上下文
+        description: 在 RPC 和消息边界传播 Trace Context，将日志、指标和 Span 与节点、分片、任期及请求标识关联。
+        tags: [Tracing, Trace Context, 关联]
+        status: planned
+      - type: node
+        id: observe-correctness-signals
+        title: 监测正确性而非只看资源
+        description: 除 CPU 和延迟外，监测复制落后、领导者变更、冲突、积压、丢弃、恢复点和不变量违规。
+        tags: [指标, 正确性, 告警]
+        status: planned
+      - type: node
+        id: write-deterministic-tests
+        title: 为并发协议编写确定性测试
+        description: 控制时钟、调度和网络传递，使用模型或参考实现检查状态转换，并保存随机种子以复现失败。
+        tags: [确定性测试, 模型测试, 随机种子]
+        status: planned
+      - type: node
+        id: run-fault-injection-tests
+        title: 注入故障并检查操作历史
+        description: 在负载下制造延迟、分区、丢包、进程终止和时钟异常，收集历史并验证一致性与恢复目标。
+        tags: [Jepsen, Chaos Engineering, 历史]
+        status: planned
+        link: https://jepsen.io/
+      - type: node
+        id: reconstruct-incident-timeline
+        title: 重建跨节点故障时间线
+        description: 结合逻辑顺序、单调时间、配置变更和遥测证据区分触发因素、故障传播、用户影响与恢复动作。
+        tags: [故障分析, 时间线, 复盘]
+        status: planned
+
+  - type: node
+    id: operate-securely-and-recover
+    title: 安全运行并验证灾难恢复
+    description: 将身份、权限、加密、变更、备份和恢复纳入系统设计，避免控制面与恢复流程成为单点。
+    tags: [安全, 运维, 灾难恢复]
+    status: planned
+    children:
+      - type: node
+        id: authenticate-nodes-and-workloads
+        title: 验证节点、工作负载与操作者身份
+        description: 为服务间和管理面通信建立可轮换身份，实施双向认证与最小权限并拒绝未知成员。
+        tags: [mTLS, 工作负载身份, 最小权限]
+        status: planned
+      - type: node
+        id: protect-data-and-secrets
+        title: 保护传输、存储与密钥材料
+        description: 加密跨信任边界的数据，使用专用密钥系统分发和轮换凭据，并避免在日志或快照泄露秘密。
+        tags: [加密, 密钥管理, 数据保护]
+        status: planned
+      - type: node
+        id: roll-out-compatible-changes
+        title: 以兼容窗口发布协议与模式变更
+        description: 使用扩展再收缩策略保持新旧节点、消息和数据格式兼容，设置停止条件并演练前滚或回滚。
+        tags: [滚动升级, 兼容性, 回滚]
+        status: planned
+      - type: node
+        id: define-and-test-recovery-objectives
+        title: 定义并验证 RPO 与 RTO
+        description: 从业务风险确定恢复点和恢复时间目标，执行备份、校验、异地保存和完整恢复演练。
+        tags: [RPO, RTO, 备份恢复]
+        status: planned
+      - type: node
+        id: write-operational-runbooks
+        title: 编写可执行的运维手册
+        description: 记录扩缩容、成员变更、证书轮换、故障切换、数据修复和紧急降级步骤及其验证信号。
+        tags: [Runbook, 变更管理]
+        status: planned
+
+  - type: node
+    id: deliver-capstone-system
+    title: 交付一个可演练的分布式任务系统
+    description: 构建包含复制状态、异步任务和查询接口的多节点系统，用自动化测试证明其在重复、重启和网络分区下的行为。
+    tags: [综合实践, 分布式系统, 故障演练]
+    status: planned
+    children:
+      - type: node
+        id: specify-capstone-contracts
+        title: 写出架构、保证与故障假设
+        description: 标注节点职责、数据所有权、通信路径、一致性和投递语义，并把关键不变量写成可执行验收条件。
+        tags: [架构决策, 不变量, 契约]
+        status: planned
+      - type: node
+        id: implement-capstone-happy-path
+        title: 实现可重复部署的最小业务闭环
+        description: 完成任务提交、持久化、分发、幂等执行和状态查询，提供初始化、健康检查和清理流程。
+        tags: [实现, 幂等, 部署]
+        status: planned
+      - type: node
+        id: automate-capstone-failure-drills
+        title: 自动化关键故障演练
+        description: 注入领导者重启、消息重复、慢节点、网络分区和磁盘写入失败，验证不变量、降级和恢复时间。
+        tags: [故障注入, 自动化验收]
+        status: planned
+      - type: node
+        id: document-capstone-evidence
+        title: 交付容量与可靠性证据
+        description: 提供负载基线、操作历史、仪表盘、告警、恢复演练记录和剩余风险，使他人能够复查结论。
+        tags: [容量测试, 可观测性, 证据]
+        status: planned
+      - type: roadmap
+        roadmapId: backend
+        title: 将原理应用到生产后端服务
+        description: 继续学习 API、数据库、安全、测试、部署和可观测性的完整交付路径。
+
+  - type: node
+    id: choose-advanced-direction
+    title: 按目标选择深化方向
+    description: 在完成一致性、共识、故障测试和综合项目后，再选择与岗位或系统目标匹配的专题。
+    tags: [进阶, 专题]
+    status: optional
+    children:
+      - type: node
+        id: study-distributed-storage
+        title: 深入分布式存储引擎
+        description: 研究 LSM Tree、WAL、Compaction、快照、分层存储和数据校验如何与复制和恢复协作。
+        tags: [分布式存储, LSM Tree, WAL]
+        status: optional
+      - type: node
+        id: study-stream-processing
+        title: 深入流处理与事件时间
+        description: 学习 Watermark、窗口、状态快照、重放和端到端一致性，验证迟到与乱序数据的处理结果。
+        tags: [流处理, Event Time, Watermark]
+        status: optional
+      - type: node
+        id: study-global-systems
+        title: 深入跨地域系统
+        description: 分析地域延迟、数据驻留、故障域、时钟不确定性和流量调度，设计区域级故障的恢复策略。
+        tags: [多地域, 数据驻留, 容灾]
+        status: optional
+      - type: node
+        id: verify-with-formal-methods
+        title: 使用形式化方法验证协议
+        description: 用 TLA+ 或等价工具描述状态、动作和不变量，通过模型检查发现罕见交错与错误假设。
+        tags: [TLA+, 模型检查, 形式化验证]
+        status: optional
+        link: https://lamport.azurewebsites.net/tla/tla.html
+      - type: node
+        id: study-byzantine-systems
+        title: 探索 Byzantine 容错系统
+        description: 在节点可能任意或恶意行为的模型下研究法定人数、认证消息和 BFT 共识，并明确额外成本。
+        tags: [BFT, Byzantine, 共识]
+        status: optional
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 学习分布式工作负载运行平台
+        description: 在需要集群编排时继续学习声明式部署、服务网络、存储、伸缩、安全与排错。

@@ -1,0 +1,360 @@
+id: spring-cloud-alibaba
+title: Spring Cloud Alibaba
+description: 面向已掌握 Spring Boot 与微服务基础的开发者，使用 Nacos、Sentinel、RocketMQ 和 Seata 构建、验证并运维生产可用的分布式系统。
+tags: [后端, Java, Spring Cloud Alibaba, 微服务, 云原生]
+nodes:
+  - type: node
+    id: prerequisites
+    title: 补齐 Spring Cloud 与容器前置能力
+    description: 能拆分服务边界、构建 Spring Boot API，并理解服务发现、配置、网关、故障韧性与容器网络的基本原理。
+    tags: [前置, Spring Cloud]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: spring-cloud
+        title: 掌握通用 Spring Cloud 能力
+        description: 先理解微服务边界、同步调用、负载均衡、网关、韧性和可观测性，再学习 Alibaba 组件实现。
+      - type: roadmap
+        roadmapId: docker
+        title: 准备可复现的容器环境
+        description: 用容器运行应用和中间件，为多服务联调、测试与故障演练建立统一环境。
+
+  - type: node
+    id: ecosystem-and-version-baseline
+    title: 建立组件全景与兼容版本基线
+    description: 说明 Spring Cloud Alibaba 与 Spring Cloud 的关系，并为 Spring Boot、Spring Cloud、Alibaba BOM 和中间件选择受支持的组合。
+    tags: [架构, 依赖管理]
+    status: planned
+    link: https://sca.aliyun.com/docs/2025.x/overview/version-explain/
+    children:
+      - type: node
+        id: component-responsibilities
+        title: 区分核心组件职责
+        description: 用 Nacos 管理发现与配置、Sentinel 治理流量、RocketMQ 传递事件，并仅在必要时用 Seata 协调事务。
+        status: planned
+      - type: node
+        id: compatibility-matrix
+        title: 核对官方兼容矩阵
+        description: 在建项和升级时同时核对 JDK、Spring Boot、Spring Cloud、Spring Cloud Alibaba 与各服务端版本。
+        status: planned
+      - type: node
+        id: import-alibaba-bom
+        title: 用 BOM 统一依赖版本
+        description: 导入 spring-cloud-alibaba-dependencies，并通过依赖树检查重复、覆盖和不兼容的传递依赖。
+        status: planned
+      - type: node
+        id: minimal-component-set
+        title: 从最小组件集合起步
+        description: 只引入当前业务确需的 Starter 和中间件，记录每个组件解决的问题、运行成本与退出方案。
+        status: planned
+
+  - type: node
+    id: nacos-discovery
+    title: 用 Nacos 完成服务注册与发现
+    description: 注册多个服务实例，通过服务 ID 和 Spring Cloud LoadBalancer 调用健康实例，并验证上下线与故障摘除行为。
+    tags: [Nacos, 服务发现]
+    status: planned
+    link: https://sca.aliyun.com/docs/2025.x/user-guide/nacos/quick-start/
+    children:
+      - type: node
+        id: start-nacos
+        title: 启动并保护 Nacos Server
+        description: 用容器或独立进程启动与客户端兼容的服务端，修改默认凭据并限制控制台和管理接口的访问范围。
+        status: planned
+      - type: node
+        id: register-service-instances
+        title: 注册并检查服务实例
+        description: 接入 Nacos Discovery，核对服务名、IP、端口、健康状态和元数据是否符合预期。
+        status: planned
+      - type: node
+        id: load-balanced-calls
+        title: 按服务 ID 发起负载均衡调用
+        description: 启动多个提供者实例，观察调用分布，并为连接、读取和整体请求设置有限超时。
+        status: planned
+      - type: node
+        id: namespaces-groups-clusters
+        title: 设计命名空间、分组与集群
+        description: 用命名空间隔离环境，以分组表达业务或租户边界，并按机房或区域标注集群和实例元数据。
+        status: planned
+      - type: node
+        id: graceful-lifecycle
+        title: 验证实例优雅上下线
+        description: 在启动、停止、网络中断和 Nacos 短暂不可用时观察注册状态，避免未就绪实例接收流量。
+        status: planned
+
+  - type: node
+    id: nacos-configuration
+    title: 用 Nacos 管理动态配置
+    description: 通过 Spring Config Data 导入远程配置，控制环境隔离、动态刷新、发布审计与失败回滚。
+    tags: [Nacos, 配置中心]
+    status: planned
+    link: https://sca.aliyun.com/docs/2025.x/user-guide/nacos/advanced-guide/
+    children:
+      - type: node
+        id: config-data-import
+        title: 使用 spring.config.import 加载配置
+        description: 在 application 配置中显式导入所需 Data ID，并确认本地与远程属性的优先级和缺失配置行为。
+        status: planned
+      - type: node
+        id: config-naming-model
+        title: 规范 Data ID、Group 与 Namespace
+        description: 为应用、共享配置和环境建立可预测的命名规则，防止跨环境读取或覆盖。
+        status: planned
+      - type: node
+        id: safe-dynamic-refresh
+        title: 安全刷新运行时配置
+        description: 只让经过校验且可动态变更的属性刷新，对连接池、线程池等高风险变更设置边界和回滚方案。
+        status: planned
+      - type: node
+        id: config-release-governance
+        title: 建立配置发布治理
+        description: 在发布前评审和验证配置，保留变更记录、灰度范围与可执行回滚步骤。
+        status: planned
+      - type: node
+        id: secrets-outside-nacos
+        title: 将敏感信息移出普通配置
+        description: 通过密钥系统或运行平台注入凭据，避免在 Nacos 明文保存长期密钥和令牌。
+        status: planned
+
+  - type: node
+    id: sentinel-resilience
+    title: 用 Sentinel 治理流量与故障
+    description: 根据容量和失败模式配置限流、熔断、隔离与降级，并用压测和故障注入验证规则。
+    tags: [Sentinel, 稳定性]
+    status: planned
+    link: https://sca.aliyun.com/docs/2025.x/user-guide/sentinel/overview/
+    children:
+      - type: node
+        id: define-sentinel-resources
+        title: 识别并定义受保护资源
+        description: 为入口请求、远程调用和关键业务操作定义稳定资源名，避免规则依赖易变的实现细节。
+        status: planned
+      - type: node
+        id: flow-control-rules
+        title: 按容量配置流量控制
+        description: 根据基准压测确定 QPS 或并发阈值，选择快速失败、排队或预热策略并返回一致的限流响应。
+        status: planned
+      - type: node
+        id: circuit-breaking-rules
+        title: 为不稳定依赖配置熔断
+        description: 用慢调用或异常比例触发熔断，设置恢复探测窗口，并提供可解释且有业务边界的降级结果。
+        status: planned
+      - type: node
+        id: hotspot-system-protection
+        title: 处理热点与系统过载
+        description: 对高频参数和关键资源设置差异化保护，并理解系统自适应保护的适用边界。
+        status: planned
+      - type: node
+        id: persistent-sentinel-rules
+        title: 持久化并审计规则
+        description: 将规则托管到 Nacos 等配置源，区分测试与生产规则，并验证重启后规则仍然生效。
+        status: planned
+      - type: node
+        id: resilience-experiments
+        title: 用实验校准保护策略
+        description: 注入突发流量、慢依赖和错误响应，观察吞吐、延迟、拒绝率与恢复时间后调整阈值。
+        status: planned
+
+  - type: node
+    id: gateway-integration
+    title: 在网关统一实施流量入口策略
+    description: 将 Spring Cloud Gateway 接入 Nacos 发现和 Sentinel，在入口完成路由、安全、限流与可观测性协同。
+    tags: [Gateway, Sentinel, 安全]
+    status: planned
+    link: https://docs.spring.io/spring-cloud-gateway/reference/index.html
+    children:
+      - type: node
+        id: discovery-aware-routes
+        title: 配置服务发现路由
+        description: 使用明确路由规则把请求转发到 Nacos 服务实例，并验证路径重写、超时和错误映射。
+        status: planned
+      - type: node
+        id: gateway-authentication
+        title: 验证入口身份与请求边界
+        description: 在网关校验令牌、来源和请求大小，同时让下游服务继续执行资源级授权。
+        status: planned
+      - type: node
+        id: gateway-sentinel-rules
+        title: 对路由和 API 分组限流
+        description: 通过 Sentinel Gateway 适配按路由或 API 分组保护入口，并为拒绝结果定义稳定响应。
+        status: planned
+      - type: node
+        id: gateway-troubleshooting
+        title: 调试实际路由与过滤器链
+        description: 结合 Actuator、访问日志和追踪上下文定位未匹配路由、过滤器顺序及下游连接失败。
+        status: planned
+
+  - type: node
+    id: rocketmq-messaging
+    title: 用 RocketMQ 构建事件驱动协作
+    description: 通过 Spring Cloud Stream RocketMQ Binder 发布和消费事件，正确处理顺序、重复、失败和积压。
+    tags: [RocketMQ, Spring Cloud Stream]
+    status: planned
+    link: https://sca.aliyun.com/docs/2025.x/user-guide/rocketmq/overview/
+    children:
+      - type: node
+        id: binder-bindings
+        title: 用 Binder 与 Binding 连接 RocketMQ
+        description: 以函数模型或 StreamBridge 发布消息，配置目标主题、消费组和内容序列化。
+        status: planned
+      - type: node
+        id: message-contracts
+        title: 设计可演进的事件契约
+        description: 为事件定义稳定名称、版本、业务键和发生时间，并让消费者宽容处理新增字段。
+        status: planned
+      - type: node
+        id: consumer-idempotency
+        title: 保证消费者幂等
+        description: 用业务唯一键、状态检查或去重记录抵御重复投递，避免把重复消费当作异常情况。
+        status: planned
+      - type: node
+        id: retries-and-dead-letters
+        title: 治理重试与失败消息
+        description: 区分瞬时和永久失败，限制重试次数，并为死信提供告警、检查和重新投递流程。
+        status: planned
+      - type: node
+        id: ordering-and-backlog
+        title: 控制顺序、并行度与积压
+        description: 只在业务必要时按键保证局部顺序，通过消费延迟和积压指标调整实例数与并发度。
+        status: planned
+
+  - type: node
+    id: distributed-consistency
+    title: 选择分布式一致性方案
+    description: 先从业务语义评估本地事务、幂等、Outbox 和 Saga，仅在需要跨资源协调时引入 Seata。
+    tags: [一致性, 分布式事务]
+    status: planned
+    children:
+      - type: node
+        id: consistency-requirements
+        title: 明确一致性与失败补偿要求
+        description: 为每条跨服务流程定义允许的不一致窗口、重试语义、人工介入点和最终验收条件。
+        status: planned
+      - type: node
+        id: local-transaction-outbox
+        title: 优先使用本地事务与 Outbox
+        description: 将业务写入和待发布事件放入同一本地事务，再可靠转发并让消费者幂等处理。
+        status: planned
+      - type: node
+        id: compensating-workflows
+        title: 为长流程设计补偿
+        description: 把跨服务步骤建模为可重试、可查询和可补偿的状态机，避免长时间持有数据库资源。
+        status: planned
+      - type: node
+        id: seata-optional
+        title: 按需接入 Seata（选修）
+        description: 比较 AT、TCC、Saga 与 XA 的隔离、侵入性和资源成本，再为合适场景接入事务协调器。
+        tags: [Seata]
+        status: optional
+        link: https://sca.aliyun.com/docs/2025.x/user-guide/seata/overview/
+        children:
+          - type: node
+            id: seata-server-client
+            title: 部署并连接 Seata Server
+            description: 配置注册、事务分组、存储和高可用，验证客户端能发现正确的事务协调器。
+            status: optional
+          - type: node
+            id: seata-failure-drills
+            title: 验证提交、回滚与悬挂恢复
+            description: 注入数据库异常、超时和服务重启，检查全局事务状态、锁冲突与恢复结果。
+            status: optional
+
+  - type: node
+    id: production-governance
+    title: 保护并运维中间件与应用
+    description: 对组件实施认证授权、网络隔离、容量规划、备份恢复和升级治理，避免控制面成为系统单点。
+    tags: [安全, 运维]
+    status: planned
+    children:
+      - type: node
+        id: middleware-access-control
+        title: 收紧中间件访问权限
+        description: 为 Nacos、Sentinel、RocketMQ 和 Seata 配置独立身份、最小权限与受控网络入口。
+        status: planned
+      - type: node
+        id: high-availability-capacity
+        title: 规划高可用与容量
+        description: 根据实例数、配置量、消息吞吐和故障域设计集群，验证节点故障时仍满足服务目标。
+        status: planned
+      - type: node
+        id: backup-and-recovery
+        title: 演练备份与恢复
+        description: 备份配置、规则和中间件元数据，在隔离环境执行恢复并测量恢复点与恢复时间。
+        status: planned
+      - type: node
+        id: controlled-upgrades
+        title: 执行兼容升级与回滚
+        description: 先核对版本矩阵和变更说明，在预生产验证客户端与服务端兼容性后分批升级。
+        status: planned
+
+  - type: node
+    id: testing-and-observability
+    title: 测试并观测分布式行为
+    description: 用自动化测试、关联遥测和故障演练验证配置、发现、流量治理、消息与一致性机制。
+    tags: [测试, 可观测性]
+    status: planned
+    link: https://docs.spring.io/spring-boot/reference/actuator/observability.html
+    children:
+      - type: node
+        id: integration-environment
+        title: 建立隔离的集成测试环境
+        description: 用容器启动所需中间件，为测试创建独立命名空间、主题和数据，并在结束后可靠清理。
+        status: planned
+      - type: node
+        id: component-contract-tests
+        title: 验证组件配置与服务契约
+        description: 自动检查配置加载、服务发现、路由、消息序列化和跨服务 API 的关键契约。
+        status: planned
+      - type: node
+        id: correlated-telemetry
+        title: 关联日志、指标与追踪
+        description: 传播 trace ID 和业务关联键，监控注册状态、限流熔断、消息延迟、积压与事务结果。
+        status: planned
+      - type: node
+        id: failure-injection
+        title: 注入真实故障
+        description: 模拟 Nacos 不可用、规则误配、下游变慢、Broker 中断与重复消息，确认系统按设计降级和恢复。
+        status: planned
+      - type: node
+        id: actionable-alerts
+        title: 建立可行动的告警
+        description: 围绕用户影响和服务目标设置告警，附带仪表盘、排障入口、责任人和抑制噪声规则。
+        status: planned
+
+  - type: node
+    id: capstone-commerce-system
+    title: 交付可演练的电商微服务系统
+    description: 构建网关、订单、库存和账户服务，集成核心 Alibaba 组件并通过自动化验收与故障演练。
+    tags: [综合实践, 生产就绪]
+    status: planned
+    link: https://sca.aliyun.com/en/docs/2023/best-practice/integrated-example/
+    children:
+      - type: node
+        id: capstone-architecture
+        title: 记录服务边界与一致性决策
+        description: 标明数据所有权、同步调用、事件流、失败模式，以及选择或拒绝 Seata 的依据。
+        status: planned
+      - type: node
+        id: capstone-local-stack
+        title: 一键启动完整本地环境
+        description: 用容器编排启动应用和中间件，提供初始化、健康检查、测试数据和清理脚本。
+        status: planned
+      - type: node
+        id: capstone-business-flow
+        title: 验收下单业务闭环
+        description: 验证入口鉴权、服务发现、库存扣减、订单事件、重复请求和失败补偿得到正确结果。
+        status: planned
+      - type: node
+        id: capstone-failure-drills
+        title: 完成容量与故障演练
+        description: 演练流量突增、实例下线、配置回滚、消息积压和依赖超时，并用指标证明保护策略有效。
+        status: planned
+      - type: node
+        id: capstone-runbook
+        title: 编写发布与排障手册
+        description: 记录部署顺序、配置变更、回滚条件、数据修复和常见故障诊断步骤。
+        status: planned
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 将系统迁移到 Kubernetes
+        description: 需要集群化运行时继续学习声明式部署、探针、配置、安全与弹性伸缩。

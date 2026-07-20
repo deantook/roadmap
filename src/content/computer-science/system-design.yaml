@@ -1,0 +1,512 @@
+id: system-design
+title: 系统设计
+description: 面向具备软件开发经验的学习者，从需求、约束与容量估算出发，成长为能设计、评审、验证并演进可靠生产系统的工程师。
+tags: [系统设计, 软件架构, 可扩展性, 可靠性, 性能]
+nodes:
+  - type: node
+    id: establish-design-foundations
+    title: 建立系统设计的工程起点
+    description: 能读懂应用、数据库和网络的基本交互，并把系统设计视为约束下的取舍过程而非组件清单。
+    tags: [前置, 工程思维, 取舍]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: software-engineering
+        title: 补齐需求与软件工程基础
+        description: 先掌握需求、模块化、测试、交付和维护的完整工程闭环。
+      - type: roadmap
+        roadmapId: backend
+        title: 补齐生产服务开发经验
+        description: 通过真实 API、数据库和部署实践理解设计决策最终落到何处。
+      - type: node
+        id: distinguish-design-levels
+        title: 区分系统、架构与详细设计
+        description: 明确业务系统边界、组件交互和模块内部职责的不同粒度，让当前文档只回答需要回答的问题。
+        tags: [抽象层次, 架构, 详细设计]
+        status: planned
+      - type: node
+        id: reason-from-evidence
+        title: 用假设、证据与取舍作出决策
+        description: 对每个关键选择记录目标、约束、备选方案、验证依据和代价，避免用流行度替代推理。
+        tags: [决策, 假设, 证据]
+        status: planned
+
+  - type: node
+    id: frame-the-problem
+    title: 定义问题、范围与成功标准
+    description: 从业务目标和用户旅程提炼系统职责，给出可验收的功能与质量属性目标。
+    tags: [需求, 范围, 质量属性]
+    status: planned
+    link: https://www.sei.cmu.edu/library/reasoning-about-software-quality-attributes/
+    children:
+      - type: node
+        id: identify-stakeholders-and-goals
+        title: 识别干系人与业务目标
+        description: 说明谁使用、运营、购买或监管系统，他们期望获得的结果以及失败造成的业务影响。
+        tags: [干系人, 业务目标]
+        status: planned
+      - type: node
+        id: define-core-use-cases
+        title: 用关键旅程限定功能范围
+        description: 写出正常、异常和边界流程，标明系统内外职责，并区分首版必需能力与未来设想。
+        tags: [用例, 范围, 用户旅程]
+        status: planned
+      - type: node
+        id: specify-quality-scenarios
+        title: 把质量属性写成可测场景
+        description: 为性能、可用性、安全、可维护性和成本明确刺激、环境、系统响应及量化指标。
+        tags: [质量属性, 非功能需求, 验收]
+        status: planned
+      - type: node
+        id: record-constraints-and-assumptions
+        title: 记录硬约束与待验证假设
+        description: 明确预算、期限、团队能力、既有系统、合规、数据驻留和技术限制，并给关键假设安排验证方式。
+        tags: [约束, 假设, 合规]
+        status: planned
+      - type: node
+        id: prioritize-design-drivers
+        title: 排定架构驱动因素
+        description: 按业务影响、风险和不可逆性选择最需要架构响应的少数需求，接受质量属性之间无法同时最大化。
+        tags: [优先级, 架构驱动, 风险]
+        status: planned
+
+  - type: node
+    id: estimate-workload-and-capacity
+    title: 估算负载、容量与成本
+    description: 用数量级计算建立可核查的规模模型，为架构选择和性能验证提供边界。
+    tags: [容量估算, 性能, 成本]
+    status: planned
+    children:
+      - type: node
+        id: model-traffic-shape
+        title: 描述流量形态与峰值
+        description: 估算日活、请求率、读写比、突发系数、地域分布和周期性，区分平均值与设计峰值。
+        tags: [QPS, 峰值, 流量模型]
+        status: planned
+      - type: node
+        id: estimate-data-growth
+        title: 估算数据量与增长
+        description: 根据对象大小、创建速率、副本、索引、保留期和备份计算存储与传输规模，并写明误差范围。
+        tags: [存储容量, 数据增长, 带宽]
+        status: planned
+      - type: node
+        id: derive-concurrency-budget
+        title: 推导并发与资源预算
+        description: 使用到达率、服务时间和排队关系估算在途请求、连接、线程、内存和下游容量。
+        tags: [并发, Little's Law, 资源]
+        status: planned
+      - type: node
+        id: build-simple-cost-model
+        title: 建立简单成本模型
+        description: 将计算、存储、网络、托管服务和运维人力映射到单位业务量，比较方案的固定与边际成本。
+        tags: [成本模型, 单位经济性]
+        status: planned
+      - type: node
+        id: validate-estimates
+        title: 用测量校正数量级估算
+        description: 对高敏感参数做原型或基准测试，记录实测值、容量余量和触发重新设计的阈值。
+        tags: [基准测试, 容量余量, 验证]
+        status: planned
+
+  - type: node
+    id: define-architecture-boundaries
+    title: 划分系统边界与组件职责
+    description: 按业务能力、数据所有权和变化方向建立高内聚边界，并让依赖与通信成本保持可见。
+    tags: [架构, 边界, 模块化]
+    status: planned
+    link: https://c4model.com/
+    children:
+      - type: node
+        id: draw-system-context
+        title: 画出系统上下文与外部依赖
+        description: 标注用户、上游、下游、数据流和信任边界，使范围与第三方责任一目了然。
+        tags: [C4, System Context, 依赖]
+        status: planned
+      - type: node
+        id: decompose-by-capability
+        title: 按业务能力分解组件
+        description: 让每个组件拥有明确职责、接口和数据，避免按控制器、服务、数据库等技术层机械切成远程服务。
+        tags: [业务能力, 高内聚, 低耦合]
+        status: planned
+      - type: node
+        id: choose-deployment-boundaries
+        title: 独立决定模块与部署边界
+        description: 比较模块化单体、服务和函数在独立发布、故障隔离、延迟、一致性及运维上的代价，从最简单可行形态开始。
+        tags: [模块化单体, 微服务, Serverless]
+        status: planned
+      - type: node
+        id: choose-sync-or-async
+        title: 选择同步或异步协作
+        description: 根据响应需求、耦合、流量形态和失败处理选择请求响应或消息，并明确超时、重试和最终状态。
+        tags: [同步, 异步, 消息]
+        status: planned
+      - type: node
+        id: evaluate-build-buy-reuse
+        title: 评估自建、采购与托管服务
+        description: 比较差异化价值、集成成本、可移植性、数据控制、供应商风险和长期运维负担。
+        tags: [Build vs Buy, 托管服务, 供应商]
+        status: planned
+
+  - type: node
+    id: design-interfaces-and-workflows
+    title: 设计接口、状态与业务流程
+    description: 用稳定契约和显式状态转换连接组件，使并发、失败、重试和演进行为可预测。
+    tags: [API, 契约, 状态机]
+    status: planned
+    link: https://www.rfc-editor.org/rfc/rfc9110
+    children:
+      - type: node
+        id: model-resources-and-commands
+        title: 从用例建模资源、命令与事件
+        description: 区分查询、状态变更和已发生事实，为每个操作明确前置条件、业务不变量与可见结果。
+        tags: [资源, 命令, 事件]
+        status: planned
+      - type: node
+        id: specify-api-contracts
+        title: 定义可验证的 API 契约
+        description: 约定输入、输出、错误、认证、分页、过滤和限额，并通过 Schema 或契约测试防止实现漂移。
+        tags: [REST, Schema, 契约测试]
+        status: planned
+      - type: node
+        id: design-idempotent-writes
+        title: 让关键写入可安全重试
+        description: 使用幂等键、条件写入或状态检查处理超时后的重复请求，并定义去重窗口与响应语义。
+        tags: [幂等性, 重试, 条件写入]
+        status: planned
+      - type: node
+        id: model-long-running-workflows
+        title: 把长流程建模为持久状态机
+        description: 明确每个状态、转换、超时、重试、补偿和人工介入入口，使流程能在进程重启后继续。
+        tags: [工作流, 状态机, 补偿]
+        status: planned
+      - type: node
+        id: evolve-contracts-compatibly
+        title: 设计向后兼容的契约演进
+        description: 优先增加可选字段和宽容读取，为破坏性变更提供版本、迁移窗口、使用方盘点和退役标准。
+        tags: [版本化, 兼容性, 迁移]
+        status: planned
+
+  - type: node
+    id: design-data-architecture
+    title: 设计数据所有权与存储
+    description: 从访问模式、不变量、生命周期和恢复目标选择数据模型及存储能力，而非从产品名称反推需求。
+    tags: [数据架构, 数据模型, 存储]
+    status: planned
+    children:
+      - type: node
+        id: define-source-of-truth
+        title: 明确事实来源与数据所有者
+        description: 为每类业务事实指定唯一权威写入边界，区分主数据、派生视图、缓存和可重建索引。
+        tags: [Source of Truth, 数据所有权]
+        status: planned
+      - type: node
+        id: derive-logical-data-model
+        title: 从不变量推导逻辑数据模型
+        description: 定义实体、关系、标识、状态转换和约束，验证模型能拒绝非法状态并支持关键查询。
+        tags: [数据建模, 不变量, 约束]
+        status: planned
+      - type: node
+        id: choose-storage-by-access-pattern
+        title: 根据访问模式选择存储能力
+        description: 比较关系、键值、文档、搜索、图、对象和时序模型对事务、查询、扩展与运维的支持。
+        tags: [Polyglot Persistence, 访问模式]
+        status: planned
+      - type: node
+        id: design-indexes-and-query-paths
+        title: 设计索引与查询路径
+        description: 为核心读写画出从接口到存储的路径，估算扫描、放大和热点，并限制无界查询。
+        tags: [索引, 查询, 热点]
+        status: planned
+      - type: node
+        id: plan-data-lifecycle
+        title: 规划数据生命周期
+        description: 定义创建、修改、归档、删除、保留、导出和恢复规则，让隐私与合规要求进入数据模型。
+        tags: [数据生命周期, 保留, 隐私]
+        status: planned
+      - type: roadmap
+        roadmapId: database-systems
+        title: 深入数据库内部机制
+        description: 在需要解释查询、事务、恢复、索引和分布式数据库行为时继续学习数据库原理。
+
+  - type: node
+    id: scale-critical-paths
+    title: 扩展关键读写路径
+    description: 先定位瓶颈，再通过复制、分区、缓存和异步化提升容量，同时保留正确性与失效策略。
+    tags: [可扩展性, 缓存, 分区]
+    status: planned
+    children:
+      - type: node
+        id: scale-stateless-compute
+        title: 水平扩展无状态计算
+        description: 把会话和持久状态移出可替换进程，通过健康检查和负载均衡分配流量并验证缩容行为。
+        tags: [无状态, 负载均衡, 水平扩展]
+        status: planned
+      - type: node
+        id: cache-with-invalidation-plan
+        title: 带着失效方案使用缓存
+        description: 明确缓存位置、键、TTL、新鲜度、击穿保护和失效触发，验证陈旧或不可用时的系统行为。
+        tags: [缓存, TTL, Cache Stampede]
+        status: planned
+      - type: node
+        id: replicate-and-partition-bottlenecks
+        title: 对读写瓶颈复制或分区
+        description: 根据一致性、故障域和访问分布选择副本与分片策略，处理复制延迟、热点和再平衡。
+        tags: [复制, 分片, 热点]
+        status: planned
+      - type: node
+        id: offload-static-and-large-content
+        title: 分离静态与大对象交付
+        description: 使用对象存储和 CDN 承担大文件与公共内容，设计授权、缓存控制、完整性和回源失败路径。
+        tags: [对象存储, CDN, 回源]
+        status: planned
+      - type: node
+        id: smooth-load-asynchronously
+        title: 用队列平滑突发负载
+        description: 将无需同步完成的工作持久排队，设置并发、背压、积压上限、失败隔离和重放策略。
+        tags: [队列, 背压, 削峰]
+        status: planned
+
+  - type: node
+    id: engineer-reliability
+    title: 设计故障隔离与恢复
+    description: 从用户可见目标和故障模式推导冗余、超时、降级与灾难恢复，而不是假设基础设施永不失败。
+    tags: [可靠性, 可用性, 灾难恢复]
+    status: planned
+    link: https://sre.google/sre-book/availability-table/
+    children:
+      - type: node
+        id: define-sli-slo-budget
+        title: 定义 SLI、SLO 与错误预算
+        description: 从关键用户旅程选择成功率、延迟或新鲜度信号，设定测量窗口并用错误预算约束发布风险。
+        tags: [SLI, SLO, Error Budget]
+        status: planned
+      - type: node
+        id: analyze-failure-modes
+        title: 系统分析故障模式
+        description: 对组件、依赖、网络、配置、容量和操作者失误列出影响、检测、隔离和恢复手段。
+        tags: [FMEA, 故障模式, 风险]
+        status: planned
+      - type: node
+        id: design-redundancy-by-failure-domain
+        title: 按故障域设计冗余
+        description: 让副本跨越真正独立的主机、机架或区域，消除控制面、凭据、配额和部署流程中的隐藏单点。
+        tags: [冗余, 故障域, 单点]
+        status: planned
+      - type: node
+        id: bound-remote-failure
+        title: 限制远程故障传播
+        description: 组合截止时间、有限重试、退避抖动、熔断、隔离和负载脱落，避免小故障演变为级联失效。
+        tags: [Timeout, Retry, Load Shedding]
+        status: planned
+        link: https://sre.google/sre-book/addressing-cascading-failures/
+      - type: node
+        id: design-graceful-degradation
+        title: 定义安全降级模式
+        description: 说明依赖失败或过载时哪些能力可只读、延迟或关闭，并确保降级不破坏权限与数据不变量。
+        tags: [降级, 故障隔离]
+        status: planned
+      - type: node
+        id: set-and-test-rpo-rto
+        title: 设置并验证 RPO 与 RTO
+        description: 根据业务影响设计备份、复制、恢复和流量切换，定期执行完整演练而非只检查备份任务成功。
+        tags: [RPO, RTO, 恢复演练]
+        status: planned
+
+  - type: node
+    id: secure-and-govern-the-design
+    title: 把安全、隐私与治理纳入设计
+    description: 沿身份、信任边界和数据流识别风险，选择可测试控制并明确剩余风险的责任人。
+    tags: [安全架构, 隐私, 治理]
+    status: planned
+    link: https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
+    children:
+      - type: node
+        id: draw-trust-boundaries
+        title: 标注资产、主体与信任边界
+        description: 在数据流图中标出用户、工作负载、管理面、存储和第三方边界，识别跨界数据与入口。
+        tags: [信任边界, 数据流图, 资产]
+        status: planned
+      - type: node
+        id: model-threats-and-abuse
+        title: 分析技术威胁与业务滥用
+        description: 同时检查伪造、篡改、泄露、拒绝服务、越权及合法功能的恶意组合，为高风险路径编写滥用场景。
+        tags: [威胁建模, STRIDE, Abuse Case]
+        status: planned
+      - type: node
+        id: design-identity-and-authorization
+        title: 设计身份与授权边界
+        description: 区分认证、会话和授权，让每个敏感操作在服务端验证主体、对象、动作和上下文。
+        tags: [认证, 授权, 最小权限]
+        status: planned
+      - type: node
+        id: protect-sensitive-data
+        title: 最小化并保护敏感数据
+        description: 减少收集和保留范围，对传输与存储加密，隔离密钥，并设计访问审计、导出和删除流程。
+        tags: [数据最小化, 加密, 密钥管理]
+        status: planned
+      - type: node
+        id: design-tenant-isolation
+        title: 明确租户隔离模型
+        description: 根据风险选择共享或独立计算与存储边界，在查询、缓存、队列、日志和运维入口验证隔离。
+        tags: [多租户, 隔离, 数据边界]
+        status: planned
+      - type: roadmap
+        roadmapId: api-security-best-practices
+        title: 深入 API 安全控制
+        description: 将认证、令牌、授权、输入处理、限流与持续验证落到公开接口。
+
+  - type: node
+    id: design-for-operations-and-change
+    title: 设计可观测、可发布、可演进的系统
+    description: 让运行状态、变更过程和恢复入口成为架构的一部分，使团队能够安全地长期维护系统。
+    tags: [可观测性, 发布, 演进]
+    status: planned
+    link: https://opentelemetry.io/docs/concepts/observability-primer/
+    children:
+      - type: node
+        id: expose-operational-signals
+        title: 从设计目标推导运行信号
+        description: 为业务结果、依赖、队列、缓存、数据一致性和资源饱和定义日志、指标、追踪与告警。
+        tags: [日志, 指标, 追踪]
+        status: planned
+      - type: node
+        id: design-health-and-diagnostics
+        title: 设计健康与诊断入口
+        description: 区分存活、就绪和降级状态，提供安全的版本、配置和依赖诊断并限制高基数与敏感信息。
+        tags: [Health Check, Readiness, 诊断]
+        status: planned
+      - type: node
+        id: release-in-small-batches
+        title: 小批量发布并限制变更爆炸半径
+        description: 使用不可变产物、渐进流量、功能开关和自动停止条件发布，保留兼容前滚与回滚路径。
+        tags: [渐进发布, Feature Flag, 回滚]
+        status: planned
+      - type: node
+        id: migrate-data-compatibly
+        title: 安全演进数据与协议
+        description: 采用扩展再收缩、双读写校验或回填策略，让新旧版本在迁移窗口内兼容并可核对结果。
+        tags: [数据迁移, 兼容窗口, 回填]
+        status: planned
+      - type: node
+        id: prepare-runbooks-and-incidents
+        title: 准备运行手册与事故响应
+        description: 为告警、依赖故障、容量耗尽、数据修复和灾难切换记录操作、权限、停止条件与验证信号。
+        tags: [Runbook, Incident, 复盘]
+        status: planned
+
+  - type: node
+    id: evaluate-and-document-decisions
+    title: 评审并记录架构决策
+    description: 用多视图文档、场景走查和风险验证证明设计满足目标，并让未来维护者能理解其边界。
+    tags: [架构评审, ADR, 文档]
+    status: planned
+    link: https://docs.arc42.org/
+    children:
+      - type: node
+        id: document-with-purposeful-views
+        title: 用必要视图表达系统
+        description: 选择上下文、容器、组件、部署、数据流和关键时序图回答特定问题，保持图与实现同步。
+        tags: [架构视图, C4, 时序图]
+        status: planned
+      - type: node
+        id: record-architecture-decisions
+        title: 用 ADR 保留关键取舍
+        description: 记录上下文、决策驱动、备选方案、结论和后果，并在假设失效时明确替代旧决策。
+        tags: [ADR, 决策记录]
+        status: planned
+        link: https://adr.github.io/
+      - type: node
+        id: walk-critical-scenarios
+        title: 走查关键与失败场景
+        description: 在图上逐步追踪正常请求、并发写入、依赖超时、区域故障、发布和恢复，检查状态及责任是否闭合。
+        tags: [场景走查, 失败路径]
+        status: planned
+      - type: node
+        id: evaluate-tradeoffs-and-risks
+        title: 评估敏感点、取舍点与风险
+        description: 识别哪些决策最影响多个质量属性，为高影响且证据不足的风险安排原型、测试或回退方案。
+        tags: [ATAM, 风险, 取舍]
+        status: planned
+        link: https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/
+      - type: node
+        id: run-collaborative-design-review
+        title: 主持可执行的设计评审
+        description: 提前共享问题与证据，让产品、安全、数据和运维共同检查假设，并为结论指定负责人和截止时间。
+        tags: [设计评审, 协作, 行动项]
+        status: planned
+
+  - type: node
+    id: deliver-capstone-design
+    title: 完成一份可验证的生产系统设计
+    description: 为一个具有真实规模和故障要求的业务系统交付设计包，并用原型、负载和故障实验验证高风险假设。
+    tags: [综合实践, 设计文档, 验证]
+    status: planned
+    children:
+      - type: node
+        id: choose-capstone-domain
+        title: 选择有状态且可演练的业务场景
+        description: 从预约、订单、内容协作、通知或文件处理选择一个领域，定义核心用户旅程和不可破坏的不变量。
+        tags: [领域, 用例, 不变量]
+        status: planned
+      - type: node
+        id: produce-capstone-design-package
+        title: 交付完整设计包
+        description: 包含需求、数量级估算、架构视图、API、数据模型、安全边界、SLO、容量与灾难恢复设计。
+        tags: [架构文档, API, 数据模型]
+        status: planned
+      - type: node
+        id: prototype-riskiest-assumption
+        title: 原型验证最高风险假设
+        description: 选择吞吐、并发一致性、第三方限制、延迟或迁移中的一个关键不确定性，用最小实验收集数据。
+        tags: [原型, 风险验证, 实验]
+        status: planned
+      - type: node
+        id: test-capstone-under-failure
+        title: 在负载与故障下验证设计
+        description: 执行基线负载、容量极限和依赖失败实验，对照 SLO、不变量、降级和恢复目标记录结果。
+        tags: [负载测试, 故障注入, SLO]
+        status: planned
+      - type: node
+        id: defend-and-revise-design
+        title: 评审、答辩并修订设计
+        description: 用需求与证据回应质疑，记录接受或拒绝意见的理由，并更新风险、ADR 和后续验证计划。
+        tags: [答辩, 设计评审, 迭代]
+        status: planned
+
+  - type: node
+    id: choose-specialization
+    title: 按系统目标选择深化方向
+    description: 完成通用设计与验证闭环后，再进入需要专门理论或平台经验的领域。
+    tags: [进阶, 专题]
+    status: optional
+    children:
+      - type: roadmap
+        roadmapId: distributed-systems
+        title: 深入一致性、复制与共识
+        description: 为多节点状态、部分失败和分布式协调补齐严格模型与故障实验能力。
+      - type: roadmap
+        roadmapId: database-systems
+        title: 深入数据库与存储系统
+        description: 理解查询、索引、事务、恢复和分布式数据库的内部机制。
+      - type: roadmap
+        roadmapId: kubernetes
+        title: 深入容器编排与平台设计
+        description: 在确需集群调度、自愈、滚动更新和平台治理时学习 Kubernetes。
+      - type: node
+        id: design-real-time-systems
+        title: 深入实时通信系统
+        description: 研究长连接、Presence、扇出、消息顺序、离线补偿和弱网络下的用户体验。
+        tags: [WebSocket, 实时通信, Fan-out]
+        status: optional
+      - type: node
+        id: design-data-intensive-platforms
+        title: 深入数据密集型平台
+        description: 研究批流处理、数据湖仓、元数据、数据质量、治理与多租户资源隔离。
+        tags: [数据平台, 流处理, 治理]
+        status: optional
+      - type: node
+        id: design-global-systems
+        title: 深入全球化与多地域系统
+        description: 分析地域延迟、流量调度、数据驻留、跨区一致性和区域级灾难恢复。
+        tags: [多地域, 全球化, 容灾]
+        status: optional

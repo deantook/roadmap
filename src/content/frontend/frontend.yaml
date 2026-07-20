@@ -237,6 +237,10 @@ nodes:
             roadmapId: vue
             title: 选择 Vue 路线
             description: 学习 Vue 3 响应式、组件、路由、测试与应用交付。
+          - type: roadmap
+            roadmapId: angular
+            title: 选择 Angular 路线
+            description: 学习组件、信号、依赖注入、路由与 Angular 应用交付。
       - type: node
         id: component-design-principles
         title: 设计职责清晰的组件边界

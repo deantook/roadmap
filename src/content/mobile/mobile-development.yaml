@@ -161,6 +161,10 @@ nodes:
             roadmapId: react
             title: 先补齐 React 组件与状态基础
             description: 掌握 React 的组件、Hooks、状态与测试后，再迁移到原生组件和移动平台工具链。
+          - type: roadmap
+            roadmapId: react-native
+            title: 进入 React Native 路线图
+            description: 系统学习原生组件、导航、数据、平台能力、质量保障和双平台发布。
 
   - type: node
     id: organize-mobile-architecture

@@ -1,0 +1,394 @@
+id: cpp
+title: C++
+description: 面向具备基础编程经验的学习者，从值语义、RAII 与标准库出发，掌握泛型、并发和现代工程工具，最终交付一个经过测试的跨平台 C++ 项目。
+tags: [语言, C++, 系统编程, 泛型]
+nodes:
+  - type: node
+    id: setup-cpp-toolchain
+    title: 建立现代 C++ 开发环境
+    description: 配置编译器、CMake 和调试器，选择项目支持的语言标准，并完成带严格诊断的多文件程序。
+    tags: [入门, 编译器, CMake]
+    status: planned
+    link: https://isocpp.org/get-started
+    children:
+      - type: node
+        id: install-cpp-tools
+        title: 安装编译、构建与调试工具
+        description: 配置 Clang、GCC 或 MSVC 之一，以及 CMake 和对应调试器，并确认命令行构建可重复执行。
+        tags: [工具链, 调试器]
+        status: planned
+      - type: node
+        id: select-language-standard
+        title: 明确项目语言标准
+        description: 在构建配置中声明标准版本和扩展开关，根据编译器支持矩阵决定可使用的语言与库特性。
+        tags: [标准, 可移植性]
+        status: planned
+        link: https://isocpp.org/std/the-standard
+      - type: node
+        id: enable-cpp-diagnostics
+        title: 启用严格编译诊断
+        description: 开启常用警告并理解错误、警告和静态分析结果，从首个诊断开始消除根因。
+        tags: [警告, 质量]
+        status: planned
+
+  - type: node
+    id: master-modern-cpp-core
+    title: 掌握现代 C++ 语言核心
+    description: 使用类型、控制流、函数、引用与 const 表达清晰逻辑，并理解对象生命周期、重载和编译期推导。
+    tags: [语法, 类型, 值语义]
+    status: planned
+    link: https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html
+    children:
+      - type: node
+        id: use-values-references-and-const
+        title: 区分值、引用、指针与 const
+        description: 根据可空性、所有权和修改权限选择传值、引用或指针，并让 const 约束贯穿接口。
+        tags: [引用, 指针, const]
+        status: planned
+      - type: node
+        id: write-clear-control-flow
+        title: 编写边界清晰的控制流
+        description: 使用初始化语句、范围 for、结构化绑定和早返回简化分支，并保证循环终止和错误路径完整。
+        tags: [控制流]
+        status: planned
+      - type: node
+        id: design-overloaded-functions
+        title: 设计函数与重载集合
+        description: 合理使用参数、默认值、重载和模板，避免隐式转换造成歧义，并让调用点表达真实意图。
+        tags: [函数, 重载]
+        status: planned
+      - type: node
+        id: apply-auto-and-constexpr
+        title: 合理使用类型推导与编译期计算
+        description: 在类型清晰时使用 auto，通过 constexpr 和 consteval 表达可验证的编译期不变量，避免隐藏重要语义。
+        tags: [auto, constexpr]
+        status: planned
+
+  - type: node
+    id: model-types-and-resources
+    title: 用类型和 RAII 管理资源
+    description: 建立保持不变量的类和组合关系，让对象生命周期自动管理内存、文件、锁与其他资源。
+    tags: [RAII, 类, 资源管理]
+    status: planned
+    children:
+      - type: node
+        id: design-class-invariants
+        title: 设计保持不变量的类
+        description: 使用构造函数、成员函数和访问控制保证对象始终有效，优先组合并限制继承层级。
+        tags: [Class, 不变量]
+        status: planned
+      - type: node
+        id: acquire-resources-with-raii
+        title: 用 RAII 绑定资源生命周期
+        description: 将获取和释放封装进对象构造与析构，使正常返回和异常退出都能自动清理资源。
+        tags: [RAII, 析构]
+        status: planned
+      - type: node
+        id: apply-rule-of-zero
+        title: 遵循 Rule of Zero
+        description: 优先组合标准资源类型，让编译器生成复制和移动操作；确需自管资源时再完整定义其语义。
+        tags: [复制, 移动]
+        status: planned
+      - type: node
+        id: choose-smart-pointers
+        title: 按所有权选择智能指针
+        description: 默认使用值和 unique_ptr，只在共享生命周期真实存在时使用 shared_ptr，并避免引用环。
+        tags: [unique_ptr, shared_ptr]
+        status: planned
+      - type: node
+        id: use-polymorphism-deliberately
+        title: 有意识地选择多态方式
+        description: 根据开放层级、性能和所有权需求选择虚函数、variant、模板或类型擦除，并保证基类析构安全。
+        tags: [多态, 继承]
+        status: planned
+
+  - type: node
+    id: use-standard-library-effectively
+    title: 熟练使用标准库
+    description: 选择合适的容器和词汇类型，以迭代器、算法、Ranges 和文本工具构建安全且可组合的数据流程。
+    tags: [标准库, 容器, Ranges]
+    status: planned
+    children:
+      - type: node
+        id: choose-standard-containers
+        title: 选择标准容器
+        description: 根据连续性、稳定性、查找复杂度和缓存局部性选择 vector、array、map 或 unordered_map 等容器。
+        tags: [Container, 复杂度]
+        status: planned
+      - type: node
+        id: compose-algorithms-and-ranges
+        title: 用算法与 Ranges 表达数据变换
+        description: 使用标准算法、投影和视图替代手写索引循环，并检查迭代器失效与惰性视图生命周期。
+        tags: [Algorithm, Ranges]
+        status: planned
+      - type: node
+        id: use-vocabulary-types
+        title: 用词汇类型表达接口状态
+        description: 使用 optional、variant、span、string_view 和 expected 表达缺失、分支、非拥有视图与预期失败。
+        tags: [optional, variant, span]
+        status: planned
+      - type: node
+        id: handle-text-and-formatting
+        title: 处理字符串、视图与格式化
+        description: 区分拥有字符串和非拥有视图的生命周期，使用标准格式化能力生成类型安全输出，并明确文本编码边界。
+        tags: [string, string_view, format]
+        status: planned
+      - type: roadmap
+        roadmapId: data-structures
+        title: 补齐数据结构与算法基础
+        description: 在标准库使用之外，系统理解复杂度、经典数据结构与算法设计取舍。
+
+  - type: node
+    id: build-generic-abstractions
+    title: 构建受约束的泛型抽象
+    description: 使用函数模板、类模板与 Concepts 表达可复用算法，让错误在约束边界暴露且不过度元编程。
+    tags: [模板, Concepts, 泛型]
+    status: planned
+    children:
+      - type: node
+        id: write-function-and-class-templates
+        title: 编写函数与类模板
+        description: 理解模板参数、推导、实例化和特化，为类型无关的数据结构或算法建立最小抽象。
+        tags: [Template, 推导]
+        status: planned
+      - type: node
+        id: constrain-with-concepts
+        title: 用 Concepts 约束模板
+        description: 组合标准 Concept 与 requires 表达真实操作要求，使重载选择和诊断结果更清晰。
+        tags: [Concepts, requires]
+        status: planned
+      - type: node
+        id: understand-compile-time-selection
+        title: 理解编译期选择机制
+        description: 区分重载、特化和 if constexpr 的适用场景，并控制实例化数量与错误复杂度。
+        tags: [编译期, 特化]
+        status: planned
+      - type: node
+        id: keep-templates-maintainable
+        title: 控制泛型代码复杂度
+        description: 用普通函数和明确命名封装元逻辑，测量编译时间与二进制体积，避免无收益的模板技巧。
+        tags: [可维护性, 编译性能]
+        status: planned
+
+  - type: node
+    id: design-errors-and-interfaces
+    title: 设计错误与模块边界
+    description: 为库和应用选择一致的失败协议，建立稳定头文件与实现边界，并让接口清楚表达所有权和异常保证。
+    tags: [错误处理, API, 模块化]
+    status: planned
+    children:
+      - type: node
+        id: choose-error-channel
+        title: 选择合适的错误通道
+        description: 根据失败频率、恢复位置和接口约束选择异常、expected、optional 或错误码，不混淆程序缺陷与运行失败。
+        tags: [Exception, expected]
+        status: planned
+      - type: node
+        id: provide-exception-safety
+        title: 提供明确的异常安全保证
+        description: 借助 RAII 和先构造后提交维持基本或强保证，确保失败不会泄漏资源或破坏对象不变量。
+        tags: [异常安全, RAII]
+        status: planned
+      - type: node
+        id: design-public-headers
+        title: 设计最小公共接口
+        description: 隔离实现细节、减少传递包含并说明 ABI 边界，使调用者只依赖必要类型和语义。
+        tags: [头文件, ABI]
+        status: planned
+      - type: node
+        id: document-api-contracts
+        title: 文档化 API 契约
+        description: 说明前置条件、后置条件、所有权、线程安全和复杂度，并用示例验证接口在调用点清晰可用。
+        tags: [契约, 文档]
+        status: planned
+
+  - type: node
+    id: write-concurrent-cpp
+    title: 编写可取消的并发 C++
+    description: 使用线程、任务、锁与原子类型组织并发工作，明确共享状态、停止协议和内存可见性。
+    tags: [并发, Thread, Atomics]
+    status: planned
+    children:
+      - type: node
+        id: manage-thread-lifetimes
+        title: 管理线程生命周期
+        description: 使用 jthread 和停止令牌组织可取消工作，确保所有线程在资源销毁前完成或安全退出。
+        tags: [jthread, 取消]
+        status: planned
+      - type: node
+        id: protect-shared-state
+        title: 用同步原语保护共享状态
+        description: 缩小锁范围，建立一致的加锁顺序，并使用条件变量表达等待条件而非忙轮询。
+        tags: [mutex, condition_variable]
+        status: planned
+      - type: node
+        id: pass-data-by-message
+        title: 优先通过消息传递数据
+        description: 使用线程安全队列和不可变消息降低共享可变状态，并定义关闭、背压和失败传播协议。
+        tags: [消息传递, 背压]
+        status: planned
+      - type: node
+        id: reason-about-atomics
+        title: 推导原子操作与内存顺序
+        description: 先使用顺序一致性建立正确实现，只在测量证明需要时采用更弱顺序并记录 happens-before 关系。
+        tags: [atomic, 内存模型]
+        status: planned
+
+  - type: node
+    id: engineer-cpp-projects
+    title: 工程化 C++ 项目
+    description: 用现代 CMake 管理目标、依赖、测试、安装和平台差异，使构建在本地与 CI 中可复现。
+    tags: [CMake, 依赖管理, CI]
+    status: planned
+    link: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+    children:
+      - type: node
+        id: model-build-with-targets
+        title: 以 Target 建模构建
+        description: 用 target 声明源文件、使用要求和传递依赖，避免依赖全局编译标志和目录状态。
+        tags: [CMake Target, 构建]
+        status: planned
+      - type: node
+        id: manage-external-dependencies
+        title: 可复现地管理外部依赖
+        description: 选择包管理器或 CMake 集成方式，固定兼容版本并审查许可证、传递依赖与供应链风险。
+        tags: [依赖, 供应链]
+        status: planned
+      - type: node
+        id: package-and-install-libraries
+        title: 打包并安装库
+        description: 导出可消费的 CMake Target，处理 public 头文件、版本和安装布局，并在独立消费者项目中验证。
+        tags: [Package, 安装]
+        status: planned
+      - type: node
+        id: automate-build-matrix
+        title: 建立编译器与平台矩阵
+        description: 在 CI 中使用多编译器和目标平台执行配置、构建及测试，及时发现非标准扩展和 ABI 假设。
+        tags: [CI, 可移植性]
+        status: planned
+
+  - type: node
+    id: test-debug-and-harden-cpp
+    title: 测试、调试并加固 C++ 程序
+    description: 通过自动测试、静态分析、调试器和 Sanitizer 验证行为、所有权、并发与输入安全。
+    tags: [测试, 调试, 安全]
+    status: planned
+    children:
+      - type: node
+        id: write-tests-with-googletest
+        title: 用 GoogleTest 验证行为
+        description: 建立独立、可重复的单元与参数化测试，覆盖边界、失败和资源清理，并通过 CTest 统一运行。
+        tags: [GoogleTest, 单元测试]
+        status: planned
+        link: https://google.github.io/googletest/primer.html
+      - type: node
+        id: test-component-boundaries
+        title: 验证组件与外部边界
+        description: 使用临时资源和窄替身测试文件、网络或进程适配器，避免把实现细节固化进测试。
+        tags: [集成测试, 可测试性]
+        status: planned
+      - type: node
+        id: debug-native-programs
+        title: 用调试器定位本地程序缺陷
+        description: 使用断点、调用栈、条件监视和 core dump 从崩溃点回溯根因，并建立最小复现。
+        tags: [GDB, LLDB, Core Dump]
+        status: planned
+        link: https://sourceware.org/gdb/current/onlinedocs/gdb
+      - type: node
+        id: enforce-static-analysis
+        title: 接入静态分析
+        description: 使用 clang-tidy 和编译器诊断检查生命周期、转换、现代化与并发问题，并逐步收紧规则。
+        tags: [clang-tidy, 静态分析]
+        status: planned
+        link: https://clang.llvm.org/extra/clang-tidy/
+      - type: node
+        id: run-cpp-sanitizers
+        title: 用 Sanitizer 捕获运行时错误
+        description: 分别运行地址、未定义行为和线程检测构建，修复首个报告并把触发输入加入回归测试。
+        tags: [AddressSanitizer, ThreadSanitizer]
+        status: planned
+        link: https://clang.llvm.org/docs/AddressSanitizer.html
+      - type: node
+        id: measure-cpp-performance
+        title: 基于基准与剖析优化
+        description: 用代表性负载测量时间、分配和缓存行为，优先改进算法与数据布局，并验证优化没有破坏正确性。
+        tags: [性能, Profiling]
+        status: planned
+
+  - type: node
+    id: deliver-cpp-capstone
+    title: 交付一个跨平台 C++ 项目
+    description: 综合 RAII、标准库、并发和工程工具，交付一个可配置、可测试、可安装的库与命令行应用。
+    tags: [综合实践, 跨平台, 工程化]
+    status: planned
+    children:
+      - type: node
+        id: define-capstone-contracts
+        title: 定义功能与非功能契约
+        description: 明确输入输出、错误、资源上限、并发度和支持平台，并用验收样例固定关键行为。
+        tags: [需求, 契约]
+        status: planned
+      - type: node
+        id: separate-library-and-cli
+        title: 分离核心库与命令行边界
+        description: 将领域模型和算法放入可测试库，把参数、文件和终端交互限制在可执行目标中。
+        tags: [架构, 模块化]
+        status: planned
+      - type: node
+        id: implement-safe-concurrency
+        title: 实现有边界的并发处理
+        description: 为索引、批量转换或抓取场景实现限流、停止和错误聚合，并通过竞态检测验证共享状态。
+        tags: [并发, 可靠性]
+        status: planned
+      - type: node
+        id: verify-capstone-quality
+        title: 自动验证质量与可移植性
+        description: 在 CI 矩阵运行测试、静态分析和 Sanitizer，记录性能基线并验证安装后的消费者示例。
+        tags: [CI, 验收]
+        status: planned
+      - type: node
+        id: package-capstone-release
+        title: 打包并核验发布产物
+        description: 生成带版本和许可证信息的发布包，从干净环境按文档构建、安装和运行完整示例。
+        tags: [发布, 文档]
+        status: planned
+
+  - type: node
+    id: choose-cpp-specialization
+    title: 选择 C++ 深化方向
+    description: 完成现代 C++ 主线后，根据系统边界、实时性和产品领域选择进一步专题。
+    tags: [进阶, 方向]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: c
+        title: 补齐 C 与 ABI 基础
+        description: 在维护 C 代码、调用系统接口或设计跨语言 ABI 时系统学习 C。
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 深入操作系统原理
+        description: 为线程、内存、文件系统和性能分析建立更准确的底层模型。
+      - type: node
+        id: build-network-services
+        title: 构建高性能网络服务
+        description: 学习异步 I/O、协议解析、连接生命周期、背压、可观测性与生产部署。
+        tags: [网络, 服务端]
+        status: optional
+      - type: node
+        id: develop-games-and-graphics
+        title: 开发游戏与图形系统
+        description: 深入实时循环、数据导向设计、数学、渲染 API、资源管线和性能预算。
+        tags: [游戏, 图形]
+        status: optional
+      - type: node
+        id: program-embedded-and-real-time
+        title: 开发嵌入式与实时系统
+        description: 控制动态分配、异常和运行时依赖，理解硬件接口、时间上限与安全编码规范。
+        tags: [嵌入式, 实时]
+        status: optional
+      - type: node
+        id: explore-modules-and-coroutines
+        title: 按工具链支持采用高级特性
+        description: 评估 Modules、Coroutines 和更新标准库能力的编译器成熟度、构建集成与迁移成本后再引入项目。
+        tags: [Modules, Coroutines]
+        status: optional

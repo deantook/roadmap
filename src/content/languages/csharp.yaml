@@ -1,0 +1,423 @@
+id: csharp
+title: C#
+description: 面向具备基础编程经验的学习者，从类型系统与 .NET 工具链出发，掌握 LINQ、异步、测试和运行时诊断，最终交付一个经过验证的跨平台应用。
+tags: [语言, C#, .NET, 跨平台]
+nodes:
+  - type: node
+    id: setup-dotnet-environment
+    title: 建立 C# 与 .NET 开发环境
+    description: 安装受支持的 .NET SDK，使用 dotnet CLI 创建、构建、运行和测试第一个项目，并能检查实际使用的 SDK 与运行时。
+    tags: [入门, .NET SDK, CLI]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/core/get-started
+    children:
+      - type: node
+        id: install-and-inspect-sdk
+        title: 安装并检查 .NET SDK
+        description: 在目标操作系统安装 SDK，使用 dotnet --info 和版本列表确认架构、SDK 与运行时，并区分 SDK 和 Runtime。
+        tags: [安装, SDK]
+        status: planned
+      - type: node
+        id: create-run-and-test-project
+        title: 创建、运行并测试项目
+        description: 从模板创建控制台应用和测试项目，完成 restore、build、run 与 test 的完整反馈循环。
+        tags: [dotnet CLI, 实践]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet
+      - type: node
+        id: navigate-solution-structure
+        title: 识别解决方案与项目结构
+        description: 理解 solution、project、源文件、目标框架和构建输出之间的关系，并用项目引用连接两个组件。
+        tags: [Solution, Project]
+        status: planned
+
+  - type: node
+    id: master-csharp-language-core
+    title: 掌握 C# 语言核心
+    description: 使用类型、表达式、控制流、方法与异常实现清晰程序，并能根据编译器诊断修正类型和空值问题。
+    tags: [语法, 类型, 方法]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
+    children:
+      - type: node
+        id: express-values-and-control-flow
+        title: 用类型与控制流表达逻辑
+        description: 正确使用变量、常量、数值、字符串、枚举、条件和循环，并检查转换、溢出与边界输入。
+        tags: [类型, 控制流]
+        status: planned
+      - type: node
+        id: design-method-signatures
+        title: 设计清晰的方法签名
+        description: 使用参数、返回值、命名参数和局部函数表达职责，只在语义明确时使用 ref、out 或 params。
+        tags: [方法, API]
+        status: planned
+      - type: node
+        id: compose-with-lambdas-delegates
+        title: 用 Lambda 与委托组合行为
+        description: 声明和调用委托，使用 Lambda、Func 与 Action 注入行为，并理解闭包捕获的生命周期和分配影响。
+        tags: [Lambda, Delegate]
+        status: planned
+      - type: node
+        id: handle-exceptions-deliberately
+        title: 有意识地处理异常
+        description: 捕获能够恢复的具体异常，保留原始堆栈和上下文，并避免用异常代替常规分支控制。
+        tags: [异常, 错误处理]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/
+
+  - type: node
+    id: model-domain-with-types
+    title: 用类型系统建立领域模型
+    description: 根据身份、值语义、可变性和继承需求选择 class、struct、record、enum 与 interface，使非法状态更难表达。
+    tags: [类型系统, 建模, 面向对象]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/
+    children:
+      - type: node
+        id: choose-class-struct-record
+        title: 选择 class、struct 与 record
+        description: 用 class 表达有身份的对象，用小型 struct 表达值，并在需要基于内容的相等性和非破坏更新时选择 record。
+        tags: [Class, Struct, Record]
+        status: planned
+      - type: node
+        id: maintain-object-invariants
+        title: 维护对象初始化与不变量
+        description: 使用构造函数、required 成员、属性和访问控制保证对象创建后有效，并限制可变状态的暴露。
+        tags: [初始化, 封装]
+        status: planned
+      - type: node
+        id: design-interfaces-and-composition
+        title: 用接口与组合定义能力
+        description: 声明面向使用方的小型接口，优先通过组合复用行为，只在真实的 is-a 关系中建立继承层级。
+        tags: [Interface, 组合]
+        status: planned
+      - type: node
+        id: model-finite-states
+        title: 用枚举与类型层次表达状态
+        description: 为固定选项使用 enum，为携带不同数据的状态使用封闭的类型层次，并通过穷尽分支处理全部情况。
+        tags: [Enum, 状态建模]
+        status: planned
+      - type: node
+        id: apply-pattern-matching
+        title: 用模式匹配拆解数据
+        description: 组合类型、属性、关系和列表模式实现清晰分支，避免重复转换和脆弱的嵌套条件。
+        tags: [模式匹配]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching
+      - type: node
+        id: enforce-null-safety
+        title: 用可空引用分析表达空值契约
+        description: 启用 nullable 上下文，区分 T 与 T?，修复空状态警告，并把 null-forgiving 限制在经过证明的边界。
+        tags: [Nullable, 空安全]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/null-safety/nullable-reference-types
+
+  - type: node
+    id: use-collections-generics-linq
+    title: 熟练使用集合、泛型与 LINQ
+    description: 根据数据访问需求选择集合，用泛型约束建立类型安全抽象，并正确处理 LINQ 的惰性执行和查询边界。
+    tags: [集合, 泛型, LINQ]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/csharp/linq/
+    children:
+      - type: node
+        id: choose-generic-collections
+        title: 选择泛型集合
+        description: 根据顺序、唯一性、键查找和并发访问需求选择 List、Dictionary、HashSet 或对应只读接口。
+        tags: [Collection, 复杂度]
+        status: planned
+      - type: node
+        id: design-generic-abstractions
+        title: 设计受约束的泛型抽象
+        description: 编写泛型类型与方法，使用约束表达所需能力，并理解协变、逆变与不变的接口边界。
+        tags: [Generics, Variance]
+        status: planned
+      - type: node
+        id: build-linq-pipelines
+        title: 用 LINQ 构建数据管道
+        description: 组合 Where、Select、GroupBy、Join 和聚合操作完成转换，保持查询可读且避免重复枚举。
+        tags: [LINQ, 数据处理]
+        status: planned
+      - type: node
+        id: reason-about-deferred-execution
+        title: 推导惰性执行与物化时机
+        description: 区分 IEnumerable 与 IQueryable，识别查询实际执行位置，并在需要稳定快照或避免重复工作时显式物化。
+        tags: [IEnumerable, IQueryable]
+        status: planned
+      - type: roadmap
+        roadmapId: data-structures
+        title: 补齐数据结构与算法基础
+        description: 在集合 API 之外系统理解常见数据结构、复杂度与算法设计取舍。
+
+  - type: node
+    id: manage-resources-and-data
+    title: 管理资源、文件与序列化边界
+    description: 使用 IDisposable、流和标准序列化组件可靠地处理外部资源，在部分读写、失败和不可信数据场景中保持一致。
+    tags: [资源管理, I/O, 序列化]
+    status: planned
+    children:
+      - type: node
+        id: dispose-resources-deterministically
+        title: 确定性释放外部资源
+        description: 使用 using、IDisposable 和 IAsyncDisposable 管理文件、流与句柄，避免依赖终结器或垃圾回收及时释放资源。
+        tags: [IDisposable, using]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
+      - type: node
+        id: read-write-files-and-streams
+        title: 可靠处理文件与流
+        description: 使用 Path、File、Stream 与缓冲 API 完成文本和二进制 I/O，正确处理编码、部分读取、取消和关闭失败。
+        tags: [File, Stream]
+        status: planned
+      - type: node
+        id: serialize-json-contracts
+        title: 设计明确的 JSON 契约
+        description: 使用 System.Text.Json 控制名称、可空性、枚举和自定义转换，验证缺失、未知及格式错误的输入。
+        tags: [JSON, System.Text.Json]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/overview
+      - type: node
+        id: isolate-external-boundaries
+        title: 隔离时间、文件与网络边界
+        description: 通过窄接口和依赖注入包装不可控资源，使领域逻辑可独立测试且不会依赖全局状态。
+        tags: [依赖注入, 可测试性]
+        status: planned
+
+  - type: node
+    id: write-asynchronous-concurrent-csharp
+    title: 编写可取消的异步与并发代码
+    description: 使用 Task、async/await、异步流和并发集合组织非阻塞工作，正确传播取消、异常与并发上限。
+    tags: [async-await, Task, 并发]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
+    children:
+      - type: node
+        id: compose-async-operations
+        title: 用 async/await 组合异步操作
+        description: 让异步贯穿调用链，区分顺序与并发等待，并避免同步阻塞、async void 和遗失的 Task。
+        tags: [async, await]
+        status: planned
+      - type: node
+        id: propagate-cancellation
+        title: 传播协作式取消
+        description: 将 CancellationToken 传至外部边界和长循环，区分取消与失败，并确保清理操作仍能完成。
+        tags: [CancellationToken, 取消]
+        status: planned
+      - type: node
+        id: process-async-streams
+        title: 用异步流处理持续数据
+        description: 使用 IAsyncEnumerable 逐项生产和消费数据，传播取消并控制缓冲，避免一次性加载全部内容。
+        tags: [IAsyncEnumerable, Stream]
+        status: planned
+      - type: node
+        id: bound-parallel-work
+        title: 限制并行工作量
+        description: 根据 I/O 或 CPU 负载选择 Task.WhenAll、Parallel API、Channel 或信号量，并设置明确并发上限。
+        tags: [Parallel, Channel, 限流]
+        status: planned
+      - type: node
+        id: protect-shared-state
+        title: 安全协调共享状态
+        description: 优先传递不可变数据或消息，确需共享时使用并发集合和同步原语，并避免跨 await 持有普通锁。
+        tags: [线程安全, 同步]
+        status: planned
+
+  - type: node
+    id: engineer-dotnet-solutions
+    title: 工程化 .NET 解决方案
+    description: 使用 SDK-style 项目、MSBuild 和 NuGet 管理模块、依赖、配置与发布，使本地和 CI 构建可复现。
+    tags: [MSBuild, NuGet, 工程化]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview
+    children:
+      - type: node
+        id: structure-multi-project-solution
+        title: 组织多项目解决方案
+        description: 按部署单元和依赖方向拆分应用、类库及测试项目，使用项目引用避免循环依赖。
+        tags: [Solution, 模块化]
+        status: planned
+      - type: node
+        id: manage-nuget-dependencies
+        title: 管理 NuGet 依赖
+        description: 评估包的维护、许可证和传递依赖，集中管理兼容版本并在应用交付时锁定解析结果。
+        tags: [NuGet, 供应链]
+        status: planned
+        link: https://learn.microsoft.com/en-us/nuget/consume-packages/overview-and-workflow
+      - type: node
+        id: configure-build-and-analysis
+        title: 配置构建与代码分析
+        description: 在项目和 Directory.Build.props 中统一 nullable、警告、分析级别及格式规则，并逐步把新增警告视为错误。
+        tags: [构建配置, Analyzer]
+        status: planned
+      - type: node
+        id: manage-configuration-and-secrets
+        title: 分离配置与秘密
+        description: 通过配置提供程序和环境变量注入运行参数，不把令牌、连接信息或生产配置写入源码及普通日志。
+        tags: [配置, 安全]
+        status: planned
+      - type: node
+        id: publish-for-target-environments
+        title: 为目标环境发布应用
+        description: 根据部署约束选择框架依赖或自包含发布，声明 Runtime Identifier，并在干净目标环境验证产物。
+        tags: [Publish, 跨平台]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/deploying/
+
+  - type: node
+    id: understand-dotnet-runtime
+    title: 理解 .NET 运行时边界
+    description: 建立 CLR、托管内存、JIT 与程序集加载的基本模型，用于解释性能、生命周期和部署行为。
+    tags: [CLR, GC, Runtime]
+    status: planned
+    link: https://learn.microsoft.com/en-us/dotnet/fundamentals/
+    children:
+      - type: node
+        id: explain-managed-execution
+        title: 解释托管代码执行过程
+        description: 说明源码、IL、程序集、JIT 与运行时之间的关系，并区分编译时、加载时和运行时故障。
+        tags: [IL, JIT]
+        status: planned
+      - type: node
+        id: reason-about-garbage-collection
+        title: 推导托管堆与垃圾回收
+        description: 理解代际回收、大对象堆和对象存活，避免用手动 GC 代替减少分配或缩短引用生命周期。
+        tags: [GC, 内存]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/
+      - type: node
+        id: reduce-unnecessary-allocations
+        title: 识别并减少无收益分配
+        description: 先测量热点，再评估值类型、池化、Span 与 Memory 等技术，并验证生命周期和正确性。
+        tags: [Span, 性能]
+        status: planned
+      - type: node
+        id: understand-assembly-loading
+        title: 理解程序集加载与版本边界
+        description: 识别程序集标识、依赖解析和加载上下文，避免在插件或多版本依赖场景中造成类型身份冲突。
+        tags: [Assembly, 加载]
+        status: planned
+
+  - type: node
+    id: test-debug-and-observe-dotnet
+    title: 用测试、调试与观测保障质量
+    description: 建立从快速单元测试到集成验证的反馈链，并用调试器和 .NET 诊断工具定位异常、内存、CPU 与并发问题。
+    tags: [测试, 调试, 可观测性]
+    status: planned
+    children:
+      - type: node
+        id: write-maintainable-unit-tests
+        title: 编写可维护的单元测试
+        description: 使用 MSTest、xUnit 或 NUnit 之一组织独立、可重复的测试，覆盖正常、边界和错误路径。
+        tags: [单元测试]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+      - type: node
+        id: verify-integration-boundaries
+        title: 验证集成边界
+        description: 使用临时文件、测试服务器或容器化依赖验证序列化、存储和进程边界，并确保测试可清理。
+        tags: [集成测试]
+        status: planned
+      - type: node
+        id: debug-with-stack-and-dumps
+        title: 用调试器与 Dump 定位缺陷
+        description: 使用断点、异常设置、调用栈和内存检查复现逻辑错误，并通过 dump 分析无法交互重现的故障。
+        tags: [Debugger, Dump]
+        status: planned
+      - type: node
+        id: diagnose-runtime-performance
+        title: 用 .NET 工具诊断运行时问题
+        description: 使用 dotnet-counters、dotnet-trace、dotnet-dump 和 dotnet-gcdump 根据证据定位高 CPU、泄漏、GC 或线程池饥饿。
+        tags: [诊断, 性能]
+        status: planned
+        link: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/
+      - type: node
+        id: emit-structured-telemetry
+        title: 输出结构化遥测
+        description: 为关键操作记录结构化日志、指标和活动追踪，传播关联上下文并避免写入秘密或敏感个人数据。
+        tags: [日志, Metrics, Tracing]
+        status: planned
+
+  - type: node
+    id: deliver-cross-platform-dotnet-app
+    title: 交付一个跨平台 .NET 应用
+    description: 综合类型建模、LINQ、异步、项目管理和诊断能力，交付一个可配置、可测试、可发布的命令行或 Worker 应用。
+    tags: [综合实践, 跨平台, 项目]
+    status: planned
+    children:
+      - type: node
+        id: define-application-contract
+        title: 定义应用契约与验收样例
+        description: 明确参数、配置、输入输出、退出码、数据规模和失败行为，并准备正常及错误场景样例。
+        tags: [需求, 验收]
+        status: planned
+      - type: node
+        id: separate-domain-and-adapters
+        title: 分离领域逻辑与外部适配器
+        description: 将业务规则与文件、网络、时间和进程边界拆开，通过接口和构造函数显式注入依赖。
+        tags: [架构, 依赖注入]
+        status: planned
+      - type: node
+        id: implement-resilient-async-flow
+        title: 实现可靠的异步数据流
+        description: 为批量导入、内容同步或目录处理实现限流、取消、重试边界和部分失败汇总。
+        tags: [异步, 可靠性]
+        status: planned
+      - type: node
+        id: automate-quality-gates
+        title: 自动化质量门禁
+        description: 在 CI 中执行还原、构建、格式、分析、测试和目标平台发布验证，并保存必要诊断产物。
+        tags: [CI, 质量]
+        status: planned
+      - type: node
+        id: publish-and-verify-app
+        title: 发布并核验交付产物
+        description: 生成适合目标环境的发布包，从干净环境按文档验证配置、启动、退出和故障排查流程。
+        tags: [发布, 文档]
+        status: planned
+
+  - type: node
+    id: choose-csharp-specialization
+    title: 选择 C# 深化方向
+    description: 完成语言与 .NET 工程主线后，根据产品形态选择 Web、客户端、游戏或运行时专题。
+    tags: [进阶, 方向]
+    status: planned
+    children:
+      - type: roadmap
+        roadmapId: aspnet-core
+        title: 进入 ASP.NET Core 路线图
+        description: 使用依赖注入、请求管道、数据访问和安全能力构建生产就绪的 Web API。
+      - type: node
+        id: build-desktop-and-mobile-apps
+        title: 构建桌面与移动应用
+        description: 根据平台和团队约束评估 .NET MAUI、WPF、WinUI 或 Avalonia，补充界面状态、生命周期和发布能力。
+        tags: [桌面, 移动端, UI]
+        status: optional
+        link: https://learn.microsoft.com/en-us/dotnet/maui/
+      - type: node
+        id: develop-games-with-csharp
+        title: 使用 C# 开发游戏
+        description: 在游戏引擎中学习组件模型、帧循环、资源生命周期、物理与性能预算，并在真实目标设备上测量。
+        tags: [游戏, 实时]
+        status: optional
+      - type: node
+        id: interoperate-with-native-code
+        title: 与原生代码互操作
+        description: 使用 P/Invoke 或源生成互操作映射 ABI、内存和回调生命周期，并把不安全代码限制在经过测试的窄边界。
+        tags: [Interop, P/Invoke]
+        status: optional
+        link: https://learn.microsoft.com/en-us/dotnet/standard/native-interop/
+      - type: node
+        id: publish-with-native-aot
+        title: 评估 Native AOT 发布
+        description: 根据启动、内存与部署目标评估提前编译，并验证反射、动态加载、序列化和诊断能力的限制。
+        tags: [Native AOT, 性能]
+        status: optional
+        link: https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/
+      - type: node
+        id: build-source-generators
+        title: 使用源生成器减少运行时工作
+        description: 为可重复、可诊断且值得自动化的代码模式创建增量生成器，并用快照和编译测试验证输出。
+        tags: [Source Generator, 编译器]
+        status: optional
+        link: https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview
+

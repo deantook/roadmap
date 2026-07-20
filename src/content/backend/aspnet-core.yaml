@@ -11,6 +11,10 @@ nodes:
     status: planned
     link: https://learn.microsoft.com/en-us/dotnet/csharp/
     children:
+      - type: roadmap
+        roadmapId: csharp
+        title: 系统补齐 C# 与 .NET
+        description: 从类型系统、LINQ 与异步编程一路学习到测试、运行时诊断和跨平台项目交付。
       - type: node
         id: csharp-language
         title: 使用现代 C# 表达业务逻辑

@@ -1,0 +1,601 @@
+id: software-testing
+title: 软件测试
+description: 面向具备基本开发经验的学习者，从测试思维与用例设计出发，成长为能制定策略、建设自动化体系并验证复杂生产系统质量的测试工程师。
+tags: [软件测试, 测试自动化, 质量保障, 可靠性, CI]
+nodes:
+  - type: node
+    id: establish-testing-foundations
+    title: 建立软件测试的基本模型
+    description: 用风险、证据和反馈解释测试价值，区分缺陷、错误状态与可观察失败，并承认测试无法证明不存在缺陷。
+    tags: [测试基础, 质量, 证据]
+    status: planned
+    link: https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/
+    children:
+      - type: roadmap
+        roadmapId: software-engineering
+        title: 补齐软件工程生命周期基础
+        description: 先理解需求、设计、构造、交付与维护，明确测试在完整工程过程中的位置。
+      - type: node
+        id: distinguish-error-fault-failure
+        title: 区分人为错误、软件缺陷与运行失败
+        description: 沿需求、代码、状态和外部表现追踪问题如何产生，避免把所有异常都归因于单一代码缺陷。
+        tags: [Error, Fault, Failure]
+        status: planned
+      - type: node
+        id: define-test-objectives
+        title: 为每次测试定义明确目标
+        description: 说明测试要发现哪类风险、验证哪项要求或提供哪种决策证据，并写出可判定的通过条件。
+        tags: [测试目标, 通过条件]
+        status: planned
+      - type: node
+        id: understand-oracle-problem
+        title: 识别并解决测试预言问题
+        description: 根据规格、不变量、参考实现、历史结果或人工判断确定期望，明确预言本身可能不完整或错误。
+        tags: [Test Oracle, 期望结果, 不变量]
+        status: planned
+      - type: node
+        id: improve-testability
+        title: 从可控性与可观测性改善可测试性
+        description: 让输入、时间、随机性和依赖可控制，让状态、输出与失败原因可观察，并避免仅为测试暴露危险接口。
+        tags: [可测试性, 可控性, 可观测性]
+        status: planned
+
+  - type: node
+    id: plan-risk-based-testing
+    title: 按产品风险制定测试策略
+    description: 根据失败概率、业务影响和变更范围分配测试投入，并明确不同层级各自承担的风险。
+    tags: [测试策略, 风险, 测试层级]
+    status: planned
+    children:
+      - type: node
+        id: inventory-quality-risks
+        title: 盘点功能与质量风险
+        description: 从核心旅程、数据、权限、依赖、性能、兼容性和可恢复性识别风险，记录影响对象与失败后果。
+        tags: [产品风险, 质量属性]
+        status: planned
+      - type: node
+        id: map-risks-to-test-levels
+        title: 将风险映射到合适测试层级
+        description: 为每项高风险行为选择能以最低成本提供足够置信度的单元、组件、集成、契约、系统或验收测试。
+        tags: [测试金字塔, 测试层级]
+        status: planned
+        link: https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html
+      - type: node
+        id: define-scope-and-exit-criteria
+        title: 定义范围、优先级与结束条件
+        description: 写明测试对象、不覆盖内容、环境、数据、负责人和退出标准，让“测完了”成为可讨论的风险决定。
+        tags: [测试计划, Exit Criteria, 范围]
+        status: planned
+      - type: node
+        id: maintain-requirement-traceability
+        title: 维护需求、风险与证据关联
+        description: 将关键需求和风险关联到测试、缺陷及结果，识别没有证据保护的高风险行为而非追求机械一一对应。
+        tags: [可追溯性, 覆盖]
+        status: planned
+      - type: node
+        id: rebalance-strategy-with-feedback
+        title: 根据缺陷与变更持续调整策略
+        description: 用生产事故、逃逸缺陷、变更频率、测试耗时和不稳定性重新分配投入，删除不再提供价值的检查。
+        tags: [反馈, 测试优化, 缺陷分析]
+        status: planned
+
+  - type: node
+    id: design-effective-test-cases
+    title: 系统设计高价值测试用例
+    description: 组合基于规格、结构和经验的技术，用较少用例覆盖代表性输入、边界、状态和交互。
+    tags: [测试设计, 黑盒测试, 白盒测试]
+    status: planned
+    link: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
+    children:
+      - type: node
+        id: partition-input-domains
+        title: 使用等价类划分输入域
+        description: 依据系统行为把有效与无效输入分组，从每组选择代表值并检查划分是否遗漏重要差异。
+        tags: [等价类, 输入域]
+        status: planned
+      - type: node
+        id: test-boundary-values
+        title: 系统检查边界值
+        description: 围绕最小、最大、刚好越界、空值和精度边界设计用例，覆盖常见比较与计数错误。
+        tags: [边界值, 极端输入]
+        status: planned
+      - type: node
+        id: use-decision-tables
+        title: 用决策表覆盖规则组合
+        description: 列出条件、动作和互斥关系，合并等价规则并验证权限、定价或资格等组合逻辑。
+        tags: [决策表, 业务规则]
+        status: planned
+      - type: node
+        id: test-state-transitions
+        title: 验证状态转换与事件序列
+        description: 建模合法状态、转换和禁止操作，覆盖重复、乱序、跳步、超时及恢复后的行为。
+        tags: [状态转换, 状态机, 序列]
+        status: planned
+      - type: node
+        id: reduce-combinations-pairwise
+        title: 用组合技术控制配置爆炸
+        description: 在浏览器、设备、权限和参数组合过多时使用 Pairwise 或约束组合，保留高风险交互的专项用例。
+        tags: [Pairwise, 组合测试, 配置]
+        status: planned
+      - type: node
+        id: derive-negative-and-abuse-cases
+        title: 从失败假设设计负向用例
+        description: 覆盖非法输入、重复操作、并发冲突、资源不足、依赖异常和恶意顺序，验证系统安全失败且可诊断。
+        tags: [负向测试, Error Guessing, Abuse Case]
+        status: planned
+
+  - type: node
+    id: write-maintainable-unit-tests
+    title: 编写快速且可维护的单元测试
+    description: 在进程内隔离验证业务规则和状态转换，使失败准确指向行为回归并在每次变更中快速反馈。
+    tags: [单元测试, 测试替身, TDD]
+    status: planned
+    children:
+      - type: node
+        id: test-observable-behavior
+        title: 验证可观察行为而非实现细节
+        description: 通过公开接口检查结果、状态或副作用，避免因私有方法、调用顺序和内部重构产生无价值失败。
+        tags: [行为测试, 重构安全]
+        status: planned
+      - type: node
+        id: structure-tests-clearly
+        title: 让测试表达场景与因果
+        description: 使用 Arrange-Act-Assert 或等价结构，一个测试聚焦一个行为，并让名称说明条件与预期结果。
+        tags: [AAA, 测试命名, 可读性]
+        status: planned
+      - type: node
+        id: choose-test-doubles-carefully
+        title: 谨慎选择测试替身
+        description: 区分 Fake、Stub、Spy 与 Mock，只替换慢、不可控或不属于当前边界的协作者，并验证替身没有偏离真实契约。
+        tags: [Fake, Stub, Mock]
+        status: planned
+        link: https://testing.googleblog.com/2024/02/increase-test-fidelity-by-avoiding-mocks.html
+      - type: node
+        id: control-nondeterministic-inputs
+        title: 控制时间、随机性与并发
+        description: 注入时钟和随机源，使用受控调度与有限等待，保存随机种子并避免依赖真实睡眠和执行顺序。
+        tags: [确定性, Fake Clock, 随机种子]
+        status: planned
+      - type: node
+        id: use-parameterized-tests
+        title: 用参数化测试表达输入规则
+        description: 将同一行为的代表输入和期望组织为数据集，保留失败用例的独立名称与诊断信息。
+        tags: [参数化测试, Data-Driven Testing]
+        status: planned
+      - type: node
+        id: practice-test-driven-development
+        title: 用 TDD 探索接口设计
+        description: 在适合小步反馈的逻辑中实践红、绿、重构循环，评估测试先行是否改善职责边界与设计。
+        tags: [TDD, 测试先行, 重构]
+        status: optional
+
+  - type: node
+    id: verify-component-boundaries
+    title: 用组件与集成测试验证真实边界
+    description: 对数据库、文件、网络、进程和框架配置使用足够真实的实现，发现单元测试替身无法暴露的差异。
+    tags: [集成测试, 组件测试, 真实依赖]
+    status: planned
+    children:
+      - type: node
+        id: define-component-under-test
+        title: 明确组件边界与替换点
+        description: 说明测试启动哪些模块、使用哪些真实资源和替换哪些外部依赖，使失败范围和置信度可解释。
+        tags: [组件边界, 测试范围]
+        status: planned
+      - type: node
+        id: test-persistence-with-real-engine
+        title: 使用真实数据库引擎验证持久化
+        description: 应用生产迁移并测试约束、查询、事务、并发和连接管理，不让内存替身掩盖产品语义。
+        tags: [数据库测试, 迁移, 事务]
+        status: planned
+      - type: node
+        id: test-files-network-and-processes
+        title: 验证文件、网络与进程边界
+        description: 在隔离资源上覆盖编码、权限、部分读写、超时、断连、信号和清理，确认错误映射符合契约。
+        tags: [文件系统, 网络, 进程]
+        status: planned
+      - type: node
+        id: start-ephemeral-dependencies
+        title: 启动一次性真实依赖
+        description: 用容器、临时目录或本地服务为每次测试提供已知版本和初始状态，并确保结束后可靠清理。
+        tags: [容器测试, 临时环境, 隔离]
+        status: planned
+      - type: node
+        id: verify-startup-and-shutdown
+        title: 测试启动、就绪与关闭生命周期
+        description: 覆盖配置错误、迁移失败、依赖不可用、部分初始化和终止信号，验证系统不会过早就绪或泄露资源。
+        tags: [生命周期, Readiness, 资源清理]
+        status: planned
+
+  - type: node
+    id: test-apis-and-contracts
+    title: 验证 API、消息与服务契约
+    description: 在提供者和使用者边界检查数据格式、语义与兼容性，使不一致在部署前被发现。
+    tags: [API 测试, 契约测试, 兼容性]
+    status: planned
+    children:
+      - type: node
+        id: validate-schema-and-semantics
+        title: 同时验证 Schema 与业务语义
+        description: 检查字段、类型、状态码和消息格式，并验证权限、幂等、错误和状态转换等不能由 Schema 表达的规则。
+        tags: [Schema, 业务语义, HTTP]
+        status: planned
+      - type: node
+        id: automate-api-scenarios
+        title: 自动化关键 API 场景
+        description: 通过公开接口准备状态并执行正常、非法、未认证、无权限、限流和依赖失败用例，避免直接绕过边界造假。
+        tags: [API 自动化, 权限, 错误处理]
+        status: planned
+      - type: node
+        id: protect-consumer-provider-contracts
+        title: 保护消费者与提供者兼容性
+        description: 以双方认可的示例或消费者契约验证请求响应，让破坏性变更在各自流水线中尽早失败。
+        tags: [Consumer-Driven Contract, Provider]
+        status: planned
+      - type: node
+        id: test-event-contracts
+        title: 验证事件格式与演进
+        description: 检查事件类型、版本、键、顺序假设和可选字段，确认旧消费者能忽略新增信息并处理重放。
+        tags: [事件契约, Schema Evolution, 重放]
+        status: planned
+      - type: node
+        id: test-retry-and-idempotency
+        title: 验证重试与幂等行为
+        description: 重复发送相同标识的请求或消息，模拟响应丢失与并发到达，确认业务效果只发生预期次数。
+        tags: [幂等性, 重试, 并发]
+        status: planned
+
+  - type: node
+    id: automate-critical-user-journeys
+    title: 自动化少量关键用户旅程
+    description: 在接近真实的系统中验证跨组件流程、权限与用户可见结果，同时控制端到端测试的数量和不稳定性。
+    tags: [端到端测试, UI 测试, 用户旅程]
+    status: planned
+    children:
+      - type: node
+        id: select-critical-journeys
+        title: 选择不可失守的端到端流程
+        description: 优先覆盖收入、安全、数据完整性和高频核心旅程，不用 UI 测试重复验证所有业务组合。
+        tags: [关键路径, 风险]
+        status: planned
+      - type: node
+        id: interact-like-users
+        title: 通过稳定语义模拟真实交互
+        description: 使用角色、标签或无障碍语义定位元素，等待可观察状态而非固定睡眠，并只在必要时绕过界面准备数据。
+        tags: [语义定位, 等待, UI 自动化]
+        status: planned
+      - type: node
+        id: isolate-test-accounts-and-data
+        title: 隔离测试账户与业务数据
+        description: 为并行用例生成唯一身份和资源，避免共享顺序依赖，并通过公开清理流程保持环境可重复。
+        tags: [测试数据, 并行, 隔离]
+        status: planned
+      - type: node
+        id: capture-ui-failure-evidence
+        title: 保存可诊断的失败证据
+        description: 在失败时收集截图、视频、控制台、网络、服务日志和追踪标识，帮助定位界面、接口或依赖根因。
+        tags: [截图, Trace, 调试]
+        status: planned
+      - type: node
+        id: test-cross-platform-compatibility
+        title: 按使用与风险覆盖兼容矩阵
+        description: 根据真实用户分布选择浏览器、设备、操作系统、语言和时区组合，并为高风险差异安排专项用例。
+        tags: [兼容性, 浏览器, 设备]
+        status: planned
+
+  - type: node
+    id: test-quality-attributes
+    title: 验证性能、安全与可靠性
+    description: 为功能正确之外的质量属性建立量化目标、代表性环境与可重复实验。
+    tags: [非功能测试, 性能, 安全, 可靠性]
+    status: planned
+    children:
+      - type: node
+        id: model-performance-workloads
+        title: 从生产假设建立性能负载模型
+        description: 定义请求分布、读写比、数据规模、并发、峰值、预热和成功标准，避免只报告单一平均响应时间。
+        tags: [负载模型, 延迟, 吞吐]
+        status: planned
+      - type: node
+        id: run-load-stress-and-soak
+        title: 区分负载、压力与耐久测试
+        description: 分别验证预期容量、失效拐点和长期资源泄漏，记录尾延迟、错误率、吞吐及资源饱和度。
+        tags: [Load Test, Stress Test, Soak Test]
+        status: planned
+      - type: node
+        id: perform-security-testing
+        title: 从威胁模型验证安全控制
+        description: 对认证、授权、会话、输入、业务流程和敏感数据执行静态与动态检查，并人工确认可利用条件和影响。
+        tags: [安全测试, SAST, DAST]
+        status: planned
+        link: https://owasp.org/www-project-web-security-testing-guide/
+      - type: node
+        id: inject-failures-and-recover
+        title: 注入依赖故障并验证恢复
+        description: 模拟延迟、断连、限流、重启、磁盘错误和资源耗尽，检查超时、降级、数据不变量与恢复时间。
+        tags: [故障注入, Chaos Engineering, 恢复]
+        status: planned
+      - type: node
+        id: evaluate-accessibility
+        title: 结合自动与人工验证可访问性
+        description: 使用规则检查发现基础问题，再以键盘、屏幕阅读器和真实任务验证语义、焦点、名称及操作结果。
+        tags: [可访问性, WCAG, 人工测试]
+        status: planned
+        link: https://www.w3.org/WAI/test-evaluate/
+      - type: node
+        id: assess-usability
+        title: 通过代表性用户评估可用性
+        description: 观察目标用户完成任务的成功率、时间、错误与困惑点，区分实现缺陷、内容问题和产品假设错误。
+        tags: [可用性测试, 用户研究]
+        status: optional
+
+  - type: node
+    id: apply-generative-test-techniques
+    title: 使用生成式技术探索更大输入空间
+    description: 当手写示例难以覆盖组合、序列或不可信输入时，使用性质、模型、差分与模糊测试自动寻找反例。
+    tags: [Property Testing, Fuzzing, 模型测试]
+    status: planned
+    children:
+      - type: node
+        id: write-invariant-properties
+        title: 将业务规则表达为性质
+        description: 定义对广泛输入都成立的不变量、往返关系、单调性或幂等性，生成数据并缩小失败反例。
+        tags: [Property-Based Testing, Shrinking, 不变量]
+        status: planned
+      - type: node
+        id: compare-with-reference-model
+        title: 使用参考模型与差分测试
+        description: 将复杂实现与简单可信模型或独立实现输入同一操作序列，逐步比较结果和状态。
+        tags: [Model-Based Testing, Differential Testing]
+        status: planned
+      - type: node
+        id: fuzz-untrusted-parsers
+        title: 对不可信输入边界执行模糊测试
+        description: 为解析器、协议或文件格式构建快速确定的目标，准备语料并自动收集、最小化和回归崩溃样本。
+        tags: [Fuzzing, Corpus, Sanitizer]
+        status: planned
+        link: https://llvm.org/docs/LibFuzzer.html
+      - type: node
+        id: evaluate-with-mutation-testing
+        title: 用变异测试评估断言敏感度
+        description: 对关键纯逻辑注入小型代码变化，检查测试是否失败，并分析幸存变异而非盲目追求满分。
+        tags: [Mutation Testing, Mutation Score]
+        status: optional
+      - type: node
+        id: expose-concurrency-defects
+        title: 主动探索并发交错
+        description: 控制调度或重复随机执行竞争场景，结合 Race Detector、线性化历史或模型检查验证共享状态。
+        tags: [并发测试, Race Detector, 调度]
+        status: optional
+
+  - type: node
+    id: practice-exploratory-and-acceptance-testing
+    title: 用探索与验收补足自动检查
+    description: 运用人的观察、领域知识和临场推理发现未知风险，并与干系人共同确认产品是否解决真实问题。
+    tags: [探索性测试, 验收测试, 人工判断]
+    status: planned
+    children:
+      - type: node
+        id: create-exploration-charters
+        title: 用章程聚焦探索测试
+        description: 为一次有时限的会话定义目标、范围、风险线索和环境，同时保留根据发现改变路径的空间。
+        tags: [Test Charter, Session-Based Testing]
+        status: planned
+      - type: node
+        id: apply-testing-heuristics
+        title: 使用启发式扩大观察范围
+        description: 从边界、历史缺陷、平台差异、中断、并发和用户误用提出问题，记录启发式带来的新发现。
+        tags: [Heuristics, Error Guessing]
+        status: planned
+      - type: node
+        id: document-reproducible-findings
+        title: 提交可复现且可行动的缺陷
+        description: 记录最小步骤、环境、期望、实际、频率、影响和证据，区分事实、推断与待验证假设。
+        tags: [缺陷报告, 复现, 证据]
+        status: planned
+      - type: node
+        id: facilitate-user-acceptance
+        title: 组织业务验收测试
+        description: 让拥有业务决策权的干系人使用代表数据验证核心场景、规则和可接受风险，并记录结论。
+        tags: [UAT, 业务验收]
+        status: planned
+      - type: node
+        id: turn-discoveries-into-regression-tests
+        title: 将高价值发现转化为持续保护
+        description: 为已修复且可能复发的问题选择成本最低的自动化层级，并更新风险模型和探索线索。
+        tags: [回归测试, 缺陷学习]
+        status: planned
+
+  - type: node
+    id: manage-test-data-and-environments
+    title: 建设可重复的测试数据与环境
+    description: 让每次运行拥有可追踪版本、受控配置和隔离数据，同时保护敏感信息与共享基础设施。
+    tags: [测试环境, 测试数据, 隔离]
+    status: planned
+    children:
+      - type: node
+        id: build-minimal-test-fixtures
+        title: 构建最小且表达意图的数据
+        description: 使用 Builder、Factory 或声明式 Fixture 只设置场景相关字段，避免依赖庞大共享快照。
+        tags: [Fixture, Test Data Builder]
+        status: planned
+      - type: node
+        id: isolate-parallel-test-state
+        title: 隔离并行运行状态
+        description: 为数据库、文件、队列、端口和账户分配唯一命名空间，通过事务或显式清理防止用例相互污染。
+        tags: [并行测试, 隔离, 清理]
+        status: planned
+      - type: node
+        id: version-test-environments
+        title: 版本化环境与依赖
+        description: 固定应用、Schema、服务和工具版本，记录配置差异并提供从空环境重复创建的自动化流程。
+        tags: [Environment as Code, 版本, 可重复]
+        status: planned
+      - type: node
+        id: protect-sensitive-test-data
+        title: 避免在测试中复制生产敏感数据
+        description: 优先生成合成数据；确需抽样时进行授权、最小化和不可逆脱敏，并限制保留、导出与访问。
+        tags: [合成数据, 脱敏, 隐私]
+        status: planned
+      - type: node
+        id: virtualize-external-services
+        title: 可控地替代外部服务
+        description: 使用官方沙箱、录制回放或行为 Stub 模拟限额与失败，同时安排少量真实集成检查防止替代实现漂移。
+        tags: [Service Virtualization, Sandbox, Stub]
+        status: planned
+
+  - type: node
+    id: integrate-testing-into-delivery
+    title: 将测试接入持续交付反馈环
+    description: 按反馈速度和置信度组织流水线，让失败结果可诊断、可复现并及时阻止高风险变更。
+    tags: [持续集成, 测试流水线, 质量门禁]
+    status: planned
+    children:
+      - type: node
+        id: organize-feedback-lanes
+        title: 按速度组织反馈层级
+        description: 在本地和变更阶段运行确定的快速检查，将较慢集成、系统和专项测试安排到合适触发点。
+        tags: [Fast Feedback, Test Size, CI]
+        status: planned
+        link: https://testing.googleblog.com/2010/12/test-sizes.html
+      - type: node
+        id: parallelize-and-shard-safely
+        title: 安全并行与分片测试
+        description: 按历史耗时平衡任务，隔离共享资源并保留稳定分片依据，使提速不会引入顺序依赖。
+        tags: [并行, Sharding, 流水线]
+        status: planned
+      - type: node
+        id: preserve-failure-artifacts
+        title: 保存足够的失败制品
+        description: 汇总日志、报告、截图、覆盖、随机种子、环境版本和追踪标识，让开发者无需重跑即可初步诊断。
+        tags: [Test Report, Artifact, 诊断]
+        status: planned
+      - type: node
+        id: define-risk-based-quality-gates
+        title: 设置基于风险的质量门禁
+        description: 对确定性失败、高严重度安全发现和关键契约破坏实施阻断，为例外设置负责人、期限与审计记录。
+        tags: [Quality Gate, 风险, 例外]
+        status: planned
+      - type: node
+        id: validate-after-deployment
+        title: 在部署后验证真实环境
+        description: 运行安全的 Smoke、Synthetic 或渐进流量检查，监测关键 SLI 并在超阈值时自动停止或回滚。
+        tags: [Smoke Test, Synthetic Monitoring, Canary]
+        status: planned
+
+  - type: node
+    id: maintain-a-trustworthy-test-suite
+    title: 维护可信且高信号的测试套件
+    description: 持续治理速度、稳定性、诊断质量和维护成本，防止自动化数量增长却降低团队信任。
+    tags: [测试维护, Flaky Test, 测试度量]
+    status: planned
+    children:
+      - type: node
+        id: interpret-coverage-as-clue
+        title: 将覆盖率作为线索而非目标
+        description: 用语句、分支和变更覆盖发现未执行区域，再结合风险、断言和缺陷数据判断是否需要补测。
+        tags: [代码覆盖率, 分支覆盖, 风险]
+        status: planned
+      - type: node
+        id: detect-and-fix-flaky-tests
+        title: 识别并修复不稳定测试
+        description: 记录重复运行结果，定位时间、并发、共享状态、网络和环境根因；临时隔离时指定负责人和期限。
+        tags: [Flaky Test, 非确定性, 隔离]
+        status: planned
+        link: https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html
+      - type: node
+        id: keep-failures-actionable
+        title: 让失败信息直接支持诊断
+        description: 比较有意义的领域值，显示最小差异与上下文，并避免在首个无关异常后丢失根因证据。
+        tags: [断言, 失败信息, 调试]
+        status: planned
+      - type: node
+        id: review-and-refactor-tests
+        title: 像生产代码一样评审与重构测试
+        description: 检查测试目的、重复、耦合、数据构造和清理，在行为保护下改善结构而不改变验证语义。
+        tags: [测试代码, Code Review, 重构]
+        status: planned
+      - type: node
+        id: delete-low-value-tests
+        title: 删除或降级低价值检查
+        description: 当测试重复覆盖、长期无缺陷发现、维护成本过高或保护已失效行为时，基于风险决定删除、下移或改写。
+        tags: [测试成本, 套件治理]
+        status: planned
+
+  - type: node
+    id: deliver-testing-capstone
+    title: 交付一套可审计的软件测试体系
+    description: 为一个真实应用建立从风险分析到持续反馈的测试方案，用缺陷、性能和故障证据证明体系有效。
+    tags: [综合实践, 测试自动化, 作品集]
+    status: planned
+    children:
+      - type: node
+        id: select-capstone-system
+        title: 选择具有真实边界的测试对象
+        description: 选择包含 UI 或 API、数据库和至少一个外部依赖的应用，写明关键旅程、质量目标和高风险失败模式。
+        tags: [测试对象, 风险分析]
+        status: planned
+      - type: node
+        id: produce-capstone-strategy
+        title: 编写风险驱动的测试策略
+        description: 将需求和风险映射到测试层级、数据、环境、自动化、负责人及结束条件，并明确暂不覆盖内容。
+        tags: [测试策略, 可追溯性]
+        status: planned
+      - type: node
+        id: automate-capstone-feedback
+        title: 建设分层自动化反馈
+        description: 实现快速单元测试、真实边界集成测试、API 或契约测试及少量关键端到端流程，并接入 CI。
+        tags: [单元测试, 集成测试, E2E]
+        status: planned
+      - type: node
+        id: run-capstone-quality-experiments
+        title: 执行质量属性与故障实验
+        description: 至少完成一次性能基线、安全检查和依赖失败演练，对照验收目标保存数据与诊断证据。
+        tags: [性能测试, 安全测试, 故障注入]
+        status: planned
+      - type: node
+        id: evaluate-capstone-effectiveness
+        title: 评估并改进测试体系
+        description: 注入或修复代表性缺陷，检查测试是否及时准确失败，并根据耗时、稳定性与遗漏风险调整策略。
+        tags: [测试有效性, 复盘, 改进]
+        status: planned
+
+  - type: node
+    id: choose-testing-specialization
+    title: 按产品与岗位选择深化方向
+    description: 完成通用测试设计、自动化和综合项目后，再进入需要专门领域模型与工具链的测试方向。
+    tags: [进阶, 测试方向]
+    status: optional
+    children:
+      - type: roadmap
+        roadmapId: devsecops
+        title: 深入安全验证与供应链治理
+        description: 学习威胁建模、SAST、SCA、DAST、Fuzzing 和 CI/CD 安全控制。
+      - type: roadmap
+        roadmapId: distributed-systems
+        title: 深入分布式正确性与故障测试
+        description: 学习一致性历史、部分失败、确定性测试和网络分区下的系统验证。
+      - type: roadmap
+        roadmapId: frontend
+        title: 深入 Web 界面与可访问性测试
+        description: 把组件、浏览器、性能与可访问性验证应用到现代前端工程。
+      - type: roadmap
+        roadmapId: mobile-development
+        title: 深入移动端设备测试
+        description: 覆盖生命周期、权限、弱网络、设备差异、性能和发布渠道。
+      - type: roadmap
+        roadmapId: mlops
+        title: 深入数据与模型质量验证
+        description: 学习数据契约、训练可复现性、离线评估、漂移监测和模型发布门禁。
+      - type: node
+        id: specialize-in-performance-engineering
+        title: 深入性能工程
+        description: 建立工作负载模型、排队与容量分析能力，使用 Profiling 和可观测数据定位端到端瓶颈。
+        tags: [性能工程, Profiling, 容量规划]
+        status: optional
+      - type: node
+        id: specialize-in-test-infrastructure
+        title: 深入测试基础设施
+        description: 建设大规模执行、远程缓存、动态环境、设备农场、结果分析和测试选择平台。
+        tags: [Test Infrastructure, 测试平台]
+        status: optional

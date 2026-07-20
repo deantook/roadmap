@@ -1,0 +1,346 @@
+id: angular
+title: Angular
+description: 面向已有 JavaScript 与 TypeScript 基础的学习者，从组件、信号与依赖注入到可测试、可访问且可部署的 Angular 应用。
+tags: [Angular, 前端, TypeScript]
+nodes:
+  - type: roadmap
+    roadmapId: javascript
+    title: 补齐 JavaScript 与 TypeScript 前置知识
+    description: 先掌握函数、模块、异步、数组操作与类型化编程基础，再进入 Angular 开发。
+
+  - type: node
+    id: set-up-angular-workspace
+    title: 建立 Angular 开发环境
+    description: 使用 Angular CLI 创建项目，理解目录结构、严格 TypeScript 配置与官方调试工具的分工。
+    tags: [Angular CLI, TypeScript, 工具链]
+    status: planned
+    link: https://angular.dev/installation
+    children:
+      - type: node
+        id: create-and-serve-app
+        title: 用 CLI 创建并运行应用
+        description: 通过 ng new、ng serve 与 ng generate 搭建和扩展代码，能启动、构建并读懂构建报错。
+        tags: [Angular CLI, 本地开发]
+        status: planned
+        link: https://angular.dev/tools/cli
+      - type: node
+        id: write-strict-typescript
+        title: 在严格模式下编写 TypeScript
+        description: 利用默认开启的严格类型检查，为数据模型、组件契约与服务接口建立可靠边界。
+        tags: [TypeScript, 类型]
+        status: planned
+      - type: node
+        id: debug-with-angular-devtools
+        title: 使用 Angular DevTools 检查应用
+        description: 在浏览器中查看组件树、依赖注入关系与变更检测火焰图，辅助定位更新与性能问题。
+        tags: [调试]
+        status: planned
+        link: https://angular.dev/tools/devtools
+
+  - type: node
+    id: describe-ui-with-components
+    title: 用组件与模板描述界面
+    description: 使用组件、模板绑定与内置控制流组合界面，并通过类型化的输入输出建立组件契约。
+    tags: [组件, 模板, 控制流]
+    status: planned
+    link: https://angular.dev/guide/components
+    children:
+      - type: node
+        id: bind-data-in-templates
+        title: 在模板中绑定数据与事件
+        description: 使用插值、属性绑定、事件监听与双向绑定连接组件状态与 DOM。
+        tags: [模板语法, 绑定]
+        status: planned
+        link: https://angular.dev/guide/templates
+      - type: node
+        id: control-flow-and-pipes
+        title: 使用控制流与管道渲染动态内容
+        description: 用 @if、@for、@switch 表达条件与列表结构，并用管道在模板中格式化展示数据。
+        tags: [控制流, 管道]
+        status: planned
+        link: https://angular.dev/guide/templates/control-flow
+      - type: node
+        id: define-component-inputs-outputs
+        title: 用 input 与 output 定义组件契约
+        description: 使用信号化的 input() 与 output() 建立单向数据流，避免子组件直接修改父级状态。
+        tags: [input, output, 单向数据流]
+        status: planned
+        link: https://angular.dev/guide/components/inputs
+      - type: node
+        id: coordinate-lifecycle-and-dom
+        title: 在生命周期中协调 DOM 与第三方库
+        description: 使用生命周期钩子与视图查询处理必须直接操作 DOM 的场景，并在销毁时清理资源。
+        tags: [生命周期, viewChild]
+        status: planned
+        link: https://angular.dev/guide/components/lifecycle
+
+  - type: node
+    id: master-signals-reactivity
+    title: 用信号管理响应式状态
+    description: 使用 signal、computed 与 effect 建模组件状态，并理解信号驱动的 zoneless 变更检测。
+    tags: [Signals, 响应式, 状态管理]
+    status: planned
+    link: https://angular.dev/guide/signals
+    children:
+      - type: node
+        id: model-state-with-signals
+        title: 用 signal 与 computed 建模状态
+        description: 将可变状态定义为信号，把可计算的数据保留为派生值，避免重复存储与手动同步。
+        tags: [signal, computed]
+        status: planned
+      - type: node
+        id: use-effects-sparingly
+        title: 谨慎使用 effect 处理副作用
+        description: 仅在同步日志、DOM 或第三方库时使用 effect，优先用模板绑定与 computed 表达响应式关系。
+        tags: [effect, 副作用]
+        status: planned
+      - type: node
+        id: understand-zoneless-change-detection
+        title: 理解 zoneless 变更检测
+        description: 认识信号更新、事件回调与 AsyncPipe 会通知 Angular 精确刷新视图，应用默认不再依赖 ZoneJS。
+        tags: [变更检测, zoneless]
+        status: planned
+        link: https://angular.dev/guide/zoneless
+      - type: node
+        id: build-signal-driven-widget
+        title: 完成一个信号驱动的交互练习
+        description: 实现可筛选、可编辑的列表或表单，验证信号状态与界面在任何操作顺序下保持一致。
+        tags: [实践]
+        status: planned
+
+  - type: node
+    id: share-logic-with-di
+    title: 用依赖注入组织共享逻辑
+    description: 通过 inject 与 provider 在组件间共享逻辑与状态，并为依赖设计清晰的作用域。
+    tags: [依赖注入, 服务, inject]
+    status: planned
+    link: https://angular.dev/guide/di
+    children:
+      - type: node
+        id: create-injectable-services
+        title: 创建可注入服务
+        description: 用 providedIn 与 inject() 将数据访问和领域逻辑移出组件，保持组件聚焦界面职责。
+        tags: [Injectable, 服务]
+        status: planned
+      - type: node
+        id: configure-provider-scopes
+        title: 配置 provider 的作用域
+        description: 区分根级、路由级与组件级 provider，理解注入层级对实例数量与生命周期的影响。
+        tags: [Provider, 作用域]
+        status: planned
+      - type: node
+        id: abstract-config-with-injection-token
+        title: 使用 InjectionToken 抽象配置
+        description: 为配置值与非类依赖提供类型化注入点，使实现可在不同环境或测试中替换。
+        tags: [InjectionToken]
+        status: planned
+
+  - type: node
+    id: connect-remote-data
+    title: 连接远程数据
+    description: 使用 HttpClient、拦截器与资源 API 管理请求生命周期，为加载、错误与过期响应设计完整状态。
+    tags: [HttpClient, RxJS, 异步]
+    status: planned
+    link: https://angular.dev/guide/http
+    children:
+      - type: node
+        id: fetch-with-httpclient
+        title: 用 HttpClient 完成类型化请求
+        description: 配置 provideHttpClient 读写类型化数据，统一处理错误、超时与请求取消。
+        tags: [HttpClient, REST]
+        status: planned
+      - type: node
+        id: reuse-logic-with-interceptors
+        title: 用拦截器复用横切逻辑
+        description: 在函数式拦截器中附加认证凭据、日志与错误转换，保持调用方代码聚焦业务。
+        tags: [拦截器, 认证]
+        status: planned
+        link: https://angular.dev/guide/http/interceptors
+      - type: node
+        id: bridge-signals-and-rxjs
+        title: 在信号与 RxJS 之间互操作
+        description: 使用 toSignal、toObservable 与 takeUntilDestroyed 管理订阅生命周期，避免内存泄漏。
+        tags: [RxJS, toSignal]
+        status: planned
+        link: https://angular.dev/ecosystem/rxjs-interop
+      - type: node
+        id: load-async-data-with-resources
+        title: 用 resource 管理异步数据
+        description: 使用 resource 或 httpResource 表达参数化加载，处理加载中、错误与请求中止。
+        tags: [resource, httpResource]
+        status: planned
+        link: https://angular.dev/guide/signals/resource
+
+  - type: node
+    id: build-reliable-forms
+    title: 构建可靠的表单
+    description: 使用响应式表单或信号表单建模输入、校验与提交，并提供清晰可访问的错误反馈。
+    tags: [表单, 校验]
+    status: planned
+    link: https://angular.dev/guide/forms
+    children:
+      - type: node
+        id: model-forms-reactively
+        title: 用响应式表单建模复杂输入
+        description: 使用 FormControl、FormGroup 与 FormArray 表达嵌套结构，并编写同步与异步校验器。
+        tags: [Reactive Forms, FormGroup]
+        status: planned
+        link: https://angular.dev/guide/forms/reactive-forms
+      - type: node
+        id: try-signal-forms
+        title: 尝试新的信号表单
+        description: 使用 form() 与 formField 指令以信号驱动表单状态与校验，与应用的响应式模型保持一致。
+        tags: [Signal Forms]
+        status: planned
+        link: https://angular.dev/essentials/signal-forms
+      - type: node
+        id: design-form-feedback
+        title: 设计校验与提交反馈
+        description: 依据 touched、dirty 与错误状态展示提示，处理提交中与失败路径并保持键盘可用。
+        tags: [校验, UX]
+        status: planned
+
+  - type: node
+    id: navigate-with-router
+    title: 用路由组织页面流程
+    description: 使用 Router 定义页面、参数与守卫，并通过懒加载控制首屏加载体积。
+    tags: [Router, 导航, 懒加载]
+    status: planned
+    link: https://angular.dev/guide/routing
+    children:
+      - type: node
+        id: define-routes-and-read-params
+        title: 定义路由并读取参数
+        description: 配置路由表、嵌套路由与未匹配页面，以类型化方式读取路径与查询参数。
+        tags: [路由, 参数]
+        status: planned
+      - type: node
+        id: guard-navigation
+        title: 用守卫与解析器保护导航
+        description: 使用函数式守卫处理权限与未保存修改，用 resolver 在渲染前预取必要数据。
+        tags: [路由守卫, resolver]
+        status: planned
+      - type: node
+        id: lazy-load-features
+        title: 按路由与视图延迟加载
+        description: 使用 loadComponent、loadChildren 拆分代码，并结合 @defer 延迟非关键视图的加载。
+        tags: [懒加载, "@defer"]
+        status: planned
+        link: https://angular.dev/guide/templates/defer
+
+  - type: node
+    id: deliver-quality-apps
+    title: 交付高质量 Angular 应用
+    description: 建立单元与组件测试基线，将可访问性、安全默认值与性能测量纳入日常开发。
+    tags: [测试, 可访问性, 安全, 性能]
+    status: planned
+    link: https://angular.dev/guide/testing
+    children:
+      - type: node
+        id: test-components-and-services
+        title: 测试组件与服务
+        description: 使用 TestBed 与默认的 Vitest 运行器验证用户可见行为，避免依赖实现细节。
+        tags: [TestBed, Vitest]
+        status: planned
+        link: https://angular.dev/guide/testing
+      - type: node
+        id: build-accessible-ui
+        title: 构建可访问的界面
+        description: 优先使用原生语义元素，管理焦点、键盘交互与表单错误提示，必要时借助 CDK 的可访问性原语。
+        tags: [a11y, CDK]
+        status: planned
+        link: https://angular.dev/best-practices/a11y
+      - type: node
+        id: rely-on-security-defaults
+        title: 理解并维持安全默认值
+        description: 信任内置的 HTML 消毒与模板转义，仅在确有必要时审慎绕过，防范 XSS 与注入风险。
+        tags: [XSS, 安全]
+        status: planned
+        link: https://angular.dev/best-practices/security
+      - type: node
+        id: measure-before-optimizing
+        title: 测量后优化运行时性能
+        description: 使用 DevTools 与构建分析定位真实瓶颈，再应用 OnPush、延迟加载与图片优化。
+        tags: [性能, OnPush]
+        status: planned
+        link: https://angular.dev/best-practices/runtime-performance
+
+  - type: node
+    id: ship-angular-project
+    title: 完成并发布一个 Angular 应用
+    description: 将组件、路由、表单与远程数据组合为可部署作品，包含测试、可访问性验收与生产构建。
+    tags: [项目, 部署, 综合实践]
+    status: planned
+    children:
+      - type: node
+        id: plan-app-scope
+        title: 按功能规划应用结构
+        description: 选择任务管理、内容浏览或预订等场景，定义用户流程、数据模型与验收标准。
+        tags: [需求拆分]
+        status: planned
+      - type: node
+        id: implement-complete-states
+        title: 实现完整的用户可见状态
+        description: 覆盖加载、空数据、错误、无权限与表单校验路径，而不只是理想流程。
+        tags: [错误处理, UX]
+        status: planned
+      - type: node
+        id: build-and-deploy
+        title: 构建并部署生产版本
+        description: 运行生产构建并检查产物，部署到静态托管或项目指定平台，验证路由回退与缓存策略。
+        tags: [构建, 部署]
+        status: planned
+      - type: node
+        id: keep-dependencies-updated
+        title: 用 ng update 保持依赖更新
+        description: 按官方更新指南逐版本升级框架与依赖，运行自动迁移并完成回归测试。
+        tags: [升级, 维护]
+        status: planned
+        link: https://angular.dev/update
+
+  - type: node
+    id: choose-angular-specialization
+    title: 按项目需求选择深化方向
+    description: 核心能力稳定后，根据渲染方式、状态规模、组件库与维护场景选择专题。
+    tags: [进阶, 选修]
+    status: optional
+    children:
+      - type: node
+        id: explore-ssr-and-hydration
+        title: 探索服务端渲染与水合
+        description: 评估首屏与 SEO 需求，学习 SSR、静态预渲染与 hydration 的适用场景。
+        tags: [SSR, Hydration]
+        status: optional
+        link: https://angular.dev/guide/ssr
+      - type: node
+        id: evaluate-state-libraries
+        title: 评估 NgRx 等状态管理方案
+        description: 当跨页面状态与副作用复杂度上升时，比较 NgRx Store 与 SignalStore 的约束与收益。
+        tags: [NgRx, 状态管理]
+        status: optional
+        link: https://ngrx.io/
+      - type: node
+        id: use-material-and-cdk
+        title: 使用 Angular Material 与 CDK
+        description: 借助 Material 组件与 CDK 行为原语加速界面开发，并保持主题与可访问性一致。
+        tags: [Angular Material, CDK]
+        status: optional
+        link: https://material.angular.dev/
+      - type: node
+        id: internationalize-app
+        title: 为应用添加国际化
+        description: 使用内置 i18n 提取与翻译消息，处理复数、日期与数字的本地化格式。
+        tags: [i18n, 国际化]
+        status: optional
+        link: https://angular.dev/guide/i18n
+      - type: node
+        id: maintain-ngmodule-apps
+        title: 维护基于 NgModule 的既有项目
+        description: 理解 NgModule 的声明与依赖组织方式，以便维护旧代码库或渐进迁移到 standalone。
+        tags: [NgModule, 迁移]
+        status: optional
+        link: https://angular.dev/guide/ngmodules/overview
+      - type: roadmap
+        roadmapId: frontend
+        title: 衔接前端工程实践
+        description: 继续完善 CSS、性能、安全与持续集成等跨框架能力。

@@ -1,0 +1,625 @@
+id: algorithms-and-complexity
+title: 算法与复杂度
+description: 面向具备基础编程能力的学习者，从问题建模、正确性证明与渐近分析出发，成长为能设计、比较、实现并验证高效算法的实践者。
+tags: [算法, 复杂度, 算法设计, 图算法, 计算理论]
+nodes:
+  - type: node
+    id: establish-algorithmic-foundations
+    title: 建立算法学习的数学与编程起点
+    description: 能把问题写成明确的输入输出契约，使用基础离散数学推理，并以一种熟悉语言实现和测试算法。
+    tags: [前置, 离散数学, 编程]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/
+    children:
+      - type: roadmap
+        roadmapId: data-structures
+        title: 补齐数据结构与抽象数据类型
+        description: 先掌握数组、哈希、树、堆和图表示，避免把算法选择与数据表示割裂。
+      - type: node
+        id: review-discrete-mathematics
+        title: 复习算法所需离散数学
+        description: 使用集合、关系、函数、逻辑、求和、递归、图和基础概率表达问题并完成简单推导。
+        tags: [集合, 逻辑, 概率]
+        status: planned
+      - type: node
+        id: choose-implementation-language
+        title: 建立统一实现与实验环境
+        description: 选择一种熟悉语言，准备断言、随机生成、计时、内存测量和可复现实验入口。
+        tags: [实现, 测试, 基准]
+        status: planned
+      - type: node
+        id: separate-algorithm-from-program
+        title: 区分算法、实现与运行环境
+        description: 说明抽象步骤、程序表示、数据结构和机器模型分别影响什么，避免用一次运行时间代替算法分析。
+        tags: [算法模型, 实现, 机器模型]
+        status: planned
+
+  - type: node
+    id: specify-and-prove-correctness
+    title: 定义问题并证明算法正确
+    description: 从前置条件、后置条件和不变量构造可检验规格，并用适合的证明方法覆盖所有合法输入。
+    tags: [正确性证明, 不变量, 规格]
+    status: planned
+    children:
+      - type: node
+        id: formalize-input-output-contract
+        title: 形式化输入、输出与合法性条件
+        description: 明确输入域、规模参数、允许的输出、无解情况和相等判定，使问题与示例实现保持独立。
+        tags: [问题规格, 输入规模, 契约]
+        status: planned
+      - type: node
+        id: distinguish-partial-and-total-correctness
+        title: 区分部分正确性与终止性
+        description: 分别证明算法若终止则结果正确，以及每个合法输入最终都会终止，组合成全正确性结论。
+        tags: [部分正确性, 终止性]
+        status: planned
+      - type: node
+        id: prove-with-loop-invariants
+        title: 使用循环不变量证明迭代算法
+        description: 证明不变量在初始化时成立、每轮保持，并在终止时蕴含后置条件。
+        tags: [循环不变量, 归纳法]
+        status: planned
+      - type: node
+        id: prove-recursive-algorithms
+        title: 使用归纳法证明递归算法
+        description: 选择与递归结构一致的归纳参数，验证基本情况、递归调用前提与结果组合。
+        tags: [数学归纳法, 递归]
+        status: planned
+      - type: node
+        id: use-exchange-and-cut-arguments
+        title: 掌握交换、割与反证论证
+        description: 通过局部替换最优解、识别安全边界或构造矛盾，证明贪心和图算法的关键选择。
+        tags: [交换论证, Cut Property, 反证法]
+        status: planned
+      - type: node
+        id: find-counterexamples
+        title: 主动构造反例推翻错误算法
+        description: 从极小输入、重复值、极端分布、断开图和对抗顺序寻找反例，并解释错误假设。
+        tags: [反例, 边界条件, 调试]
+        status: planned
+
+  - type: node
+    id: analyze-asymptotic-complexity
+    title: 严格分析时间与空间复杂度
+    description: 在明确计算模型和输入规模后，用渐近界比较增长率，并区分最坏、平均、期望与摊销成本。
+    tags: [Big-O, 渐近分析, 空间复杂度]
+    status: planned
+    children:
+      - type: node
+        id: choose-input-size-and-cost-model
+        title: 定义输入规模与基本操作
+        description: 根据数组长度、位数、顶点边数或数值大小选择规模参数，并说明一次基本操作在所用模型中的成本。
+        tags: [输入规模, RAM Model, 位复杂度]
+        status: planned
+      - type: node
+        id: use-asymptotic-notation
+        title: 正确使用 O、Ω 与 Θ
+        description: 用形式定义证明上界、下界和紧确界，忽略常数与低阶项时保留适用条件。
+        tags: [Big-O, Big-Omega, Big-Theta]
+        status: planned
+      - type: node
+        id: compare-growth-rates
+        title: 比较常见增长率
+        description: 排列对数、线性、线性对数、多项式、指数和阶乘增长，并估算规模扩大后的实际数量级。
+        tags: [增长率, 数量级]
+        status: planned
+      - type: node
+        id: analyze-best-worst-average
+        title: 区分最好、最坏与平均情况
+        description: 明确输入分布后计算平均成本，并优先用最坏界表达无分布假设时的保证。
+        tags: [最坏情况, 平均情况, 输入分布]
+        status: planned
+      - type: node
+        id: analyze-expected-complexity
+        title: 分析随机算法的期望成本
+        description: 指明随机性来自算法还是输入，用指示变量和期望线性性计算运行时间或错误概率。
+        tags: [期望复杂度, 随机变量]
+        status: planned
+      - type: node
+        id: perform-amortized-analysis
+        title: 证明操作序列的摊销成本
+        description: 使用聚合、记账或势能方法分析一系列操作，避免把摊销界误解为单次最坏界。
+        tags: [摊销分析, 势能法, 记账法]
+        status: planned
+      - type: node
+        id: account-for-recursion-space
+        title: 计算辅助空间与递归栈
+        description: 区分输入、输出与额外空间，分析递归深度、临时结构和原地算法的真实内存边界。
+        tags: [空间复杂度, 递归栈, In-place]
+        status: planned
+
+  - type: node
+    id: solve-recurrences-and-divide
+    title: 使用分治并求解递推式
+    description: 把问题拆成规模更小的独立子问题，证明组合步骤正确，并分析递归层次的总成本。
+    tags: [分治, 递推式, Master Theorem]
+    status: planned
+    link: https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/
+    children:
+      - type: node
+        id: derive-recurrence-relations
+        title: 从递归结构写出递推式
+        description: 识别子问题数量、规模、非递归工作和基本情况，使递推式准确反映算法而非套用模板。
+        tags: [递推关系, 递归]
+        status: planned
+      - type: node
+        id: solve-by-substitution
+        title: 用代入与归纳验证渐近界
+        description: 先猜测界，再选择足够强的归纳假设和常数证明上下界，处理基本区间与取整。
+        tags: [代入法, 归纳证明]
+        status: planned
+      - type: node
+        id: solve-with-recursion-trees
+        title: 用递归树汇总各层成本
+        description: 计算每层节点数、单节点工作和树高，判断成本集中在根、均匀分布还是叶子。
+        tags: [递归树, 层级成本]
+        status: planned
+      - type: node
+        id: apply-master-theorem
+        title: 在适用条件内使用 Master Theorem
+        description: 将递推式映射到标准形式并检查正则条件；不适用时改用代入、递归树或更一般方法。
+        tags: [Master Theorem, 渐近界]
+        status: planned
+      - type: node
+        id: implement-merge-sort
+        title: 实现并证明 Merge Sort
+        description: 证明合并保持有序，分析 Θ(n log n) 时间、辅助空间和稳定性，并处理非二次幂长度。
+        tags: [Merge Sort, 稳定排序]
+        status: planned
+      - type: node
+        id: implement-randomized-quicksort
+        title: 实现并分析随机化 Quick Sort
+        description: 维护分区不变量，区分最坏平方成本与随机枢轴下的期望线性对数成本。
+        tags: [Quick Sort, 随机化, 分区]
+        status: planned
+      - type: node
+        id: explore-fast-transform-algorithms
+        title: 探索快速乘法与变换
+        description: 观察 Karatsuba、FFT 等算法如何通过改变子问题结构突破朴素乘法或卷积成本。
+        tags: [Karatsuba, FFT, 卷积]
+        status: optional
+
+  - type: node
+    id: master-search-sort-selection
+    title: 掌握搜索、排序与选择
+    description: 根据数据范围、稳定性、内存和查询模式选择算法，并能证明比较模型中的关键下界。
+    tags: [搜索, 排序, Selection]
+    status: planned
+    children:
+      - type: node
+        id: implement-binary-search-variants
+        title: 正确实现 Binary Search 边界变体
+        description: 用不变量实现存在性、首个满足和半开区间搜索，覆盖空序列、重复值与整数溢出。
+        tags: [Binary Search, 单调性, 边界]
+        status: planned
+      - type: node
+        id: compare-comparison-sorts
+        title: 比较经典比较排序
+        description: 从最坏与期望时间、额外空间、稳定性、自适应性和缓存行为比较插入、堆、归并与快速排序。
+        tags: [比较排序, 稳定性, In-place]
+        status: planned
+      - type: node
+        id: prove-sorting-lower-bound
+        title: 证明比较排序的 Ω(n log n) 下界
+        description: 使用决策树计算区分 n! 种排列所需的最小比较深度，并说明该结论不约束非比较排序。
+        tags: [决策树, 下界, 比较模型]
+        status: planned
+      - type: node
+        id: use-linear-time-sorting
+        title: 在键域允许时使用线性排序
+        description: 分析 Counting、Radix 与 Bucket Sort 对键范围、位数、稳定性和额外空间的要求。
+        tags: [Counting Sort, Radix Sort, Bucket Sort]
+        status: planned
+      - type: node
+        id: select-order-statistics
+        title: 求解第 k 小与 Top-K
+        description: 比较排序、堆、Quickselect 和确定性线性选择，依据是否在线、是否重复查询及最坏保证作选择。
+        tags: [Quickselect, Order Statistics, Top-K]
+        status: planned
+      - type: node
+        id: search-over-answer-space
+        title: 在单调答案空间上二分
+        description: 将优化问题转成可行性判定，证明判定结果单调并选择不会遗漏最优值的离散或浮点终止条件。
+        tags: [Answer Search, 判定问题, 单调性]
+        status: planned
+
+  - type: node
+    id: design-greedy-algorithms
+    title: 识别并证明贪心算法
+    description: 在存在贪心选择性质和最优子结构时作出不可回退的局部选择，并用证明而非样例确认全局最优。
+    tags: [贪心算法, 最优子结构, 交换论证]
+    status: planned
+    children:
+      - type: node
+        id: identify-greedy-choice
+        title: 提出可证明的局部选择
+        description: 从问题结构提出排序或优先规则，并通过小规模反例排除看似合理但错误的贪心标准。
+        tags: [Greedy Choice, 反例]
+        status: planned
+      - type: node
+        id: solve-interval-scheduling
+        title: 求解区间调度问题
+        description: 证明最早结束选择可保留最优解，区分无权、带权和资源数受限版本的算法差异。
+        tags: [Interval Scheduling, 交换论证]
+        status: planned
+      - type: node
+        id: build-huffman-codes
+        title: 构造 Huffman 最优前缀码
+        description: 用优先队列反复合并最低频率项，证明兄弟性质和最优子结构，并处理频率相同情况。
+        tags: [Huffman Coding, 前缀码, Heap]
+        status: planned
+      - type: node
+        id: prove-mst-greedy-choices
+        title: 用割性质证明最小生成树算法
+        description: 统一解释 Kruskal 与 Prim 的安全边选择，处理不连通图、相同权重和多棵最优树。
+        tags: [MST, Kruskal, Prim]
+        status: planned
+      - type: node
+        id: recognize-greedy-limitations
+        title: 判断何时贪心会失败
+        description: 用背包、带权调度或非拟阵约束构造反例，转向动态规划、搜索或近似方法。
+        tags: [反例, 贪心边界]
+        status: planned
+
+  - type: node
+    id: design-dynamic-programs
+    title: 用动态规划解决重叠子问题
+    description: 从状态、转移和依赖顺序构造算法，证明每个状态的语义与最优子结构，并恢复完整解。
+    tags: [动态规划, 状态转移, Memoization]
+    status: planned
+    children:
+      - type: node
+        id: recognize-dp-structure
+        title: 识别重叠子问题与最优子结构
+        description: 画出朴素递归调用关系，判断哪些子问题重复以及最优解能否由子问题最优解组合。
+        tags: [重叠子问题, 最优子结构]
+        status: planned
+      - type: node
+        id: define-dp-state
+        title: 定义信息充分且最小的状态
+        description: 让状态包含决定后续选择所需的全部历史摘要，同时避免加入不会影响未来的维度。
+        tags: [DP State, 状态压缩]
+        status: planned
+      - type: node
+        id: derive-transition-and-base
+        title: 推导转移、基本情况与计算顺序
+        description: 枚举到达状态的合法选择，证明不重不漏，并按依赖关系选择自顶向下或自底向上求值。
+        tags: [Recurrence, Base Case, Top-down]
+        status: planned
+      - type: node
+        id: reconstruct-dp-solution
+        title: 从最优值恢复具体方案
+        description: 保存父选择或反向检查转移，输出满足约束的完整序列、集合或路径并验证其目标值。
+        tags: [Solution Reconstruction, Parent Pointer]
+        status: planned
+      - type: node
+        id: optimize-dp-space
+        title: 根据依赖窗口压缩空间
+        description: 在证明未来只需有限历史后使用滚动数组、位集或原地更新，并检查更新方向不会覆盖依赖。
+        tags: [空间优化, Rolling Array, Bitset]
+        status: planned
+      - type: node
+        id: practice-classic-dp-families
+        title: 练习序列、背包与区间动态规划
+        description: 分别完成 Edit Distance、0/1 Knapsack、最长子序列和区间合并问题，比较状态设计的共性。
+        tags: [Edit Distance, Knapsack, Interval DP]
+        status: planned
+
+  - type: node
+    id: solve-graph-problems
+    title: 选择并证明图算法
+    description: 根据有向性、权重、负边、稀疏性和目标查询选择遍历、最短路、连通、流或匹配算法。
+    tags: [图算法, 最短路径, 网络流]
+    status: planned
+    children:
+      - type: node
+        id: traverse-with-bfs-dfs
+        title: 用 BFS 与 DFS 建立遍历骨架
+        description: 维护发现与完成状态，证明 BFS 层次给出无权最短路，并从 DFS 时间提取结构信息。
+        tags: [BFS, DFS, 遍历]
+        status: planned
+      - type: node
+        id: order-directed-acyclic-graphs
+        title: 拓扑排序并检测有向环
+        description: 使用入度或 DFS 生成合法顺序，在无解时返回可解释的环证据。
+        tags: [拓扑排序, DAG, 环检测]
+        status: planned
+      - type: node
+        id: find-strongly-connected-components
+        title: 分解强连通分量
+        description: 使用两遍 DFS 或 Low-link 算法识别互相可达区域，并构造无环的凝聚图。
+        tags: [SCC, Kosaraju, Tarjan]
+        status: planned
+      - type: node
+        id: choose-single-source-shortest-path
+        title: 按边权条件选择单源最短路
+        description: 比较 BFS、DAG 松弛、Dijkstra 和 Bellman-Ford，证明松弛不变量并正确报告负环。
+        tags: [Dijkstra, Bellman-Ford, Relaxation]
+        status: planned
+      - type: node
+        id: solve-all-pairs-shortest-path
+        title: 求解多源与全点对最短路
+        description: 根据图密度、负边和查询次数选择重复单源、Floyd-Warshall 或 Johnson，并分析时间空间取舍。
+        tags: [Floyd-Warshall, Johnson, APSP]
+        status: planned
+      - type: node
+        id: compute-maximum-flow
+        title: 建模并求解最大流
+        description: 构造容量网络与残量图，用增广路径或分层网络求流，并通过最小割证书验证最优性。
+        tags: [Max Flow, Min Cut, Residual Graph]
+        status: planned
+      - type: node
+        id: reduce-matching-to-flow
+        title: 将二分匹配归约到最大流
+        description: 构造源汇和单位容量边，证明整数流与匹配一一对应，并恢复具体配对。
+        tags: [Bipartite Matching, Reduction, Max Flow]
+        status: planned
+
+  - type: node
+    id: use-randomization
+    title: 使用随机化获得简单或高效算法
+    description: 明确随机选择改变的是运行时间还是答案正确率，并通过重复与概率界控制失败风险。
+    tags: [随机算法, 概率分析, Sampling]
+    status: planned
+    children:
+      - type: node
+        id: distinguish-las-vegas-monte-carlo
+        title: 区分 Las Vegas 与 Monte Carlo 算法
+        description: 分别分析答案总是正确但时间随机，以及时间受控但存在错误概率的算法，并说明适用场景。
+        tags: [Las Vegas, Monte Carlo, 错误概率]
+        status: planned
+      - type: node
+        id: analyze-randomized-partitioning
+        title: 分析随机分区与选择
+        description: 使用对称性、指示变量或递推式证明 Randomized Quicksort 与 Quickselect 的期望成本。
+        tags: [Randomized Quicksort, Quickselect, 期望]
+        status: planned
+      - type: node
+        id: sample-and-shuffle-unbiased
+        title: 实现无偏采样与洗牌
+        description: 使用 Fisher-Yates、Reservoir Sampling 或等价方法证明每个排列或样本具有目标概率。
+        tags: [Fisher-Yates, Reservoir Sampling, 无偏]
+        status: planned
+      - type: node
+        id: amplify-success-probability
+        title: 通过独立重复放大成功概率
+        description: 根据单次错误概率计算重复次数，用多数表决或取最佳结果降低失败概率并计入总成本。
+        tags: [Probability Amplification, 独立试验]
+        status: planned
+      - type: node
+        id: guard-against-adversarial-randomness
+        title: 处理随机源与对抗输入风险
+        description: 区分统计随机与密码学随机，固定种子复现实验，并防止可预测哈希或枢轴被恶意输入放大。
+        tags: [随机种子, 对抗输入, Hash Flooding]
+        status: planned
+
+  - type: node
+    id: solve-string-and-numeric-problems
+    title: 掌握字符串与基础数值算法
+    description: 利用序列结构、模运算和预处理减少重复比较，并处理编码、溢出与碰撞带来的实现风险。
+    tags: [字符串算法, 数论, 模运算]
+    status: planned
+    children:
+      - type: node
+        id: perform-linear-pattern-matching
+        title: 实现线性时间模式匹配
+        description: 使用 KMP、Z Algorithm 或前缀函数复用已匹配信息，证明回退不会重复扫描文本。
+        tags: [KMP, Z Algorithm, Pattern Matching]
+        status: planned
+      - type: node
+        id: use-rolling-hash-safely
+        title: 使用 Rolling Hash 并管理碰撞
+        description: 为子串查询构造前缀哈希，计算碰撞风险，并在正确性要求高时进行双哈希或直接核验。
+        tags: [Rabin-Karp, Rolling Hash, 碰撞]
+        status: planned
+      - type: node
+        id: compute-gcd-and-extended-gcd
+        title: 使用 Euclidean Algorithm 与扩展算法
+        description: 证明余数递减和最大公因数不变，求 Bézout 系数并应用于模逆。
+        tags: [GCD, Extended Euclid, Bézout]
+        status: planned
+      - type: node
+        id: perform-fast-modular-exponentiation
+        title: 实现快速幂与模运算
+        description: 按指数二进制分解将乘法次数降到对数级，处理负数规范化与中间结果溢出。
+        tags: [Binary Exponentiation, Modular Arithmetic]
+        status: planned
+      - type: node
+        id: explore-primality-and-sieves
+        title: 探索筛法与素性测试
+        description: 比较 Eratosthenes Sieve、分段筛和概率素性测试在范围、内存与错误概率上的取舍。
+        tags: [Sieve, Primality Test, 数论]
+        status: optional
+
+  - type: node
+    id: understand-tractability
+    title: 理解可计算性与问题难度
+    description: 用问题归约和复杂度类区分“尚未找到快算法”与“在标准假设下不太可能存在多项式算法”。
+    tags: [复杂度理论, P, NP, NP-Complete]
+    status: planned
+    link: https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/
+    children:
+      - type: node
+        id: distinguish-decision-search-optimization
+        title: 区分判定、搜索与优化问题
+        description: 将优化目标转换为判定版本，比较它们之间的算法关系，并说明输入编码会影响复杂度。
+        tags: [Decision Problem, Search, Optimization]
+        status: planned
+      - type: node
+        id: define-polynomial-time
+        title: 用多项式时间表达可处理性
+        description: 解释 P 的机器模型鲁棒性、组合爆炸与伪多项式时间，避免把所有大次多项式都视为实用。
+        tags: [P, Polynomial Time, 伪多项式]
+        status: planned
+      - type: node
+        id: verify-membership-in-np
+        title: 用证书与验证器理解 NP
+        description: 为判定问题定义多项式长度证书和多项式时间验证器，区分“难以求解”与“难以验证”。
+        tags: [NP, Certificate, Verifier]
+        status: planned
+      - type: node
+        id: construct-polynomial-reductions
+        title: 构造多项式时间归约
+        description: 将已知问题实例映射到目标问题，证明答案双向保持且转换成本为多项式，正确判断难度传播方向。
+        tags: [Reduction, 多项式归约]
+        status: planned
+      - type: node
+        id: prove-np-completeness
+        title: 完成经典 NP-Complete 证明
+        description: 先证明目标问题属于 NP，再从 SAT、3-SAT、Clique、Vertex Cover 或 Subset Sum 构造归约。
+        tags: [NP-Complete, SAT, 归约证明]
+        status: planned
+      - type: node
+        id: respond-to-intractability
+        title: 为难解问题选择可接受方案
+        description: 根据需求选择特殊情形、剪枝、动态规划、近似、随机化、参数化或启发式，并明确保证与停止条件。
+        tags: [近似算法, 参数化算法, 启发式]
+        status: planned
+      - type: node
+        id: recognize-computability-limits
+        title: 认识不可判定问题的边界
+        description: 通过 Halting Problem 和映射归约理解某些问题不存在对所有输入都正确终止的算法。
+        tags: [Undecidability, Halting Problem, 可计算性]
+        status: optional
+
+  - type: node
+    id: engineer-and-validate-algorithms
+    title: 用工程证据验证算法
+    description: 组合规格、性质测试、参考模型、基准和剖析，确认实现既正确又符合预期复杂度与资源边界。
+    tags: [算法工程, 测试, 基准, 性能]
+    status: planned
+    children:
+      - type: node
+        id: test-against-reference-model
+        title: 与简单参考实现做差分测试
+        description: 在小规模随机和穷举输入上比较优化算法与朴素实现，保存最小失败输入和随机种子。
+        tags: [差分测试, 参考模型, 随机测试]
+        status: planned
+      - type: node
+        id: test-properties-and-invariants
+        title: 用性质测试验证通用规则
+        description: 检查排序性、排列保持、路径合法、最优值界限和输入输出关系，而不只列举固定示例。
+        tags: [Property Testing, 不变量, 测试预言]
+        status: planned
+      - type: node
+        id: generate-adversarial-inputs
+        title: 构造最坏与对抗性输入
+        description: 针对枢轴、哈希、递归深度、图密度和数值范围生成输入，验证最坏界与失败保护。
+        tags: [最坏情况, 对抗输入, Robustness]
+        status: planned
+      - type: node
+        id: benchmark-across-scales
+        title: 跨规模测量增长趋势
+        description: 固定环境并改变输入规模与分布，重复测量时间、内存和分配，比较曲线斜率与理论预测。
+        tags: [Benchmark, Scaling, 实验设计]
+        status: planned
+      - type: node
+        id: profile-before-optimizing
+        title: 用 Profiler 定位实现瓶颈
+        description: 区分算法级复杂度、数据布局、缓存、分配、解释器和 I/O 成本，只优化实测热点。
+        tags: [Profiling, 缓存局部性, 优化]
+        status: planned
+      - type: node
+        id: handle-integer-and-stack-limits
+        title: 处理整数、精度与栈边界
+        description: 选择足够宽的类型，防止加乘和索引溢出，控制递归深度并验证浮点比较误差。
+        tags: [整数溢出, 浮点误差, Stack Overflow]
+        status: planned
+      - type: roadmap
+        roadmapId: software-testing
+        title: 深入自动化验证方法
+        description: 继续学习测试设计、性质测试、Fuzzing、性能实验和可信测试套件治理。
+
+  - type: node
+    id: deliver-algorithm-capstone
+    title: 交付一个算法设计与分析作品集
+    description: 为具有多种可行方案的问题完成建模、证明、实现、测试和实验报告，使他人能复查正确性与复杂度结论。
+    tags: [综合实践, 算法实现, 分析报告]
+    status: planned
+    children:
+      - type: node
+        id: select-capstone-problems
+        title: 选择覆盖多种范式的问题组
+        description: 从调度、路径规划、文本检索、资源分配或序列优化中选择问题，至少覆盖分治、贪心、动态规划和图算法三类。
+        tags: [问题集, 算法范式]
+        status: planned
+      - type: node
+        id: specify-capstone-problems
+        title: 写出正式规格与规模模型
+        description: 为每题定义输入域、输出、约束、规模参数和失败行为，给出小型示例但不以示例代替规格。
+        tags: [规格, 输入规模, 约束]
+        status: planned
+      - type: node
+        id: prove-capstone-correctness
+        title: 提交完整正确性证明
+        description: 标出不变量、归纳假设、贪心安全选择或动态规划状态语义，并单独证明终止性。
+        tags: [正确性证明, 不变量, 终止性]
+        status: planned
+      - type: node
+        id: analyze-capstone-complexity
+        title: 给出时间空间上下界
+        description: 对主要操作推导复杂度，说明最坏、期望或摊销语义，并与朴素方案或已知下界比较。
+        tags: [复杂度分析, 上界, 下界]
+        status: planned
+      - type: node
+        id: verify-capstone-implementations
+        title: 用参考模型与生成测试验证实现
+        description: 覆盖边界、随机和对抗输入，与朴素算法逐步比对，并保留能复现失败的最小数据。
+        tags: [差分测试, Property Testing, 反例]
+        status: planned
+      - type: node
+        id: benchmark-capstone-tradeoffs
+        title: 用基准解释理论与实测差异
+        description: 跨输入规模和分布比较候选方案，报告运行时间、内存、拐点、环境与测量误差。
+        tags: [基准测试, 性能, 取舍]
+        status: planned
+
+  - type: node
+    id: choose-advanced-algorithm-direction
+    title: 按问题领域选择深化方向
+    description: 完成核心范式、复杂度理论和综合作品后，再进入需要专门数学模型或计算环境的算法方向。
+    tags: [进阶, 专题]
+    status: optional
+    children:
+      - type: node
+        id: study-approximation-algorithms
+        title: 深入近似算法
+        description: 为 NP-hard 优化问题设计带近似比的多项式算法，区分绝对、相对和期望保证。
+        tags: [Approximation, 近似比, NP-hard]
+        status: optional
+      - type: node
+        id: study-online-algorithms
+        title: 深入在线与流式算法
+        description: 在输入逐步到达或内存受限时使用 Competitive Analysis、Sketch 和 Sampling 评估算法。
+        tags: [Online Algorithm, Streaming, Sketch]
+        status: optional
+      - type: node
+        id: study-computational-geometry
+        title: 深入计算几何
+        description: 研究方向测试、凸包、扫描线、最近点和空间分割，并处理浮点鲁棒性。
+        tags: [Computational Geometry, Sweep Line, Convex Hull]
+        status: optional
+      - type: node
+        id: study-parallel-algorithms
+        title: 深入并行算法
+        description: 使用 Work、Span 和依赖 DAG 分析并行度，设计分治、扫描、MapReduce 或 GPU 算法。
+        tags: [Parallel Algorithm, Work-Span, GPU]
+        status: optional
+      - type: node
+        id: study-parameterized-complexity
+        title: 深入参数化复杂度
+        description: 用除输入规模外的结构参数分析固定参数可解性，理解 Kernelization 与 W 层级。
+        tags: [FPT, Kernelization, Parameterized Complexity]
+        status: optional
+      - type: roadmap
+        roadmapId: database-systems
+        title: 将算法用于数据库系统
+        description: 在索引、连接、查询优化、并发控制与恢复中应用成本模型和算法设计。
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 将算法用于系统软件
+        description: 在调度、内存管理、文件系统和并发控制中分析算法与硬件行为。
+      - type: roadmap
+        roadmapId: distributed-systems
+        title: 深入分布式算法
+        description: 在部分失败、消息延迟和无全局时钟条件下研究复制、共识与一致性。

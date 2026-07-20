@@ -1,0 +1,579 @@
+id: database-systems
+title: 数据库原理
+description: 面向具备编程、数据结构和基础 SQL 能力的学习者，从关系模型与存储结构出发，成长为能解释查询、事务、恢复和分布式数据库核心机制，并实现和验证小型关系数据库组件的实践者。
+tags: [数据库, 数据库系统, 计算机科学, 后端]
+nodes:
+  - type: node
+    id: build-database-system-model
+    title: 建立数据库系统的整体模型
+    description: 从数据独立性、声明式接口和受控共享解释 DBMS 的价值，并追踪一条查询经过的主要组件。
+    tags: [DBMS, 数据独立性, 系统架构]
+    status: planned
+    link: https://15445.courses.cs.cmu.edu/spring2026/
+    children:
+      - type: node
+        id: distinguish-database-and-dbms
+        title: 区分数据库、DBMS 与应用
+        description: 说明持久数据、数据库管理软件和业务程序各自负责的状态、规则与故障边界。
+        tags: [DBMS, 数据管理]
+        status: planned
+      - type: node
+        id: explain-data-independence
+        title: 解释三级模式与数据独立性
+        description: 使用外部、概念和内部模式说明逻辑结构与物理存储如何解耦，以及模式变更可能影响哪些使用者。
+        tags: [三级模式, 数据独立性]
+        status: planned
+      - type: node
+        id: trace-query-lifecycle
+        title: 追踪一条查询的生命周期
+        description: 从客户端请求依次标出解析、绑定、优化、执行、缓冲、存储和事务处理组件，并记录每层输入与输出。
+        tags: [查询处理, 系统架构]
+        status: planned
+      - type: node
+        id: compare-data-models
+        title: 比较常见数据模型
+        description: 从结构约束、关系表达、查询能力和扩展方式比较关系、文档、键值、列族与图模型的适用边界。
+        tags: [数据模型, 关系数据库, NoSQL]
+        status: planned
+      - type: roadmap
+        roadmapId: sql
+        title: 补齐 SQL 查询与数据定义能力
+        description: 先能使用 SQL 定义约束、编写查询和控制事务，再把语句行为映射到数据库内部机制。
+      - type: roadmap
+        roadmapId: data-structures
+        title: 补齐实现数据库所需的数据结构
+        description: 复习树、哈希表、堆、图和复杂度分析，为索引、连接与缓存算法建立基础。
+
+  - type: node
+    id: reason-with-relational-model
+    title: 使用关系模型推理数据与查询
+    description: 用关系、键、完整性约束和关系代数精确定义数据状态与查询结果，并区分逻辑语义和执行方法。
+    tags: [关系模型, 关系代数, 完整性]
+    status: planned
+    link: https://cs186berkeley.net/notes/note6/
+    children:
+      - type: node
+        id: define-relations-and-keys
+        title: 用关系、元组与键描述数据
+        description: 区分关系模式和关系实例，识别超键、候选键、主键与外键，并用集合语义解释重复和顺序。
+        tags: [关系, 元组, 键]
+        status: planned
+      - type: node
+        id: enforce-relational-integrity
+        title: 用完整性约束排除无效状态
+        description: 将域完整性、实体完整性、引用完整性和业务断言写成可验证的约束及反例。
+        tags: [完整性约束, 不变量]
+        status: planned
+      - type: node
+        id: derive-relational-algebra
+        title: 使用关系代数推导查询
+        description: 用选择、投影、连接、笛卡尔积、重命名和集合运算组合查询，并逐步计算中间关系。
+        tags: [关系代数, 查询]
+        status: planned
+      - type: node
+        id: apply-relational-equivalences
+        title: 证明关系表达式等价
+        description: 在集合或多重集合语义下应用交换、结合与谓词下推规则，并用反例识别不成立的改写。
+        tags: [等价变换, 查询重写]
+        status: planned
+      - type: node
+        id: understand-relational-calculus
+        title: 理解关系演算与声明式查询
+        description: 区分过程式的代数表达与描述结果条件的演算表达，解释安全查询和关系完备性的意义。
+        tags: [关系演算, 声明式查询]
+        status: optional
+
+  - type: node
+    id: design-relational-schemas
+    title: 从业务规则设计关系模式
+    description: 从依赖关系发现冗余和更新异常，通过分解得到保持信息与关键约束的模式，并评估受控反规范化。
+    tags: [数据库设计, 函数依赖, 范式]
+    status: planned
+    link: https://cs186berkeley.net/notes/note13/
+    children:
+      - type: node
+        id: model-entities-and-relationships
+        title: 将业务概念映射为关系
+        description: 从需求中识别实体、属性、关系、基数和参与约束，并将概念模型转换为带键约束的关系模式。
+        tags: [ER 模型, 数据建模]
+        status: planned
+      - type: node
+        id: discover-functional-dependencies
+        title: 推导并验证函数依赖
+        description: 从业务规则而非样例巧合写出函数依赖，计算属性闭包、候选键与最小覆盖。
+        tags: [函数依赖, 属性闭包]
+        status: planned
+      - type: node
+        id: normalize-relational-schema
+        title: 将模式规范化到合适范式
+        description: 识别部分、传递和非键依赖，按目标将模式分解到 3NF 或 BCNF 并解释消除的异常。
+        tags: [3NF, BCNF, 规范化]
+        status: planned
+      - type: node
+        id: verify-decomposition-properties
+        title: 验证无损连接与依赖保持
+        description: 对每次分解检查自然连接能否恢复原关系以及约束能否局部执行，避免只按范式名称机械拆表。
+        tags: [无损连接, 依赖保持]
+        status: planned
+      - type: node
+        id: evaluate-denormalization
+        title: 评估受控反规范化
+        description: 仅在可测性能收益存在时引入冗余，并为一致性维护、重建、校验和故障恢复定义明确机制。
+        tags: [反规范化, 性能, 一致性]
+        status: planned
+
+  - type: node
+    id: organize-data-on-storage
+    title: 组织磁盘页、记录与缓冲区
+    description: 从存储设备和页面 I/O 成本出发设计文件、页与记录布局，并解释缓冲池如何连接内存和持久介质。
+    tags: [存储引擎, 页面, 缓冲池]
+    status: planned
+    link: https://cs186berkeley.net/notes/note3/
+    children:
+      - type: node
+        id: model-storage-hierarchy
+        title: 建立存储层次与 I/O 成本模型
+        description: 比较内存、SSD 和磁盘的访问粒度、延迟与带宽，并用页读写次数估算数据库操作成本。
+        tags: [存储层次, I/O, 成本模型]
+        status: planned
+      - type: node
+        id: lay-out-pages-and-records
+        title: 设计页面与记录布局
+        description: 使用页头、槽目录和记录标识符容纳定长与变长字段，并处理删除、移动、溢出和碎片。
+        tags: [Slotted Page, Record ID]
+        status: planned
+      - type: node
+        id: compare-file-organizations
+        title: 比较堆文件与有序文件
+        description: 根据点查、范围扫描、插入和重组成本选择堆式或有序组织，并维护空闲空间信息。
+        tags: [Heap File, Sorted File]
+        status: planned
+      - type: node
+        id: manage-buffer-pool
+        title: 实现缓冲池的基本职责
+        description: 用页表、帧、固定计数和脏页标记管理缓存页，保证正在使用的页不会被错误换出。
+        tags: [Buffer Pool, 缓存]
+        status: planned
+      - type: node
+        id: evaluate-page-replacement
+        title: 评估页面替换与预取策略
+        description: 在顺序扫描和随机访问工作负载下比较 LRU、Clock 与顺序洪泛保护，并测量命中率和 I/O。
+        tags: [Clock, LRU, 预取]
+        status: planned
+
+  - type: node
+    id: build-and-evaluate-indexes
+    title: 构建并评估数据库索引
+    description: 根据查询谓词、数据分布和写入负载选择索引结构，并验证查找、更新、空间与并发成本。
+    tags: [索引, B+ Tree, 哈希]
+    status: planned
+    link: https://cs186berkeley.net/notes/note4/
+    children:
+      - type: node
+        id: separate-primary-and-secondary-indexes
+        title: 区分聚簇与非聚簇索引
+        description: 说明索引项如何定位记录，比较主索引、二级索引、稠密索引、稀疏索引和聚簇布局的代价。
+        tags: [聚簇索引, 二级索引]
+        status: planned
+      - type: node
+        id: operate-bplus-tree
+        title: 手工执行 B+ Tree 操作
+        description: 在给定阶数和页容量下完成查找、范围扫描、插入、分裂、删除、借位与合并，并维护叶链。
+        tags: [B+ Tree, 范围查询]
+        status: planned
+      - type: node
+        id: compare-hash-indexes
+        title: 比较静态与动态哈希索引
+        description: 解释桶、冲突和溢出处理，并比较可扩展哈希与线性哈希在点查和增长场景中的行为。
+        tags: [Hash Index, Extendible Hashing]
+        status: planned
+      - type: node
+        id: design-composite-indexes
+        title: 按工作负载设计复合索引
+        description: 根据谓词、排序和结果列顺序设计多列、覆盖或部分索引，并解释最左前缀与写放大。
+        tags: [复合索引, 覆盖索引, 写放大]
+        status: planned
+      - type: node
+        id: preserve-index-correctness
+        title: 维护并发索引的正确性
+        description: 识别结构修改期间的读写冲突，理解闩锁耦合与乐观遍历，并用并发测试检查丢键和重复键。
+        tags: [Latch, 索引并发, 测试]
+        status: planned
+
+  - type: node
+    id: execute-relational-operators
+    title: 实现关系查询执行算子
+    description: 将逻辑计划转换为可组合的物理算子，为扫描、排序、聚合和连接选择适合内存与数据分布的算法。
+    tags: [查询执行, 物理算子, Join]
+    status: planned
+    link: https://cs186berkeley.net/notes/note9/
+    children:
+      - type: node
+        id: compare-execution-models
+        title: 比较查询执行模型
+        description: 解释迭代器、物化和向量化执行的数据流、函数调用、缓存局部性与中间结果开销。
+        tags: [Iterator Model, 向量化]
+        status: planned
+      - type: node
+        id: implement-scan-and-filter
+        title: 实现扫描、过滤与投影
+        description: 让顺序扫描或索引扫描按谓词产生正确元组，并处理列裁剪、NULL 和表达式求值。
+        tags: [Scan, Filter, Projection]
+        status: planned
+      - type: node
+        id: implement-external-sort
+        title: 实现外部归并排序
+        description: 根据缓冲页数量生成有序段并多路归并，计算趟数、I/O 成本和磁盘临时空间。
+        tags: [External Sort, 归并]
+        status: planned
+      - type: node
+        id: choose-join-algorithm
+        title: 按输入特征选择连接算法
+        description: 比较嵌套循环、块嵌套循环、索引嵌套循环、排序归并与哈希连接的前提和 I/O 成本。
+        tags: [Nested Loop Join, Hash Join, Sort-Merge Join]
+        status: planned
+      - type: node
+        id: handle-memory-pressure
+        title: 在内存受限时完成聚合与连接
+        description: 使用分区、溢写和递归处理超出内存的哈希表或中间结果，并避免数据倾斜导致单分区失控。
+        tags: [Spill, 分区, 数据倾斜]
+        status: planned
+
+  - type: node
+    id: optimize-query-plans
+    title: 使用统计信息优化查询计划
+    description: 从等价逻辑计划枚举物理实现，通过基数估计和成本模型选择计划，并用实际执行数据校准误差。
+    tags: [查询优化, 基数估计, 执行计划]
+    status: planned
+    link: https://cs186berkeley.net/notes/note10/
+    children:
+      - type: node
+        id: rewrite-logical-plans
+        title: 安全地重写逻辑计划
+        description: 应用谓词下推、投影下推、常量折叠和连接重排，同时证明 NULL、重复与外连接语义未被改变。
+        tags: [查询重写, 逻辑计划]
+        status: planned
+      - type: node
+        id: estimate-selectivity
+        title: 使用统计信息估算选择率
+        description: 根据行数、唯一值、直方图和常见值估算过滤及连接基数，并指出独立性和均匀性假设的误差来源。
+        tags: [统计信息, Selectivity, Histogram]
+        status: planned
+      - type: node
+        id: enumerate-join-orders
+        title: 枚举并裁剪连接顺序
+        description: 使用动态规划比较左深树等候选计划，保留有价值的访问路径并控制搜索空间。
+        tags: [Join Order, 动态规划]
+        status: planned
+      - type: node
+        id: interpret-query-plan
+        title: 用实际计划解释性能
+        description: 对照估计行数、实际行数、算子耗时、缓冲读写和溢写信息定位首个显著估计或执行偏差。
+        tags: [EXPLAIN, 性能诊断]
+        status: planned
+        link: https://www.postgresql.org/docs/current/using-explain.html
+      - type: node
+        id: design-optimizer-experiment
+        title: 设计可重复的优化器实验
+        description: 固定数据生成、缓存状态和查询参数，分别改变索引、统计信息或数据分布并记录计划与性能变化。
+        tags: [Benchmark, 实验, 查询优化]
+        status: planned
+
+  - type: node
+    id: define-transaction-correctness
+    title: 用事务定义并发正确性
+    description: 从 ACID、历史与可串行化建立正确性标准，识别不同隔离级别允许的异常和应用约束。
+    tags: [事务, ACID, 可串行化]
+    status: planned
+    link: https://cs186berkeley.net/notes/note11/
+    children:
+      - type: node
+        id: explain-acid-properties
+        title: 用失败场景解释 ACID
+        description: 分别说明原子性、一致性、隔离性和持久性由哪些应用不变量与数据库机制共同保证。
+        tags: [ACID, 一致性]
+        status: planned
+      - type: node
+        id: analyze-transaction-histories
+        title: 分析事务历史与冲突图
+        description: 从读写操作构造优先图，判断冲突可串行化，并给出等价串行顺序或形成环的证据。
+        tags: [Schedule, 冲突图]
+        status: planned
+      - type: node
+        id: recognize-isolation-anomalies
+        title: 复现隔离异常
+        description: 为脏读、不可重复读、幻读、丢失更新和写偏差构造最小并发用例并记录可观察结果。
+        tags: [隔离级别, 并发异常]
+        status: planned
+      - type: node
+        id: choose-isolation-contract
+        title: 按业务不变量选择隔离契约
+        description: 将应用需要维护的约束映射到数据库提供的隔离级别、显式锁或原子条件更新，并编写并发验收测试。
+        tags: [隔离级别, 业务不变量, 测试]
+        status: planned
+
+  - type: node
+    id: control-concurrent-transactions
+    title: 控制并发事务的交错执行
+    description: 使用锁、时间戳或多版本机制产生满足目标隔离性的历史，并处理阻塞、死锁与版本回收。
+    tags: [并发控制, 2PL, MVCC]
+    status: planned
+    link: https://www.postgresql.org/docs/current/mvcc-intro.html
+    children:
+      - type: node
+        id: apply-two-phase-locking
+        title: 使用两阶段锁保证可串行化
+        description: 根据读写集合获取共享锁与排他锁，解释锁升级、严格 2PL 和不同锁粒度对正确性与并发度的影响。
+        tags: [2PL, Shared Lock, Exclusive Lock]
+        status: planned
+      - type: node
+        id: manage-lock-granularity
+        title: 使用意向锁管理多粒度资源
+        description: 在库、表、页和行的层次上组合意向锁，验证兼容性并权衡锁数量与冲突范围。
+        tags: [意向锁, 锁粒度]
+        status: planned
+      - type: node
+        id: detect-and-handle-deadlocks
+        title: 检测并处理数据库死锁
+        description: 从等待关系构造等待图，比较预防、检测和超时方案，并保证选择牺牲者后能安全回滚和重试。
+        tags: [死锁, Wait-for Graph]
+        status: planned
+      - type: node
+        id: reason-about-mvcc
+        title: 使用可见性规则解释 MVCC
+        description: 根据事务时间戳、快照和版本链判断读操作可见的记录版本，并解释读写冲突为何减少。
+        tags: [MVCC, Snapshot, 版本链]
+        status: planned
+      - type: node
+        id: compare-concurrency-protocols
+        title: 比较并发控制协议
+        description: 从冲突处理时机、回滚成本、只读性能和高竞争行为比较锁、时间戳排序与乐观并发控制。
+        tags: [Timestamp Ordering, OCC, 2PL]
+        status: planned
+      - type: node
+        id: reclaim-old-versions
+        title: 安全回收过期版本
+        description: 识别仍可能被快照访问的版本，解释真空、垃圾回收和长事务对空间放大与可见性的影响。
+        tags: [Vacuum, Garbage Collection, 长事务]
+        status: planned
+
+  - type: node
+    id: recover-from-failures
+    title: 从故障中恢复一致状态
+    description: 用日志、缓冲管理和检查点协同保证事务原子性与持久性，并通过崩溃注入验证恢复流程。
+    tags: [恢复, WAL, ARIES]
+    status: planned
+    link: https://cs186berkeley.net/notes/note14/
+    children:
+      - type: node
+        id: classify-database-failures
+        title: 分类数据库故障与损坏
+        description: 区分事务失败、进程崩溃、操作系统崩溃、介质故障和静默损坏，明确各自丢失的状态与恢复来源。
+        tags: [故障模型, 数据损坏]
+        status: planned
+      - type: node
+        id: enforce-write-ahead-logging
+        title: 维护预写日志约束
+        description: 解释页面刷盘前和提交确认前分别必须持久化哪些日志，并追踪 LSN、脏页与提交记录。
+        tags: [WAL, LSN, 持久性]
+        status: planned
+      - type: node
+        id: compare-buffer-policies
+        title: 比较 STEAL 与 FORCE 策略
+        description: 判断缓冲策略为何产生 UNDO 或 REDO 需求，并将页面写回时机与日志规则关联起来。
+        tags: [STEAL, FORCE, UNDO, REDO]
+        status: planned
+      - type: node
+        id: execute-aries-recovery
+        title: 演练 ARIES 恢复过程
+        description: 使用事务表和脏页表完成分析、重做与撤销，解释补偿日志记录如何使重复恢复保持幂等。
+        tags: [ARIES, Checkpoint, CLR]
+        status: planned
+      - type: node
+        id: test-crash-recovery
+        title: 用崩溃注入验证恢复
+        description: 在日志追加、页面写回和提交确认的关键边界终止进程，重启后检查已提交事务、未提交事务和结构完整性。
+        tags: [Fault Injection, 崩溃恢复, 测试]
+        status: planned
+        link: https://www.sqlite.org/atomiccommit.html
+      - type: node
+        id: plan-backup-and-restore
+        title: 验证备份与时间点恢复
+        description: 区分崩溃恢复、备份恢复和复制，执行一次恢复演练并用恢复点目标、校验和与业务查询验收结果。
+        tags: [备份, PITR, 恢复演练]
+        status: planned
+
+  - type: node
+    id: scale-database-work
+    title: 理解并行与分布式数据库机制
+    description: 将数据和工作分布到多个执行单元，分析分区、复制、分布式事务和一致性协议带来的收益与故障语义。
+    tags: [分布式数据库, 并行查询, 复制]
+    status: planned
+    link: https://cs186berkeley.net/notes/note15/
+    children:
+      - type: node
+        id: parallelize-query-execution
+        title: 并行执行关系算子
+        description: 区分算子内与算子间并行，使用数据交换重新分区元组，并分析启动成本、倾斜和并行度上限。
+        tags: [并行查询, Exchange, 数据倾斜]
+        status: planned
+      - type: node
+        id: partition-distributed-data
+        title: 按访问模式划分数据
+        description: 比较范围、哈希和目录分区，设计分区键以减少跨节点操作并处理热点与再均衡。
+        tags: [Sharding, 分区键, 再均衡]
+        status: planned
+      - type: node
+        id: reason-about-replication
+        title: 推理复制的一致性与可用性
+        description: 追踪主从或多副本读写路径，分析同步确认、滞后、故障转移和读己之写等会话保证。
+        tags: [复制, 一致性, 故障转移]
+        status: planned
+      - type: node
+        id: execute-two-phase-commit
+        title: 演练两阶段提交
+        description: 区分协调者与参与者状态，追踪 prepare 和 commit 日志，并解释阻塞、超时与恢复决策。
+        tags: [2PC, 分布式事务]
+        status: planned
+        link: https://cs186berkeley.net/notes/note16/
+      - type: node
+        id: understand-consensus-boundary
+        title: 理解共识在数据库中的边界
+        description: 区分事务原子提交与复制日志共识，说明领导者、任期、法定人数和成员变更解决的具体问题。
+        tags: [Consensus, Quorum, Replicated Log]
+        status: optional
+        link: https://cs186berkeley.net/notes/note20/
+      - type: node
+        id: compare-distributed-data-systems
+        title: 比较分布式数据系统取舍
+        description: 根据一致性、延迟、可用性、查询模型和运维成本比较分布式 SQL、键值、列族和分析系统。
+        tags: [Distributed SQL, NoSQL, CAP]
+        status: optional
+
+  - type: node
+    id: secure-and-observe-databases
+    title: 建立数据库安全与可观测闭环
+    description: 以最小权限保护数据和管理接口，通过指标、日志、跟踪与基准测试定位正确性、容量和性能问题。
+    tags: [数据库安全, 可观测性, 性能]
+    status: planned
+    link: https://www.postgresql.org/docs/current/monitoring.html
+    children:
+      - type: node
+        id: enforce-least-privilege
+        title: 设计最小权限边界
+        description: 将身份、角色、对象权限和行列访问规则映射到应用职责，并定期验证越权与权限漂移。
+        tags: [最小权限, RBAC, 访问控制]
+        status: planned
+      - type: node
+        id: protect-data-paths
+        title: 保护连接、凭据与备份
+        description: 对传输、静态数据和备份选择加密与密钥管理措施，隔离管理接口并验证凭据轮换和恢复流程。
+        tags: [TLS, 加密, 密钥管理]
+        status: planned
+      - type: node
+        id: prevent-injection-and-abuse
+        title: 防止注入与资源滥用
+        description: 使用参数化查询、连接限制、语句超时和资源配额控制恶意输入及失控工作负载。
+        tags: [SQL 注入, 参数化查询, Resource Limit]
+        status: planned
+      - type: node
+        id: define-database-slos
+        title: 定义数据库服务目标
+        description: 为正确性、可用性、吞吐、分位延迟、复制滞后和恢复时间定义可测指标、预算与告警阈值。
+        tags: [SLO, 延迟, 可用性]
+        status: planned
+      - type: node
+        id: diagnose-database-bottlenecks
+        title: 用证据定位数据库瓶颈
+        description: 将慢查询、等待事件、锁、CPU、内存和 I/O 指标关联到具体负载，再以单一变量实验验证结论。
+        tags: [性能诊断, Wait Event, 慢查询]
+        status: planned
+      - type: node
+        id: design-representative-benchmarks
+        title: 设计具有代表性的基准测试
+        description: 固定数据规模、分布、读写比例、并发度和预热方式，报告吞吐与尾延迟并避免只优化单条查询。
+        tags: [Benchmark, 工作负载, 尾延迟]
+        status: planned
+
+  - type: node
+    id: implement-mini-relational-dbms
+    title: 实现并验收一个小型关系数据库
+    description: 组合存储、索引、执行、并发与恢复机制交付可重复运行的数据库原型，用自动测试和实验报告证明正确性与取舍。
+    tags: [综合实践, DBMS, 系统实现]
+    status: planned
+    link: https://15445.courses.cs.cmu.edu/spring2026/assignments.html
+    children:
+      - type: node
+        id: define-mini-dbms-scope
+        title: 定义原型边界与不变量
+        description: 明确支持的数据类型、页格式、查询子集、事务语义和故障模型，并为每个模块写出接口及持久化不变量。
+        tags: [需求, 不变量, 设计]
+        status: planned
+      - type: node
+        id: implement-storage-buffer-index
+        title: 实现存储、缓冲与索引
+        description: 完成页式堆文件、缓冲池和 B+ Tree 或哈希索引，为分裂、淘汰、脏页与重启编写自动测试。
+        tags: [存储引擎, Buffer Pool, B+ Tree]
+        status: planned
+      - type: node
+        id: implement-query-pipeline
+        title: 实现最小查询流水线
+        description: 将受限 SQL 或结构化计划转换为扫描、过滤、投影、聚合和至少两种连接算子，并验证结果及资源释放。
+        tags: [Parser, Executor, Join]
+        status: planned
+      - type: node
+        id: implement-transactions-and-recovery
+        title: 实现事务与崩溃恢复
+        description: 选择锁或 MVCC 实现明确隔离级别，加入 WAL 和重启恢复，并用并发调度及崩溃点测试验证行为。
+        tags: [事务, 并发控制, WAL]
+        status: planned
+      - type: node
+        id: benchmark-mini-dbms
+        title: 评测原型的性能边界
+        description: 对点查、范围扫描、批量写入和连接工作负载测量吞吐、尾延迟、缓存命中与 I/O，解释主要瓶颈。
+        tags: [Benchmark, 性能分析]
+        status: planned
+      - type: node
+        id: document-mini-dbms
+        title: 交付可复现的设计报告
+        description: 记录架构、关键算法、不变量、测试矩阵、故障注入、性能数据、已知限制和复现实验步骤。
+        tags: [设计文档, 测试报告, 复现]
+        status: planned
+
+  - type: node
+    id: choose-database-specialization
+    title: 选择数据库深化方向
+    description: 在完成关系数据库核心机制和综合原型后，依据工程目标进入具体产品、分布式系统、分析系统或数据库研究方向。
+    tags: [进阶, 数据库方向]
+    status: optional
+    children:
+      - type: roadmap
+        roadmapId: postgresql
+        title: 将原理应用到 PostgreSQL
+        description: 深入客户端、模式、事务、执行计划、安全、备份、复制与生产运维。
+      - type: roadmap
+        roadmapId: operating-systems
+        title: 深入数据库依赖的操作系统机制
+        description: 继续学习虚拟内存、文件系统、并发、I/O 与持久化边界对数据库实现的影响。
+      - type: roadmap
+        roadmapId: computer-networking
+        title: 补齐分布式数据库网络基础
+        description: 使用传输协议、拥塞、负载均衡和端到端排错能力分析节点间通信。
+      - type: node
+        id: explore-olap-systems
+        title: 深入列式存储与 OLAP
+        description: 研究列式布局、压缩、向量化执行、物化视图与大规模并行处理，并针对分析负载测量收益。
+        tags: [OLAP, 列式存储, MPP]
+        status: optional
+      - type: node
+        id: explore-lsm-storage
+        title: 深入 LSM Tree 存储引擎
+        description: 比较 MemTable、SSTable、Compaction、Bloom Filter 和分层策略对读写放大及空间放大的影响。
+        tags: [LSM Tree, Compaction, Bloom Filter]
+        status: optional
+      - type: node
+        id: explore-specialized-databases
+        title: 探索专用数据库系统
+        description: 根据访问模式研究时序、空间、图、向量或流数据库的存储、索引与查询执行差异。
+        tags: [时序数据库, 图数据库, 向量数据库]
+        status: optional

@@ -1,0 +1,324 @@
+id: mlops
+title: MLOps
+description: 面向已具备 Python 和基础机器学习能力的学习者，从可复现实验出发，建立数据、训练、交付、监控与治理闭环，并完成一个可安全回滚的生产级机器学习系统。
+tags: [MLOps, 机器学习, CI/CD, 可观测性, 模型治理]
+nodes:
+  - type: node
+    id: production-ml-foundations
+    title: 建立生产机器学习系统认知
+    description: 从业务目标、数据、模型和软件系统的共同约束出发，定义一个可测量、可运行且值得维护的机器学习问题。
+    tags: [ML 系统, 生命周期, 业务目标]
+    status: planned
+    link: https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
+    children:
+      - type: node
+        id: define-ml-product-objective
+        title: 把业务目标转化为模型与系统指标
+        description: 明确预测对象、决策动作、成功基线、误差成本、延迟与可用性要求，并判断规则系统是否已足够。
+        tags: [问题定义, 指标, 基线]
+        status: planned
+      - type: node
+        id: map-ml-lifecycle
+        title: 映射机器学习系统生命周期
+        description: 说明数据采集、特征处理、训练、评估、登记、部署、监控和再训练之间的输入、输出与责任边界。
+        tags: [生命周期, 系统设计]
+        status: planned
+      - type: node
+        id: choose-inference-pattern
+        title: 按需求选择批处理或在线推理
+        description: 根据数据到达方式、响应时间、吞吐、成本和一致性要求选择批处理、同步在线、异步或流式推理。
+        tags: [批处理, 在线推理, 架构]
+        status: planned
+      - type: roadmap
+        roadmapId: python
+        title: 补齐 Python 工程基础
+        description: 根据需要学习环境管理、模块化、类型、测试和并发，为训练代码与推理服务建立可维护基础。
+
+  - type: node
+    id: reproducible-data-and-features
+    title: 构建可追溯的数据与特征基础
+    description: 让每次训练和推理使用的数据来源、模式、质量与特征变换都可以验证、定位和重放。
+    tags: [数据版本, 数据质量, 特征工程]
+    status: planned
+    children:
+      - type: node
+        id: define-data-contracts
+        title: 为数据输入定义契约
+        description: 显式约定字段类型、语义、主键、时间、取值范围和敏感等级，并在上下游变更时执行兼容性检查。
+        tags: [数据契约, Schema, 数据质量]
+        status: planned
+      - type: node
+        id: version-datasets-and-lineage
+        title: 版本化数据集并记录血缘
+        description: 将训练数据快照或不可变引用关联到代码、配置和模型版本，使任何模型都能追溯到准确输入。
+        tags: [数据版本, Lineage, DVC]
+        status: planned
+        link: https://dvc.org/doc/start/data-management/data-versioning
+      - type: node
+        id: validate-data-automatically
+        title: 自动验证训练与服务数据
+        description: 对模式、缺失、范围、类别、分布和切分污染建立检查，在异常数据进入训练或推理前阻断并保留诊断结果。
+        tags: [数据验证, 数据测试, TFDV]
+        status: planned
+        link: https://www.tensorflow.org/tfx/guide/tfdv
+      - type: node
+        id: prevent-training-serving-skew
+        title: 防止训练与服务特征偏差
+        description: 复用或核对离线和在线特征变换，保证事件时间、缺失值、编码和聚合窗口的计算语义一致。
+        tags: [Training-serving Skew, 特征一致性]
+        status: planned
+      - type: node
+        id: evaluate-feature-store
+        title: 评估是否引入特征存储
+        description: 当多个模型需要共享特征或在线低延迟读取时，评估离线存储、在线存储、注册表和 point-in-time join 的收益与成本。
+        tags: [Feature Store, Feast, 特征复用]
+        status: optional
+        link: https://docs.feast.dev/getting-started/concepts/overview
+
+  - type: node
+    id: reproducible-experimentation
+    title: 建立可复现的实验与模型登记流程
+    description: 将代码、环境、数据、参数、指标和制品绑定为可比较的运行记录，并只让通过验证的模型进入候选集合。
+    tags: [实验追踪, 可复现性, Model Registry]
+    status: planned
+    children:
+      - type: node
+        id: modularize-training-code
+        title: 把探索代码重构为可测试训练模块
+        description: 将数据读取、特征转换、训练和评估拆成带明确接口的模块，允许从命令行和流水线以配置驱动执行。
+        tags: [模块化, 配置, 测试]
+        status: planned
+      - type: node
+        id: capture-reproducible-environments
+        title: 固定并复现训练环境
+        description: 锁定语言与依赖版本、记录硬件和随机种子，并在干净环境中确认同一输入可以产生可解释范围内的一致结果。
+        tags: [依赖管理, 随机性, 环境]
+        status: planned
+      - type: node
+        id: track-and-compare-experiments
+        title: 追踪并比较实验
+        description: 为每次运行记录代码版本、数据引用、参数、指标和制品，使用统一验证集与基线进行可审查比较。
+        tags: [MLflow, 实验追踪, 指标]
+        status: planned
+        link: https://mlflow.org/docs/latest/tracking/
+      - type: node
+        id: validate-model-candidates
+        title: 用多维门槛验证候选模型
+        description: 检查整体与关键切片的性能、校准、稳定性、推理成本和公平性，并用统计不确定性避免只追逐单一分数。
+        tags: [模型评估, 切片, 公平性]
+        status: planned
+        link: https://scikit-learn.org/stable/modules/model_evaluation.html
+      - type: node
+        id: register-approved-models
+        title: 登记通过验证的模型版本
+        description: 在模型注册表中保存不可变制品、接口签名、来源、评估结果和生命周期状态，为审批、部署和回退提供统一入口。
+        tags: [Model Registry, 模型版本, 审批]
+        status: planned
+        link: https://mlflow.org/docs/latest/ml/model-registry/
+
+  - type: node
+    id: automated-ml-pipelines
+    title: 自动化训练、验证与持续交付流水线
+    description: 把机器学习工作流声明为可重试、可观测且可测试的组件图，并通过受控触发器实现 CI、CD 和持续训练。
+    tags: [ML Pipeline, CI/CD, 持续训练]
+    status: planned
+    children:
+      - type: node
+        id: compose-pipeline-components
+        title: 将训练流程封装为可复用组件
+        description: 为数据准备、训练、评估和登记步骤定义版本化输入输出、资源需求、超时与失败语义，避免隐式共享本地状态。
+        tags: [组件, Artifact, DAG]
+        status: planned
+        link: https://www.kubeflow.org/docs/components/pipelines/concepts/component/
+      - type: node
+        id: orchestrate-repeatable-workflows
+        title: 编排可恢复的机器学习工作流
+        description: 使用一种编排器声明依赖、缓存、并行、重试和退出处理，并从元数据与日志定位失败步骤。
+        tags: [Kubeflow Pipelines, 编排, 重试]
+        status: planned
+        link: https://www.kubeflow.org/docs/components/pipelines/concepts/pipeline/
+      - type: node
+        id: test-ml-pipeline-changes
+        title: 为机器学习变更建立分层测试
+        description: 对变换函数、组件契约、数据样例、训练烟雾运行和端到端候选流程设置快速到完整的自动检查。
+        tags: [单元测试, 集成测试, Smoke Test]
+        status: planned
+      - type: node
+        id: control-training-triggers
+        title: 控制训练触发与资源消耗
+        description: 根据代码、数据、计划或性能退化触发训练，实施幂等、去重、并发限制、预算和人工审批边界。
+        tags: [持续训练, Trigger, 成本]
+        status: planned
+      - type: roadmap
+        roadmapId: devops
+        title: 复用 DevOps 的自动化交付能力
+        description: 深入版本控制、CI/CD、基础设施即代码、可观测性、可靠性和安全供应链实践。
+
+  - type: node
+    id: model-serving-and-release
+    title: 交付可靠且可回滚的推理服务
+    description: 将模型与前后处理打包为带版本的推理单元，验证服务契约，并以渐进方式安全发布。
+    tags: [模型服务, 部署, 回滚]
+    status: planned
+    children:
+      - type: node
+        id: define-inference-contract
+        title: 定义并测试推理契约
+        description: 约定输入输出模式、模型版本、超时、错误、批大小与兼容策略，并使用代表性样例执行契约测试。
+        tags: [API, Schema, 契约测试]
+        status: planned
+      - type: node
+        id: package-inference-artifacts
+        title: 打包可移植的推理制品
+        description: 将模型、运行时依赖和必要前后处理固定为不可变制品，最小化镜像并验证在隔离环境中的加载与预测。
+        tags: [容器, 制品, 可移植性]
+        status: planned
+        children:
+          - type: roadmap
+            roadmapId: docker
+            title: 使用 Docker 构建推理制品
+            description: 学习镜像构建、Registry、多阶段构建和容器安全，为模型服务提供一致运行环境。
+      - type: node
+        id: meet-serving-slos
+        title: 验证推理性能与容量
+        description: 在目标硬件上测量冷启动、吞吐、尾延迟、内存和加速器利用率，通过批处理、并发或模型优化满足 SLO。
+        tags: [性能测试, 延迟, 容量规划]
+        status: planned
+      - type: node
+        id: release-models-progressively
+        title: 渐进发布并自动回退模型
+        description: 通过影子、金丝雀或 A/B 流量比较候选与基线，依据服务和模型指标停止、扩大或回退发布。
+        tags: [Canary, Shadow, A/B 测试]
+        status: planned
+        link: https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary
+      - type: node
+        id: operate-model-serving-platform
+        title: 评估模型服务平台
+        description: 当多模型、自动扩缩、异构硬件或标准化协议带来明确收益时，评估 KServe 或云托管服务的运维边界。
+        tags: [KServe, 自动扩缩, 平台工程]
+        status: optional
+        link: https://kserve.github.io/website/docs/concepts/architecture
+        children:
+          - type: roadmap
+            roadmapId: kubernetes
+            title: 补齐 Kubernetes 平台能力
+            description: 在确有集群化服务需求时学习工作负载、网络、存储、伸缩、可观测性和安全。
+
+  - type: node
+    id: ml-observability-and-feedback
+    title: 监控模型、数据与业务反馈
+    description: 联合服务健康、数据变化、预测质量和业务结果判断系统是否仍然有效，并将问题转化为可执行响应。
+    tags: [模型监控, 数据漂移, 反馈闭环]
+    status: planned
+    children:
+      - type: node
+        id: instrument-serving-telemetry
+        title: 采集并关联推理遥测
+        description: 为请求、模型版本、特征版本、延迟、错误和资源使用生成结构化指标、日志与追踪，同时避免泄露敏感输入。
+        tags: [Metrics, Logs, Traces]
+        status: planned
+        link: https://opentelemetry.io/docs/concepts/signals/
+      - type: node
+        id: monitor-data-and-predictions
+        title: 监控数据质量与预测分布
+        description: 比较线上输入、特征和输出与参考窗口，按关键切片识别模式破坏、范围异常、漂移与训练服务偏差。
+        tags: [数据漂移, 概念漂移, 切片]
+        status: planned
+      - type: node
+        id: measure-delayed-model-quality
+        title: 在标签延迟下衡量模型质量
+        description: 建立预测与后到标签的可靠关联，持续计算性能、校准和业务效益，并区分数据变化与真实质量退化。
+        tags: [Ground Truth, 性能退化, 业务指标]
+        status: planned
+      - type: node
+        id: design-actionable-ml-alerts
+        title: 为可操作的模型症状设置告警
+        description: 为用户影响、数据失败、质量下降和资源异常定义阈值、持续窗口、责任人和运行手册，控制噪声与误报。
+        tags: [告警, Runbook, On-call]
+        status: planned
+      - type: node
+        id: close-learning-feedback-loop
+        title: 关闭数据与学习反馈闭环
+        description: 审核反馈数据的代表性和标签质量，将修正样本安全送回训练集，并通过受控流水线评估是否重新训练和发布。
+        tags: [反馈数据, 再训练, 人工审核]
+        status: planned
+
+  - type: node
+    id: responsible-and-secure-ml
+    title: 实施模型治理、安全与风险管理
+    description: 用分级控制保护数据、制品和决策链路，使模型用途、风险、责任和变更在全生命周期中可审计。
+    tags: [模型治理, 安全, 负责任 AI]
+    status: planned
+    link: https://www.nist.gov/itl/ai-risk-management-framework
+    children:
+      - type: node
+        id: classify-ml-risks
+        title: 按用途与影响分级机器学习风险
+        description: 识别对个人、组织和社会的潜在伤害，明确禁止用途、风险容忍度、人工监督和升级责任。
+        tags: [AI RMF, 风险分级, 人工监督]
+        status: planned
+      - type: node
+        id: document-model-decisions
+        title: 记录模型用途、限制与责任
+        description: 为每个发布版本维护预期用途、数据范围、评估切片、已知限制、负责人和退役条件，并与注册记录关联。
+        tags: [Model Card, 文档, 审计]
+        status: planned
+        link: https://research.google/pubs/model-cards-for-model-reporting/
+      - type: node
+        id: protect-ml-data-and-secrets
+        title: 保护数据、标签与凭据
+        description: 实施数据最小化、访问控制、加密、保留期限和密钥轮换，避免敏感内容进入仓库、制品、遥测或调试样本。
+        tags: [隐私, 访问控制, 密钥]
+        status: planned
+      - type: node
+        id: defend-ml-specific-threats
+        title: 缓解机器学习特有威胁
+        description: 针对数据投毒、对抗样本、模型窃取、反序列化和供应链攻击建立威胁模型、输入防护和响应方案。
+        tags: [ML 安全, 威胁建模, OWASP]
+        status: planned
+        link: https://owasp.org/www-project-machine-learning-security-top-10/
+      - type: node
+        id: secure-model-supply-chain
+        title: 保护模型供应链与发布权限
+        description: 校验外部数据和预训练模型来源，扫描依赖与制品，生成来源证明，并用最小权限和职责分离控制登记与部署。
+        tags: [供应链安全, Provenance, 最小权限]
+        status: planned
+        link: https://slsa.dev/spec/v1.2/
+
+  - type: node
+    id: production-ml-capstone
+    title: 完成一个生产级 MLOps 综合项目
+    description: 为真实或代表性数据实现从版本化训练到渐进发布、监控、回退和复盘的完整闭环，并用证据验收系统质量。
+    tags: [综合项目, 生产实践, 验收]
+    status: planned
+    children:
+      - type: node
+        id: design-capstone-architecture
+        title: 设计范围明确的系统方案
+        description: 写出用户决策、数据流、批量或在线架构、SLO、风险、成本边界和最小可行发布范围。
+        tags: [架构设计, SLO, 成本]
+        status: planned
+      - type: node
+        id: implement-capstone-pipeline
+        title: 实现可复现的训练与登记流水线
+        description: 从版本化数据开始自动执行验证、训练、评估和登记，并证明任一候选模型都能追溯到代码、配置和数据。
+        tags: [Pipeline, 可复现性, Registry]
+        status: planned
+      - type: node
+        id: deploy-and-observe-capstone
+        title: 部署并观测候选模型
+        description: 使用不可变制品和契约测试交付批处理作业或在线服务，通过渐进流量验证服务、模型与业务指标。
+        tags: [部署, 监控, 渐进发布]
+        status: planned
+      - type: node
+        id: rehearse-failure-and-rollback
+        title: 演练数据故障、模型退化与回退
+        description: 注入模式破坏、延迟升高或质量退化场景，验证告警、运行手册、回退、数据隔离和事件记录能够按预期工作。
+        tags: [故障演练, 回退, Incident]
+        status: planned
+      - type: node
+        id: review-capstone-evidence
+        title: 用运行证据评审并复盘项目
+        description: 汇总流水线记录、测试、性能、仪表盘、风险文档和演练结果，说明取舍、遗留风险与下一轮改进优先级。
+        tags: [复盘, 证据, 持续改进]
+        status: planned
